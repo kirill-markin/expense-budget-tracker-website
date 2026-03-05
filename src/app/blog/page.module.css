@@ -1,0 +1,66 @@
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  display: block;
+  padding: 24px;
+  border: 1px solid var(--border);
+  transition: border-color 0.15s;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.card h2 {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 8px 0;
+}
+
+.card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 24px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,75 @@
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin: 12px 0 32px;
+}
+
+.content {
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.content h2 {
+  font-size: 20px;
+  margin-top: 40px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.content p {
+  margin-bottom: 16px;
+}
+
+.content code {
+  background: #f3f3f3;
+  padding: 2px 6px;
+  font-size: 13px;
+}
+
+.content pre {
+  background: #f3f3f3;
+  padding: 16px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.content ul,
+.content ol {
+  padding-inline-start: 24px;
+  margin-bottom: 16px;
+}
+
+.content li {
+  margin-bottom: 8px;
+}
+
+.content a {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,80 @@
+.header {
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.desktopNav {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+}
+
+.desktopNav a:hover {
+  text-decoration: underline;
+}
+
+.desktopAuth {
+  display: flex;
+}
+
+.mobileToggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.mobileNav {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 24px 24px;
+  border-top: 1px solid var(--border);
+  font-size: 16px;
+}
+
+.mobileAuth {
+  padding-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .desktopNav,
+  .desktopAuth {
+    display: none;
+  }
+
+  .mobileToggle {
+    display: block;
+  }
+
+  .mobileNav {
+    display: flex;
+  }
+}
