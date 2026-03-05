@@ -64,6 +64,13 @@
   text-decoration: underline;
 }
 
+.content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 40px 24px;
