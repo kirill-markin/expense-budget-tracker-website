@@ -1,25 +1,70 @@
 import { NextResponse } from "next/server";
+import { readFileSync, readdirSync, existsSync } from "fs";
+import { join } from "path";
+import matter from "gray-matter";
+import { DOCS } from "@/data/docs";
 
 const SITE_URL = "https://expense-budget-tracker.com";
+const BLOG_DIR = join(process.cwd(), "src/content/blog");
+
+interface BlogMeta {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+}
+
+function getBlogPosts(): ReadonlyArray<BlogMeta> {
+  if (!existsSync(BLOG_DIR)) return [];
+  return readdirSync(BLOG_DIR)
+    .filter((f) => f.endsWith(".md"))
+    .map((file): BlogMeta => {
+      const raw = readFileSync(join(BLOG_DIR, file), "utf-8");
+      const { data } = matter(raw);
+      return {
+        slug: file.replace(/\.md$/, ""),
+        title: data.title as string,
+        description: data.description as string,
+        date: data.date as string,
+      };
+    })
+    .sort((a, b) => (a.date > b.date ? -1 : 1));
+}
 
 export async function GET(): Promise<NextResponse> {
+  const posts = getBlogPosts();
+
+  const docsSection = DOCS.map(
+    (d) => `- [${d.title}](${SITE_URL}/docs/${d.slug}/): ${d.description}`
+  ).join("\n");
+
+  const blogSection =
+    posts.length > 0
+      ? posts
+          .map(
+            (p) =>
+              `- [${p.title}](${SITE_URL}/blog/${p.slug}/): ${p.description}`
+          )
+          .join("\n")
+      : "- Posts coming soon.";
+
   const content = `# Expense Budget Tracker
 
 > Open-source expense and budget tracker with multi-currency support, transfers, and financial dashboards. Self-host on Postgres or use the cloud version.
 
 ## Documentation
 
-- [Getting Started](${SITE_URL}/docs/getting-started/): Sign up for cloud or set up your own instance
-- [Self-Hosting Guide](${SITE_URL}/docs/self-hosting/): Docker Compose deployment
-- [API Reference](${SITE_URL}/docs/api/): SQL API with bearer token auth
-- [Architecture](${SITE_URL}/docs/architecture/): System overview and data model
+${docsSection}
+
+## Blog
+
+${blogSection}
 
 ## Pages
 
 - [Home](${SITE_URL}/): Product overview and feature highlights
 - [Features](${SITE_URL}/features/): Detailed feature list
 - [Pricing](${SITE_URL}/pricing/): Self-hosted (free) and cloud plans
-- [Blog](${SITE_URL}/blog/): Updates and tutorials
 - [Privacy Policy](${SITE_URL}/privacy/): Data handling practices
 - [Terms of Service](${SITE_URL}/terms/): Usage terms
 
