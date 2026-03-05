@@ -39,6 +39,8 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+const SITE_URL = "https://expense-budget-tracker.com";
+
 export const generateMetadata = async ({
   params,
 }: PageProps): Promise<Metadata> => {
@@ -48,6 +50,20 @@ export const generateMetadata = async ({
   return {
     title: doc.frontmatter.title,
     description: doc.frontmatter.description,
+    openGraph: {
+      type: "website",
+      title: doc.frontmatter.title,
+      description: doc.frontmatter.description,
+      url: `${SITE_URL}/docs/${slug}/`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: doc.frontmatter.title,
+      description: doc.frontmatter.description,
+    },
+    alternates: {
+      canonical: `${SITE_URL}/docs/${slug}/`,
+    },
   };
 };
 
