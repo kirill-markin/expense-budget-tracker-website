@@ -3,6 +3,7 @@ import { readFileSync, readdirSync, existsSync } from "fs";
 import { join } from "path";
 import matter from "gray-matter";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -40,6 +41,7 @@ export default function BlogPage() {
 
   return (
     <div className={styles.container}>
+      <Breadcrumbs items={[{ label: "Blog", href: "/blog/" }]} />
       <h1 className={styles.title}>Blog</h1>
       {posts.length === 0 ? (
         <p className={styles.empty}>Posts coming soon.</p>

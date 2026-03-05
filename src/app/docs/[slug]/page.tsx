@@ -4,6 +4,7 @@ import { join } from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import styles from "./page.module.css";
 
 const CONTENT_DIR = join(process.cwd(), "src/content/docs");
@@ -82,6 +83,12 @@ export default async function DocPage({ params }: PageProps) {
 
   return (
     <div className={styles.container}>
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs/" },
+          { label: doc.frontmatter.title, href: `/docs/${slug}/` },
+        ]}
+      />
       <h1 className={styles.title}>{doc.frontmatter.title}</h1>
       <div
         className={styles.content}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -38,6 +39,7 @@ const DOCS = [
 export default function DocsPage() {
   return (
     <div className={styles.container}>
+      <Breadcrumbs items={[{ label: "Docs", href: "/docs/" }]} />
       <h1 className={styles.title}>Documentation</h1>
       <div className={styles.grid}>
         {DOCS.map((doc) => (
