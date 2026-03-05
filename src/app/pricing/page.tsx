@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Pricing",
   description:
     "Free self-hosted deployment or managed cloud hosting. Open source, no feature gating.",
+  alternates: {
+    types: { "text/markdown": "/pricing.md" },
+  },
 };
 
 export default function PricingPage() {

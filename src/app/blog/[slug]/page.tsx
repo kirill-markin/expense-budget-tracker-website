@@ -66,6 +66,7 @@ export const generateMetadata = async ({
     },
     alternates: {
       canonical: `${SITE_URL}/blog/${slug}/`,
+      types: { "text/markdown": `/blog/${slug}.md` },
     },
   };
 };

@@ -39,6 +39,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: `${SITE_URL}/`,
+    types: { "text/markdown": "/.md" },
   },
 };
 
