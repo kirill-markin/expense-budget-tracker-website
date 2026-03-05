@@ -1,7 +1,7 @@
 ---
 title: "How to Manage a Personal Budget with Expense Categories"
 description: "A practical guide to personal budgeting — categorize every transaction, plan 12 months ahead, and use AI to skip the manual work."
-date: 2026-03-05
+date: "2026-03-05"
 ---
 
 Most people track their spending after the fact. They check their bank app, scroll through transactions, and try to figure out where the money went. By that point it's already gone.
