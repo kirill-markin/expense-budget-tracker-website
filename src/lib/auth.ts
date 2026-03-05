@@ -1,10 +1,10 @@
 /**
  * Auth utilities for the marketing site.
  *
- * The marketing site never verifies JWTs — it only checks for the presence
- * of the `session` cookie (set by auth.expense-budget-tracker.com on the
- * shared .expense-budget-tracker.com domain). The real auth check happens
- * when the user navigates to app.expense-budget-tracker.com.
+ * The marketing site checks for the `logged_in` cookie — a non-HttpOnly
+ * UI indicator set by auth.expense-budget-tracker.com on the shared
+ * .expense-budget-tracker.com domain. It carries no security value;
+ * the real JWT verification happens on app.expense-budget-tracker.com.
  */
 
 const APP_URL =
@@ -25,4 +25,4 @@ export const getSignupUrl = (): string => {
 
 export const getAppUrl = (): string => APP_URL;
 
-export const SESSION_COOKIE_NAME = "session";
+export const LOGGED_IN_COOKIE_NAME = "logged_in";
