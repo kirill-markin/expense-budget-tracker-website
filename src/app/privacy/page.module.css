@@ -1,0 +1,43 @@
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+}
+
+.content h2 {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.content p {
+  font-size: 15px;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.content code {
+  background: #f3f3f3;
+  padding: 2px 6px;
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+}
