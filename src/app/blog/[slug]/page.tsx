@@ -4,6 +4,7 @@ import { join } from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import styles from "./page.module.css";
 
 const CONTENT_DIR = join(process.cwd(), "src/content/blog");
@@ -82,8 +83,32 @@ export default async function BlogPostPage({ params }: PageProps) {
     );
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.frontmatter.title,
+    description: post.frontmatter.description,
+    datePublished: post.frontmatter.date,
+    url: `${SITE_URL}/blog/${slug}/`,
+    publisher: {
+      "@type": "Organization",
+      name: "Expense Budget Tracker",
+      url: `${SITE_URL}/`,
+    },
+  };
+
   return (
     <article className={styles.container}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <Breadcrumbs
+        items={[
+          { label: "Blog", href: "/blog/" },
+          { label: post.frontmatter.title, href: `/blog/${slug}/` },
+        ]}
+      />
       <time className={styles.date}>{post.frontmatter.date}</time>
       <h1 className={styles.title}>{post.frontmatter.title}</h1>
       <div
