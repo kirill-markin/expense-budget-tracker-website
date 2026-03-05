@@ -54,10 +54,14 @@
 .mobileNav {
   display: none;
   flex-direction: column;
-  gap: 16px;
-  padding: 16px 24px 24px;
+  gap: 0;
+  padding: 8px 24px 16px;
   border-top: 1px solid var(--border);
   font-size: 16px;
+}
+
+.mobileNav a {
+  padding: 10px 0;
 }
 
 .mobileAuth {
