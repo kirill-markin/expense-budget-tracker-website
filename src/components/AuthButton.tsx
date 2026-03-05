@@ -2,22 +2,22 @@
 
 import { useEffect, useState } from "react";
 import {
-  SESSION_COOKIE_NAME,
+  LOGGED_IN_COOKIE_NAME,
   getAppUrl,
   getSignupUrl,
   getLoginUrl,
 } from "@/lib/auth";
 import styles from "./AuthButton.module.css";
 
-const hasSessionCookie = (): boolean =>
-  document.cookie.split(";").some((c) => c.trim().startsWith(`${SESSION_COOKIE_NAME}=`));
+const hasLoggedInCookie = (): boolean =>
+  document.cookie.split(";").some((c) => c.trim().startsWith(`${LOGGED_IN_COOKIE_NAME}=`));
 
 export const AuthButton: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoggedIn(hasSessionCookie());
+    setLoggedIn(hasLoggedInCookie());
     setMounted(true);
   }, []);
 
