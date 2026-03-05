@@ -86,10 +86,12 @@
   transition: background 0.15s, color 0.15s;
 }
 
-.secondaryButton:hover {
-  background: var(--accent);
-  color: var(--bg);
-  text-decoration: none;
+@media (hover: hover) and (pointer: fine) {
+  .secondaryButton:hover {
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+  }
 }
 
 .ctaWrapper {
@@ -105,7 +107,17 @@
     font-size: 28px;
   }
 
+  .price {
+    font-size: 24px;
+  }
+
   .grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 20px;
   }
 }
