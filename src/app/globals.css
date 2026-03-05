@@ -6,6 +6,7 @@
   --muted: #898989;
   --accent: #232323;
   --border: #e5e5e5;
+  --serif-font-family: var(--font-source-serif), Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 html,
