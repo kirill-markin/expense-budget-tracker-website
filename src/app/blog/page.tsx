@@ -9,6 +9,9 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Blog",
   description: "Updates, tutorials, and insights about Expense Budget Tracker.",
+  alternates: {
+    types: { "text/markdown": "/blog.md" },
+  },
 };
 
 interface BlogPost {

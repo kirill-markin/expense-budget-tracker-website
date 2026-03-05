@@ -4,6 +4,9 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Privacy policy for Expense Budget Tracker.",
+  alternates: {
+    types: { "text/markdown": "/privacy.md" },
+  },
 };
 
 export default function PrivacyPage() {

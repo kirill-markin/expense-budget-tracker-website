@@ -4,6 +4,9 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Terms of service for Expense Budget Tracker.",
+  alternates: {
+    types: { "text/markdown": "/terms.md" },
+  },
 };
 
 export default function TermsPage() {
