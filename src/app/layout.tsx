@@ -49,8 +49,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={sourceSerif.variable}>
+    <html lang="en" className={sourceSerif.variable}>
+      <body>
         <JsonLdSchema />
         <Header />
         <main>{children}</main>
