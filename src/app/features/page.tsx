@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
-import { FEATURES } from "@/data/features";
+import { readPageContent } from "@/lib/content/readPageContent";
 import styles from "./page.module.css";
 
+const pageContent = readPageContent("features");
+
+function getFeatureSection() {
+  const section = pageContent.sections[0];
+
+  if (section?.type !== "feature_list") {
+    throw new Error("Invalid features page content structure");
+  }
+
+  return section;
+}
+
+const featureSection = getFeatureSection();
+
 export const metadata: Metadata = {
-  title: "Features",
-  description:
-    "Multi-currency tracking, budget planning, dashboards, API access, self-hosting, and workspace isolation.",
+  title: pageContent.title,
+  description: pageContent.description,
   alternates: {
     types: { "text/markdown": "/features.md" },
   },
@@ -14,16 +27,13 @@ export const metadata: Metadata = {
 export default function FeaturesPage() {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Features</h1>
-      <p className={styles.subtitle}>
-        Everything you need to track personal finances, without giving up
-        control of your data.
-      </p>
+      <h1 className={styles.title}>{pageContent.title}</h1>
+      <p className={styles.subtitle}>{featureSection.intro}</p>
       <div className={styles.grid}>
-        {FEATURES.map((feature) => (
-          <div key={feature.title} className={styles.card}>
-            <h2>{feature.title}</h2>
-            <p>{feature.description}</p>
+        {featureSection.items.map((item) => (
+          <div key={item.title} className={styles.card}>
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
           </div>
         ))}
       </div>

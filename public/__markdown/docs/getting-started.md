@@ -17,8 +17,3 @@ If you prefer to run your own instance, see the [Self-Hosting Guide](/docs/self-
 ## Demo Mode
 
 The app includes a built-in demo mode. Toggle the All/Demo button in the header to explore the interface with sample data — no database needed.
-
----
-*[View the styled HTML version of this page](https://expense-budget-tracker.com/docs/getting-started/)*
-
-*Tip: Append `.md` to any URL on https://expense-budget-tracker.com to get a clean Markdown version of that page.*

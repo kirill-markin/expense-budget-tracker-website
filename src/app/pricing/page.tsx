@@ -1,11 +1,31 @@
 import type { Metadata } from "next";
 import { AuthButton } from "@/components/AuthButton";
+import { readPageContent } from "@/lib/content/readPageContent";
 import styles from "./page.module.css";
 
+const pageContent = readPageContent("pricing");
+
+function getPricingSection() {
+  const section = pageContent.sections[0];
+
+  if (section?.type !== "pricing_tiers") {
+    throw new Error("Invalid pricing page content structure");
+  }
+
+  return section;
+}
+
+const pricingSection = getPricingSection();
+const selfHostedTier = pricingSection.tiers[0];
+const cloudTier = pricingSection.tiers[1];
+
+if (selfHostedTier.type !== "link_tier" || cloudTier.type !== "auth_tier") {
+  throw new Error("Invalid pricing tier structure");
+}
+
 export const metadata: Metadata = {
-  title: "Pricing",
-  description:
-    "Free self-hosted deployment or managed cloud hosting. Open source, no feature gating.",
+  title: pageContent.title,
+  description: pageContent.description,
   alternates: {
     types: { "text/markdown": "/pricing.md" },
   },
@@ -14,41 +34,35 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Pricing</h1>
-      <p className={styles.subtitle}>
-        All features are available in every plan. No feature gating.
-      </p>
+      <h1 className={styles.title}>{pageContent.title}</h1>
+      <p className={styles.subtitle}>{pricingSection.intro}</p>
 
       <div className={styles.grid}>
         <div className={styles.card}>
-          <h2>Self-Hosted</h2>
-          <div className={styles.price}>Free</div>
+          <h2>{selfHostedTier.name}</h2>
+          <div className={styles.price}>{selfHostedTier.price}</div>
           <ul className={styles.features}>
-            <li>Full source code on GitHub</li>
-            <li>Docker Compose + Postgres</li>
-            <li>All features included</li>
-            <li>Your server, your data</li>
-            <li>Community support</li>
+            {selfHostedTier.bullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
           </ul>
           <a
-            href="https://github.com/kirill-markin/expense-budget-tracker"
+            href={selfHostedTier.cta.href}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.secondaryButton}
           >
-            View on GitHub
+            {selfHostedTier.cta.label}
           </a>
         </div>
 
         <div className={`${styles.card} ${styles.highlighted}`}>
-          <h2>Cloud</h2>
-          <div className={styles.price}>Free during beta</div>
+          <h2>{cloudTier.name}</h2>
+          <div className={styles.price}>{cloudTier.price}</div>
           <ul className={styles.features}>
-            <li>Managed hosting on AWS</li>
-            <li>Automatic backups</li>
-            <li>All features included</li>
-            <li>Email OTP authentication</li>
-            <li>Daily FX rate updates</li>
+            {cloudTier.bullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
           </ul>
           <div className={styles.ctaWrapper}>
             <AuthButton />

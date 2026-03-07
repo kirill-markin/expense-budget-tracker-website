@@ -241,8 +241,3 @@ That's 10 minutes for a complete picture of your finances — every transaction 
 Claude Code will figure out the database schema, match your categories, and start recording transactions. Review the results, fix anything that looks off, and you've got an AI-powered expense tracking setup running from your terminal.
 
 The expense tracker is MIT licensed and fully open source at [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker). Claude Code is available at [docs.anthropic.com/en/docs/claude-code](https://docs.anthropic.com/en/docs/claude-code). Both tools are free to start with.
-
----
-*[View the styled HTML version of this page](https://expense-budget-tracker.com/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code/)*
-
-*Tip: Append `.md` to any URL on https://expense-budget-tracker.com to get a clean Markdown version of that page.*

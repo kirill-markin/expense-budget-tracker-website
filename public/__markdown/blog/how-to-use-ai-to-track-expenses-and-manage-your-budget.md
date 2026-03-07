@@ -107,8 +107,3 @@ The AI will discover your database schema, match your expense categories, and st
 Kirill Markin wrote about his personal methodology in detail: [How I Use AI to Handle My Expenses from Bank Accounts and Budget](https://kirill-markin.com/articles/ai-expense-tracking-bank-accounts-budget/). Five years of every single transaction categorized and tracked — the same approach described in this article, battle-tested on real money across multiple currencies and countries.
 
 The tool is MIT licensed and fully open source at [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker). Use the hosted version or run it yourself — the SQL API works the same either way.
-
----
-*[View the styled HTML version of this page](https://expense-budget-tracker.com/blog/how-to-use-ai-to-track-expenses-and-manage-your-budget/)*
-
-*Tip: Append `.md` to any URL on https://expense-budget-tracker.com to get a clean Markdown version of that page.*
