@@ -1,11 +1,12 @@
+import { HOME_PAGE_METADATA } from "@/content/pages/home";
+
 const SITE_URL = "https://expense-budget-tracker.com";
 
 const softwareAppSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Expense Budget Tracker",
-  description:
-    "Open-source expense and budget tracker with multi-currency support, transfers, and financial dashboards.",
+  description: HOME_PAGE_METADATA.description,
   url: `${SITE_URL}/`,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
@@ -24,8 +25,7 @@ const websiteSchema = {
   "@type": "WebSite",
   url: `${SITE_URL}/`,
   name: "Expense Budget Tracker",
-  description:
-    "Open-source expense and budget tracker with multi-currency support, transfers, and financial dashboards.",
+  description: HOME_PAGE_METADATA.description,
 };
 
 export function JsonLdSchema(): React.JSX.Element {

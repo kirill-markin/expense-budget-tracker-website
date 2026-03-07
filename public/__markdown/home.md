@@ -1,4 +1,4 @@
-# Expense Budget Tracker
+# Expense Budget Tracker - Open Source Personal Finance
 
 Track expenses. Plan budgets. Own your data.
 

@@ -1,9 +1,14 @@
 import type { PageContent } from "@/lib/content/types";
 
-export const HOME_PAGE_CONTENT: PageContent = {
-  title: "Expense Budget Tracker",
+export const HOME_PAGE_METADATA = {
+  title: "Expense Budget Tracker - Open Source Personal Finance",
   description:
-    "Open-source expense and budget tracker with multi-currency support, budget planning, and financial dashboards.",
+    "Open-source expense and budget tracker with multi-currency support, transfers, and financial dashboards. Self-host on Postgres or use the cloud version.",
+} as const;
+
+export const HOME_PAGE_CONTENT: PageContent = {
+  title: HOME_PAGE_METADATA.title,
+  description: HOME_PAGE_METADATA.description,
   slug: "home",
   sections: [
     {

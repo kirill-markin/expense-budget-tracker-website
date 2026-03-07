@@ -5,6 +5,7 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
 const CONTENT_DIR = join(process.cwd(), "src/content/blog");
@@ -49,26 +50,14 @@ export const generateMetadata = async ({
   const { slug } = await params;
   const post = await readPost(slug);
   if (!post) return { title: "Not Found" };
-  return {
+  return createPageMetadata({
     title: post.frontmatter.title,
     description: post.frontmatter.description,
-    openGraph: {
-      type: "article",
-      title: post.frontmatter.title,
-      description: post.frontmatter.description,
-      url: `${SITE_URL}/blog/${slug}/`,
-      publishedTime: post.frontmatter.date,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.frontmatter.title,
-      description: post.frontmatter.description,
-    },
-    alternates: {
-      canonical: `${SITE_URL}/blog/${slug}/`,
-      types: { "text/markdown": `/blog/${slug}.md` },
-    },
-  };
+    pathname: `/blog/${slug}/`,
+    markdownPath: `/blog/${slug}.md`,
+    openGraphType: "article",
+    publishedTime: post.frontmatter.date,
+  });
 };
 
 export default async function BlogPostPage({ params }: PageProps) {

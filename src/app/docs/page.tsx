@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { DOCS } from "@/data/docs";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Documentation",
   description:
     "Getting started, self-hosting guide, API reference, and architecture overview.",
-  alternates: {
-    types: { "text/markdown": "/docs.md" },
-  },
-};
+  pathname: "/docs/",
+  markdownPath: "/docs.md",
+  openGraphType: "website",
+});
 
 export default function DocsPage() {
   return (

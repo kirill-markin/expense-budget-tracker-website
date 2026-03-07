@@ -5,6 +5,8 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { DOCS } from "@/data/docs";
+import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
 const CONTENT_DIR = join(process.cwd(), "src/content/docs");
@@ -29,12 +31,8 @@ const readDoc = async (
   };
 };
 
-export const generateStaticParams = (): Array<{ slug: string }> => [
-  { slug: "getting-started" },
-  { slug: "self-hosting" },
-  { slug: "api" },
-  { slug: "architecture" },
-];
+export const generateStaticParams = (): Array<{ slug: string }> =>
+  DOCS.map((doc) => ({ slug: doc.slug }));
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -48,25 +46,13 @@ export const generateMetadata = async ({
   const { slug } = await params;
   const doc = await readDoc(slug);
   if (!doc) return { title: "Not Found" };
-  return {
+  return createPageMetadata({
     title: doc.frontmatter.title,
     description: doc.frontmatter.description,
-    openGraph: {
-      type: "website",
-      title: doc.frontmatter.title,
-      description: doc.frontmatter.description,
-      url: `${SITE_URL}/docs/${slug}/`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: doc.frontmatter.title,
-      description: doc.frontmatter.description,
-    },
-    alternates: {
-      canonical: `${SITE_URL}/docs/${slug}/`,
-      types: { "text/markdown": `/docs/${slug}.md` },
-    },
-  };
+    pathname: `/docs/${slug}/`,
+    markdownPath: `/docs/${slug}.md`,
+    openGraphType: "website",
+  });
 };
 
 export default async function DocPage({ params }: PageProps) {

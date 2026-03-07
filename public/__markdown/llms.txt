@@ -4,7 +4,7 @@
 
 ## Pages
 
-- [Expense Budget Tracker](https://expense-budget-tracker.com/): Open-source expense and budget tracker with multi-currency support, budget planning, and financial dashboards.
+- [Expense Budget Tracker - Open Source Personal Finance](https://expense-budget-tracker.com/): Open-source expense and budget tracker with multi-currency support, transfers, and financial dashboards. Self-host on Postgres or use the cloud version.
 - [Features](https://expense-budget-tracker.com/features/): Multi-currency tracking, budget planning, dashboards, API access, self-hosting, and workspace isolation.
 - [Pricing](https://expense-budget-tracker.com/pricing/): Free self-hosted deployment or managed cloud hosting. Open source, no feature gating.
 - [Privacy Policy](https://expense-budget-tracker.com/privacy/): Privacy policy for Expense Budget Tracker.
