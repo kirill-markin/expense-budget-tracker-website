@@ -35,8 +35,3 @@ Two modes via `AUTH_MODE` env var:
 - `cognito` — Passwordless email OTP via AWS Cognito, open registration
 
 Each user gets an isolated workspace. RLS policies check membership on every query.
-
----
-*[View the styled HTML version of this page](https://expense-budget-tracker.com/docs/architecture/)*
-
-*Tip: Append `.md` to any URL on https://expense-budget-tracker.com to get a clean Markdown version of that page.*

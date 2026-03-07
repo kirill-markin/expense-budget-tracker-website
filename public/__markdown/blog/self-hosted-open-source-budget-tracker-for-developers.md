@@ -131,8 +131,3 @@ When you're ready for production, follow the [AWS deployment guide](https://gith
 The repository is at [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker). Star it, fork it, or just read the code. It's MIT licensed — use it however you want.
 
 If you already manage servers and databases for work, running the same stack for your personal finances is a small step — and you get full control over the data.
-
----
-*[View the styled HTML version of this page](https://expense-budget-tracker.com/blog/self-hosted-open-source-budget-tracker-for-developers/)*
-
-*Tip: Append `.md` to any URL on https://expense-budget-tracker.com to get a clean Markdown version of that page.*

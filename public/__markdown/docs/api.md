@@ -34,8 +34,3 @@ DDL statements (`CREATE`, `DROP`, `ALTER`) are blocked.
 - RLS enforces workspace isolation at the database level
 - Keys can be revoked at any time from Settings
 - Removing a workspace member auto-revokes all their keys
-
----
-*[View the styled HTML version of this page](https://expense-budget-tracker.com/docs/api/)*
-
-*Tip: Append `.md` to any URL on https://expense-budget-tracker.com to get a clean Markdown version of that page.*

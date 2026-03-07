@@ -1,81 +1,68 @@
 import { AuthButton } from "@/components/AuthButton";
+import { readPageContent } from "@/lib/content/readPageContent";
 import styles from "./page.module.css";
+
+const pageContent = readPageContent("home");
+
+function getHeroSection() {
+  const section = pageContent.sections[0];
+
+  if (section?.type !== "hero") {
+    throw new Error("Invalid home page content structure");
+  }
+
+  return section;
+}
+
+function getFeatureSection() {
+  const section = pageContent.sections[1];
+
+  if (section?.type !== "feature_list") {
+    throw new Error("Invalid home page content structure");
+  }
+
+  return section;
+}
+
+const heroSection = getHeroSection();
+const featureSection = getFeatureSection();
 
 export default function HomePage() {
   return (
     <div className={styles.hero}>
       <div className={styles.heroInner}>
         <h1 className={styles.title}>
-          Track expenses.
-          <br />
-          Plan budgets.
-          <br />
-          Own your data.
+          {heroSection.titleLines.map((line, index) => (
+            <span key={line}>
+              {line}
+              {index < heroSection.titleLines.length - 1 ? <br /> : null}
+            </span>
+          ))}
         </h1>
-        <p className={styles.subtitle}>
-          Open-source personal finance tracker with multi-currency support,
-          budget planning, and financial dashboards. Self-host on Postgres or
-          use the cloud version.
-        </p>
+        <p className={styles.subtitle}>{heroSection.subtitle}</p>
         <div className={styles.cta}>
           <AuthButton />
         </div>
         <p className={styles.hint}>
-          Free and open source.{" "}
+          {heroSection.hintText}{" "}
           <a
-            href="https://github.com/kirill-markin/expense-budget-tracker"
+            href={heroSection.hintLink.href}
             target="_blank"
             rel="noopener noreferrer"
           >
-            View on GitHub
+            {heroSection.hintLink.label}
           </a>
         </p>
       </div>
 
       <section className={styles.features}>
         <div className={styles.featureGrid}>
-          <div className={styles.featureCard}>
-            <h3>Multi-Currency</h3>
-            <p>
-              Track accounts in any currency. Automatic FX conversion from ECB,
-              CBR, and NBS rates.
-            </p>
-          </div>
-          <div className={styles.featureCard}>
-            <h3>Budget Planning</h3>
-            <p>
-              Monthly budget grid with income and spending categories. Compare
-              planned vs actual.
-            </p>
-          </div>
-          <div className={styles.featureCard}>
-            <h3>Dashboards</h3>
-            <p>
-              Visual breakdowns of spending, balances over time, and FX impact
-              on your portfolio.
-            </p>
-          </div>
-          <div className={styles.featureCard}>
-            <h3>Self-Hosted</h3>
-            <p>
-              Docker Compose with Postgres. Your data stays on your server. No
-              third-party dependencies.
-            </p>
-          </div>
-          <div className={styles.featureCard}>
-            <h3>API Access</h3>
-            <p>
-              SQL API with bearer token auth. Connect LLM agents, scripts, or
-              dashboards directly.
-            </p>
-          </div>
-          <div className={styles.featureCard}>
-            <h3>Workspace Isolation</h3>
-            <p>
-              Row-level security in Postgres. Each user gets an isolated
-              workspace. Share via invites.
-            </p>
-          </div>
+          {featureSection.items.map((item) => (
+            <div key={item.title} className={styles.featureCard}>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))}
         </div>
       </section>
     </div>

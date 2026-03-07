@@ -90,8 +90,3 @@ You can start with a spreadsheet. Create the rows (categories), columns (months)
 If you want the AI integration and multi-currency support out of the box, [Expense Budget Tracker](https://expense-budget-tracker.com/) is free and open source. You can use the hosted version or [self-host it](https://github.com/kirill-markin/expense-budget-tracker) on your own servers.
 
 The tool matters less than the habit. Pick something, categorize every transaction, maintain a forecast, and review it monthly. That's the whole system.
-
----
-*[View the styled HTML version of this page](https://expense-budget-tracker.com/blog/how-to-manage-personal-budget-with-expense-categories/)*
-
-*Tip: Append `.md` to any URL on https://expense-budget-tracker.com to get a clean Markdown version of that page.*

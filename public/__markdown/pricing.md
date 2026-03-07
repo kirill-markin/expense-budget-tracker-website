@@ -2,7 +2,7 @@
 
 All features are available in every plan. No feature gating.
 
-## Self-Hosted — Free
+## Self-Hosted - Free
 
 - Full source code on GitHub
 - Docker Compose + Postgres
@@ -12,7 +12,7 @@ All features are available in every plan. No feature gating.
 
 [View on GitHub](https://github.com/kirill-markin/expense-budget-tracker)
 
-## Cloud — Free during beta
+## Cloud - Free during beta
 
 - Managed hosting on AWS
 - Automatic backups

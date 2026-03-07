@@ -35,8 +35,3 @@ Docker Compose will rebuild and re-run migrations automatically.
 ## AWS Deployment
 
 For production deployment on AWS (ECS Fargate + RDS + ALB + Cognito), see the [AWS CDK guide](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).
-
----
-*[View the styled HTML version of this page](https://expense-budget-tracker.com/docs/self-hosting/)*
-
-*Tip: Append `.md` to any URL on https://expense-budget-tracker.com to get a clean Markdown version of that page.*

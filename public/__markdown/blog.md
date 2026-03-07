@@ -1,11 +1,6 @@
 # Blog
 
-- [How to Manage a Personal Budget with Expense Categories](https://expense-budget-tracker.com/blog/how-to-manage-personal-budget-with-expense-categories/) — 2026-03-05: A practical guide to personal budgeting — categorize every transaction, plan 12 months ahead, and use AI to skip the manual work.
-- [How to Track Expenses and Manage Your Budget with Claude Code](https://expense-budget-tracker.com/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code/) — 2026-03-05: Set up Claude Code as your personal finance assistant. Give it a SQL API key to your expense tracker, and it will parse bank statements, categorize transactions, check balances, and manage your budget — all from the terminal.
-- [How to Use AI to Track Expenses and Manage Your Budget](https://expense-budget-tracker.com/blog/how-to-use-ai-to-track-expenses-and-manage-your-budget/) — 2026-03-05: A practical guide to AI-powered personal finance. Give your AI agent an API key, and it will parse bank statements, categorize transactions, track expenses, and manage your budget — all through a SQL API.
-- [Self-Hosted Open Source Budget Tracker for Developers — Own Your Financial Data](https://expense-budget-tracker.com/blog/self-hosted-open-source-budget-tracker-for-developers/) — 2026-03-05: Why programmers should self-host their expense tracker on their own server. Deploy an open-source budget tracker with SQL API, AI agent integration, and full control over your Postgres database.
-
----
-*[View the styled HTML version of this page](https://expense-budget-tracker.com/blog/)*
-
-*Tip: Append `.md` to any URL on https://expense-budget-tracker.com to get a clean Markdown version of that page.*
+- [How to Manage a Personal Budget with Expense Categories](https://expense-budget-tracker.com/blog/how-to-manage-personal-budget-with-expense-categories/) - 2026-03-05: A practical guide to personal budgeting — categorize every transaction, plan 12 months ahead, and use AI to skip the manual work.
+- [How to Track Expenses and Manage Your Budget with Claude Code](https://expense-budget-tracker.com/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code/) - 2026-03-05: Set up Claude Code as your personal finance assistant. Give it a SQL API key to your expense tracker, and it will parse bank statements, categorize transactions, check balances, and manage your budget — all from the terminal.
+- [How to Use AI to Track Expenses and Manage Your Budget](https://expense-budget-tracker.com/blog/how-to-use-ai-to-track-expenses-and-manage-your-budget/) - 2026-03-05: A practical guide to AI-powered personal finance. Give your AI agent an API key, and it will parse bank statements, categorize transactions, track expenses, and manage your budget — all through a SQL API.
+- [Self-Hosted Open Source Budget Tracker for Developers — Own Your Financial Data](https://expense-budget-tracker.com/blog/self-hosted-open-source-budget-tracker-for-developers/) - 2026-03-05: Why programmers should self-host their expense tracker on their own server. Deploy an open-source budget tracker with SQL API, AI agent integration, and full control over your Postgres database.
