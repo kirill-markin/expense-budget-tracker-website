@@ -29,6 +29,10 @@ const nextConfig: NextConfig = {
             key: "Cache-Control",
             value: "public, s-maxage=86400, stale-while-revalidate=604800",
           },
+          {
+            key: "Vary",
+            value: "Accept",
+          },
         ],
       },
     ];

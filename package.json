@@ -6,6 +6,9 @@
   "author": "Kirill Markin",
   "license": "MIT",
   "scripts": {
+    "generate:static-content": "tsx scripts/generateStaticContent.ts",
+    "predev": "npm run generate:static-content",
+    "prebuild": "npm run generate:static-content",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -28,6 +31,7 @@
     "eslint-config-next": "16.1.6",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.1",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   },
   "engines": {

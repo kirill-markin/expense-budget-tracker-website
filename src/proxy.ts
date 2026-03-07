@@ -1,18 +1,30 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import {
+  LLMS_ASSET_PATHNAME,
+  getMarkdownAssetPathname,
+  getPagePathFromHtmlPathname,
+  getPagePathFromMarkdownPathname,
+} from "./lib/markdownAssetPaths";
 
 export function proxy(request: NextRequest): NextResponse {
   const { pathname } = request.nextUrl;
 
-  // --- Markdown serving: .md extension ---
-  if (pathname.endsWith(".md")) {
-    if (pathname === "/llms.txt") {
-      return NextResponse.next();
-    }
+  if (pathname.startsWith("/__markdown/")) {
+    return NextResponse.next();
+  }
 
-    const stripped = pathname.slice(1, -3); // remove leading / and .md
+  if (pathname === "/llms.txt") {
     const rewriteUrl = request.nextUrl.clone();
-    rewriteUrl.pathname = `/api/page-markdown/${stripped || "home"}`;
+    rewriteUrl.pathname = LLMS_ASSET_PATHNAME;
+    return NextResponse.rewrite(rewriteUrl);
+  }
+
+  // --- Markdown serving: .md extension ---
+  const markdownPagePath = getPagePathFromMarkdownPathname(pathname);
+  if (markdownPagePath !== null) {
+    const rewriteUrl = request.nextUrl.clone();
+    rewriteUrl.pathname = getMarkdownAssetPathname(markdownPagePath);
     return NextResponse.rewrite(rewriteUrl);
   }
 
@@ -23,15 +35,16 @@ export function proxy(request: NextRequest): NextResponse {
     !pathname.startsWith("/api/") &&
     !pathname.startsWith("/_next/")
   ) {
-    const stripped = pathname.replace(/^\//, "").replace(/\/$/, "");
     const rewriteUrl = request.nextUrl.clone();
-    rewriteUrl.pathname = `/api/page-markdown/${stripped || "home"}`;
+    rewriteUrl.pathname = getMarkdownAssetPathname(
+      getPagePathFromHtmlPathname(pathname)
+    );
     return NextResponse.rewrite(rewriteUrl);
   }
 
   // --- Default: add Vary and Link headers ---
   const response = NextResponse.next();
-  response.headers.set("Vary", "Accept");
+  response.headers.append("Vary", "Accept");
 
   const cleanPath = pathname.replace(/\/+$/, "");
   const mdPath = cleanPath === "" ? "/.md" : `${cleanPath}.md`;

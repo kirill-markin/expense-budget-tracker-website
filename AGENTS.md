@@ -35,6 +35,16 @@ Marketing website for Expense Budget Tracker. Static Next.js site deployed on Ve
 
 **Server Components First**: Client components only where interactivity required (AuthButton, Header mobile menu).
 
+**Public Content Only**: This repository contains no secret pages, no private data, and no server-side personalization. All user-visible content is public and should be safe to render and cache for everyone.
+
+**No Request-Time HTML Rendering**: Do not introduce SSR, server-side cookie checks, or other request-time personalization for marketing HTML. If a small UI detail depends on browser state, handle it after page load in a tiny client component.
+
+**Narrow Runtime Negotiation Layer**: The runtime proxy stays in place only for `.md` URLs, `Accept: text/markdown`, `Vary: Accept`, `Link rel="alternate"`, and existing host-level redirects. Do not use it for HTML rendering or personalization.
+
+**Static Markdown and LLM Assets**: `.md` URLs and `Accept: text/markdown` are both required public interfaces. Generate Markdown and `llms.txt` at build time whenever possible, and use the runtime proxy only to route requests to those prebuilt assets.
+
+**Smaller Client Islands Over Time**: Optimize by shrinking client-rendered regions, not by introducing SSR. Prefer server-rendered shells with small client islands for auth buttons and mobile navigation.
+
 ## Project Structure
 
 - `src/app/` - Pages (landing, features, pricing, docs, blog, privacy, terms)
