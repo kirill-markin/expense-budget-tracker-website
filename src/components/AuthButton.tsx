@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import {
   LOGGED_IN_COOKIE_NAME,
   getAppUrl,
@@ -12,14 +12,12 @@ import styles from "./AuthButton.module.css";
 const hasLoggedInCookie = (): boolean =>
   document.cookie.split(";").some((c) => c.trim().startsWith(`${LOGGED_IN_COOKIE_NAME}=`));
 
-export const AuthButton: React.FC = () => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const [mounted, setMounted] = useState<boolean>(false);
+const subscribe = (): (() => void) => () => undefined;
+const getClientSnapshot = (): boolean => true;
+const getServerSnapshot = (): boolean => false;
 
-  useEffect(() => {
-    setLoggedIn(hasLoggedInCookie());
-    setMounted(true);
-  }, []);
+export const AuthButton: React.FC = () => {
+  const mounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
 
   if (!mounted) {
     return (
@@ -33,6 +31,8 @@ export const AuthButton: React.FC = () => {
       </div>
     );
   }
+
+  const loggedIn = hasLoggedInCookie();
 
   if (loggedIn) {
     return (
