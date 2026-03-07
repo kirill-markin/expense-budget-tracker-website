@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { readPageContent } from "@/lib/content/readPageContent";
+import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
 const pageContent = readPageContent("features");
@@ -16,13 +17,13 @@ function getFeatureSection() {
 
 const featureSection = getFeatureSection();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: pageContent.title,
   description: pageContent.description,
-  alternates: {
-    types: { "text/markdown": "/features.md" },
-  },
-};
+  pathname: "/features/",
+  markdownPath: "/features.md",
+  openGraphType: "website",
+});
 
 export default function FeaturesPage() {
   return (

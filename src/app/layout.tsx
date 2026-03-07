@@ -3,6 +3,7 @@ import { Source_Serif_4 } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLdSchema } from "@/components/JsonLdSchema";
+import { HOME_PAGE_METADATA } from "@/content/pages/home";
 import "./globals.css";
 
 const sourceSerif = Source_Serif_4({
@@ -16,30 +17,26 @@ const SITE_URL = "https://expense-budget-tracker.com";
 
 export const metadata: Metadata = {
   title: {
-    default: "Expense Budget Tracker - Open Source Personal Finance",
+    default: HOME_PAGE_METADATA.title,
     template: "%s | Expense Budget Tracker",
   },
-  description:
-    "Open-source expense and budget tracker with multi-currency support, transfers, and financial dashboards. Self-host on Postgres or use the cloud version.",
+  description: HOME_PAGE_METADATA.description,
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: `${SITE_URL}/`,
     siteName: "Expense Budget Tracker",
-    title: "Expense Budget Tracker - Open Source Personal Finance",
-    description:
-      "Open-source expense and budget tracker with multi-currency support, transfers, and financial dashboards. Self-host on Postgres or use the cloud version.",
+    title: HOME_PAGE_METADATA.title,
+    description: HOME_PAGE_METADATA.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Expense Budget Tracker - Open Source Personal Finance",
-    description:
-      "Open-source expense and budget tracker with multi-currency support, transfers, and financial dashboards.",
+    title: HOME_PAGE_METADATA.title,
+    description: HOME_PAGE_METADATA.description,
   },
   alternates: {
     canonical: `${SITE_URL}/`,
-    types: { "text/markdown": "/.md" },
   },
 };
 

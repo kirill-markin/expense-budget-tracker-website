@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AuthButton } from "@/components/AuthButton";
 import { readPageContent } from "@/lib/content/readPageContent";
+import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
 const pageContent = readPageContent("pricing");
@@ -23,13 +24,13 @@ if (selfHostedTier.type !== "link_tier" || cloudTier.type !== "auth_tier") {
   throw new Error("Invalid pricing tier structure");
 }
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: pageContent.title,
   description: pageContent.description,
-  alternates: {
-    types: { "text/markdown": "/pricing.md" },
-  },
-};
+  pathname: "/pricing/",
+  markdownPath: "/pricing.md",
+  openGraphType: "website",
+});
 
 export default function PricingPage() {
   return (

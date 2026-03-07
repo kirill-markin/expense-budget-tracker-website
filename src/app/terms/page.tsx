@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { readPageContent } from "@/lib/content/readPageContent";
 import { renderMarkdownToHtml } from "@/lib/content/renderMarkdownToHtml";
+import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
 const pageContent = readPageContent("terms");
@@ -17,13 +18,13 @@ function getLegalSection() {
 
 const legalSection = getLegalSection();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: pageContent.title,
   description: pageContent.description,
-  alternates: {
-    types: { "text/markdown": "/terms.md" },
-  },
-};
+  pathname: "/terms/",
+  markdownPath: "/terms.md",
+  openGraphType: "website",
+});
 
 export default async function TermsPage() {
   const contentHtml = await renderMarkdownToHtml(pageContent.body);

@@ -4,15 +4,16 @@ import { join } from "path";
 import matter from "gray-matter";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Blog",
   description: "Updates, tutorials, and insights about Expense Budget Tracker.",
-  alternates: {
-    types: { "text/markdown": "/blog.md" },
-  },
-};
+  pathname: "/blog/",
+  markdownPath: "/blog.md",
+  openGraphType: "website",
+});
 
 interface BlogPost {
   slug: string;
