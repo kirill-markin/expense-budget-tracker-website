@@ -33,12 +33,14 @@
 }
 
 .hint {
-  font-size: 13px;
-  color: var(--muted);
+  display: grid;
+  gap: 10px;
+  margin: 0 auto;
 }
 
-.hint a {
-  text-decoration: underline;
+.hintText {
+  font-size: 13px;
+  color: var(--muted);
 }
 
 .features {

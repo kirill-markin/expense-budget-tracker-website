@@ -1,4 +1,5 @@
 import { AuthButton } from "@/components/AuthButton";
+import { CopyCodeField } from "@/components/CopyCodeField";
 import { readPageContent } from "@/lib/content/readPageContent";
 import styles from "./page.module.css";
 
@@ -43,16 +44,10 @@ export default function HomePage() {
         <div className={styles.cta}>
           <AuthButton />
         </div>
-        <p className={styles.hint}>
-          {heroSection.hintText}{" "}
-          <a
-            href={heroSection.hintLink.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {heroSection.hintLink.label}
-          </a>
-        </p>
+        <div className={styles.hint}>
+          <p className={styles.hintText}>{heroSection.hintText}</p>
+          <CopyCodeField value={heroSection.hintLink.href} />
+        </div>
       </div>
 
       <section className={styles.features}>
