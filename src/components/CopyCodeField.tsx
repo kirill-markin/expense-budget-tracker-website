@@ -42,7 +42,9 @@ export function CopyCodeField({ value }: CopyCodeFieldProps) {
 
   return (
     <div className={styles.root}>
-      <code className={styles.value}>{value}</code>
+      <pre className={styles.value}>
+        <code>{value}</code>
+      </pre>
       <button type="button" className={styles.button} onClick={handleCopy}>
         {copyState === "copied"
           ? "Copied"

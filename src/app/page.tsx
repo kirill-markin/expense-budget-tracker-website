@@ -45,8 +45,9 @@ export default function HomePage() {
           <AuthButton />
         </div>
         <div className={styles.hint}>
-          <p className={styles.hintText}>{heroSection.hintText}</p>
-          <CopyCodeField value={heroSection.hintLink.href} />
+          <CopyCodeField
+            value={`${heroSection.hintText}\n${heroSection.hintLink.href}`}
+          />
         </div>
       </div>
 
