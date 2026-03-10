@@ -33,14 +33,7 @@
 }
 
 .hint {
-  display: grid;
-  gap: 10px;
   margin: 0 auto;
-}
-
-.hintText {
-  font-size: 13px;
-  color: var(--muted);
 }
 
 .features {
