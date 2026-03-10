@@ -61,6 +61,12 @@ The site has zero auth logic. It only checks whether the `session` cookie is pre
 | `auth.expense-budget-tracker.com` | Cognito auth | AWS ECS |
 | `api.expense-budget-tracker.com` | SQL API | AWS API Gateway |
 
+## Client Entry Points
+
+- Hosted web app for humans starts at `https://app.expense-budget-tracker.com`
+- Terminal / AI-agent onboarding starts at `GET https://app.expense-budget-tracker.com/api/agent`
+- Start here for instructions: `src/content/docs/getting-started.md`, `src/content/docs/agent-setup.md`, and `src/content/docs/api.md`
+
 ## Content
 
 Typed content modules power composed/list pages:
