@@ -39,6 +39,11 @@ function renderHeroSection(
   lines.push(`[${section.primaryLink.label}](${section.primaryLink.href})`);
   lines.push(`[${section.secondaryLink.label}](${section.secondaryLink.href})`);
   lines.push("");
+  lines.push("```text");
+  lines.push(section.hintText);
+  lines.push(section.hintLink.href);
+  lines.push("```");
+  lines.push("");
 }
 
 function renderFeatureListSection(
