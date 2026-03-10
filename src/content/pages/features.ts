@@ -3,7 +3,7 @@ import type { PageContent } from "@/lib/content/types";
 export const FEATURES_PAGE_CONTENT: PageContent = {
   title: "Features",
   description:
-    "Multi-currency tracking, budget planning, dashboards, API access, self-hosting, and workspace isolation.",
+    "Multi-currency tracking, budget planning, dashboards, agent onboarding, API access, self-hosting, and workspace isolation.",
   slug: "features",
   sections: [
     {
@@ -36,6 +36,11 @@ export const FEATURES_PAGE_CONTENT: PageContent = {
           title: "SQL API",
           description:
             "Programmatic access via API Gateway with bearer token auth. Run SQL queries with full RLS enforcement. Rate-limited, audited, and scoped to your workspace.",
+        },
+        {
+          title: "Agent Onboarding",
+          description:
+            "Share https://app.expense-budget-tracker.com/api/agent with Claude Code, Codex, or OpenClaw. The agent follows the discovery document, asks for your email and 8-digit code, creates its own connection, and keeps working through the agent API.",
         },
         {
           title: "AI Chat",

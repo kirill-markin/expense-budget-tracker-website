@@ -4,8 +4,8 @@
 
 ## Pages
 
-- [Expense Budget Tracker - Open Source Personal Finance](https://expense-budget-tracker.com/): Open-source expense and budget tracker with multi-currency support, transfers, and financial dashboards. Self-host on Postgres or use the cloud version.
-- [Features](https://expense-budget-tracker.com/features/): Multi-currency tracking, budget planning, dashboards, API access, self-hosting, and workspace isolation.
+- [Expense Budget Tracker - Open Source Personal Finance](https://expense-budget-tracker.com/): Open-source expense and budget tracker with multi-currency support, financial dashboards, and agent-native onboarding for Claude Code, Codex, and OpenClaw.
+- [Features](https://expense-budget-tracker.com/features/): Multi-currency tracking, budget planning, dashboards, agent onboarding, API access, self-hosting, and workspace isolation.
 - [Pricing](https://expense-budget-tracker.com/pricing/): Free self-hosted deployment or managed cloud hosting. Open source, no feature gating.
 - [Privacy Policy](https://expense-budget-tracker.com/privacy/): Privacy policy for Expense Budget Tracker.
 - [Terms of Service](https://expense-budget-tracker.com/terms/): Terms of service for Expense Budget Tracker.
@@ -13,12 +13,14 @@
 ## Documentation
 
 - [Getting Started](https://expense-budget-tracker.com/docs/getting-started/): Sign up for the cloud version or set up your own instance in minutes.
+- [AI Agent Setup](https://expense-budget-tracker.com/docs/agent-setup/): Share one discovery URL with Claude Code, Codex, or OpenClaw and let the agent connect itself.
 - [Self-Hosting Guide](https://expense-budget-tracker.com/docs/self-hosting/): Run Expense Budget Tracker on your own server with Docker Compose and Postgres.
 - [API Reference](https://expense-budget-tracker.com/docs/api/): SQL API with bearer token auth. Query your data from scripts, LLM agents, or dashboards.
 - [Architecture](https://expense-budget-tracker.com/docs/architecture/): System overview, data model, multi-currency design, and auth model.
 
 ## Blog
 
+- [Connect Claude Code, Codex, or OpenClaw to Your Expense Tracker with One Link](https://expense-budget-tracker.com/blog/connect-claude-code-codex-openclaw-to-your-expense-tracker-with-one-link/): Expense Budget Tracker now supports agent-native onboarding. Share one discovery URL, confirm the email code, and your AI agent provisions its own ApiKey, selects a workspace, and starts importing or analyzing transactions.
 - [Mint Alternative in 2026: Open-Source Budget Tracker You Can Self-Host](https://expense-budget-tracker.com/blog/mint-alternative-open-source-budget-tracker-you-can-self-host/): Looking for a Mint alternative in 2026? Here is the practical tradeoff: most apps optimize for convenience, while an open-source budget tracker gives you self-hosting, AI workflows, SQL access, and full control over your data.
 - [How to Manage a Personal Budget with Expense Categories](https://expense-budget-tracker.com/blog/how-to-manage-personal-budget-with-expense-categories/): A practical guide to personal budgeting — categorize every transaction, plan 12 months ahead, and use AI to skip the manual work.
 - [How to Track Expenses and Manage Your Budget with Claude Code](https://expense-budget-tracker.com/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code/): Set up Claude Code as your personal finance assistant. Give it a SQL API key to your expense tracker, and it will parse bank statements, categorize transactions, check balances, and manage your budget — all from the terminal.
