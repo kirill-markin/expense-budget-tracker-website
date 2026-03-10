@@ -2,9 +2,45 @@
 
 ## Overview
 
-The SQL API lets you query your financial data programmatically. It uses the same Postgres RLS enforcement as the web app — your API key is scoped to your workspace.
+Expense Budget Tracker exposes two programmatic interfaces:
 
-## Authentication
+1. **Agent API** for Claude Code, Codex, OpenClaw, or other autonomous agents
+2. **Direct SQL API** for scripts and manual HTTP clients
+
+Both use the same Postgres Row Level Security enforcement as the web app.
+
+## Agent API
+
+If you want an AI agent to connect itself, start here:
+
+`https://app.expense-budget-tracker.com/api/agent`
+
+That public discovery endpoint tells the agent how to bootstrap auth and what to call next.
+
+### Agent auth flow
+
+1. `GET https://app.expense-budget-tracker.com/api/agent`
+2. Read the returned `send_code` action and `bootstrapUrl`
+3. `POST` the user email to `https://auth.expense-budget-tracker.com/api/agent/send-code`
+4. Ask the user for the 8-digit code from email
+5. `POST` `code`, `otpSessionToken`, and `label` to `https://auth.expense-budget-tracker.com/api/agent/verify-code`
+6. Receive an `ApiKey`
+7. `GET https://app.expense-budget-tracker.com/api/agent/me`
+8. List, create, or select a workspace
+9. Execute SQL with `POST https://app.expense-budget-tracker.com/api/agent/sql`
+
+### Agent auth headers
+
+- `Authorization: ApiKey <key>`
+- `X-Workspace-Id: <workspaceId>` for SQL requests
+
+For a step-by-step human guide, see [AI Agent Setup](/docs/agent-setup/).
+
+## Direct SQL API
+
+The direct SQL API is useful for scripts or clients that already have a manually created key.
+
+### Authentication
 
 Generate an API key in Settings within the app. Pass it as a Bearer token:
 
@@ -14,6 +50,10 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
   -H "Content-Type: application/json" \
   -d '{"sql": "SELECT * FROM ledger_entries ORDER BY ts DESC LIMIT 10"}'
 ```
+
+### Auth header
+
+- `Authorization: Bearer ebt_your_key_here`
 
 ## Allowed Operations
 

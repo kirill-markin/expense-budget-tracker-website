@@ -12,6 +12,12 @@ export const DOCS: ReadonlyArray<DocEntry> = [
       "Sign up for the cloud version or set up your own instance in minutes.",
   },
   {
+    slug: "agent-setup",
+    title: "AI Agent Setup",
+    description:
+      "Share one discovery URL with Claude Code, Codex, or OpenClaw and let the agent connect itself.",
+  },
+  {
     slug: "self-hosting",
     title: "Self-Hosting Guide",
     description:

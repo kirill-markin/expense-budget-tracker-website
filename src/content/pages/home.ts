@@ -3,7 +3,7 @@ import type { PageContent } from "@/lib/content/types";
 export const HOME_PAGE_METADATA = {
   title: "Expense Budget Tracker - Open Source Personal Finance",
   description:
-    "Open-source expense and budget tracker with multi-currency support, transfers, and financial dashboards. Self-host on Postgres or use the cloud version.",
+    "Open-source expense and budget tracker with multi-currency support, financial dashboards, and agent-native onboarding for Claude Code, Codex, and OpenClaw.",
 } as const;
 
 export const HOME_PAGE_CONTENT: PageContent = {
@@ -19,7 +19,7 @@ export const HOME_PAGE_CONTENT: PageContent = {
         "Own your data.",
       ],
       subtitle:
-        "Open-source personal finance tracker with multi-currency support, budget planning, and financial dashboards. Self-host on Postgres or use the cloud version.",
+        "Open-source personal finance tracker with multi-currency support, budget planning, financial dashboards, and agent-native setup. Give Claude Code, Codex, or OpenClaw one link, confirm the email code, and let the agent handle the rest.",
       primaryLink: {
         label: "Get Started",
         href: "https://app.expense-budget-tracker.com",
@@ -28,10 +28,10 @@ export const HOME_PAGE_CONTENT: PageContent = {
         label: "View on GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "Free and open source.",
+      hintText: "Using an AI agent? Give it this discovery URL:",
       hintLink: {
-        label: "View on GitHub",
-        href: "https://github.com/kirill-markin/expense-budget-tracker",
+        label: "app.expense-budget-tracker.com/api/agent",
+        href: "https://app.expense-budget-tracker.com/api/agent",
       },
     },
     {
@@ -61,9 +61,9 @@ export const HOME_PAGE_CONTENT: PageContent = {
             "Docker Compose with Postgres. Your data stays on your server. No third-party dependencies.",
         },
         {
-          title: "API Access",
+          title: "Agent-Native API",
           description:
-            "SQL API with bearer token auth. Connect LLM agents, scripts, or dashboards directly.",
+            "Share one discovery URL with Claude Code, Codex, or OpenClaw. The agent asks for your email, verifies the 8-digit code, provisions its own ApiKey, and starts working.",
         },
         {
           title: "Workspace Isolation",
