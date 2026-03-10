@@ -49,12 +49,13 @@ Most budget apps give you a web UI and nothing else. This one exposes a **SQL Qu
 
 ```bash
 curl -X POST https://api.your-domain.com/v1/sql \
-  -H "Authorization: Bearer ebt_a7Bk9mNp..." \
+  -H "Authorization: ApiKey ebta_a7Bk9mNp..." \
+  -H "X-Workspace-Id: workspace-id" \
   -H "Content-Type: application/json" \
   -d '{"sql": "SELECT category, SUM(amount) AS total FROM ledger_entries WHERE kind = '\''spend'\'' AND ts >= DATE_TRUNC('\''month'\'', CURRENT_DATE) GROUP BY category ORDER BY total"}'
 ```
 
-You generate an API key in Settings, and any HTTP client can query your data. This is a simple REST endpoint — no GraphQL, no ORM abstractions, no SDK to learn. Just SQL in, JSON out.
+You generate an API key in Settings, choose the target workspace ID, and any HTTP client can query your data. This is a simple REST endpoint — no GraphQL, no ORM abstractions, no SDK to learn. Just SQL in, JSON out.
 
 The security model is strict: API keys are stored as SHA-256 hashes (plaintext never persisted), queries are restricted to SELECT/INSERT/UPDATE/DELETE (no DDL), there's a 30-second statement timeout, a 100-row limit per response, and per-key rate limiting at 10 requests/second. All queries run through Postgres Row Level Security — the same isolation used by the web app — so an API key can only access data in its owner's workspace.
 
