@@ -40,8 +40,9 @@ Make a directory for your personal finance work and add a `CLAUDE.md` that tells
 ## Expense Tracker API
 
 - Endpoint: https://api.expense-budget-tracker.com/v1/sql
-- Auth: Bearer token in Authorization header
+- Auth: ApiKey in Authorization header
 - API key is in the EBT_API_KEY environment variable
+- Workspace ID is in the EBT_WORKSPACE_ID environment variable and must be sent as X-Workspace-Id
 - Request: POST with JSON body {"sql": "your query"}
 - Response: {"rows": [...], "rowCount": N}
 
@@ -67,10 +68,13 @@ Planning: taxes, big-purchases, savings, emergency-fund
 - Store transactions in their original currency
 ```
 
-### Step 3: Export the API key
+### Step 3: Export the API key and workspace ID
+
+Look up the workspace ID once with `GET https://api.expense-budget-tracker.com/v1/workspaces` using the same ApiKey.
 
 ```bash
-export EBT_API_KEY="ebt_your_key_here"
+export EBT_API_KEY="ebta_your_key_here"
+export EBT_WORKSPACE_ID="workspace-id"
 ```
 
 Add this to your `.zshrc` or `.bashrc` so it persists across terminal sessions.

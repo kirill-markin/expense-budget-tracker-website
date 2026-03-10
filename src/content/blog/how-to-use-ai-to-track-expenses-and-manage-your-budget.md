@@ -32,7 +32,8 @@ That's it. The agent can now query and modify your expense data. No MCP server t
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/sql \
-  -H "Authorization: Bearer ebt_your_key_here" \
+  -H "Authorization: ApiKey ebta_your_key_here" \
+  -H "X-Workspace-Id: workspace-id" \
   -H "Content-Type: application/json" \
   -d '{"sql": "SELECT * FROM ledger_entries ORDER BY ts DESC LIMIT 10"}'
 ```
@@ -101,7 +102,7 @@ A few things that make the AI expense tracking workflow smoother, based on real 
 
 1. Sign up at [expense-budget-tracker.com](https://expense-budget-tracker.com/) (free, open source) or [self-host](https://github.com/kirill-markin/expense-budget-tracker) the app on your own server
 2. Go to **Settings → API Keys → Create key** and copy the key
-3. Give the key and the endpoint (`https://api.expense-budget-tracker.com/v1/sql`) to your AI agent
+3. Give the key, the workspace ID, and the endpoint (`https://api.expense-budget-tracker.com/v1/sql`) to your AI agent
 4. Drop a bank statement into the agent and ask it to parse and record your expenses
 
 The AI will discover your database schema, match your expense categories, and start writing transactions. Review what it recorded, fix anything off, and you've got an AI-managed budget running.

@@ -35,12 +35,12 @@ export const FEATURES_PAGE_CONTENT: PageContent = {
         {
           title: "SQL API",
           description:
-            "Programmatic access via API Gateway with bearer token auth. Run SQL queries with full RLS enforcement. Rate-limited, audited, and scoped to your workspace.",
+            "Programmatic access via API Gateway with ApiKey auth. Run restricted SQL with full RLS enforcement, explicit X-Workspace-Id selection, rate limits, and auditability.",
         },
         {
           title: "Agent Onboarding",
           description:
-            "Share https://app.expense-budget-tracker.com/api/agent with Claude Code, Codex, or OpenClaw. The agent follows the discovery document, asks for your email and 8-digit code, creates its own connection, and keeps working through the agent API.",
+            "Share https://api.expense-budget-tracker.com/v1/ with Claude Code, Codex, or OpenClaw. The agent follows the discovery document, asks for your email and 8-digit code, creates its own connection, loads workspaces, and keeps working through the machine API.",
         },
         {
           title: "AI Chat",

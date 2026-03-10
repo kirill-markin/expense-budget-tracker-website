@@ -19,7 +19,7 @@ export const HOME_PAGE_CONTENT: PageContent = {
         "Own your data.",
       ],
       subtitle:
-        "Open-source personal finance tracker with multi-currency support, budget planning, financial dashboards, and agent-native setup. Give Claude Code, Codex, or OpenClaw one link, confirm the email code, and let the agent handle the rest.",
+        "Open-source personal finance tracker with multi-currency support, budget planning, financial dashboards, and agent-native setup. Give Claude Code, Codex, or OpenClaw one API discovery URL, confirm the email code, and let the agent handle the rest.",
       primaryLink: {
         label: "Get Started",
         href: "https://app.expense-budget-tracker.com",
@@ -30,8 +30,8 @@ export const HOME_PAGE_CONTENT: PageContent = {
       },
       hintText: "Start with GET on this discovery URL:",
       hintLink: {
-        label: "https://app.expense-budget-tracker.com/api/agent",
-        href: "https://app.expense-budget-tracker.com/api/agent",
+        label: "https://api.expense-budget-tracker.com/v1/",
+        href: "https://api.expense-budget-tracker.com/v1/",
       },
     },
     {
@@ -63,7 +63,7 @@ export const HOME_PAGE_CONTENT: PageContent = {
         {
           title: "Agent-Native API",
           description:
-            "Share one discovery URL with Claude Code, Codex, or OpenClaw. The agent asks for your email, verifies the 8-digit code, provisions its own ApiKey, and starts working.",
+            "Share one discovery URL with Claude Code, Codex, or OpenClaw. The agent asks for your email, verifies the 8-digit code, provisions its own ApiKey, loads account context, selects a workspace, and starts working.",
         },
         {
           title: "Workspace Isolation",

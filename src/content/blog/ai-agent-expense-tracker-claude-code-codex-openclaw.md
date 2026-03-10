@@ -19,19 +19,19 @@ That is workable, but it is not agent-native.
 
 [Expense Budget Tracker](https://expense-budget-tracker.com/) now exposes a public discovery endpoint for terminal agents such as [Claude Code](https://docs.anthropic.com/en/docs/claude-code), OpenAI Codex, or OpenClaw:
 
-`https://app.expense-budget-tracker.com/api/agent`
+`https://api.expense-budget-tracker.com/v1/`
 
 The user gives the agent that one link, then answers two questions:
 
 - Which email should be used for login?
 - What is the 8-digit code that just arrived in the inbox?
 
-After that, the agent provisions its own `ApiKey`, loads the account, selects a workspace, and can start importing or querying transactions.
+After that, the agent provisions its own `ApiKey`, loads the account, lists workspaces, selects one explicitly, and can start importing or querying transactions.
 
 The project is open source on GitHub:
 
 - [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker)
-- [Agent discovery endpoint implementation](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/web/src/app/api/agent/route.ts)
+- [Machine API implementation](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/sql-api/src/machineApi.ts)
 - [Agent send-code route](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentSendCode.ts)
 - [Agent verify-code route](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentVerifyCode.ts)
 
@@ -40,7 +40,7 @@ The project is open source on GitHub:
 This is the exact URL:
 
 ```text
-https://app.expense-budget-tracker.com/api/agent
+https://api.expense-budget-tracker.com/v1/
 ```
 
 That endpoint returns a machine-readable discovery document. The agent can read:
@@ -55,7 +55,7 @@ This is the core idea: instead of hardcoding onboarding instructions in a prompt
 ## Example prompt for Claude Code
 
 ```text
-Connect to Expense Budget Tracker using https://app.expense-budget-tracker.com/api/agent.
+Connect to Expense Budget Tracker using https://api.expense-budget-tracker.com/v1/.
 Ask me for the account email, wait for the 8-digit code from my inbox, finish the setup,
 then import transactions from ~/Downloads/chase-march-2026.csv and verify the final balance.
 ```
@@ -63,7 +63,7 @@ then import transactions from ~/Downloads/chase-march-2026.csv and verify the fi
 ## Example prompt for Codex
 
 ```text
-Use https://app.expense-budget-tracker.com/api/agent to connect to my Expense Budget Tracker account.
+Use https://api.expense-budget-tracker.com/v1/ to connect to my Expense Budget Tracker account.
 When you need login information, ask me for the email and then the 8-digit code.
 After setup, show me my latest 20 transactions and total grocery spend this month.
 ```
@@ -71,7 +71,7 @@ After setup, show me my latest 20 transactions and total grocery spend this mont
 ## Example prompt for OpenClaw
 
 ```text
-Connect yourself to Expense Budget Tracker through https://app.expense-budget-tracker.com/api/agent.
+Connect yourself to Expense Budget Tracker through https://api.expense-budget-tracker.com/v1/.
 After login, select my personal workspace and import the CSV file I uploaded.
 Use existing categories when possible, and tell me if any balance does not match.
 ```
@@ -85,7 +85,7 @@ Here is the full HTTP flow behind that setup.
 The agent starts here:
 
 ```bash
-curl https://app.expense-budget-tracker.com/api/agent
+curl https://api.expense-budget-tracker.com/v1/
 ```
 
 The response tells it to begin with `send_code` and includes the bootstrap URL on the auth domain.
@@ -115,7 +115,7 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
   -H "Content-Type: application/json" \
   -d '{
     "code":"12345678",
-    "otpSessionToken":"signed-token-from-send-code",
+    "otpSessionToken":"opaque-token-from-send-code",
     "label":"Claude Code on macbook"
   }'
 ```
@@ -129,25 +129,25 @@ This is the main improvement over the old manual flow: the user does not need to
 After verification, the agent uses `Authorization: ApiKey <key>` and loads the account:
 
 ```bash
-curl https://app.expense-budget-tracker.com/api/agent/me \
+curl https://api.expense-budget-tracker.com/v1/me \
   -H "Authorization: ApiKey ebt_agent_live_..."
 ```
 
 Then it lists workspaces:
 
 ```bash
-curl https://app.expense-budget-tracker.com/api/agent/workspaces \
+curl https://api.expense-budget-tracker.com/v1/workspaces \
   -H "Authorization: ApiKey ebt_agent_live_..."
 ```
 
-If needed, it can create a new workspace or explicitly select an existing one.
+If needed, it can create a new workspace or explicitly select an existing one with `POST /v1/workspaces/{workspaceId}/select`.
 
 ### 6. Run SQL through the agent API
 
 After that, normal data work happens through the app domain:
 
 ```bash
-curl -X POST https://app.expense-budget-tracker.com/api/agent/sql \
+curl -X POST https://api.expense-budget-tracker.com/v1/sql \
   -H "Authorization: ApiKey ebt_agent_live_..." \
   -H "X-Workspace-Id: workspace_123" \
   -H "Content-Type: application/json" \
@@ -218,10 +218,10 @@ cd expense-budget-tracker
 make up
 ```
 
-If you want to use the hosted version, open the app and give your agent this URL:
+If you want to use the hosted version, give your agent this URL:
 
 ```text
-https://app.expense-budget-tracker.com/api/agent
+https://api.expense-budget-tracker.com/v1/
 ```
 
 That is enough for Claude Code, Codex, or OpenClaw to start the login flow on their own.
