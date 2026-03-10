@@ -28,9 +28,9 @@ export const HOME_PAGE_CONTENT: PageContent = {
         label: "View on GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "Using an AI agent? Give it this discovery URL:",
+      hintText: "Tell your agent: connect using this discovery URL.",
       hintLink: {
-        label: "app.expense-budget-tracker.com/api/agent",
+        label: "https://app.expense-budget-tracker.com/api/agent",
         href: "https://app.expense-budget-tracker.com/api/agent",
       },
     },
