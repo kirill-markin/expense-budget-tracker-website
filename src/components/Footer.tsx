@@ -46,7 +46,7 @@ export const Footer: React.FC = () => {
               </a>
             </span>
             <span className={styles.attributionLine}>
-              Operated by SAMO DANNI EOOD · VAT: BG207395566
+              Operated by SAMO DANNI EOOD · VAT: BG207395566 · Country: Bulgaria
             </span>
           </div>
         </div>
