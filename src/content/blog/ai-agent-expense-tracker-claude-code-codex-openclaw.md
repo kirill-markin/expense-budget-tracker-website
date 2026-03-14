@@ -1,6 +1,6 @@
 ---
 title: "AI Expense Tracker Setup for Claude Code, Codex, and OpenClaw"
-description: "How to connect Claude Code, Codex, or OpenClaw to an open-source expense tracker. Share one discovery URL, confirm the email code, and let the agent provision its own ApiKey and start working."
+description: "How to connect Claude Code, Codex, or OpenClaw to an open-source expense tracker. Share one discovery URL, confirm the email code, save the returned ApiKey, and let the agent start working."
 date: "2026-03-10"
 ---
 
@@ -26,7 +26,7 @@ The user gives the agent that one link, then answers two questions:
 - Which email should be used for login?
 - What is the 8-digit code that just arrived in the inbox?
 
-After that, the agent provisions its own `ApiKey`, loads the account, lists workspaces, selects one explicitly, and can start importing or querying transactions.
+After that, the agent provisions its own `ApiKey`, saves it outside chat memory, loads the account, lists workspaces, saves one as the default for that key, and can start importing or querying transactions.
 
 The project is open source on GitHub:
 
@@ -57,7 +57,7 @@ This is the core idea: instead of hardcoding onboarding instructions in a prompt
 ```text
 Connect to Expense Budget Tracker using https://api.expense-budget-tracker.com/v1/.
 Ask me for the account email, wait for the 8-digit code from my inbox, finish the setup,
-then import transactions from ~/Downloads/chase-march-2026.csv and verify the final balance.
+save the returned ApiKey outside chat memory, then import transactions from ~/Downloads/chase-march-2026.csv and verify the final balance.
 ```
 
 ## Example prompt for Codex
@@ -65,14 +65,14 @@ then import transactions from ~/Downloads/chase-march-2026.csv and verify the fi
 ```text
 Use https://api.expense-budget-tracker.com/v1/ to connect to my Expense Budget Tracker account.
 When you need login information, ask me for the email and then the 8-digit code.
-After setup, show me my latest 20 transactions and total grocery spend this month.
+After setup, save the key, inspect /schema, and show me my latest 20 transactions and total grocery spend this month.
 ```
 
 ## Example prompt for OpenClaw
 
 ```text
 Connect yourself to Expense Budget Tracker through https://api.expense-budget-tracker.com/v1/.
-After login, select my personal workspace and import the CSV file I uploaded.
+After login, save my personal workspace as the default for this key and import the CSV file I uploaded.
 Use existing categories when possible, and tell me if any balance does not match.
 ```
 
@@ -88,7 +88,7 @@ The agent starts here:
 curl https://api.expense-budget-tracker.com/v1/
 ```
 
-The response tells it to begin with `send_code` and includes the bootstrap URL on the auth domain.
+The response tells it to begin with `send_code`, includes the bootstrap URL on the auth domain, and points to the published OpenAPI and schema endpoints.
 
 ### 2. Send the user email
 
@@ -120,7 +120,7 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
   }'
 ```
 
-The response includes a new `ApiKey`. That key is shown once and should be stored by the agent for later requests.
+The response includes a new `ApiKey`. That key is shown once and should be stored by the agent for later requests, ideally as `EXPENSE_BUDGET_TRACKER_API_KEY`.
 
 This is the main improvement over the old manual flow: the user does not need to create a key in Settings and copy it into the terminal.
 
@@ -130,17 +130,22 @@ After verification, the agent uses `Authorization: ApiKey <key>` and loads the a
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/me \
-  -H "Authorization: ApiKey ebt_agent_live_..."
+  -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
 Then it lists workspaces:
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/workspaces \
-  -H "Authorization: ApiKey ebt_agent_live_..."
+  -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-If needed, it can create a new workspace or explicitly select an existing one with `POST /v1/workspaces/{workspaceId}/select`.
+If needed, it can create a new workspace or explicitly save an existing one with `POST /v1/workspaces/{workspaceId}/select`.
+
+```bash
+curl -X POST https://api.expense-budget-tracker.com/v1/workspaces/workspace_123/select \
+  -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
+```
 
 ### 6. Run SQL through the agent API
 
@@ -148,7 +153,7 @@ After that, normal data work happens through the app domain:
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/sql \
-  -H "Authorization: ApiKey ebt_agent_live_..." \
+  -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ" \
   -H "X-Workspace-Id: workspace_123" \
   -H "Content-Type: application/json" \
   -d '{
@@ -159,9 +164,9 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 The request must include both:
 
 - `Authorization: ApiKey <key>`
-- `X-Workspace-Id: <workspaceId>`
+- `X-Workspace-Id: <workspaceId>` only when you want to override the saved workspace or before one is saved
 
-Workspace selection is explicit. The server does not keep a hidden active workspace for the agent.
+Workspace selection is explicit, and the server saves that selection per API key after `POST /v1/workspaces/{workspaceId}/select`. If the user has exactly one workspace, the API auto-saves and uses it for a new key.
 
 ## What your agent can do after setup
 
@@ -195,7 +200,7 @@ The new flow is simpler for both the user and the agent:
 - the user does not have to copy a long-lived key manually
 - the agent discovers the protocol from the product itself
 - auth is separated from data access cleanly
-- every SQL request is scoped to an explicit workspace
+- every SQL request is scoped to a selected workspace
 - the connection can be revoked later from the app
 
 If you are building an AI expense tracking workflow, that matters. It removes a lot of prompt boilerplate and setup mistakes.

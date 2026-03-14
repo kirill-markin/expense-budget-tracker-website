@@ -1,12 +1,12 @@
 ---
 title: "How to Track Expenses and Manage Your Budget with Claude Code"
-description: "Set up Claude Code as your personal finance assistant. Give it a SQL API key to your expense tracker, and it will parse bank statements, categorize transactions, check balances, and manage your budget — all from the terminal."
+description: "Set up Claude Code as your personal finance assistant. Give it one discovery URL, let it complete the email OTP flow, save the returned ApiKey, and it can parse statements, check balances, and manage your budget from the terminal."
 date: "2026-03-05"
 ---
 
-Claude Code is Anthropic's AI agent that runs in your terminal. It can read files, write code, execute commands, and make HTTP requests. Most people use Claude Code for software development. But it turns out to be one of the best tools for managing personal finances — if you give it direct access to your financial database.
+Claude Code is Anthropic's AI agent that runs in your terminal. It can read files, write code, execute commands, and make HTTP requests. Most people use Claude Code for software development. But it also works very well for personal finance when you connect it to an expense tracker with a clean machine API.
 
-The setup: connect Claude Code to an open-source expense tracker through a SQL API, and it becomes a personal finance assistant that lives in your terminal. Drop a bank statement, ask Claude Code to record the transactions, check your balances, update your budget — all through natural conversation. No clicking through UI screens, no manual data entry.
+The setup: connect Claude Code to an open-source expense tracker through its machine API, and it becomes a personal finance assistant that lives in your terminal. Drop a bank statement, ask Claude Code to record the transactions, check your balances, update your budget — all through natural conversation. No clicking through UI screens, no manual data entry.
 
 ## Why Claude Code works well for expense tracking
 
@@ -16,23 +16,69 @@ Claude Code is different from ChatGPT or the Claude web app in a few important w
 
 **It can execute code and HTTP requests.** Claude Code doesn't just suggest a curl command — it runs it. When it needs to insert 50 transactions into your expense database, it writes the SQL, sends the HTTP request, and confirms the result. The entire flow happens inside a single conversation.
 
-**It remembers your setup across sessions.** Claude Code reads a `CLAUDE.md` file in your project directory at the start of every session. Put your API endpoint and expense categories there, and Claude Code knows how to access your finances every time you open a terminal. No re-explaining your system each time.
+**It remembers your setup across sessions.** Once the returned ApiKey is stored outside chat memory, Claude Code can reuse the same connection in later sessions instead of repeating the email code flow every time.
 
 **It works offline with local files.** If you want to preprocess bank statements, clean up CSV formats, or write import scripts, Claude Code does all of that locally before anything touches the API.
 
 ## Setting up Claude Code for personal finance
 
-You need two things: an expense tracker with a SQL API, and an API key.
+You need two things: an expense tracker with a machine API, and a place to persist the long-lived key that Claude Code receives after login.
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/) is an open-source personal finance system built on Postgres. It has a SQL API endpoint at `POST /v1/sql` — you send SQL in a JSON body, get back rows as JSON. Sign up at the hosted version or [self-host it](https://github.com/kirill-markin/expense-budget-tracker) on your own server.
+[Expense Budget Tracker](https://expense-budget-tracker.com/) is an open-source personal finance system built on Postgres. Its canonical discovery endpoint is `GET https://api.expense-budget-tracker.com/v1/`. Sign up at the hosted version or [self-host it](https://github.com/kirill-markin/expense-budget-tracker) on your own server.
 
-### Step 1: Create an API key
+### Step 1: Give Claude Code the discovery URL
 
-Open the app, go to **Settings → API Keys → Create key**. Copy the key — it starts with `ebt_` and you'll only see it once.
+Tell Claude Code to connect using:
 
-### Step 2: Create a CLAUDE.md file
+```text
+https://api.expense-budget-tracker.com/v1/
+```
 
-Make a directory for your personal finance work and add a `CLAUDE.md` that tells Claude Code about your setup:
+Claude Code should start by reading the discovery response, then ask for:
+
+- your account email
+- the 8-digit code sent to your inbox
+
+When it verifies the code, the service returns a long-lived key in the real API format, for example `ebta_...`.
+
+### Step 2: Save the returned key outside chat memory
+
+The auth flow is convenient, but the key still needs to be stored somewhere durable. The backend explicitly tells agents not to rely on chat history alone.
+
+A simple pattern is:
+
+```bash
+export EXPENSE_BUDGET_TRACKER_API_KEY="ebta_your_key_here"
+```
+
+If you want Claude Code to persist it in a local `.env` file, approve that explicitly. Otherwise keep it in the shell for the current session and save it somewhere persistent yourself.
+
+### Step 3: Save your workspace once
+
+After Claude Code verifies the code, it should load your account and workspaces:
+
+```bash
+curl https://api.expense-budget-tracker.com/v1/me \
+  -H "Authorization: ApiKey $EXPENSE_BUDGET_TRACKER_API_KEY"
+```
+
+```bash
+curl https://api.expense-budget-tracker.com/v1/workspaces \
+  -H "Authorization: ApiKey $EXPENSE_BUDGET_TRACKER_API_KEY"
+```
+
+Then save the default workspace for that key once:
+
+```bash
+curl -X POST https://api.expense-budget-tracker.com/v1/workspaces/workspace-id/select \
+  -H "Authorization: ApiKey $EXPENSE_BUDGET_TRACKER_API_KEY"
+```
+
+After that, `/v1/sql` can omit `X-Workspace-Id`. If your account has exactly one workspace, the API auto-saves and uses it the first time.
+
+### Step 4: Add a local instruction file for your own conventions
+
+Claude Code still works better when you give it your categories, accounts, and workflow rules. A local `CLAUDE.md` is useful for that part:
 
 ```markdown
 # Personal Finance
@@ -41,8 +87,8 @@ Make a directory for your personal finance work and add a `CLAUDE.md` that tells
 
 - Endpoint: https://api.expense-budget-tracker.com/v1/sql
 - Auth: ApiKey in Authorization header
-- API key is in the EBT_API_KEY environment variable
-- Workspace ID is in the EBT_WORKSPACE_ID environment variable and must be sent as X-Workspace-Id
+- API key is in the EXPENSE_BUDGET_TRACKER_API_KEY environment variable
+- Default workspace is already saved for this key
 - Request: POST with JSON body {"sql": "your query"}
 - Response: {"rows": [...], "rowCount": N}
 
@@ -68,25 +114,14 @@ Planning: taxes, big-purchases, savings, emergency-fund
 - Store transactions in their original currency
 ```
 
-### Step 3: Export the API key and workspace ID
-
-Look up the workspace ID once with `GET https://api.expense-budget-tracker.com/v1/workspaces` using the same ApiKey.
-
-```bash
-export EBT_API_KEY="ebta_your_key_here"
-export EBT_WORKSPACE_ID="workspace-id"
-```
-
-Add this to your `.zshrc` or `.bashrc` so it persists across terminal sessions.
-
-### Step 4: Open Claude Code and start working
+### Step 5: Open Claude Code and start working
 
 ```bash
 cd ~/finances
 claude
 ```
 
-Claude Code reads your `CLAUDE.md`, knows your API endpoint, your categories, your accounts. You're ready to go.
+Claude Code reads your local instructions, reuses the saved ApiKey, and can start working immediately.
 
 ## Parsing bank statements with Claude Code
 
@@ -143,7 +178,7 @@ Once your expense data is in the database, Claude Code can answer any question a
 > What's my average monthly grocery spending over the past 6 months?
 ```
 
-Claude Code writes the SQL, runs it against the API, and gives you the answer in plain language. You don't need to know SQL yourself — Claude Code handles the query construction. But because the API is just SQL over HTTP, you can always ask Claude Code to show you the query it ran, verify it makes sense, or tweak it.
+Claude Code writes the SQL, runs it against the API, and gives you the answer in plain language. You do not need to know SQL yourself, but you can always ask Claude Code to show the query it ran, verify it makes sense, or tweak it.
 
 ## Managing your budget forecast
 
@@ -197,7 +232,7 @@ The power of Claude Code for personal finance comes from combining file access, 
 
 ## The database schema Claude Code works with
 
-The Expense Budget Tracker database is designed to be easy for AI agents to work with. Seven flat tables:
+The Expense Budget Tracker machine API exposes a small set of relations that are easy for AI agents to work with. The allowed set is published by `GET /v1/schema`.
 
 | Table | What it stores |
 |---|---|
@@ -215,13 +250,23 @@ The `ledger_entries` table has clear columns: `event_id`, `ts`, `account_id`, `a
 
 Giving Claude Code access to your expense database is safe within the constraints of the SQL API:
 
-Every query runs through Postgres Row Level Security. The API key is tied to your user and workspace — Claude Code can only see your data, even on a shared database.
+Every query runs through Postgres Row Level Security. The API key is tied to your user, and SQL runs only against the selected workspace — Claude Code can only see your data, even on a shared database.
 
-Only data queries are allowed: SELECT, INSERT, UPDATE, DELETE. Claude Code can't create or drop tables, can't modify permissions, can't run multiple statements in one request. The SQL API enforces this server-side, regardless of what Claude Code tries to send.
+Only one statement is allowed per request. Supported statement types are `SELECT`, `WITH`, `INSERT`, `UPDATE`, and `DELETE`. Claude Code cannot create or drop tables, cannot use transaction wrappers, cannot call `set_config()`, and cannot send SQL comments or quoted identifiers. The SQL API enforces this server-side, regardless of what Claude Code tries to send.
 
-API keys are stored as SHA-256 hashes — the plaintext is never in the database. You can revoke a key from Settings at any time. Rate limits cap usage at 10 requests/second and 10,000 per day, with a 30-second timeout and 100-row limit per response.
+API keys are stored as SHA-256 hashes — the plaintext is never in the database. Keys can be revoked later from the product. Rate limits cap usage at 10 requests/second and 10,000 per day, with a 30-second timeout and 100-row limit per response.
 
-The API key stays in your local environment variable. Claude Code reads it from `$EBT_API_KEY` when making requests — it never gets committed to a file or sent anywhere else.
+The API key stays in your local environment variable. Claude Code reads it from `$EXPENSE_BUDGET_TRACKER_API_KEY` when making requests — it never needs to be committed to your project.
+
+## Advanced alternative: direct HTTP without agent-native login
+
+If you already have a long-lived Expense Budget Tracker ApiKey, Claude Code can skip the email OTP setup and just use that existing key. In that mode, you still call the same endpoints:
+
+- `GET /v1/openapi.json` for the published machine-readable spec
+- `GET /v1/schema` for the allowed relations
+- `POST /v1/sql` for the actual queries
+
+This is useful for stable scripts and preconfigured environments, but for most people the discovery URL plus OTP flow is the easiest setup.
 
 ## A real workflow: weekly expense tracking in 10 minutes
 
@@ -239,11 +284,12 @@ That's 10 minutes for a complete picture of your finances — every transaction 
 
 1. [Install Claude Code](https://docs.anthropic.com/en/docs/claude-code) if you haven't already
 2. Sign up at [expense-budget-tracker.com](https://expense-budget-tracker.com/) or [self-host](https://github.com/kirill-markin/expense-budget-tracker) the app
-3. Create an API key in **Settings → API Keys**
-4. Set up a `CLAUDE.md` with your endpoint, categories, and accounts (see the example above)
-5. Export your API key: `export EBT_API_KEY="ebt_..."`
-6. Open Claude Code in your finances directory and drop in your first bank statement
+3. Give Claude Code `https://api.expense-budget-tracker.com/v1/`
+4. Complete the email OTP flow and save the returned key as `EXPENSE_BUDGET_TRACKER_API_KEY`
+5. Save a default workspace for that key
+6. Add a local `CLAUDE.md` with your categories, accounts, and workflow rules
+7. Open Claude Code in your finances directory and drop in your first bank statement
 
-Claude Code will figure out the database schema, match your categories, and start recording transactions. Review the results, fix anything that looks off, and you've got an AI-powered expense tracking setup running from your terminal.
+Claude Code will inspect the schema, match your categories, and start recording transactions. Review the results, fix anything that looks off, and you have an AI-powered expense tracking setup running from your terminal.
 
 The expense tracker is MIT licensed and fully open source at [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker). Claude Code is available at [docs.anthropic.com/en/docs/claude-code](https://docs.anthropic.com/en/docs/claude-code). Both tools are free to start with.

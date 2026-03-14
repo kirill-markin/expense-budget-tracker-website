@@ -17,14 +17,23 @@ cp .env.example .env
 make up
 ```
 
-This starts Postgres, runs migrations, and launches the web app at `http://localhost:3000`.
+This starts Postgres, runs migrations, and launches:
+
+- the web app at `http://localhost:3000`
+- the auth service at `http://localhost:8081`
+- the FX worker in Docker Compose
 
 ## Configuration
 
 Copy `.env.example` to `.env` and adjust:
 
-- `DATABASE_URL` — Postgres connection string
-- `AUTH_MODE` — `none` for local use (no login), `cognito` for multi-user with email OTP
+- `MIGRATION_DATABASE_URL` — owner role used by migrations
+- `DATABASE_URL` — app role for the web process
+- `AUTH_DATABASE_URL` — auth schema role for the auth service
+- `AUTH_MODE` — `none` for local use, `cognito` for email OTP environments
+- `AUTH_DOMAIN`, `COOKIE_DOMAIN`, and `ALLOWED_REDIRECT_URIS` — auth routing and cookies
+
+When `AUTH_MODE=cognito`, you also need the Cognito settings and `SESSION_ENCRYPTION_KEY` from `.env.example`.
 
 ## Updating
 
@@ -33,7 +42,7 @@ git pull
 make up
 ```
 
-Docker Compose will rebuild and re-run migrations automatically.
+Docker Compose rebuilds the services and reruns migrations through the `migrate` container.
 
 ## AWS Deployment
 
