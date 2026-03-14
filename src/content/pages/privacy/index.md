@@ -10,6 +10,10 @@ sections:
 
 When you use the cloud version, we store the financial data you enter (transactions, budgets, account names) and your email address for authentication. Self-hosted instances do not send any data to us.
 
+## Operator
+
+The hosted Expense Budget Tracker service is operated by SAMO DANNI EOOD (VAT: BG207395566). Expense Budget Tracker was created by Kirill Markin, and [kirill-markin.com](https://kirill-markin.com/) is the related personal website for the same creator and product ecosystem.
+
 ## How We Use Your Data
 
 Your financial data is used solely to provide the service. We do not sell, share, or use your data for advertising. Each workspace is isolated via Postgres row-level security.
