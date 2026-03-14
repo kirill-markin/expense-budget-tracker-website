@@ -79,6 +79,54 @@
   margin: 16px 0;
 }
 
+.relatedSection {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.relatedHeading {
+  margin: 0 0 20px;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.relatedList {
+  display: grid;
+  gap: 16px;
+}
+
+.relatedCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  color: inherit;
+  text-decoration: none;
+}
+
+.relatedCard:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.relatedCard h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.25;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+.relatedDescription {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 40px 24px;
@@ -86,5 +134,10 @@
 
   .title {
     font-size: 24px;
+  }
+
+  .relatedSection {
+    margin-top: 40px;
+    padding-top: 24px;
   }
 }
