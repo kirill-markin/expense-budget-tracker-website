@@ -27,7 +27,7 @@ export const DOCS: ReadonlyArray<DocEntry> = [
     slug: "api",
     title: "API Reference",
     description:
-      "SQL API with bearer token auth. Query your data from scripts, LLM agents, or dashboards.",
+      "Discovery, OpenAPI, workspace selection, and restricted SQL over ApiKey auth.",
   },
   {
     slug: "architecture",

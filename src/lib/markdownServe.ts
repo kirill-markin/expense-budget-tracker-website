@@ -19,7 +19,7 @@ const SITE_CONTEXT: MarkdownSiteContext = {
   appUrl: "https://app.expense-budget-tracker.com",
   githubUrl: "https://github.com/kirill-markin/expense-budget-tracker",
 };
-const DISCOVERY_URL = "https://app.expense-budget-tracker.com/api/agent";
+const DISCOVERY_URL = "https://api.expense-budget-tracker.com/v1/";
 
 const DOCS_DIR = join(process.cwd(), "src/content/docs");
 
@@ -54,7 +54,7 @@ function getOriginalPageUrl(pagePath: string): string {
 function appendMarkdownFooter(markdown: string, pagePath: string): string {
   return `${markdown.trim()}\n\n---\n*[View the styled HTML version of this page](${getOriginalPageUrl(
     pagePath
-  )})*\n\n*AI agents can create an account for the user in this service by starting with \`GET ${DISCOVERY_URL}\`.*\n\n*Tip: Append \`.md\` to any URL on ${SITE_CONTEXT.siteUrl} to get a clean Markdown version of that page.*`;
+  )})*\n\n*AI agents can create an account for the user in this service by starting with \`GET ${DISCOVERY_URL}\` and following the discovery response.*\n\n*Tip: Append \`.md\` to any URL on ${SITE_CONTEXT.siteUrl} to get a clean Markdown version of that page.*`;
 }
 
 function renderMarketingPageMarkdownDocument(pagePath: string): MarkdownResult {

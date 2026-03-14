@@ -9,9 +9,18 @@ The fastest way to start is the managed cloud version:
 
 1. Go to [app.expense-budget-tracker.com](https://app.expense-budget-tracker.com)
 2. Sign up with your email (passwordless OTP)
-3. Start tracking expenses immediately
+3. Start tracking expenses in the web app
+4. If you want to connect Claude Code, Codex, or OpenClaw, give the agent `https://api.expense-budget-tracker.com/v1/`
 
 No installation, no server setup. Your data is isolated via workspace-level row-level security in Postgres.
+
+## Agent and program access
+
+The same hosted account works for:
+
+- the web UI at `https://app.expense-budget-tracker.com`
+- agent-native onboarding at `GET https://api.expense-budget-tracker.com/v1/`
+- direct HTTP clients using `Authorization: ApiKey <key>`
 
 ## Self-Hosted
 
