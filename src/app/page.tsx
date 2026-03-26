@@ -1,6 +1,7 @@
 import { AuthButton } from "@/components/AuthButton";
 import { CopyCodeField } from "@/components/CopyCodeField";
 import { readPageContent } from "@/lib/content/readPageContent";
+import { getAppUrl } from "@/lib/auth";
 import Image from "next/image";
 import styles from "./page.module.css";
 
@@ -26,30 +27,70 @@ function getFeatureSection() {
   return section;
 }
 
+function getAgentFeatureDescription() {
+  const item = featureSection.items.find(
+    (featureItem) => featureItem.title === "Agent-Native API",
+  );
+
+  if (!item) {
+    throw new Error("Missing Agent-Native API feature description");
+  }
+
+  return item.description;
+}
+
 const heroSection = getHeroSection();
 const featureSection = getFeatureSection();
+const agentFeatureDescription = getAgentFeatureDescription();
+const appUrl = getAppUrl();
 
 export default function HomePage() {
   return (
     <div className={styles.hero}>
       <div className={styles.heroInner}>
-        <h1 className={styles.title}>
-          {heroSection.titleLines.map((line, index) => (
-            <span key={line}>
-              {line}
-              {index < heroSection.titleLines.length - 1 ? <br /> : null}
-            </span>
-          ))}
-        </h1>
-        <p className={styles.subtitle}>{heroSection.subtitle}</p>
-        <div className={styles.cta}>
-          <AuthButton />
-        </div>
-        <div className={styles.hint}>
-          <CopyCodeField
-            value={`${heroSection.hintText}\n${heroSection.hintLink.href}`}
-          />
-        </div>
+        <section className={styles.heroGrid} aria-labelledby="home-hero-title">
+          <div className={styles.heroMainCard}>
+            <div>
+              <h1 id="home-hero-title" className={styles.title}>
+                {heroSection.titleLines.map((line, index) => (
+                  <span key={line}>
+                    {line}
+                    {index < heroSection.titleLines.length - 1 ? <br /> : null}
+                  </span>
+                ))}
+              </h1>
+              <p className={styles.subtitle}>{heroSection.subtitle}</p>
+            </div>
+            <div className={styles.cta}>
+              <AuthButton />
+            </div>
+          </div>
+
+          <aside className={styles.heroAside}>
+            <section className={styles.heroAsideSection} aria-labelledby="for-human-title">
+              <h2 id="for-human-title" className={styles.asideTitle}>
+                For human
+              </h2>
+              <div className={styles.humanLinks}>
+                <a href={appUrl} className={styles.humanLink}>
+                  Web App
+                </a>
+              </div>
+            </section>
+
+            <section className={styles.heroAsideSection} aria-labelledby="for-agent-title">
+              <h2 id="for-agent-title" className={styles.asideTitle}>
+                For AI agent
+              </h2>
+              <p className={styles.agentDescription}>{agentFeatureDescription}</p>
+              <div className={styles.hint}>
+                <CopyCodeField
+                  value={`${heroSection.hintText}\n${heroSection.hintLink.href}`}
+                />
+              </div>
+            </section>
+          </aside>
+        </section>
       </div>
 
       <section className={styles.showcase} aria-labelledby="product-showcase-title">
