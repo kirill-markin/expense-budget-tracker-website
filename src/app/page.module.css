@@ -36,6 +36,46 @@
   margin: 0 auto;
 }
 
+.showcase {
+  padding-block-end: 64px;
+}
+
+.showcaseHeader {
+  max-inline-size: 720px;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+.showcaseEyebrow {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.showcaseTitle {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.showcaseFrame {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 24px 80px rgb(15 23 42 / 0.08);
+}
+
+.showcaseImage {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
 .features {
   padding: 64px 0;
   border-top: 1px solid var(--border);
@@ -72,6 +112,14 @@
 
   .title {
     font-size: 32px;
+  }
+
+  .showcase {
+    padding-block-end: 48px;
+  }
+
+  .showcaseTitle {
+    font-size: 22px;
   }
 
   .featureGrid {

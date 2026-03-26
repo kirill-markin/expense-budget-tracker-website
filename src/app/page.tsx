@@ -1,6 +1,7 @@
 import { AuthButton } from "@/components/AuthButton";
 import { CopyCodeField } from "@/components/CopyCodeField";
 import { readPageContent } from "@/lib/content/readPageContent";
+import Image from "next/image";
 import styles from "./page.module.css";
 
 const pageContent = readPageContent("home");
@@ -50,6 +51,25 @@ export default function HomePage() {
           />
         </div>
       </div>
+
+      <section className={styles.showcase} aria-labelledby="product-showcase-title">
+        <div className={styles.showcaseHeader}>
+          <p className={styles.showcaseEyebrow}>Real interface</p>
+          <h2 id="product-showcase-title" className={styles.showcaseTitle}>
+            See the budget workspace before you read the feature list
+          </h2>
+        </div>
+        <div className={styles.showcaseFrame}>
+          <Image
+            src="/home/budget-screenshot.jpg"
+            alt="Expense Budget Tracker interface showing AI chat, budget categories, actual expenses, current month, and future plans."
+            width={3624}
+            height={2030}
+            priority
+            className={styles.showcaseImage}
+          />
+        </div>
+      </section>
 
       <section className={styles.features}>
         <div className={styles.featureGrid}>
