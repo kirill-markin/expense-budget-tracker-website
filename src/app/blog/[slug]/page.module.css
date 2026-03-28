@@ -11,6 +11,16 @@
   letter-spacing: 0.06em;
 }
 
+.byline {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
 .title {
   font-size: 32px;
   font-weight: 700;
