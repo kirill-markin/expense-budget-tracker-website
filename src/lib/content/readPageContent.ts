@@ -310,14 +310,6 @@ export function getMarketingPageRoutePath(slug: MarketingPageSlug): string {
   return `/${slug}/`;
 }
 
-export function getMarketingPageMarkdownRoutePath(slug: MarketingPageSlug): string {
-  if (slug === "home") {
-    return "/.md";
-  }
-
-  return `/${slug}.md`;
-}
-
 export function getMarketingPageSourcePath(
   slug: MarketingPageSlug,
   locale: AppLocale

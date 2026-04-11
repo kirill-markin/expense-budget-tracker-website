@@ -6,7 +6,6 @@ import { getAppUrl } from "@/lib/auth";
 import { renderMarkdownToHtml } from "@/lib/content/renderMarkdownToHtml";
 import {
   getAvailableLocalesForMarketingPage,
-  getMarketingPageMarkdownRoutePath,
   getMarketingPageRoutePath,
   readPageContent,
 } from "@/lib/content/readPageContent";
@@ -293,7 +292,6 @@ export function getMarketingPageMetadata(
     description: pageContent.description,
     locale,
     routePath: getMarketingPageRoutePath(slug),
-    markdownRoutePath: getMarketingPageMarkdownRoutePath(slug),
     openGraphType: "website",
     availableLocales: getAvailableLocalesForMarketingPage(slug),
   });

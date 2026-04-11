@@ -20,6 +20,16 @@ export function getMarkdownAssetPathname(pagePath: string): string {
   return `${MARKDOWN_ASSET_PREFIX}/${normalizedPagePath}.md`;
 }
 
+export function getMarkdownRoutePathname(pagePath: string): string {
+  const normalizedPagePath = normalizePagePath(pagePath);
+
+  if (normalizedPagePath === "") {
+    return "/home.md";
+  }
+
+  return `/${normalizedPagePath}.md`;
+}
+
 export function getPagePathFromHtmlPathname(pathname: string): string {
   return pathname.replace(/^\/+/, "").replace(/\/+$/, "");
 }

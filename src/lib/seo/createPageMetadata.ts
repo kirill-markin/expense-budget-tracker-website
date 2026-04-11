@@ -7,6 +7,10 @@ import {
   getAbsoluteUrl,
   getLocalizedPath,
 } from "@/lib/i18n/routing";
+import {
+  getMarkdownRoutePathname,
+  getPagePathFromHtmlPathname,
+} from "@/lib/markdownAssetPaths";
 import { getOpenGraphLocale } from "@/lib/i18n/config";
 
 const OPEN_GRAPH_IMAGE_URL = getAbsoluteUrl("/opengraph-image");
@@ -19,7 +23,6 @@ interface CreatePageMetadataParams {
   readonly description: string;
   readonly locale: AppLocale;
   readonly routePath: string;
-  readonly markdownRoutePath: string;
   readonly openGraphType: OpenGraphType;
   readonly availableLocales: ReadonlyArray<AppLocale>;
   readonly publishedTime?: string;
@@ -48,16 +51,12 @@ function getLanguageAlternates(
 
 function getMarkdownAlternateUrl(
   locale: AppLocale,
-  routePath: string,
-  markdownRoutePath: string
+  routePath: string
 ): string {
-  if (routePath === "/") {
-    const pageUrl = getAbsoluteUrl(getLocalizedPath(locale, routePath));
+  const localizedRoutePath = getLocalizedPath(locale, routePath);
+  const pagePath = getPagePathFromHtmlPathname(localizedRoutePath);
 
-    return new URL(".md", pageUrl).toString();
-  }
-
-  return getAbsoluteUrl(getLocalizedPath(locale, markdownRoutePath));
+  return getAbsoluteUrl(getMarkdownRoutePathname(pagePath));
 }
 
 export function createPageMetadata(
@@ -66,11 +65,9 @@ export function createPageMetadata(
   const pageUrl = getAbsoluteUrl(
     getLocalizedPath(params.locale, params.routePath)
   );
-  const markdownUrl = getMarkdownAlternateUrl(
-    params.locale,
-    params.routePath,
-    params.markdownRoutePath
-  );
+  const markdownUrl = getMarkdownAlternateUrl(params.locale, params.routePath);
+  const browserTitle: Metadata["title"] =
+    params.routePath === "/" ? { absolute: params.title } : params.title;
   const socialTitle =
     params.routePath === "/" ? params.title : `${params.title} | ${SITE_NAME}`;
   const languageAlternates = getLanguageAlternates(
@@ -87,7 +84,7 @@ export function createPageMetadata(
   }
 
   return {
-    title: params.title,
+    title: browserTitle,
     description: params.description,
     alternates,
     openGraph: {
