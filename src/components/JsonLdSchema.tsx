@@ -1,34 +1,44 @@
-import { HOME_PAGE_METADATA } from "@/content/pages/home";
+import { readPageContent } from "@/lib/content/readPageContent";
+import type { AppLocale } from "@/lib/i18n/config";
+import { buildAbsoluteUrl, getLocalizedPath } from "@/lib/i18n/routing";
 
-const SITE_URL = "https://expense-budget-tracker.com";
+interface JsonLdSchemaProps {
+  readonly locale: AppLocale;
+}
 
-const softwareAppSchema = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Expense Budget Tracker",
-  description: HOME_PAGE_METADATA.description,
-  url: `${SITE_URL}/`,
-  applicationCategory: "FinanceApplication",
-  operatingSystem: "Web",
-  license: "https://opensource.org/licenses/MIT",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-  codeRepository:
-    "https://github.com/kirill-markin/expense-budget-tracker",
-};
+export function JsonLdSchema({ locale }: JsonLdSchemaProps): React.JSX.Element {
+  const homePageContent = readPageContent("home", locale);
+  const homeUrl = buildAbsoluteUrl(
+    "https://expense-budget-tracker.com",
+    getLocalizedPath(locale, "/")
+  );
+  const softwareAppSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Expense Budget Tracker",
+    description: homePageContent.description,
+    url: homeUrl,
+    inLanguage: locale,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    license: "https://opensource.org/licenses/MIT",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    codeRepository:
+      "https://github.com/kirill-markin/expense-budget-tracker",
+  };
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    url: homeUrl,
+    name: "Expense Budget Tracker",
+    description: homePageContent.description,
+    inLanguage: locale,
+  };
 
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  url: `${SITE_URL}/`,
-  name: "Expense Budget Tracker",
-  description: HOME_PAGE_METADATA.description,
-};
-
-export function JsonLdSchema(): React.JSX.Element {
   return (
     <>
       <script

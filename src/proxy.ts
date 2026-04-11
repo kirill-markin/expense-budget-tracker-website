@@ -1,11 +1,30 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { PREFIXED_LOCALES } from "./lib/i18n/config";
 import {
   LLMS_ASSET_PATHNAME,
   getMarkdownAssetPathname,
   getPagePathFromHtmlPathname,
   getPagePathFromMarkdownPathname,
 } from "./lib/markdownAssetPaths";
+
+function getMarkdownAlternatePathname(pathname: string): string {
+  const cleanPath = pathname.replace(/\/+$/, "");
+
+  if (cleanPath === "") {
+    return "/.md";
+  }
+
+  const isLocalizedHomePath = PREFIXED_LOCALES.some(
+    (locale) => cleanPath === `/${locale}`
+  );
+
+  if (isLocalizedHomePath) {
+    return `${cleanPath}/.md`;
+  }
+
+  return `${cleanPath}.md`;
+}
 
 export function proxy(request: NextRequest): NextResponse {
   const { pathname } = request.nextUrl;
@@ -46,11 +65,9 @@ export function proxy(request: NextRequest): NextResponse {
   const response = NextResponse.next();
   response.headers.append("Vary", "Accept");
 
-  const cleanPath = pathname.replace(/\/+$/, "");
-  const mdPath = cleanPath === "" ? "/.md" : `${cleanPath}.md`;
   response.headers.set(
     "Link",
-    `<${mdPath}>; rel="alternate"; type="text/markdown"`
+    `<${getMarkdownAlternatePathname(pathname)}>; rel="alternate"; type="text/markdown"`
   );
 
   return response;

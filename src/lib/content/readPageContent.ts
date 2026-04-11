@@ -1,9 +1,17 @@
 import { existsSync, readFileSync } from "fs";
-import { join } from "path";
 import matter from "gray-matter";
-import { FEATURES_PAGE_CONTENT } from "@/content/pages/features";
-import { HOME_PAGE_CONTENT } from "@/content/pages/home";
-import { PRICING_PAGE_CONTENT } from "@/content/pages/pricing";
+import { STRUCTURED_PAGE_CONTENT } from "@/content/pageRegistry";
+import type { AppLocale } from "@/lib/i18n/config";
+import {
+  getLocalizedPath,
+  getResolvedPagePath,
+} from "@/lib/i18n/routing";
+import {
+  getMarkdownPageFilePath,
+  getStructuredMarketingPageSourcePath,
+  type MarkdownBackedPageSlug,
+  type StructuredMarketingPageSlug,
+} from "./contentPaths";
 import type {
   AuthPricingTier,
   ContentLink,
@@ -20,17 +28,14 @@ import type {
   SimpleMarkdownPageSection,
 } from "./types";
 
-const CONTENT_DIR = join(process.cwd(), "src/content/pages");
-
-type StructuredMarketingPageSlug = "home" | "features" | "pricing";
-type MarkdownBackedPageSlug = "privacy" | "terms";
-
-const STRUCTURED_PAGE_CONTENT: Readonly<
-  Record<StructuredMarketingPageSlug, PageContent>
+const MARKETING_PAGE_LOCALES: Readonly<
+  Record<MarketingPageSlug, ReadonlyArray<AppLocale>>
 > = {
-  home: HOME_PAGE_CONTENT,
-  features: FEATURES_PAGE_CONTENT,
-  pricing: PRICING_PAGE_CONTENT,
+  home: ["en", "es"],
+  features: ["en", "es"],
+  pricing: ["en", "es"],
+  privacy: ["en", "es"],
+  terms: ["en", "es"],
 };
 
 export const MARKETING_PAGE_SLUGS: ReadonlyArray<MarketingPageSlug> = [
@@ -41,8 +46,12 @@ export const MARKETING_PAGE_SLUGS: ReadonlyArray<MarketingPageSlug> = [
   "terms",
 ] as const;
 
-function getMarkdownPageFilePath(slug: MarkdownBackedPageSlug): string {
-  return join(CONTENT_DIR, slug, "index.md");
+function getPagePathFromRoutePath(routePath: string): string {
+  if (routePath === "/") {
+    return "";
+  }
+
+  return routePath.replace(/^\/+/, "").replace(/\/+$/, "");
 }
 
 function assertNonEmptyString(
@@ -290,39 +299,109 @@ function validatePageStructure(pageContent: PageContent): PageContent {
 }
 
 export function getMarketingPagePath(slug: MarketingPageSlug): string {
-  if (slug === "home") {
-    return "";
-  }
-
-  return slug;
+  return getPagePathFromRoutePath(getMarketingPageRoutePath(slug));
 }
 
-export function getMarketingPageSlugFromPath(
-  pagePath: string
-): MarketingPageSlug | null {
-  const normalizedPagePath = pagePath.replace(/^\/+/, "").replace(/\/+$/, "");
-
-  if (normalizedPagePath === "" || normalizedPagePath === "home") {
-    return "home";
+export function getMarketingPageRoutePath(slug: MarketingPageSlug): string {
+  if (slug === "home") {
+    return "/";
   }
 
-  if (MARKETING_PAGE_SLUGS.includes(normalizedPagePath as MarketingPageSlug)) {
-    return normalizedPagePath as MarketingPageSlug;
+  return `/${slug}/`;
+}
+
+export function getMarketingPageMarkdownRoutePath(slug: MarketingPageSlug): string {
+  if (slug === "home") {
+    return "/.md";
+  }
+
+  return `/${slug}.md`;
+}
+
+export function getMarketingPageSourcePath(
+  slug: MarketingPageSlug,
+  locale: AppLocale
+): string {
+  if (slug in STRUCTURED_PAGE_CONTENT) {
+    return getStructuredMarketingPageSourcePath(
+      slug as StructuredMarketingPageSlug,
+      locale
+    );
+  }
+
+  return getMarkdownPageFilePath(slug as MarkdownBackedPageSlug, locale);
+}
+
+export function getAvailableLocalesForMarketingPage(
+  slug: MarketingPageSlug
+): ReadonlyArray<AppLocale> {
+  return MARKETING_PAGE_LOCALES[slug];
+}
+
+export function getMarketingPageRouteFromPath(
+  pagePath: string
+): { readonly locale: AppLocale; readonly slug: MarketingPageSlug } | null {
+  const resolvedPagePath = getResolvedPagePath(pagePath);
+
+  if (resolvedPagePath === null) {
+    return null;
+  }
+
+  if (resolvedPagePath.pagePath === "" || resolvedPagePath.pagePath === "home") {
+    return {
+      locale: resolvedPagePath.locale,
+      slug: "home",
+    };
+  }
+
+  if (
+    MARKETING_PAGE_SLUGS.includes(
+      resolvedPagePath.pagePath as MarketingPageSlug
+    )
+  ) {
+    return {
+      locale: resolvedPagePath.locale,
+      slug: resolvedPagePath.pagePath as MarketingPageSlug,
+    };
   }
 
   return null;
 }
 
-export function listMarketingPagePaths(): ReadonlyArray<string> {
-  return MARKETING_PAGE_SLUGS.map((slug) => getMarketingPagePath(slug));
+export function listMarketingPagePaths(locale: AppLocale): ReadonlyArray<string> {
+  return MARKETING_PAGE_SLUGS.filter((slug) =>
+    getAvailableLocalesForMarketingPage(slug).includes(locale)
+  ).map((slug) =>
+    getPagePathFromRoutePath(getLocalizedPath(locale, getMarketingPageRoutePath(slug)))
+  );
 }
 
-export function readPageContent(slug: MarketingPageSlug): PageContent {
+export function listAllMarketingPagePaths(): ReadonlyArray<string> {
+  return Object.values(MARKETING_PAGE_LOCALES)
+    .flatMap((_locales, index) => {
+      const slug = MARKETING_PAGE_SLUGS[index];
+      return getAvailableLocalesForMarketingPage(slug).map((locale) =>
+        getPagePathFromRoutePath(
+          getLocalizedPath(locale, getMarketingPageRoutePath(slug))
+        )
+      );
+    });
+}
+
+export function readPageContent(
+  slug: MarketingPageSlug,
+  locale: AppLocale
+): PageContent {
+  if (!getAvailableLocalesForMarketingPage(slug).includes(locale)) {
+    throw new Error(`Unsupported locale for page ${slug}: ${locale}`);
+  }
+
   if (slug in STRUCTURED_PAGE_CONTENT) {
     const structuredPageContent =
-      STRUCTURED_PAGE_CONTENT[slug as StructuredMarketingPageSlug];
+      STRUCTURED_PAGE_CONTENT[slug as StructuredMarketingPageSlug][locale];
 
     return validatePageStructure({
+      locale: structuredPageContent.locale,
       title: assertNonEmptyString(
         structuredPageContent.title,
         "title",
@@ -342,7 +421,7 @@ export function readPageContent(slug: MarketingPageSlug): PageContent {
   }
 
   const markdownBackedSlug = slug as MarkdownBackedPageSlug;
-  const filePath = getMarkdownPageFilePath(markdownBackedSlug);
+  const filePath = getMarkdownPageFilePath(markdownBackedSlug, locale);
 
   if (!existsSync(filePath)) {
     throw new Error(`Missing page content file: ${filePath}`);
@@ -358,6 +437,7 @@ export function readPageContent(slug: MarketingPageSlug): PageContent {
   };
 
   const pageContent: PageContent = {
+    locale,
     title: assertNonEmptyString(frontmatter.title, "title", slug),
     description: assertNonEmptyString(frontmatter.description, "description", slug),
     slug: frontmatter.slug,
@@ -372,6 +452,8 @@ export function readPageContent(slug: MarketingPageSlug): PageContent {
   return validatePageStructure(pageContent);
 }
 
-export function readAllMarketingPages(): ReadonlyArray<PageContent> {
-  return MARKETING_PAGE_SLUGS.map((slug) => readPageContent(slug));
+export function readAllMarketingPages(locale: AppLocale): ReadonlyArray<PageContent> {
+  return MARKETING_PAGE_SLUGS.filter((slug) =>
+    getAvailableLocalesForMarketingPage(slug).includes(locale)
+  ).map((slug) => readPageContent(slug, locale));
 }

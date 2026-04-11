@@ -1,89 +1,168 @@
 import type { MetadataRoute } from "next";
 import { join } from "path";
-import { DOCS } from "@/data/docs";
+import {
+  getAvailableBlogLocales,
+  listBlogPosts,
+} from "@/lib/blog";
+import {
+  getBlogFilePath,
+  getContentSectionDirectories,
+  getDocFilePath,
+} from "@/lib/content/contentPaths";
+import {
+  getAvailableDocLocales,
+  listDocs,
+} from "@/lib/docs";
+import { type AppLocale } from "@/lib/i18n/config";
+import { getAbsoluteUrl, getLocalizedPath } from "@/lib/i18n/routing";
+import {
+  getAvailableLocalesForMarketingPage,
+  getMarketingPageRoutePath,
+  getMarketingPageSourcePath,
+  MARKETING_PAGE_SLUGS,
+} from "@/lib/content/readPageContent";
 import {
   getFileLastModified,
-  getMarkdownSlugs,
   getNewestDirectoryFileLastModified,
 } from "@/lib/sitemap/getLastModified";
 
-const SITE_URL = "https://expense-budget-tracker.com";
-const BLOG_DIR = join(process.cwd(), "src/content/blog");
-const DOCS_DIR = join(process.cwd(), "src/content/docs");
-const PAGES_DIR = join(process.cwd(), "src/content/pages");
-const APP_DIR = join(process.cwd(), "src/app");
+const APP_DIR = join(process.cwd(), "src/app", "(default)");
+
+function getLanguageAlternates(
+  routePath: string,
+  locales: ReadonlyArray<AppLocale>
+): NonNullable<MetadataRoute.Sitemap[number]["alternates"]> {
+  return {
+    languages: Object.fromEntries(
+      locales.map((locale) => [
+        locale,
+        getAbsoluteUrl(getLocalizedPath(locale, routePath)),
+      ])
+    ),
+  };
+}
+
+function getNewestLocaleDirectoryFileLastModified(
+  directoryPaths: ReadonlyArray<string>
+): Date | null {
+  return directoryPaths.reduce<Date | null>((latestDate, directoryPath) => {
+    const currentDate = getNewestDirectoryFileLastModified(directoryPath);
+
+    if (currentDate === null) {
+      return latestDate;
+    }
+
+    if (latestDate === null || currentDate > latestDate) {
+      return currentDate;
+    }
+
+    return latestDate;
+  }, null);
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const blogSlugs = getMarkdownSlugs(BLOG_DIR);
-  const newestBlogLastModified = getNewestDirectoryFileLastModified(BLOG_DIR);
+  const blogPosts = listBlogPosts("en");
+  const docs = listDocs("en");
+  const newestBlogLastModified = getNewestLocaleDirectoryFileLastModified(
+    getContentSectionDirectories("blog")
+  );
   const blogIndexLastModified =
     newestBlogLastModified ??
     getFileLastModified(join(APP_DIR, "blog", "page.tsx"));
-
-  const docsIndexLastModified = getNewestDirectoryFileLastModified(DOCS_DIR);
+  const docsIndexLastModified = getNewestLocaleDirectoryFileLastModified(
+    getContentSectionDirectories("docs")
+  );
 
   if (docsIndexLastModified === null) {
-    throw new Error(`Missing docs markdown files for sitemap: ${DOCS_DIR}`);
+    throw new Error("Missing docs markdown files for sitemap");
   }
+
+  const marketingEntries: MetadataRoute.Sitemap = MARKETING_PAGE_SLUGS.flatMap(
+    (slug) => {
+      const availableLocales = getAvailableLocalesForMarketingPage(slug);
+      const alternates =
+        availableLocales.length > 1
+          ? getLanguageAlternates(
+              getMarketingPageRoutePath(slug),
+              availableLocales
+            )
+          : undefined;
+      const changeFrequency = slug === "home" ? "weekly" : "monthly";
+      const priority =
+        slug === "home" ? 1.0 : slug === "features" || slug === "pricing" ? 0.8 : 0.3;
+
+      return availableLocales.map((locale) => ({
+        url: getAbsoluteUrl(getLocalizedPath(locale, getMarketingPageRoutePath(slug))),
+        lastModified: getFileLastModified(getMarketingPageSourcePath(slug, locale)),
+        changeFrequency,
+        priority,
+        alternates,
+      }));
+    }
+  );
 
   const staticEntries: MetadataRoute.Sitemap = [
     {
-      url: `${SITE_URL}/`,
-      lastModified: getFileLastModified(join(PAGES_DIR, "home.ts")),
-      changeFrequency: "weekly",
-      priority: 1.0,
-    },
-    {
-      url: `${SITE_URL}/features/`,
-      lastModified: getFileLastModified(join(PAGES_DIR, "features.ts")),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/pricing/`,
-      lastModified: getFileLastModified(join(PAGES_DIR, "pricing.ts")),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/blog/`,
+      url: getAbsoluteUrl("/blog/"),
       lastModified: blogIndexLastModified,
       changeFrequency: "weekly",
       priority: 0.7,
+      alternates: getLanguageAlternates("/blog/", ["en", "es"]),
     },
     {
-      url: `${SITE_URL}/docs/`,
+      url: getAbsoluteUrl("/es/blog/"),
+      lastModified: blogIndexLastModified,
+      changeFrequency: "weekly",
+      priority: 0.7,
+      alternates: getLanguageAlternates("/blog/", ["en", "es"]),
+    },
+    {
+      url: getAbsoluteUrl("/docs/"),
       lastModified: docsIndexLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
+      alternates: getLanguageAlternates("/docs/", ["en", "es"]),
     },
     {
-      url: `${SITE_URL}/privacy/`,
-      lastModified: getFileLastModified(join(PAGES_DIR, "privacy", "index.md")),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${SITE_URL}/terms/`,
-      lastModified: getFileLastModified(join(PAGES_DIR, "terms", "index.md")),
-      changeFrequency: "yearly",
-      priority: 0.3,
+      url: getAbsoluteUrl("/es/docs/"),
+      lastModified: docsIndexLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: getLanguageAlternates("/docs/", ["en", "es"]),
     },
   ];
 
-  const blogEntries: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
-    url: `${SITE_URL}/blog/${slug}/`,
-    lastModified: getFileLastModified(join(BLOG_DIR, `${slug}.md`)),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+  const blogEntries: MetadataRoute.Sitemap = blogPosts.flatMap((post) => {
+    const availableLocales = getAvailableBlogLocales(post.slug);
+    const alternates = getLanguageAlternates(
+      `/blog/${post.slug}/`,
+      availableLocales
+    );
 
-  const docEntries: MetadataRoute.Sitemap = DOCS.map((doc) => ({
-    url: `${SITE_URL}/docs/${doc.slug}/`,
-    lastModified: getFileLastModified(join(DOCS_DIR, `${doc.slug}.md`)),
-    changeFrequency: "monthly" as const,
-    priority: 0.5,
-  }));
+    return availableLocales.map((locale) => ({
+      url: getAbsoluteUrl(getLocalizedPath(locale, `/blog/${post.slug}/`)),
+      lastModified: getFileLastModified(getBlogFilePath(post.slug, locale)),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates,
+    }));
+  });
 
-  return [...staticEntries, ...blogEntries, ...docEntries];
+  const docEntries: MetadataRoute.Sitemap = docs.flatMap((doc) => {
+    const availableLocales = getAvailableDocLocales(doc.slug);
+    const alternates = getLanguageAlternates(
+      `/docs/${doc.slug}/`,
+      availableLocales
+    );
+
+    return availableLocales.map((locale) => ({
+      url: getAbsoluteUrl(getLocalizedPath(locale, `/docs/${doc.slug}/`)),
+      lastModified: getFileLastModified(getDocFilePath(doc.slug, locale)),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+      alternates,
+    }));
+  });
+
+  return [...marketingEntries, ...staticEntries, ...blogEntries, ...docEntries];
 }

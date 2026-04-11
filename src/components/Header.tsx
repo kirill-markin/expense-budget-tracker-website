@@ -1,19 +1,27 @@
 import Link from "next/link";
+import type { AppLocale } from "@/lib/i18n/config";
+import { getLocalizedPath } from "@/lib/i18n/routing";
 import { AuthButton } from "./AuthButton";
 import { HeaderMobileMenu } from "./HeaderMobileMenu";
-import { HEADER_LINKS } from "./headerLinks";
+import { getHeaderLinks } from "./headerLinks";
 import styles from "./Header.module.css";
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  readonly locale: AppLocale;
+}
+
+export const Header = ({ locale }: HeaderProps): React.JSX.Element => {
+  const headerLinks = getHeaderLinks(locale);
+
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <Link href="/" className={styles.logo}>
+        <Link href={getLocalizedPath(locale, "/")} className={styles.logo}>
           Expense Budget Tracker
         </Link>
 
         <nav className={styles.desktopNav}>
-          {HEADER_LINKS.map((link) => (
+          {headerLinks.map((link) => (
             <Link key={link.href} href={link.href}>
               {link.label}
             </Link>
@@ -21,10 +29,10 @@ export const Header: React.FC = () => {
         </nav>
 
         <div className={styles.desktopAuth}>
-          <AuthButton />
+          <AuthButton locale={locale} />
         </div>
 
-        <HeaderMobileMenu />
+        <HeaderMobileMenu locale={locale} />
       </div>
     </header>
   );
