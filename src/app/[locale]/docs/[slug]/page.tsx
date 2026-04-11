@@ -34,7 +34,6 @@ export const generateMetadata = async ({
     description: doc.description,
     locale: "es",
     routePath: `/docs/${slug}/`,
-    markdownRoutePath: `/docs/${slug}.md`,
     openGraphType: "website",
     availableLocales: getAvailableDocLocales(slug),
   });

@@ -61,7 +61,6 @@ export const generateMetadata = async ({
     description: post.description,
     locale: "en",
     routePath: `/blog/${slug}/`,
-    markdownRoutePath: `/blog/${slug}.md`,
     openGraphType: "article",
     availableLocales: getAvailableBlogLocales(slug),
     publishedTime: post.date,

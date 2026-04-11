@@ -1,29 +1,15 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { PREFIXED_LOCALES } from "./lib/i18n/config";
 import {
   LLMS_ASSET_PATHNAME,
   getMarkdownAssetPathname,
+  getMarkdownRoutePathname,
   getPagePathFromHtmlPathname,
   getPagePathFromMarkdownPathname,
 } from "./lib/markdownAssetPaths";
 
 function getMarkdownAlternatePathname(pathname: string): string {
-  const cleanPath = pathname.replace(/\/+$/, "");
-
-  if (cleanPath === "") {
-    return "/.md";
-  }
-
-  const isLocalizedHomePath = PREFIXED_LOCALES.some(
-    (locale) => cleanPath === `/${locale}`
-  );
-
-  if (isLocalizedHomePath) {
-    return `${cleanPath}/.md`;
-  }
-
-  return `${cleanPath}.md`;
+  return getMarkdownRoutePathname(getPagePathFromHtmlPathname(pathname));
 }
 
 export function proxy(request: NextRequest): NextResponse {

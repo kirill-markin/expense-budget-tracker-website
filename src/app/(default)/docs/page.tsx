@@ -17,7 +17,6 @@ export const metadata: Metadata = createPageMetadata({
   description: PAGE_COPY.description,
   locale: "en",
   routePath: "/docs/",
-  markdownRoutePath: "/docs.md",
   openGraphType: "website",
   availableLocales: ["en", "es"],
 });
