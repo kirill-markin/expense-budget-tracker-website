@@ -1,3 +1,5 @@
+import { buildAbsoluteUrl, getLocalizedPath } from "@/lib/i18n/routing";
+import type { AppLocale } from "@/lib/i18n/config";
 import type {
   FeatureListSection,
   HeroSection,
@@ -7,7 +9,7 @@ import type {
   PricingTier,
   PricingTiersSection,
 } from "./types";
-import { getMarketingPagePath } from "./readPageContent";
+import { getMarketingPageRoutePath } from "./readPageContent";
 
 export interface MarkdownSiteContext {
   readonly siteUrl: string;
@@ -17,15 +19,12 @@ export interface MarkdownSiteContext {
 
 function getPageUrl(
   siteContext: MarkdownSiteContext,
-  slug: MarketingPageSlug
+  pageContent: PageContent
 ): string {
-  const pagePath = getMarketingPagePath(slug);
-
-  if (pagePath === "") {
-    return `${siteContext.siteUrl}/`;
-  }
-
-  return `${siteContext.siteUrl}/${pagePath}/`;
+  return buildAbsoluteUrl(
+    siteContext.siteUrl,
+    getLocalizedPath(pageContent.locale, getMarketingPageRoutePath(pageContent.slug))
+  );
 }
 
 function renderHeroSection(
@@ -99,10 +98,18 @@ function renderLegalPageSection(
   pageContent: PageContent,
   lines: string[]
 ): void {
-  lines.push(`**Last updated:** ${section.lastUpdated}`);
+  lines.push(`**${getLastUpdatedLabel(pageContent.locale)}** ${section.lastUpdated}`);
   lines.push("");
   lines.push(pageContent.body);
   lines.push("");
+}
+
+function getLastUpdatedLabel(locale: AppLocale): string {
+  if (locale === "es") {
+    return "Última actualización:";
+  }
+
+  return "Last updated:";
 }
 
 function renderPageSections(
@@ -135,7 +142,7 @@ function renderMarkdownFooter(
   pageContent: PageContent,
   siteContext: MarkdownSiteContext
 ): string {
-  const originalUrl = getPageUrl(siteContext, pageContent.slug);
+  const originalUrl = getPageUrl(siteContext, pageContent);
 
   return `\n\n---\n*[View the styled HTML version of this page](${originalUrl})*\n\n*Tip: Append \`.md\` to any URL on ${siteContext.siteUrl} to get a clean Markdown version of that page.*`;
 }

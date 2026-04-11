@@ -43,9 +43,9 @@ Marketing website for Expense Budget Tracker. Static Next.js site deployed on Ve
 
 - `src/app/`: landing, features, pricing, docs, blog, privacy, terms
 - `src/components/`: shared components (`Header`, `Footer`, `AuthButton`)
-- `src/content/pages/`: marketing page content files (`home`, `features`, `pricing`, `privacy`, `terms`)
-- `src/content/docs/`: documentation markdown files
-- `src/content/blog/`: blog markdown files
+- `src/content/<locale>/pages/`: localized marketing page source files
+- `src/content/<locale>/docs/`: localized documentation markdown files
+- `src/content/<locale>/blog/`: localized blog markdown files
 - `src/lib/`: utilities (`auth` helpers)
 
 ## Auth Integration
@@ -65,19 +65,19 @@ The site has zero auth logic. It only checks whether the `session` cookie is pre
 
 - Hosted web app for humans starts at `https://app.expense-budget-tracker.com`
 - Terminal / AI-agent onboarding starts at `GET https://app.expense-budget-tracker.com/api/agent`
-- Start here for instructions: `src/content/docs/getting-started.md`, `src/content/docs/agent-setup.md`, and `src/content/docs/api.md`
+- Start here for instructions: `src/content/en/docs/getting-started.md`, `src/content/en/docs/agent-setup.md`, and `src/content/en/docs/api.md`
 
 ## Content
 
 Typed content modules power composed/list pages:
-- `src/content/pages/home.ts`
-- `src/content/pages/features.ts`
-- `src/content/pages/pricing.ts`
+- `src/content/en/pages/home.ts`
+- `src/content/en/pages/features.ts`
+- `src/content/en/pages/pricing.ts`
 
 Mostly text pages stay Markdown-backed:
-- `src/content/pages/privacy/index.md`
-- `src/content/pages/terms/index.md`
-- `src/content/docs/*.md`
-- `src/content/blog/*.md`
+- `src/content/en/pages/privacy/index.md`
+- `src/content/en/pages/terms/index.md`
+- `src/content/<locale>/docs/*.md`
+- `src/content/<locale>/blog/*.md`
 
 Keep typed content models mirrored with the other marketing website repository. Build-time generation must produce both HTML and Markdown from the same source of truth.

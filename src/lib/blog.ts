@@ -1,9 +1,15 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
 import matter from "gray-matter";
-import { join } from "path";
+import {
+  getBlogFilePath,
+  getContentSectionDirectory,
+} from "@/lib/content/contentPaths";
 import { renderMarkdownToHtml } from "@/lib/content/renderMarkdownToHtml";
-
-const BLOG_DIR = join(process.cwd(), "src/content/blog");
+import {
+  DEFAULT_LOCALE,
+  SUPPORTED_LOCALES,
+  type AppLocale,
+} from "@/lib/i18n/config";
 const TITLE_TOKEN_WEIGHT = 3;
 const DESCRIPTION_TOKEN_WEIGHT = 2;
 const BODY_TOKEN_WEIGHT = 1;
@@ -175,6 +181,7 @@ interface BlogFrontmatterInput {
 
 export interface BlogPostRecord {
   readonly slug: string;
+  readonly locale: AppLocale;
   readonly title: string;
   readonly description: string;
   readonly date: string;
@@ -204,6 +211,7 @@ interface RankedRecommendation {
 }
 
 let cachedBlogPosts: ReadonlyArray<BlogPostRecord> | null = null;
+const cachedBlogPostsByLocale = new Map<AppLocale, ReadonlyArray<BlogPostRecord>>();
 let cachedArticleVectors: ReadonlyMap<string, ArticleTokenVector> | null = null;
 const renderedHtmlBySlug = new Map<string, Promise<string>>();
 
@@ -233,8 +241,19 @@ function getSlugFromFileName(fileName: string): string {
   return fileName.replace(/\.md$/, "");
 }
 
-function parseBlogPost(fileName: string): BlogPostRecord {
-  const filePath = join(BLOG_DIR, fileName);
+function hasBlogFile(slug: string, locale: AppLocale): boolean {
+  return existsSync(getBlogFilePath(slug, locale));
+}
+
+function parseBlogPost(slug: string, locale: AppLocale): BlogPostRecord {
+  const filePath = getBlogFilePath(slug, locale);
+
+  if (!existsSync(filePath)) {
+    throw new Error(
+      `Missing blog content for slug ${slug} locale ${locale}: ${filePath}`
+    );
+  }
+
   const raw = readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
   const frontmatter = data as BlogFrontmatterInput;
@@ -247,7 +266,8 @@ function parseBlogPost(fileName: string): BlogPostRecord {
   const date = assertNonEmptyString(frontmatter.date, "date", filePath);
 
   return {
-    slug: getSlugFromFileName(fileName),
+    slug,
+    locale,
     title,
     description,
     date,
@@ -263,22 +283,46 @@ function compareByPublishedAtDescending(
   return rightPost.publishedAt - leftPost.publishedAt;
 }
 
-function loadBlogPosts(): ReadonlyArray<BlogPostRecord> {
+function getDefaultLocaleBlogSlugs(): ReadonlyArray<string> {
   if (cachedBlogPosts !== null) {
-    return cachedBlogPosts;
+    return cachedBlogPosts.map((post) => post.slug);
   }
 
-  if (!existsSync(BLOG_DIR)) {
+  const defaultLocaleBlogDirectory = getContentSectionDirectory(
+    DEFAULT_LOCALE,
+    "blog"
+  );
+
+  if (!existsSync(defaultLocaleBlogDirectory)) {
     cachedBlogPosts = [];
-    return cachedBlogPosts;
+    return [];
   }
 
-  cachedBlogPosts = readdirSync(BLOG_DIR)
+  cachedBlogPosts = readdirSync(defaultLocaleBlogDirectory)
     .filter((fileName) => fileName.endsWith(".md"))
-    .map(parseBlogPost)
+    .map(getSlugFromFileName)
+    .map((slug) => parseBlogPost(slug, DEFAULT_LOCALE))
     .sort(compareByPublishedAtDescending);
 
-  return cachedBlogPosts;
+  return cachedBlogPosts.map((post) => post.slug);
+}
+
+function loadBlogPosts(locale: AppLocale): ReadonlyArray<BlogPostRecord> {
+  const cachedPosts = cachedBlogPostsByLocale.get(locale);
+
+  if (cachedPosts !== undefined) {
+    return cachedPosts;
+  }
+
+  const slugs = getDefaultLocaleBlogSlugs().filter((slug) =>
+    hasBlogFile(slug, locale)
+  );
+  const posts = slugs
+    .map((slug) => parseBlogPost(slug, locale))
+    .sort(compareByPublishedAtDescending);
+
+  cachedBlogPostsByLocale.set(locale, posts);
+  return posts;
 }
 
 function stripMarkdownForAnalysis(markdown: string): string {
@@ -573,7 +617,7 @@ function buildArticleVectors(): ReadonlyMap<string, ArticleTokenVector> {
     return cachedArticleVectors;
   }
 
-  const posts = loadBlogPosts();
+  const posts = loadBlogPosts(DEFAULT_LOCALE);
   const rawTokenWeightsBySlug = new Map<string, Map<string, number>>();
   const documentFrequencyByToken = new Map<string, number>();
 
@@ -683,29 +727,42 @@ function compareRankedRecommendations(
   );
 }
 
-export function listBlogPosts(): ReadonlyArray<BlogPostRecord> {
-  return loadBlogPosts();
+export function getAvailableBlogLocales(slug: string): ReadonlyArray<AppLocale> {
+  if (!getDefaultLocaleBlogSlugs().includes(slug)) {
+    return [];
+  }
+
+  return SUPPORTED_LOCALES.filter((locale) => hasBlogFile(slug, locale));
 }
 
-export function readBlogPost(slug: string): BlogPostRecord | null {
-  return loadBlogPosts().find((post) => post.slug === slug) ?? null;
+export function listBlogPosts(locale: AppLocale): ReadonlyArray<BlogPostRecord> {
+  return loadBlogPosts(locale);
+}
+
+export function readBlogPost(
+  slug: string,
+  locale: AppLocale
+): BlogPostRecord | null {
+  return loadBlogPosts(locale).find((post) => post.slug === slug) ?? null;
 }
 
 export async function readBlogPostContent(
-  slug: string
+  slug: string,
+  locale: AppLocale
 ): Promise<BlogPostContent | null> {
-  const post = readBlogPost(slug);
+  const post = readBlogPost(slug, locale);
 
   if (post === null) {
     return null;
   }
 
-  const cachedHtml = renderedHtmlBySlug.get(slug);
+  const cacheKey = `${locale}:${slug}`;
+  const cachedHtml = renderedHtmlBySlug.get(cacheKey);
   const contentHtmlPromise =
     cachedHtml ?? renderMarkdownToHtml(post.bodyMarkdown);
 
   if (cachedHtml === undefined) {
-    renderedHtmlBySlug.set(slug, contentHtmlPromise);
+    renderedHtmlBySlug.set(cacheKey, contentHtmlPromise);
   }
 
   return {
@@ -715,10 +772,11 @@ export async function readBlogPostContent(
 }
 
 export function getRecommendedBlogPosts(
+  locale: AppLocale,
   slug: string,
   limit: number
 ): ReadonlyArray<RecommendedBlogPost> {
-  const currentPost = readBlogPost(slug);
+  const currentPost = readBlogPost(slug, DEFAULT_LOCALE);
 
   if (currentPost === null) {
     throw new Error(`Cannot recommend blog posts for missing slug: ${slug}`);
@@ -733,7 +791,7 @@ export function getRecommendedBlogPosts(
 
   const rankedRecommendations: RankedRecommendation[] = [];
 
-  for (const post of loadBlogPosts()) {
+  for (const post of loadBlogPosts(DEFAULT_LOCALE)) {
     if (post.slug === slug) {
       continue;
     }
@@ -761,5 +819,9 @@ export function getRecommendedBlogPosts(
     .sort(compareRankedRecommendations)
     .map((recommendation) => toRecommendedBlogPost(recommendation.post));
 
-  return [...scoredRecommendations, ...fallbackRecommendations].slice(0, limit);
+  return [...scoredRecommendations, ...fallbackRecommendations]
+    .map((recommendation) => readBlogPost(recommendation.slug, locale))
+    .filter((post): post is BlogPostRecord => post !== null)
+    .map(toRecommendedBlogPost)
+    .slice(0, limit);
 }

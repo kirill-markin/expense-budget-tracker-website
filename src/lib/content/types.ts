@@ -1,3 +1,5 @@
+import type { AppLocale } from "@/lib/i18n/config";
+
 export type MarketingPageSlug =
   | "home"
   | "features"
@@ -76,6 +78,7 @@ export type PageSection =
   | SimpleMarkdownPageSection;
 
 export interface PageContent {
+  readonly locale: AppLocale;
   readonly title: string;
   readonly description: string;
   readonly slug: MarketingPageSlug;

@@ -1,6 +1,8 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import type { AppLocale } from "@/lib/i18n/config";
+import { getSiteMessages } from "@/lib/i18n/messages";
 import {
   LOGGED_IN_COOKIE_NAME,
   getAppUrl,
@@ -16,17 +18,22 @@ const subscribe = (): (() => void) => () => undefined;
 const getClientSnapshot = (): boolean => true;
 const getServerSnapshot = (): boolean => false;
 
-export const AuthButton: React.FC = () => {
+interface AuthButtonProps {
+  readonly locale: AppLocale;
+}
+
+export const AuthButton = ({ locale }: AuthButtonProps): React.JSX.Element => {
   const mounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
+  const messages = getSiteMessages(locale);
 
   if (!mounted) {
     return (
       <div className={styles.buttonGroup}>
         <a href={getLoginUrl("/")} className={styles.loginButton}>
-          Log In
+          {messages.auth.login}
         </a>
         <a href={getSignupUrl()} className={styles.signupButton}>
-          Sign Up Free
+          {messages.auth.signup}
         </a>
       </div>
     );
@@ -37,7 +44,7 @@ export const AuthButton: React.FC = () => {
   if (loggedIn) {
     return (
       <a href={getAppUrl()} className={styles.signupButton}>
-        Open App
+        {messages.auth.openApp}
       </a>
     );
   }
@@ -45,10 +52,10 @@ export const AuthButton: React.FC = () => {
   return (
     <div className={styles.buttonGroup}>
       <a href={getLoginUrl("/")} className={styles.loginButton}>
-        Log In
+        {messages.auth.login}
       </a>
       <a href={getSignupUrl()} className={styles.signupButton}>
-        Sign Up Free
+        {messages.auth.signup}
       </a>
     </div>
   );

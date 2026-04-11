@@ -1,20 +1,23 @@
 import Link from "next/link";
+import type { AppLocale } from "@/lib/i18n/config";
+import { getSiteMessages } from "@/lib/i18n/messages";
+import { getAbsoluteUrl } from "@/lib/i18n/routing";
 import styles from "./Breadcrumbs.module.css";
 
-const SITE_URL = "https://expense-budget-tracker.com";
-
 interface BreadcrumbItem {
-  label: string;
-  href: string;
+  readonly label: string;
+  readonly href: string;
 }
 
 interface BreadcrumbsProps {
-  items: ReadonlyArray<BreadcrumbItem>;
+  readonly locale: AppLocale;
+  readonly items: ReadonlyArray<BreadcrumbItem>;
 }
 
-export function Breadcrumbs({ items }: BreadcrumbsProps): React.JSX.Element {
+export function Breadcrumbs({ locale, items }: BreadcrumbsProps): React.JSX.Element {
+  const messages = getSiteMessages(locale);
   const allItems: ReadonlyArray<BreadcrumbItem> = [
-    { label: "Home", href: "/" },
+    { label: messages.breadcrumbs.home, href: locale === "es" ? "/es/" : "/" },
     ...items,
   ];
 
@@ -22,7 +25,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps): React.JSX.Element {
     "@type": "ListItem" as const,
     position: index + 1,
     name: item.label,
-    item: `${SITE_URL}${item.href}`,
+    item: getAbsoluteUrl(item.href),
   }));
 
   const schema = {
