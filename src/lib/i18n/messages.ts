@@ -23,6 +23,7 @@ interface FooterMessages {
   readonly privacyPolicy: string;
   readonly termsOfService: string;
   readonly builtBy: string;
+  readonly localeSwitcherAriaLabel: string;
   readonly operatedBy: string;
 }
 
@@ -96,6 +97,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       privacyPolicy: "Privacy Policy",
       termsOfService: "Terms of Service",
       builtBy: "Built by Kirill Markin",
+      localeSwitcherAriaLabel: "Select language",
       operatedBy: "Operated by SAMO DANNI EOOD · VAT: BG207395566 · Country: Bulgaria",
     },
     breadcrumbs: {
@@ -152,6 +154,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       privacyPolicy: "Política de privacidad",
       termsOfService: "Términos del servicio",
       builtBy: "Creado por Kirill Markin",
+      localeSwitcherAriaLabel: "Seleccionar idioma",
       operatedBy: "Operado por SAMO DANNI EOOD · VAT: BG207395566 · País: Bulgaria",
     },
     breadcrumbs: {
@@ -209,6 +212,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       privacyPolicy: "Политика конфиденциальности",
       termsOfService: "Условия использования",
       builtBy: "Создано Кириллом Маркиным",
+      localeSwitcherAriaLabel: "Выбрать язык",
       operatedBy: "Оператор: SAMO DANNI EOOD · VAT: BG207395566 · Страна: Болгария",
     },
     breadcrumbs: {
@@ -266,6 +270,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       privacyPolicy: "Політика конфіденційності",
       termsOfService: "Умови використання",
       builtBy: "Створено Кирилом Маркіним",
+      localeSwitcherAriaLabel: "Вибрати мову",
       operatedBy: "Оператор: SAMO DANNI EOOD · VAT: BG207395566 · Країна: Болгарія",
     },
     breadcrumbs: {
@@ -323,6 +328,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       privacyPolicy: "حریم خصوصی",
       termsOfService: "شرایط استفاده",
       builtBy: "ساخته‌شده توسط Kirill Markin",
+      localeSwitcherAriaLabel: "انتخاب زبان",
       operatedBy: "توسط SAMO DANNI EOOD اداره می‌شود · VAT: BG207395566 · کشور: بلغارستان",
     },
     breadcrumbs: {
@@ -379,6 +385,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       privacyPolicy: "隐私政策",
       termsOfService: "服务条款",
       builtBy: "由 Kirill Markin 构建",
+      localeSwitcherAriaLabel: "选择语言",
       operatedBy: "由 SAMO DANNI EOOD 运营 · VAT: BG207395566 · 国家：保加利亚",
     },
     breadcrumbs: {
@@ -434,6 +441,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       privacyPolicy: "سياسة الخصوصية",
       termsOfService: "شروط الخدمة",
       builtBy: "بناء Kirill Markin",
+      localeSwitcherAriaLabel: "اختيار اللغة",
       operatedBy: "تدير الخدمة شركة SAMO DANNI EOOD · VAT: BG207395566 · الدولة: بلغاريا",
     },
     breadcrumbs: {
@@ -490,6 +498,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       privacyPolicy: "מדיניות פרטיות",
       termsOfService: "תנאי שימוש",
       builtBy: "נבנה על ידי Kirill Markin",
+      localeSwitcherAriaLabel: "בחירת שפה",
       operatedBy: "מופעל על ידי SAMO DANNI EOOD · VAT: BG207395566 · מדינה: בולגריה",
     },
     breadcrumbs: {

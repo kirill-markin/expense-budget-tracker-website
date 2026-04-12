@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import "@/app/globals.css";
 import { RootDocument } from "@/app/RootDocument";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { JsonLdSchema } from "@/components/JsonLdSchema";
 import {
   PREFIXED_LOCALES,
@@ -41,9 +39,7 @@ export default async function LocaleLayout(
       dir={getTextDirection(locale)}
     >
       <JsonLdSchema locale={locale} />
-      <Header locale={locale} />
-      <main lang={getHtmlLang(locale)}>{props.children}</main>
-      <Footer locale={locale} />
+      {props.children}
     </RootDocument>
   );
 }

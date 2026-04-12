@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { SiteFrame } from "@/components/SiteFrame";
 import {
   getAvailableDocLocales,
   listDocs,
@@ -66,19 +67,25 @@ export default async function LocalizedDocPage(
   const messages = getSiteMessages(locale);
 
   return (
-    <div className={styles.container}>
-      <Breadcrumbs
-        locale={locale}
-        items={[
-          { label: messages.breadcrumbs.docs, href: getLocalizedPath(locale, "/docs/") },
-          { label: doc.title, href: getLocalizedPath(locale, `/docs/${slug}/`) },
-        ]}
-      />
-      <h1 className={styles.title}>{doc.title}</h1>
-      <div
-        className={styles.content}
-        dangerouslySetInnerHTML={{ __html: doc.contentHtml }}
-      />
-    </div>
+    <SiteFrame
+      locale={locale}
+      routePath={`/docs/${slug}/`}
+      availableLocales={getAvailableDocLocales(slug)}
+    >
+      <div className={styles.container}>
+        <Breadcrumbs
+          locale={locale}
+          items={[
+            { label: messages.breadcrumbs.docs, href: getLocalizedPath(locale, "/docs/") },
+            { label: doc.title, href: getLocalizedPath(locale, `/docs/${slug}/`) },
+          ]}
+        />
+        <h1 className={styles.title}>{doc.title}</h1>
+        <div
+          className={styles.content}
+          dangerouslySetInnerHTML={{ __html: doc.contentHtml }}
+        />
+      </div>
+    </SiteFrame>
   );
 }

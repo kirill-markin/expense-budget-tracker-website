@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { AuthButton } from "@/components/AuthButton";
 import { CopyCodeField } from "@/components/CopyCodeField";
+import { SiteFrame } from "@/components/SiteFrame";
 import { getAppUrl } from "@/lib/auth";
 import { renderMarkdownToHtml } from "@/lib/content/renderMarkdownToHtml";
 import {
@@ -301,15 +302,36 @@ export function getMarketingPageMetadata(
 export async function MarketingPage(
   props: MarketingPageProps
 ): Promise<React.JSX.Element> {
+  const routePath = getMarketingPageRoutePath(props.slug);
+  const availableLocales = getAvailableLocalesForMarketingPage(props.slug);
+
+  let pagePromise: Promise<React.JSX.Element>;
+
   switch (props.slug) {
     case "home":
-      return renderHomePage(props.locale);
+      pagePromise = Promise.resolve(renderHomePage(props.locale));
+      break;
     case "features":
-      return renderFeaturesPage(props.locale);
+      pagePromise = Promise.resolve(renderFeaturesPage(props.locale));
+      break;
     case "pricing":
-      return renderPricingPage(props.locale);
+      pagePromise = Promise.resolve(renderPricingPage(props.locale));
+      break;
     case "privacy":
     case "terms":
-      return renderLegalPage(props.slug, props.locale);
+      pagePromise = renderLegalPage(props.slug, props.locale);
+      break;
   }
+
+  const page = await pagePromise;
+
+  return (
+    <SiteFrame
+      locale={props.locale}
+      routePath={routePath}
+      availableLocales={availableLocales}
+    >
+      {page}
+    </SiteFrame>
+  );
 }

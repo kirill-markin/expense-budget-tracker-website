@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { SiteFrame } from "@/components/SiteFrame";
 import { getAvailableDocIndexLocales, listDocs } from "@/lib/docs";
 import { getSiteMessages } from "@/lib/i18n/messages";
 import { getLocalizedPath } from "@/lib/i18n/routing";
@@ -24,29 +25,35 @@ export default function DocsPage(): React.JSX.Element {
   const messages = getSiteMessages(LOCALE);
 
   return (
-    <div className={styles.container}>
-      <Breadcrumbs
-        locale={LOCALE}
-        items={[
-          {
-            label: messages.breadcrumbs.docs,
-            href: getLocalizedPath(LOCALE, "/docs/"),
-          },
-        ]}
-      />
-      <h1 className={styles.title}>{PAGE_COPY.title}</h1>
-      <div className={styles.grid}>
-        {docs.map((doc) => (
-          <Link
-            key={doc.slug}
-            href={getLocalizedPath(LOCALE, `/docs/${doc.slug}/`)}
-            className={styles.card}
-          >
-            <h2>{doc.title}</h2>
-            <p>{doc.description}</p>
-          </Link>
-        ))}
+    <SiteFrame
+      locale={LOCALE}
+      routePath="/docs/"
+      availableLocales={getAvailableDocIndexLocales()}
+    >
+      <div className={styles.container}>
+        <Breadcrumbs
+          locale={LOCALE}
+          items={[
+            {
+              label: messages.breadcrumbs.docs,
+              href: getLocalizedPath(LOCALE, "/docs/"),
+            },
+          ]}
+        />
+        <h1 className={styles.title}>{PAGE_COPY.title}</h1>
+        <div className={styles.grid}>
+          {docs.map((doc) => (
+            <Link
+              key={doc.slug}
+              href={getLocalizedPath(LOCALE, `/docs/${doc.slug}/`)}
+              className={styles.card}
+            >
+              <h2>{doc.title}</h2>
+              <p>{doc.description}</p>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </SiteFrame>
   );
 }

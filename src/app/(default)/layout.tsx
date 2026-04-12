@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
 import { RootDocument } from "@/app/RootDocument";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { JsonLdSchema } from "@/components/JsonLdSchema";
 import { DEFAULT_LOCALE, getTextDirection } from "@/lib/i18n/config";
 import { ROOT_LAYOUT_METADATA } from "@/lib/seo/rootMetadata";
@@ -20,9 +18,7 @@ export default function RootLayout({
       dir={getTextDirection(DEFAULT_LOCALE)}
     >
       <JsonLdSchema locale={DEFAULT_LOCALE} />
-      <Header locale={DEFAULT_LOCALE} />
-      <main lang={DEFAULT_LOCALE}>{children}</main>
-      <Footer locale={DEFAULT_LOCALE} />
+      {children}
     </RootDocument>
   );
 }
