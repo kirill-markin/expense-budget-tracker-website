@@ -1,42 +1,45 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { listDocs } from "@/lib/docs";
+import { getAvailableDocIndexLocales, listDocs } from "@/lib/docs";
 import { getSiteMessages } from "@/lib/i18n/messages";
+import { getLocalizedPath } from "@/lib/i18n/routing";
 import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
-const PAGE_COPY = {
-  title: "Documentation",
-  description:
-    "Getting started, self-hosting guide, API reference, and architecture overview.",
-};
+const LOCALE = "en";
+const PAGE_COPY = getSiteMessages(LOCALE).docs;
 
 export const metadata: Metadata = createPageMetadata({
   title: PAGE_COPY.title,
   description: PAGE_COPY.description,
-  locale: "en",
+  locale: LOCALE,
   routePath: "/docs/",
   openGraphType: "website",
-  availableLocales: ["en", "es"],
+  availableLocales: getAvailableDocIndexLocales(),
 });
 
 export default function DocsPage(): React.JSX.Element {
-  const docs = listDocs("en");
-  const messages = getSiteMessages("en");
+  const docs = listDocs(LOCALE);
+  const messages = getSiteMessages(LOCALE);
 
   return (
     <div className={styles.container}>
       <Breadcrumbs
-        locale="en"
-        items={[{ label: messages.breadcrumbs.docs, href: "/docs/" }]}
+        locale={LOCALE}
+        items={[
+          {
+            label: messages.breadcrumbs.docs,
+            href: getLocalizedPath(LOCALE, "/docs/"),
+          },
+        ]}
       />
       <h1 className={styles.title}>{PAGE_COPY.title}</h1>
       <div className={styles.grid}>
         {docs.map((doc) => (
           <Link
             key={doc.slug}
-            href={`/docs/${doc.slug}/`}
+            href={getLocalizedPath(LOCALE, `/docs/${doc.slug}/`)}
             className={styles.card}
           >
             <h2>{doc.title}</h2>

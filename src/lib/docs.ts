@@ -88,6 +88,10 @@ export function getAvailableDocLocales(slug: string): ReadonlyArray<AppLocale> {
   return SUPPORTED_LOCALES.filter((locale) => hasDocFile(docSlug, locale));
 }
 
+export function getAvailableDocIndexLocales(): ReadonlyArray<AppLocale> {
+  return SUPPORTED_LOCALES.filter((locale) => listDocs(locale).length > 0);
+}
+
 export function listDocs(locale: AppLocale): ReadonlyArray<DocRecord> {
   const cachedDocs = cachedDocsByLocale.get(locale);
 

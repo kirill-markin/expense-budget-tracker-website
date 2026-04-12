@@ -266,13 +266,14 @@ async function renderLegalPage(
   const pageContent = readPageContent(slug, locale);
   const legalSection = getLegalSection(slug, locale);
   const contentHtml = await renderMarkdownToHtml(pageContent.body);
+  const messages = getSiteMessages(locale);
 
   return (
     <div className={legalStyles.container}>
       <h1 className={legalStyles.title}>{pageContent.title}</h1>
       <div className={legalStyles.content}>
         <p>
-          <strong>{locale === "es" ? "Última actualización:" : "Last updated:"}</strong>{" "}
+          <strong>{messages.legal.lastUpdated}</strong>{" "}
           {legalSection.lastUpdated}
         </p>
         <div dangerouslySetInnerHTML={{ __html: contentHtml }} />

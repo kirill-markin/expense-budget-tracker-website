@@ -1,5 +1,6 @@
 import { buildAbsoluteUrl, getLocalizedPath } from "@/lib/i18n/routing";
 import type { AppLocale } from "@/lib/i18n/config";
+import { getSiteMessages } from "@/lib/i18n/messages";
 import type {
   FeatureListSection,
   HeroSection,
@@ -105,11 +106,7 @@ function renderLegalPageSection(
 }
 
 function getLastUpdatedLabel(locale: AppLocale): string {
-  if (locale === "es") {
-    return "Última actualización:";
-  }
-
-  return "Last updated:";
+  return getSiteMessages(locale).legal.lastUpdated;
 }
 
 function renderPageSections(

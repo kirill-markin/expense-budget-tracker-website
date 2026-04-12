@@ -1,35 +1,41 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { listBlogPosts } from "@/lib/blog";
+import { getAlternateBlogIndexLocales, listBlogPosts } from "@/lib/blog";
 import { getSiteMessages } from "@/lib/i18n/messages";
+import { getLocalizedPath } from "@/lib/i18n/routing";
 import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
-const PAGE_COPY = {
-  title: "Blog",
-  description: "Updates, tutorials, and insights about Expense Budget Tracker.",
-  empty: "Posts coming soon.",
-};
+const LOCALE = "en";
+const PAGE_COPY = getSiteMessages(LOCALE).blogIndex;
+const BLOG_INDEX_ALTERNATE_LOCALES = getAlternateBlogIndexLocales();
 
 export const metadata: Metadata = createPageMetadata({
   title: PAGE_COPY.title,
   description: PAGE_COPY.description,
-  locale: "en",
+  locale: LOCALE,
   routePath: "/blog/",
   openGraphType: "website",
-  availableLocales: ["en", "es"],
+  availableLocales: BLOG_INDEX_ALTERNATE_LOCALES.includes(LOCALE)
+    ? BLOG_INDEX_ALTERNATE_LOCALES
+    : [LOCALE],
 });
 
 export default function BlogPage(): React.JSX.Element {
-  const posts = listBlogPosts("en");
-  const messages = getSiteMessages("en");
+  const posts = listBlogPosts(LOCALE);
+  const messages = getSiteMessages(LOCALE);
 
   return (
     <div className={styles.container}>
       <Breadcrumbs
-        locale="en"
-        items={[{ label: messages.breadcrumbs.blog, href: "/blog/" }]}
+        locale={LOCALE}
+        items={[
+          {
+            label: messages.breadcrumbs.blog,
+            href: getLocalizedPath(LOCALE, "/blog/"),
+          },
+        ]}
       />
       <h1 className={styles.title}>{PAGE_COPY.title}</h1>
       {posts.length === 0 ? (
@@ -39,7 +45,7 @@ export default function BlogPage(): React.JSX.Element {
           {posts.map((post) => (
             <Link
               key={post.slug}
-              href={`/blog/${post.slug}/`}
+              href={getLocalizedPath(LOCALE, `/blog/${post.slug}/`)}
               className={styles.card}
             >
               <time className={styles.date}>{post.date}</time>

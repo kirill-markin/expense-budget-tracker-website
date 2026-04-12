@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  DEFAULT_LOCALE,
   SITE_NAME,
   type AppLocale,
 } from "@/lib/i18n/config";
@@ -45,7 +46,7 @@ function getLanguageAlternates(
 
   return {
     ...alternates,
-    "x-default": getAbsoluteUrl(getLocalizedPath("en", routePath)),
+    "x-default": getAbsoluteUrl(getLocalizedPath(DEFAULT_LOCALE, routePath)),
   };
 }
 

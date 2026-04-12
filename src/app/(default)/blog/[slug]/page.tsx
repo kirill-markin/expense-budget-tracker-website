@@ -16,13 +16,9 @@ import {
 import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
+const LOCALE = "en";
 const AUTHOR_NAME = "Kirill Markin";
 const AUTHOR_URL = "https://kirill-markin.com/";
-
-const PAGE_COPY = {
-  bylinePrefix: "By",
-  relatedHeading: "Read next",
-};
 
 interface ArticleAuthor {
   readonly "@type": "Person";
@@ -39,7 +35,7 @@ const ARTICLE_AUTHOR: ArticleAuthor = {
 export const dynamicParams = false;
 
 export const generateStaticParams = (): Array<{ slug: string }> => {
-  return listBlogPosts("en").map((post) => ({ slug: post.slug }));
+  return listBlogPosts(LOCALE).map((post) => ({ slug: post.slug }));
 };
 
 interface PageProps {
@@ -50,7 +46,7 @@ export const generateMetadata = async ({
   params,
 }: PageProps): Promise<Metadata> => {
   const { slug } = await params;
-  const post = await readBlogPostContent(slug, "en");
+  const post = await readBlogPostContent(slug, LOCALE);
 
   if (post === null) {
     return { title: "Not Found" };
@@ -59,7 +55,7 @@ export const generateMetadata = async ({
   return createPageMetadata({
     title: post.title,
     description: post.description,
-    locale: "en",
+    locale: LOCALE,
     routePath: `/blog/${slug}/`,
     openGraphType: "article",
     availableLocales: getAvailableBlogLocales(slug),
@@ -71,14 +67,14 @@ export default async function BlogPostPage(
   props: PageProps
 ): Promise<React.JSX.Element> {
   const { slug } = await props.params;
-  const post = await readBlogPostContent(slug, "en");
+  const post = await readBlogPostContent(slug, LOCALE);
 
   if (post === null) {
     notFound();
   }
 
-  const pageUrl = getAbsoluteUrl(getLocalizedPath("en", `/blog/${slug}/`));
-  const messages = getSiteMessages("en");
+  const pageUrl = getAbsoluteUrl(getLocalizedPath(LOCALE, `/blog/${slug}/`));
+  const messages = getSiteMessages(LOCALE);
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -92,9 +88,9 @@ export default async function BlogPostPage(
       name: "Expense Budget Tracker",
       url: getAbsoluteUrl("/"),
     },
-    inLanguage: "en",
+    inLanguage: LOCALE,
   };
-  const recommendedPosts = getRecommendedBlogPosts("en", slug, 4);
+  const recommendedPosts = getRecommendedBlogPosts(LOCALE, slug, 4);
 
   return (
     <article className={styles.container}>
@@ -103,39 +99,43 @@ export default async function BlogPostPage(
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
       <Breadcrumbs
-        locale="en"
+        locale={LOCALE}
         items={[
-          { label: messages.breadcrumbs.blog, href: "/blog/" },
-          { label: post.title, href: `/blog/${slug}/` },
+          { label: messages.breadcrumbs.blog, href: getLocalizedPath(LOCALE, "/blog/") },
+          { label: post.title, href: getLocalizedPath(LOCALE, `/blog/${slug}/`) },
         ]}
       />
       <time className={styles.date}>{post.date}</time>
       <a href={AUTHOR_URL} className={styles.byline}>
-        {PAGE_COPY.bylinePrefix} {AUTHOR_NAME}
+        {messages.blogPost.bylinePrefix} {AUTHOR_NAME}
       </a>
       <h1 className={styles.title}>{post.title}</h1>
       <div
         className={styles.content}
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}
       />
-      <section className={styles.relatedSection}>
-        <h2 className={styles.relatedHeading}>{PAGE_COPY.relatedHeading}</h2>
-        <div className={styles.relatedList}>
-          {recommendedPosts.map((recommendedPost) => (
-            <Link
-              key={recommendedPost.slug}
-              href={`/blog/${recommendedPost.slug}/`}
-              className={styles.relatedCard}
-            >
-              <time className={styles.date}>{recommendedPost.date}</time>
-              <h3>{recommendedPost.title}</h3>
-              <p className={styles.relatedDescription}>
-                {recommendedPost.description}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {recommendedPosts.length > 0 ? (
+        <section className={styles.relatedSection}>
+          <h2 className={styles.relatedHeading}>
+            {messages.blogPost.relatedHeading}
+          </h2>
+          <div className={styles.relatedList}>
+            {recommendedPosts.map((recommendedPost) => (
+              <Link
+                key={recommendedPost.slug}
+                href={getLocalizedPath(LOCALE, `/blog/${recommendedPost.slug}/`)}
+                className={styles.relatedCard}
+              >
+                <time className={styles.date}>{recommendedPost.date}</time>
+                <h3>{recommendedPost.title}</h3>
+                <p className={styles.relatedDescription}>
+                  {recommendedPost.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </article>
   );
 }

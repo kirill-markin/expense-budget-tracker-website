@@ -1,46 +1,75 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { listBlogPosts } from "@/lib/blog";
+import { getAlternateBlogIndexLocales, listBlogPosts } from "@/lib/blog";
+import { isPrefixedLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
+import { getLocalizedPath } from "@/lib/i18n/routing";
 import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "@/app/(default)/blog/page.module.css";
 
-const PAGE_COPY = {
-  title: "Blog",
-  description:
-    "Novedades, tutoriales e ideas sobre Expense Budget Tracker.",
-  empty: "Próximamente habrá publicaciones.",
-};
+interface PageProps {
+  readonly params: Promise<{ locale: string }>;
+}
 
-export const metadata: Metadata = createPageMetadata({
-  title: PAGE_COPY.title,
-  description: PAGE_COPY.description,
-  locale: "es",
-  routePath: "/blog/",
-  openGraphType: "website",
-  availableLocales: ["en", "es"],
-});
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { locale } = await params;
 
-export default function LocalizedBlogPage(): React.JSX.Element {
-  const posts = listBlogPosts("es");
-  const messages = getSiteMessages("es");
+  if (!isPrefixedLocale(locale)) {
+    return { title: "Not Found" };
+  }
+
+  const pageCopy = getSiteMessages(locale).blogIndex;
+  const alternateLocales = getAlternateBlogIndexLocales();
+
+  return createPageMetadata({
+    title: pageCopy.title,
+    description: pageCopy.description,
+    locale,
+    routePath: "/blog/",
+    openGraphType: "website",
+    availableLocales: alternateLocales.includes(locale)
+      ? alternateLocales
+      : [locale],
+  });
+}
+
+export default async function LocalizedBlogPage(
+  props: PageProps
+): Promise<React.JSX.Element> {
+  const { locale } = await props.params;
+
+  if (!isPrefixedLocale(locale)) {
+    notFound();
+  }
+
+  const posts = listBlogPosts(locale);
+  const messages = getSiteMessages(locale);
+  const pageCopy = messages.blogIndex;
 
   return (
     <div className={styles.container}>
       <Breadcrumbs
-        locale="es"
-        items={[{ label: messages.breadcrumbs.blog, href: "/es/blog/" }]}
+        locale={locale}
+        items={[
+          {
+            label: messages.breadcrumbs.blog,
+            href: getLocalizedPath(locale, "/blog/"),
+          },
+        ]}
       />
-      <h1 className={styles.title}>{PAGE_COPY.title}</h1>
+      <h1 className={styles.title}>{pageCopy.title}</h1>
       {posts.length === 0 ? (
-        <p className={styles.empty}>{PAGE_COPY.empty}</p>
+        <p className={styles.empty}>{pageCopy.empty}</p>
       ) : (
         <div className={styles.list}>
           {posts.map((post) => (
             <Link
               key={post.slug}
-              href={`/es/blog/${post.slug}/`}
+              href={getLocalizedPath(locale, `/blog/${post.slug}/`)}
               className={styles.card}
             >
               <time className={styles.date}>{post.date}</time>

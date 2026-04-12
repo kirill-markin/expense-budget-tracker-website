@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { join } from "path";
 import {
+  getAlternateBlogIndexLocales,
+  getAvailableBlogIndexLocales,
   getAvailableBlogLocales,
   listBlogPosts,
 } from "@/lib/blog";
@@ -10,6 +12,7 @@ import {
   getDocFilePath,
 } from "@/lib/content/contentPaths";
 import {
+  getAvailableDocIndexLocales,
   getAvailableDocLocales,
   listDocs,
 } from "@/lib/docs";
@@ -42,6 +45,17 @@ function getLanguageAlternates(
   };
 }
 
+function getOptionalAlternates(
+  routePath: string,
+  locales: ReadonlyArray<AppLocale>
+): NonNullable<MetadataRoute.Sitemap[number]["alternates"]> | undefined {
+  if (locales.length <= 1) {
+    return undefined;
+  }
+
+  return getLanguageAlternates(routePath, locales);
+}
+
 function getNewestLocaleDirectoryFileLastModified(
   directoryPaths: ReadonlyArray<string>
 ): Date | null {
@@ -61,6 +75,9 @@ function getNewestLocaleDirectoryFileLastModified(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const availableBlogIndexLocales = getAvailableBlogIndexLocales();
+  const alternateBlogIndexLocales = getAlternateBlogIndexLocales();
+  const availableDocIndexLocales = getAvailableDocIndexLocales();
   const blogPosts = listBlogPosts("en");
   const docs = listDocs("en");
   const newestBlogLastModified = getNewestLocaleDirectoryFileLastModified(
@@ -80,13 +97,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const marketingEntries: MetadataRoute.Sitemap = MARKETING_PAGE_SLUGS.flatMap(
     (slug) => {
       const availableLocales = getAvailableLocalesForMarketingPage(slug);
-      const alternates =
-        availableLocales.length > 1
-          ? getLanguageAlternates(
-              getMarketingPageRoutePath(slug),
-              availableLocales
-            )
-          : undefined;
+      const alternates = getOptionalAlternates(
+        getMarketingPageRoutePath(slug),
+        availableLocales
+      );
       const changeFrequency = slug === "home" ? "weekly" : "monthly";
       const priority =
         slug === "home" ? 1.0 : slug === "features" || slug === "pricing" ? 0.8 : 0.3;
@@ -102,39 +116,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   const staticEntries: MetadataRoute.Sitemap = [
-    {
-      url: getAbsoluteUrl("/blog/"),
-      lastModified: blogIndexLastModified,
-      changeFrequency: "weekly",
-      priority: 0.7,
-      alternates: getLanguageAlternates("/blog/", ["en", "es"]),
-    },
-    {
-      url: getAbsoluteUrl("/es/blog/"),
-      lastModified: blogIndexLastModified,
-      changeFrequency: "weekly",
-      priority: 0.7,
-      alternates: getLanguageAlternates("/blog/", ["en", "es"]),
-    },
-    {
-      url: getAbsoluteUrl("/docs/"),
+    ...availableBlogIndexLocales.map((locale) => {
+      const alternates = alternateBlogIndexLocales.includes(locale)
+        ? getOptionalAlternates("/blog/", alternateBlogIndexLocales)
+        : undefined;
+
+      return {
+        url: getAbsoluteUrl(getLocalizedPath(locale, "/blog/")),
+        lastModified: blogIndexLastModified,
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+        alternates,
+      };
+    }),
+    ...availableDocIndexLocales.map((locale) => ({
+      url: getAbsoluteUrl(getLocalizedPath(locale, "/docs/")),
       lastModified: docsIndexLastModified,
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.7,
-      alternates: getLanguageAlternates("/docs/", ["en", "es"]),
-    },
-    {
-      url: getAbsoluteUrl("/es/docs/"),
-      lastModified: docsIndexLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-      alternates: getLanguageAlternates("/docs/", ["en", "es"]),
-    },
+      alternates: getOptionalAlternates("/docs/", availableDocIndexLocales),
+    })),
   ];
 
   const blogEntries: MetadataRoute.Sitemap = blogPosts.flatMap((post) => {
     const availableLocales = getAvailableBlogLocales(post.slug);
-    const alternates = getLanguageAlternates(
+    const alternates = getOptionalAlternates(
       `/blog/${post.slug}/`,
       availableLocales
     );
@@ -150,7 +156,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const docEntries: MetadataRoute.Sitemap = docs.flatMap((doc) => {
     const availableLocales = getAvailableDocLocales(doc.slug);
-    const alternates = getLanguageAlternates(
+    const alternates = getOptionalAlternates(
       `/docs/${doc.slug}/`,
       availableLocales
     );
