@@ -1,6 +1,6 @@
 ---
-title: "إعداد متتبع نفقات بالذكاء الاصطناعي لـ Claude Code وCodex وOpenClaw"
-description: "كيفية ربط Claude Code أو Codex أو OpenClaw بمتتبع نفقات مفتوح المصدر. شارك رابط الاكتشاف الواحد، وأكّد رمز البريد الإلكتروني، واحفظ ApiKey المُعاد، ودع الوكيل يبدأ العمل."
+title: "إعداد متتبع النفقات بالذكاء الاصطناعي لـ Claude Code وCodex وOpenClaw"
+description: "كيفية ربط Claude Code أو Codex أو OpenClaw بمتتبع نفقات مفتوح المصدر. امنح وكيلك رابط اكتشاف واحدًا، أكّد رمز البريد الإلكتروني، احفظ `ApiKey` الذي يعود إليك، ثم دعه يبدأ العمل."
 date: "2026-03-10"
 keywords:
   - "متتبع نفقات بالذكاء الاصطناعي"
@@ -13,29 +13,29 @@ keywords:
   - "متتبع نفقات مفتوح المصدر"
 ---
 
-إذا كنت تريد استخدام وكيل ذكاء اصطناعي لتتبع النفقات، فالمزعج غالبًا هو الإعداد.
+إذا أردت استخدام وكيل ذكاء اصطناعي لتتبع النفقات، فغالبًا ما تكون التهيئة هي الجزء الأكثر إزعاجًا.
 
-المسار المعتاد يبدو هكذا:
+غالبًا ما يسير المسار التقليدي على هذا النحو:
 
-1. افتح التطبيق
-2. أنشئ مفتاح API
-3. انسخ المفتاح
-4. ألصقه داخل وكيل الطرفية
-5. اشرح له أي نقطة نهاية يجب أن يستدعيها
-6. وادعُ أن يستخدم الوكيل مساحة العمل الصحيحة
+1. تفتح التطبيق
+2. تنشئ مفتاح API
+3. تنسخ المفتاح
+4. تلصقه داخل وكيل الطرفية
+5. تشرح له أي نقطة نهاية يجب أن يستدعيها
+6. ثم تأمل أن يستخدم مساحة العمل الصحيحة
 
-هذا قابل للتنفيذ، لكنه ليس مصممًا أصلًا للوكلاء.
+هذا المسار ممكن عمليًا، لكنه ليس مسارًا صُمم للوكلاء من الأصل.
 
-يوفّر [Expense Budget Tracker](https://expense-budget-tracker.com/ar/) الآن نقطة اكتشاف عامة لوكلاء الطرفية مثل [Claude Code](https://docs.anthropic.com/en/docs/claude-code) أو OpenAI Codex أو OpenClaw:
+يوفّر [Expense Budget Tracker](https://expense-budget-tracker.com/ar/) الآن نقطة اكتشاف عامة لوكلاء الطرفية مثل [Claude Code](https://docs.anthropic.com/en/docs/claude-code) وOpenAI Codex وOpenClaw:
 
 `https://api.expense-budget-tracker.com/v1/`
 
-يعطي المستخدم ذلك الرابط الواحد للوكيل، ثم يجيب عن سؤالين:
+يكفي أن تعطي الوكيل هذا الرابط، ثم تجيب عن سؤالين:
 
-- ما البريد الإلكتروني الذي يجب استخدامه لتسجيل الدخول؟
+- ما عنوان البريد الإلكتروني الذي تريد استخدامه لتسجيل الدخول؟
 - ما الرمز المكوّن من 8 أرقام الذي وصل للتو إلى صندوق الوارد؟
 
-بعد ذلك، ينشئ الوكيل `ApiKey` الخاص به، ويحفظه خارج ذاكرة الدردشة، ويحمّل الحساب، ويعرض مساحات العمل، ويحفظ إحداها كافتراضية لذلك المفتاح، ثم يمكنه بدء استيراد المعاملات أو الاستعلام عنها.
+بعد ذلك، ينشئ الوكيل `ApiKey` الخاص به، ويحفظه خارج ذاكرة الدردشة، ويحمّل الحساب، ويعرض مساحات العمل، ويحفظ إحداها كمساحة العمل الافتراضية لذلك المفتاح، ثم يستطيع بدء استيراد المعاملات أو الاستعلام عنها.
 
 المشروع مفتوح المصدر على GitHub:
 
@@ -44,50 +44,51 @@ keywords:
 - [مسار الوكيل لإرسال الرمز](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentSendCode.ts)
 - [مسار الوكيل للتحقق من الرمز](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentVerifyCode.ts)
 
-## الرابط الواحد الذي تعطيه لوكيلك
+## الرابط الوحيد الذي تعطيه لوكيلك
 
-هذا هو الرابط الدقيق:
+هذا هو الرابط بالضبط:
 
 ```text
 https://api.expense-budget-tracker.com/v1/
 ```
 
-تعيد نقطة النهاية هذه مستند اكتشاف قابلًا للقراءة آليًا. ويمكن للوكيل أن يعرف منه:
+تعيد نقطة النهاية هذه مستند اكتشاف تقرؤه الآلات. ومن خلاله يستطيع الوكيل معرفة:
 
-- أين توجد بداية المصادقة
-- أي إجراء يجب استدعاؤه أولًا
-- أي ترويسة مصادقة يجب استخدامها لاحقًا
+- أين تبدأ تهيئة المصادقة
+- ما الإجراء الذي يجب استدعاؤه أولًا
+- ما ترويسة المصادقة التي يجب استخدامها لاحقًا
 - ما الخطوات التالية لإعداد مساحة العمل والوصول إلى SQL
 
-هذه هي الفكرة الأساسية: بدلًا من ترميز تعليمات الإعداد داخل prompt، يشرح المنتج نفسه للوكيل كيف يتصل به.
+هذه هي الفكرة الأساسية: بدلًا من حشر تعليمات التهيئة داخل تعليمة يكتبها المستخدم، يشرح المنتج نفسه للوكيل كيف يتصل به.
 
-## مثال على prompt لـ Claude Code
-
-```text
-Connect to Expense Budget Tracker using https://api.expense-budget-tracker.com/v1/.
-Ask me for the account email, wait for the 8-digit code from my inbox, finish the setup,
-save the returned ApiKey outside chat memory, then import transactions from ~/Downloads/chase-march-2026.csv and verify the final balance.
-```
-
-## مثال على prompt لـ Codex
+## مثال على تعليمة لـ Claude Code
 
 ```text
-Use https://api.expense-budget-tracker.com/v1/ to connect to my Expense Budget Tracker account.
-When you need login information, ask me for the email and then the 8-digit code.
-After setup, save the key, inspect /schema, and show me my latest 20 transactions and total grocery spend this month.
+اتصل بـ Expense Budget Tracker باستخدام https://api.expense-budget-tracker.com/v1/.
+اطلب مني البريد الإلكتروني للحساب، ثم انتظر الرمز المكوّن من 8 أرقام الذي يصل إلى بريدي،
+وأكمل الإعداد، واحفظ ApiKey الذي يعود إليك خارج ذاكرة الدردشة،
+ثم استورد المعاملات من ~/Downloads/chase-march-2026.csv وتحقق من الرصيد النهائي.
 ```
 
-## مثال على prompt لـ OpenClaw
+## مثال على تعليمة لـ Codex
 
 ```text
-Connect yourself to Expense Budget Tracker through https://api.expense-budget-tracker.com/v1/.
-After login, save my personal workspace as the default for this key and import the CSV file I uploaded.
-Use existing categories when possible, and tell me if any balance does not match.
+استخدم https://api.expense-budget-tracker.com/v1/ للاتصال بحسابي في Expense Budget Tracker.
+عندما تحتاج إلى معلومات تسجيل الدخول، اطلب مني البريد الإلكتروني ثم الرمز المكوّن من 8 أرقام.
+بعد الإعداد، احفظ المفتاح، وافحص /schema، ثم اعرض لي آخر 20 معاملة وإجمالي إنفاق البقالة هذا الشهر.
 ```
 
-## كيف يعمل إعداد متتبع النفقات بالذكاء الاصطناعي
+## مثال على تعليمة لـ OpenClaw
 
-فيما يلي التدفق الكامل عبر HTTP خلف هذا الإعداد.
+```text
+اتصل بنفسك إلى Expense Budget Tracker عبر https://api.expense-budget-tracker.com/v1/.
+بعد تسجيل الدخول، احفظ مساحة عملي الشخصية كمساحة العمل الافتراضية لهذا المفتاح واستورد ملف CSV الذي رفعته.
+استخدم الفئات الحالية كلما أمكن، وأخبرني إذا كان أي رصيد لا يتطابق.
+```
+
+## كيف تعمل تهيئة متتبع النفقات بالذكاء الاصطناعي
+
+إليك تدفّق HTTP الكامل وراء هذا الإعداد.
 
 ### 1. اقرأ نقطة الاكتشاف
 
@@ -97,7 +98,7 @@ Use existing categories when possible, and tell me if any balance does not match
 curl https://api.expense-budget-tracker.com/v1/
 ```
 
-تخبره الاستجابة أن يبدأ بـ `send_code`، وتتضمن رابط bootstrap على نطاق المصادقة، وتشير إلى نقاط نهاية OpenAPI وschema المنشورة.
+تخبره الاستجابة أن يبدأ بـ `send_code`، وتتضمن عنوان التهيئة الأولية على نطاق المصادقة، وتشير إلى نقطتَي النهاية المنشورتين لـ `OpenAPI` و`schema`.
 
 ### 2. أرسل بريد المستخدم الإلكتروني
 
@@ -109,7 +110,7 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/send-code \
   -d '{"email":"user@example.com"}'
 ```
 
-إذا نجح الطلب، تحتوي الاستجابة على `otpSessionToken` وتعليمات باستدعاء `verify_code`.
+إذا نجح الطلب، فستتضمن الاستجابة `otpSessionToken` وتعليمات باستدعاء `verify_code`.
 
 ### 3. اطلب من المستخدم رمز البريد الإلكتروني المكوّن من 8 أرقام
 
@@ -129,9 +130,9 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
   }'
 ```
 
-تتضمن الاستجابة `ApiKey` جديدًا. يُعرض هذا المفتاح مرة واحدة، وينبغي أن يحفظه الوكيل للطلبات اللاحقة، ويفضل كمتغير `EXPENSE_BUDGET_TRACKER_API_KEY`.
+تتضمن الاستجابة `ApiKey` جديدًا. يُعرض هذا المفتاح مرة واحدة فقط، ولذلك ينبغي أن يحفظه الوكيل لاستخدامه في الطلبات اللاحقة، ويفضل كمتغير باسم `EXPENSE_BUDGET_TRACKER_API_KEY`.
 
-وهذا هو التحسين الرئيسي مقارنة بالمسار اليدوي القديم: لا يحتاج المستخدم إلى إنشاء مفتاح من صفحة Settings ونسخه إلى الطرفية.
+هذا هو التحسين الأهم مقارنة بالمسار اليدوي القديم: لم يعد المستخدم بحاجة إلى إنشاء مفتاح من صفحة `Settings` ثم نسخه إلى الطرفية.
 
 ### 5. حمّل سياق الحساب ومساحة العمل
 
@@ -156,9 +157,9 @@ curl -X POST https://api.expense-budget-tracker.com/v1/workspaces/workspace_123/
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-### 6. نفّذ SQL عبر Agent API
+### 6. نفّذ استعلامات SQL عبر واجهة الوكيل
 
-بعد ذلك، تتم أعمال البيانات العادية عبر نطاق التطبيق:
+بعد ذلك، تنتقل أعمال البيانات المعتادة إلى نطاق التطبيق:
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/sql \
@@ -170,12 +171,12 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
   }'
 ```
 
-يجب أن يتضمن الطلب كلا الأمرين:
+يجب أن يتضمن الطلب الأمرين التاليين:
 
 - `Authorization: ApiKey <key>`
-- `X-Workspace-Id: <workspaceId>` فقط عندما تريد تجاوز مساحة العمل المحفوظة أو قبل حفظ واحدة
+- `X-Workspace-Id: <workspaceId>` فقط عندما تريد تجاوز مساحة العمل المحفوظة أو قبل حفظ مساحة عمل افتراضية
 
-اختيار مساحة العمل هنا صريح، ويحفظ الخادم هذا الاختيار لكل مفتاح API بعد `POST /v1/workspaces/{workspaceId}/select`. وإذا كان لدى المستخدم مساحة عمل واحدة فقط، فستُحفظ تلقائيًا وتُستخدم للمفتاح الجديد.
+اختيار مساحة العمل هنا صريح، ويحفظ الخادم هذا الاختيار لكل مفتاح API بعد `POST /v1/workspaces/{workspaceId}/select`. وإذا كان لدى المستخدم مساحة عمل واحدة فقط، فستُحفظ تلقائيًا وتُستخدم مع المفتاح الجديد.
 
 ## ما الذي يمكن لوكيلك فعله بعد الإعداد
 
@@ -184,37 +185,37 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 1. تحليل ملفات CSV أو PDF أو لقطات الشاشة المصدّرة من البنك
 2. إدخال المعاملات في دفتر الأستاذ
 3. التحقق من الأرصدة مقارنة بما يعرضه البنك
-4. الاستعلام عن الإنفاق حسب الفئة أو التاجر أو الفترة
-5. تحديث بنود الميزانية للشهر القادم
+4. الاستعلام عن الإنفاق حسب الفئة أو التاجر أو الفترة الزمنية
+5. تحديث بنود الميزانية للشهر التالي
 
 إليك مثالًا عمليًا على استيراد كشف حساب:
 
 ```text
-Import ~/Downloads/revolut-february-2026.csv into my EUR account.
-Before writing anything, query my existing categories and the last 30 days of transactions to avoid duplicates.
-After import, compare the resulting account balance with the closing balance in the CSV.
+استورد ~/Downloads/revolut-february-2026.csv إلى حسابي باليورو.
+قبل أن تكتب أي شيء، استعلم عن فئاتي الحالية وعن معاملات آخر 30 يومًا لتجنب التكرار.
+بعد الاستيراد، قارن رصيد الحساب الناتج مع الرصيد الختامي الموجود في ملف CSV.
 ```
 
 وهذا مثال على التحليل:
 
 ```text
-Show me my top 10 spending categories in the last 90 days, then compare them with the previous 90-day period.
-Also list the largest transactions in categories where spending increased.
+اعرض لي أعلى 10 فئات إنفاق لدي خلال آخر 90 يومًا، ثم قارنها بفترة التسعين يومًا السابقة.
+واعرض أيضًا أكبر المعاملات في الفئات التي ارتفع فيها الإنفاق.
 ```
 
 ## لماذا هذا أفضل من إعداد مفتاح API يدويًا
 
 المسار الجديد أبسط للمستخدم وللوكيل معًا:
 
-- المستخدم لا يحتاج إلى نسخ مفتاح طويل الأجل يدويًا
-- الوكيل يكتشف البروتوكول من المنتج نفسه
-- المصادقة منفصلة عن الوصول إلى البيانات بشكل واضح
-- كل طلب SQL مقيّد بمساحة العمل المحددة
-- يمكن إلغاء الاتصال لاحقًا من داخل التطبيق
+- لا يحتاج المستخدم إلى نسخ مفتاح طويل الأمد يدويًا
+- يكتشف الوكيل البروتوكول من المنتج نفسه
+- تنفصل المصادقة عن الوصول إلى البيانات بشكل واضح
+- يكون كل طلب SQL مقيّدًا بمساحة العمل المحددة
+- يمكن إلغاء هذا الاتصال لاحقًا من داخل التطبيق
 
-إذا كنت تبني سير عمل لتتبع النفقات بالذكاء الاصطناعي، فهذا مهم. فهو يزيل كثيرًا من boilerplate في الـ prompt وأخطاء الإعداد.
+إذا كنت تبني سير عمل لتتبع النفقات بالذكاء الاصطناعي، فهذا مهم. فهو يزيل كثيرًا من التعليمات التمهيدية المكررة وأخطاء الإعداد.
 
-## متتبع نفقات مفتوح المصدر مع إعداد للوكلاء
+## متتبع نفقات مفتوح المصدر مع تهيئة للوكلاء
 
 Expense Budget Tracker مرخّص تحت MIT ومفتوح المصدر بالكامل:
 
@@ -238,4 +239,4 @@ make up
 https://api.expense-budget-tracker.com/v1/
 ```
 
-وهذا يكفي لكي يبدأ Claude Code أو Codex أو OpenClaw تدفق تسجيل الدخول بمفردهم.
+وهذا يكفي لكي يبدأ Claude Code أو Codex أو OpenClaw تدفّق تسجيل الدخول من تلقاء نفسه.
