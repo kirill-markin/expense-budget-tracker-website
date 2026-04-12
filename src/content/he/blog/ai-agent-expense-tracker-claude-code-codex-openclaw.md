@@ -1,6 +1,6 @@
 ---
-title: "הגדרת מעקב הוצאות עם AI עבור Claude Code, Codex ו-OpenClaw"
-description: "איך מחברים את Claude Code, את Codex או את OpenClaw למנהל הוצאות בקוד פתוח. משתפים כתובת discovery אחת, מאשרים את קוד האימייל, שומרים את ה-ApiKey שהוחזר, ונותנים לסוכן להתחיל לעבוד."
+title: "הגדרת מעקב הוצאות עם בינה מלאכותית עבור Claude Code, Codex ו-OpenClaw"
+description: "כך מחברים את Claude Code, את Codex או את OpenClaw למנהל הוצאות בקוד פתוח: משתפים כתובת גילוי אחת, מאשרים את קוד האימייל, שומרים את ה-ApiKey שמתקבל, ונותנים לסוכן להתחיל לעבוד."
 date: "2026-03-10"
 keywords:
   - "מעקב הוצאות עם AI"
@@ -11,7 +11,7 @@ keywords:
   - "agent setup expense tracker"
 ---
 
-אם אתם רוצים להשתמש בסוכן AI כדי לעקוב אחרי הוצאות, החלק המעיק הוא בדרך כלל ההגדרה הראשונית.
+אם אתם רוצים להשתמש בסוכן בינה מלאכותית לניהול הוצאות, החלק המתסכל בדרך כלל הוא שלב ההגדרה.
 
 התהליך הרגיל נראה כך:
 
@@ -20,25 +20,25 @@ keywords:
 3. מעתיקים את המפתח
 4. מדביקים אותו בתוך סוכן הטרמינל
 5. מסבירים לאיזו נקודת קצה צריך לפנות
-6. מקווים שהסוכן ישתמש בסביבת העבודה הנכונה
+6. מקווים שהסוכן יבחר את מרחב העבודה הנכון
 
-זה עובד, אבל זה לא באמת מותאם לסוכנים.
+זה אפשרי, אבל זה לא באמת תהליך שמותאם לסוכנים.
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/he/) חושף עכשיו נקודת קצה ציבורית של discovery עבור סוכני טרמינל כמו [Claude Code](https://docs.anthropic.com/en/docs/claude-code), OpenAI Codex או OpenClaw:
+[Expense Budget Tracker](https://expense-budget-tracker.com/he/) מציע עכשיו נקודת קצה ציבורית לגילוי עבור סוכני טרמינל כמו [Claude Code](https://docs.anthropic.com/en/docs/claude-code), OpenAI Codex או OpenClaw:
 
 `https://api.expense-budget-tracker.com/v1/`
 
-המשתמש נותן לסוכן את הקישור היחיד הזה, ואז עונה על שתי שאלות:
+המשתמש נותן לסוכן את הקישור היחיד הזה, ואז עונה על שתי שאלות פשוטות:
 
-- באיזו כתובת אימייל צריך להשתמש להתחברות?
-- מהו הקוד בן 8 הספרות שהגיע עכשיו לתיבה?
+- באיזו כתובת אימייל להשתמש כדי להתחבר?
+- מהו הקוד בן 8 הספרות שהגיע עכשיו לתיבת הדואר?
 
-אחרי זה הסוכן יוצר לעצמו `ApiKey`, שומר אותו מחוץ לזיכרון הצ'אט, טוען את החשבון, מציג את רשימת סביבות העבודה, שומר אחת מהן כברירת מחדל עבור אותו מפתח, ויכול להתחיל לייבא או לשאול על טרנזקציות.
+אחר כך הסוכן יוצר לעצמו `ApiKey`, שומר אותו מחוץ לזיכרון השיחה, טוען את החשבון, מציג את רשימת מרחבי העבודה, שומר אחד מהם כברירת המחדל לאותו מפתח, ויכול להתחיל לייבא עסקאות או להריץ שאילתות.
 
 הפרויקט הוא קוד פתוח ב-GitHub:
 
 - [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker)
-- [מימוש ה-Machine API](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/sql-api/src/machineApi.ts)
+- [מימוש ה-API לסוכנים](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/sql-api/src/machineApi.ts)
 - [נתיב send-code עבור סוכנים](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentSendCode.ts)
 - [נתיב verify-code עבור סוכנים](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentVerifyCode.ts)
 
@@ -50,44 +50,44 @@ keywords:
 https://api.expense-budget-tracker.com/v1/
 ```
 
-נקודת הקצה הזאת מחזירה מסמך discovery קריא למכונה. הסוכן יכול להבין ממנו:
+נקודת הקצה הזאת מחזירה מסמך גילוי קריא למכונה. הסוכן יכול להבין ממנו:
 
-- איפה מתחיל תהליך האימות הראשוני
+- היכן מתחיל תהליך האימות הראשוני
 - לאיזו פעולה צריך לפנות קודם
-- באיזו כותרת אימות להשתמש אחר כך
-- מהם השלבים הבאים להגדרת סביבת עבודה ולגישה ל-SQL
+- באיזו כותרת אימות להשתמש בהמשך
+- מהם השלבים הבאים להגדרת מרחב עבודה ולגישה ל-SQL
 
-זה הרעיון המרכזי: במקום לקודד ידנית הוראות התחלה בתוך prompt, המוצר עצמו מסביר לסוכן איך להתחבר.
+זה הרעיון המרכזי: במקום לכתוב ידנית בתוך ההנחיה את כל שלבי ההתחברות, המוצר עצמו מסביר לסוכן איך להתחבר.
 
-## דוגמת prompt עבור Claude Code
-
-```text
-Connect to Expense Budget Tracker using https://api.expense-budget-tracker.com/v1/.
-Ask me for the account email, wait for the 8-digit code from my inbox, finish the setup,
-save the returned ApiKey outside chat memory, then import transactions from ~/Downloads/chase-march-2026.csv and verify the final balance.
-```
-
-## דוגמת prompt עבור Codex
+## דוגמת הנחיה עבור Claude Code
 
 ```text
-Use https://api.expense-budget-tracker.com/v1/ to connect to my Expense Budget Tracker account.
-When you need login information, ask me for the email and then the 8-digit code.
-After setup, save the key, inspect /schema, and show me my latest 20 transactions and total grocery spend this month.
+התחבר ל-Expense Budget Tracker באמצעות https://api.expense-budget-tracker.com/v1/.
+בקש ממני את כתובת האימייל של החשבון, המתן לקוד בן 8 הספרות שיגיע לתיבת הדואר שלי, סיים את ההגדרה,
+שמור את ה-ApiKey שמתקבל מחוץ לזיכרון השיחה, ואז ייבא עסקאות מתוך ~/Downloads/chase-march-2026.csv ואמת את היתרה הסופית.
 ```
 
-## דוגמת prompt עבור OpenClaw
+## דוגמת הנחיה עבור Codex
 
 ```text
-Connect yourself to Expense Budget Tracker through https://api.expense-budget-tracker.com/v1/.
-After login, save my personal workspace as the default for this key and import the CSV file I uploaded.
-Use existing categories when possible, and tell me if any balance does not match.
+השתמש ב-https://api.expense-budget-tracker.com/v1/ כדי להתחבר לחשבון ה-Expense Budget Tracker שלי.
+כשצריך פרטי התחברות, בקש ממני קודם את כתובת האימייל ואז את הקוד בן 8 הספרות.
+אחרי ההגדרה, שמור את המפתח, בדוק את /schema, והצג לי את 20 העסקאות האחרונות שלי ואת סך ההוצאה שלי על מצרכים החודש.
 ```
 
-## איך עובדת הגדרת מעקב ההוצאות עם AI
+## דוגמת הנחיה עבור OpenClaw
 
-הנה תהליך ה-HTTP המלא שמאחורי ההגדרה הזו.
+```text
+התחבר ל-Expense Budget Tracker דרך https://api.expense-budget-tracker.com/v1/.
+אחרי ההתחברות, שמור את מרחב העבודה האישי שלי כברירת המחדל למפתח הזה וייבא את קובץ ה-CSV שהעליתי.
+השתמש בקטגוריות קיימות כשאפשר, ותגיד לי אם יש יתרה שלא תואמת.
+```
 
-### 1. קוראים את נקודת הקצה של discovery
+## איך פועלת הגדרת מעקב ההוצאות עם בינה מלאכותית
+
+זהו רצף בקשות ה-HTTP המלא שמאחורי ההגדרה הזאת.
+
+### 1. קוראים את נקודת הגילוי
 
 הסוכן מתחיל כאן:
 
@@ -95,7 +95,7 @@ Use existing categories when possible, and tell me if any balance does not match
 curl https://api.expense-budget-tracker.com/v1/
 ```
 
-התשובה מסבירה לו להתחיל עם `send_code`, כוללת את כתובת האתחול בדומיין האימות, ומפנה לנקודות הקצה הציבוריות של OpenAPI ושל הסכמה.
+התשובה אומרת לו להתחיל ב-`send_code`, כוללת את כתובת האתחול בדומיין האימות, ומפנה גם ל-OpenAPI ול-`/schema` שפורסמו.
 
 ### 2. שולחים את אימייל המשתמש
 
@@ -107,7 +107,7 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/send-code \
   -d '{"email":"user@example.com"}'
 ```
 
-אם הבקשה מצליחה, התשובה מכילה `otpSessionToken` והוראות לפנות אחר כך ל-`verify_code`.
+אם הבקשה מצליחה, התשובה כוללת `otpSessionToken` והוראות לפנייה הבאה אל `verify_code`.
 
 ### 3. מבקשים מהמשתמש את קוד האימייל בן 8 הספרות
 
@@ -115,7 +115,7 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/send-code \
 
 ### 4. מאמתים את הקוד ומקבלים ApiKey
 
-אחר כך הסוכן קורא לנקודת הקצה הבאה:
+אחר כך הסוכן קורא לנקודת הקצה הזאת:
 
 ```bash
 curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
@@ -127,36 +127,36 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
   }'
 ```
 
-התשובה כוללת `ApiKey` חדש. המפתח הזה מוצג פעם אחת בלבד, ולכן הסוכן צריך לשמור אותו לבקשות עתידיות, רצוי כ-`EXPENSE_BUDGET_TRACKER_API_KEY`.
+בתשובה מתקבל `ApiKey` חדש. המפתח הזה מוצג פעם אחת בלבד, ולכן הסוכן צריך לשמור אותו עבור בקשות עתידיות, רצוי כ-`EXPENSE_BUDGET_TRACKER_API_KEY`.
 
-זה השיפור המרכזי לעומת התהליך הידני הישן: המשתמש לא צריך ליצור מפתח ב-Settings ולהעתיק אותו לטרמינל.
+זה השיפור המרכזי לעומת התהליך הידני הישן: המשתמש כבר לא צריך ליצור מפתח בהגדרות ולהעתיק אותו לטרמינל.
 
-### 5. טוענים את החשבון ואת ההקשר של סביבת העבודה
+### 5. טוענים את החשבון ואת ההקשר של מרחב העבודה
 
-אחרי האימות, הסוכן משתמש ב-`Authorization: ApiKey <key>` וטוען את החשבון:
+אחרי האימות, הסוכן משתמש ב-`Authorization: ApiKey <key>` וטוען את פרטי החשבון:
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/me \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-אחר כך הוא מציג את רשימת סביבות העבודה:
+אחר כך הוא שולף את רשימת מרחבי העבודה:
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/workspaces \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-אם צריך, הוא יכול ליצור סביבת עבודה חדשה או לשמור במפורש סביבת עבודה קיימת עם `POST /v1/workspaces/{workspaceId}/select`.
+אם צריך, הוא יכול ליצור מרחב עבודה חדש או לבחור במפורש מרחב עבודה קיים באמצעות `POST /v1/workspaces/{workspaceId}/select`.
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/workspaces/workspace_123/select \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-### 6. מריצים SQL דרך Agent API
+### 6. מריצים SQL דרך ה-API
 
-אחרי זה, העבודה הרגילה על הנתונים נעשית דרך דומיין האפליקציה:
+אחרי זה, העבודה השוטפת על הנתונים נעשית דרך דומיין האפליקציה:
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/sql \
@@ -168,51 +168,51 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
   }'
 ```
 
-הבקשה חייבת לכלול את שני ה-headers הבאים:
+הבקשה חייבת לכלול את שתי הכותרות הבאות:
 
 - `Authorization: ApiKey <key>`
-- `X-Workspace-Id: <workspaceId>` רק אם רוצים לעקוף את סביבת העבודה השמורה או לפני שנשמרת אחת כזאת
+- `X-Workspace-Id: <workspaceId>` רק אם רוצים לעקוף את מרחב העבודה השמור או לפני שנשמר אחד כזה
 
-בחירת סביבת העבודה היא מפורשת, והשרת שומר אותה לכל API key אחרי `POST /v1/workspaces/{workspaceId}/select`. אם למשתמש יש סביבת עבודה אחת בלבד, ה-API שומר אותה אוטומטית ומשתמש בה עבור מפתח חדש.
+בחירת מרחב העבודה היא מפורשת, והשרת שומר אותה לכל מפתח API אחרי `POST /v1/workspaces/{workspaceId}/select`. אם למשתמש יש מרחב עבודה אחד בלבד, ה-API שומר אותו אוטומטית ומשתמש בו גם עבור מפתח חדש.
 
 ## מה הסוכן יכול לעשות אחרי ההגדרה
 
-אחרי שהחיבור הושלם, הסוכן יכול לטפל בעבודות הפיננסיות המשעממות שלא אמורות לדרוש שעות של קליקים:
+אחרי שהחיבור הושלם, הסוכן יכול לטפל בעבודה הפיננסית המשעממת שלא אמורה לדרוש שעות של הקלקות:
 
-1. לנתח ייצוא CSV, PDF או צילומי מסך מהבנק
-2. להכניס טרנזקציות ל-ledger
-3. לבדוק יתרות מול מה שהבנק מציג
-4. לשאול על הוצאות לפי קטגוריה, בית עסק או תקופה
-5. לעדכן שורות תקציב לחודש הבא
+1. לנתח קובצי ייצוא בפורמט CSV או PDF, וגם צילומי מסך מהבנק
+2. להוסיף עסקאות לספר החשבונות
+3. להשוות יתרות מול מה שהבנק מציג
+4. לנתח הוצאות לפי קטגוריה, בית עסק או תקופה
+5. לעדכן סעיפי תקציב לחודש הבא
 
-הנה דוגמה מעשית לייבוא דוח:
+הנה דוגמה מעשית לייבוא דפי חשבון:
 
 ```text
-Import ~/Downloads/revolut-february-2026.csv into my EUR account.
-Before writing anything, query my existing categories and the last 30 days of transactions to avoid duplicates.
-After import, compare the resulting account balance with the closing balance in the CSV.
+ייבא את ~/Downloads/revolut-february-2026.csv אל חשבון ה-EUR שלי.
+לפני שאתה כותב משהו, בדוק את הקטגוריות הקיימות שלי ואת העסקאות מ-30 הימים האחרונים כדי למנוע כפילויות.
+אחרי הייבוא, השווה את יתרת החשבון שהתקבלה ליתרת הסגירה שמופיעה בקובץ ה-CSV.
 ```
 
 והנה דוגמה לניתוח:
 
 ```text
-Show me my top 10 spending categories in the last 90 days, then compare them with the previous 90-day period.
-Also list the largest transactions in categories where spending increased.
+הצג לי את 10 קטגוריות ההוצאה המובילות שלי ב-90 הימים האחרונים, ואז השווה אותן ל-90 הימים שקדמו להם.
+בנוסף, רשום את העסקאות הגדולות ביותר בקטגוריות שבהן ההוצאה עלתה.
 ```
 
-## למה זה עדיף על הגדרה ידנית של API key
+## למה זה עדיף על הגדרה ידנית של מפתח API
 
 התהליך החדש פשוט יותר גם למשתמש וגם לסוכן:
 
-- המשתמש לא צריך להעתיק ידנית מפתח ארוך-טווח
-- הסוכן מגלה את הפרוטוקול מהמוצר עצמו
+- המשתמש לא צריך להעתיק ידנית מפתח ארוך טווח
+- הסוכן לומד את הפרוטוקול מהמוצר עצמו
 - יש הפרדה נקייה בין אימות לבין גישה לנתונים
-- כל בקשת SQL תחומה לסביבת העבודה שנבחרה
+- כל בקשת SQL תחומה למרחב העבודה שנבחר
 - אפשר לבטל את החיבור אחר כך מתוך האפליקציה
 
-אם אתם בונים תהליך עבודה של מעקב הוצאות עם AI, זה משנה. זה מוריד הרבה boilerplate מיותר ב-prompt והרבה טעויות הגדרה.
+אם אתם בונים תהליך עבודה למעקב הוצאות עם בינה מלאכותית, זה חשוב. זה חוסך הרבה טקסט טכני מיותר בהנחיה ומפחית טעויות בהגדרה.
 
-## מנהל הוצאות בקוד פתוח עם הגדרה לסוכנים
+## מנהל הוצאות בקוד פתוח עם חיבור לסוכנים
 
 Expense Budget Tracker הוא פרויקט MIT ובקוד פתוח מלא:
 
@@ -230,10 +230,10 @@ cd expense-budget-tracker
 make up
 ```
 
-אם אתם רוצים להשתמש בגרסה המתארחת, תנו לסוכן שלכם את ה-URL הזה:
+אם אתם מעדיפים את הגרסה המתארחת, תנו לסוכן שלכם את הכתובת הזאת:
 
 ```text
 https://api.expense-budget-tracker.com/v1/
 ```
 
-זה מספיק כדי ש-Claude Code, Codex או OpenClaw יתחילו בעצמם את תהליך ההתחברות.
+זה מספיק כדי ש-Claude Code, Codex או OpenClaw יתחילו לבד את תהליך ההתחברות.
