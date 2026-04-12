@@ -1,28 +1,28 @@
 ---
-title: "Rastreador de presupuesto Open Source autoalojado para desarrolladores: sea dueño de sus datos financieros"
-description: "Por qué los programadores deberían alojar su rastreador de gastos en su propio servidor. Implemente un rastreador de presupuesto de código abierto con API SQL, integración de agentes de IA y control total sobre su base de datos Postgres."
+title: "Rastreador de presupuesto de código abierto para desarrolladores: controla tus datos financieros"
+description: "Por qué a los desarrolladores les conviene alojar su rastreador de gastos en su propia infraestructura. Despliega un rastreador de presupuesto de código abierto con API SQL, integración con agentes de IA y control total sobre tu base de datos Postgres."
 date: "2026-03-05"
 ---
 
-Si es desarrollador, sus datos financieros probablemente residan en el servidor de otra persona. Cada aplicación de seguimiento de presupuestos y gastos (Mint, YNAB, Copilot, Lunch Money) almacena sus transacciones, saldos y patrones de gastos en su nube. Confías en que no serán vulnerados, que no venderán tus datos y que no cerrarán (RIP Mint, 2024).
+Si eres desarrollador, lo más probable es que tus datos financieros estén en servidores de terceros. Todas las aplicaciones de presupuesto y seguimiento de gastos, como Mint, YNAB, Copilot o Lunch Money, guardan tus transacciones, saldos y patrones de gasto en su nube. Confías en que no sufran una brecha de seguridad, en que no vendan tus datos y en que no desaparezcan de un día para otro (RIP Mint, 2024).
 
-Hay una mejor opción si se siente cómodo con Docker y Postgres: alojar usted mismo un rastreador de presupuesto de código abierto y mantener todo en su propia infraestructura.
+Si te manejas bien con Docker y Postgres, hay una alternativa mejor: alojar tú mismo un rastreador de presupuesto de código abierto y mantener todo dentro de tu propia infraestructura.
 
-## Rastreador de gastos de código abierto que usted mismo implementa
+## Rastreador de gastos de código abierto que despliegas tú mismo
 
-[Expense Budget Tracker](https://github.com/kirill-markin/expense-budget-tracker) es un sistema de seguimiento de gastos y presupuestos totalmente de código abierto creado en Postgres. Clona el repositorio, ejecuta `make up` y obtiene una aplicación que funciona en `localhost:3000` con una base de datos real que usted controla.
+[Expense Budget Tracker](https://github.com/kirill-markin/expense-budget-tracker) es un sistema de seguimiento de gastos y presupuestos completamente de código abierto construido sobre Postgres. Clonas el repositorio, ejecutas `make up` y tienes una aplicación funcionando en `localhost:3000` con una base de datos real bajo tu control.
 
-Sin creación de cuenta, sin salida de datos de su máquina y sin tarifas de suscripción. Licencia MIT: bifurca, modifícala, haz lo que quieras.
+Sin crear cuentas, sin enviar datos fuera de tu máquina y sin cuotas de suscripción. Licencia MIT: puedes bifurcarlo, modificarlo y usarlo como quieras.
 
-![Tabla de presupuesto que muestra datos reales pasados, seguimiento del mes actual y pronóstico mensual futuro por categoría](/blog/budget-view-example.jpg)
+![Tabla de presupuesto con importes reales de meses anteriores, seguimiento del mes actual y previsión mensual futura por categoría](/blog/budget-view-example.jpg)
 
-La pila es sencilla: Next.js para la interfaz de usuario web, Postgres 18 para almacenamiento y un trabajador TypeScript que recupera los tipos de cambio diarios. Todo se ejecuta en contenedores Docker a través de un único `docker-compose.yml`.
+La pila es directa: Next.js para la interfaz web, Postgres 18 para el almacenamiento y un proceso en TypeScript que obtiene los tipos de cambio diarios. Todo se ejecuta en contenedores Docker a través de un único `docker-compose.yml`.
 
-## Hospede automáticamente con Docker o implemente en AWS
+## Alojamiento propio con Docker o despliegue en AWS
 
-El repositorio viene con dos opciones de implementación listas para usar:
+El repositorio trae dos opciones de despliegue listas para usar:
 
-**Docker Compose local**: cuatro comandos y estarás ejecutando:
+**Docker Compose local**: con cuatro comandos ya lo tienes en marcha:
 
 ```bash
 git clone https://github.com/kirill-markin/expense-budget-tracker.git
@@ -31,21 +31,21 @@ open -a Docker   # start Docker if not running
 make up          # Postgres + migrations + web + worker
 ```
 
-Abra `http://localhost:3000` y comience a ingresar transacciones. Los datos de Postgres persisten en un volumen Docker. Esa es toda la configuración.
+Abre `http://localhost:3000` y empieza a introducir transacciones. Los datos de Postgres se conservan en un volumen de Docker. No hace falta nada más.
 
-**AWS CDK**: una implementación de producción completa con un script:
+**AWS CDK**: un despliegue completo de producción con un solo script:
 
 ```bash
 bash scripts/bootstrap.sh --region eu-central-1
 ```
 
-Esto activa ECS Fargate, RDS Postgres, ALB con HTTPS, Cognito para autenticación, WAF, monitoreo de CloudWatch, copias de seguridad automatizadas y CI/CD a través de acciones GitHub. El costo estimado es de alrededor de $50 al mes y obtienes una infraestructura de nivel empresarial de tu entera propiedad. La [guía de implementación](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) explica cada paso, desde la creación de la cuenta AWS hasta la configuración de DNS de Cloudflare.
+Esto levanta ECS Fargate, RDS Postgres, un ALB con HTTPS, Cognito para autenticación, WAF, monitorización con CloudWatch, copias de seguridad automáticas y CI/CD con GitHub Actions. El coste estimado ronda los 50 dólares al mes, y a cambio obtienes una infraestructura de nivel empresarial que controlas por completo. La [guía de despliegue](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) explica todo el proceso, desde crear la cuenta de AWS hasta configurar el DNS en Cloudflare.
 
-Dado que es solo Postgres + Docker, también puedes alojarlo tú mismo en cualquier otro lugar. DigitalOcean, Hetzner, una Raspberry Pi en su armario, el clúster Kubernetes de su empresa: si ejecuta Docker y Postgres, ejecuta esto.
+Como al final esto es Postgres + Docker, también puedes alojarlo en cualquier otro entorno. DigitalOcean, Hetzner, una Raspberry Pi en casa, el clúster de Kubernetes de tu empresa: si puede ejecutar Docker y Postgres, puede ejecutar esto.
 
-## Punto final API SQL para acceso programático
+## API SQL para acceso programático
 
-La mayoría de las aplicaciones económicas te ofrecen una interfaz de usuario web y nada más. Este expone una **API de consulta SQL** a través de HTTP: un punto final `POST /v1/sql` que acepta declaraciones SQL sin procesar y devuelve JSON.
+La mayoría de las aplicaciones de presupuesto te ofrecen una interfaz web y poco más. Esta expone una **API de consultas SQL** por HTTP: un endpoint `POST /v1/sql` que acepta sentencias SQL en crudo y devuelve JSON.
 
 ```bash
 curl -X POST https://api.your-domain.com/v1/sql \
@@ -55,71 +55,71 @@ curl -X POST https://api.your-domain.com/v1/sql \
   -d '{"sql": "SELECT category, SUM(amount) AS total FROM ledger_entries WHERE kind = '\''spend'\'' AND ts >= DATE_TRUNC('\''month'\'', CURRENT_DATE) GROUP BY category ORDER BY total"}'
 ```
 
-Usted genera una clave API en Configuración, elige el ID del espacio de trabajo de destino y cualquier cliente HTTP puede consultar sus datos. Este es un punto final REST simple: sin GraphQL, sin abstracciones ORM, sin SDK que aprender. Solo entra SQL, sale JSON.
+Generas una clave API en Settings, eliges el ID del espacio de trabajo de destino y cualquier cliente HTTP puede consultar tus datos. Es un punto de acceso REST sencillo: sin GraphQL, sin abstracciones de ORM y sin SDK que aprender. Entra SQL, sale JSON.
 
-El modelo de seguridad es estricto: las claves API se almacenan como hashes SHA-256 (el texto sin formato nunca persiste), las consultas están restringidas a SELECT/INSERT/UPDATE/DELETE (sin DDL), hay un tiempo de espera de declaración de 30 segundos, un límite de 100 filas por respuesta y una tasa por clave limitada a 10 solicitudes/segundo. Todas las consultas se ejecutan a través de Postgres Row Level Security (el mismo aislamiento utilizado por la aplicación web), por lo que una clave API solo puede acceder a los datos en el espacio de trabajo de su propietario.
+El modelo de seguridad es estricto: las claves API se guardan como hashes SHA-256, así que el valor en texto plano nunca se persiste; las consultas están limitadas a SELECT/INSERT/UPDATE/DELETE, sin DDL; hay un límite de 30 segundos por sentencia, un máximo de 100 filas por respuesta y una limitación de 10 peticiones por segundo para cada clave. Todas las consultas pasan por Row Level Security de Postgres, el mismo aislamiento que usa la aplicación web, así que una clave API solo puede acceder a los datos del espacio de trabajo de su propietario.
 
-## Creado para agentes de IA y LLM
+## Diseñado para agentes de IA y LLM
 
-La API SQL es lo que hace que la integración de la IA sea práctica para las finanzas personales: su agente de IA necesita acceso directo a la base de datos para leer y escribir datos financieros.
+La API SQL es lo que hace realmente práctica la integración con IA en finanzas personales: tu agente necesita acceso directo a la base de datos para leer y escribir información financiera.
 
-Piense en cómo interactúa hoy con los asistentes de IA. Pegas una captura de pantalla de un extracto bancario en Claude o ChatGPT, le pides que clasifique tus gastos y te proporciona un bonito resumen de texto. Luego copia manualmente esos números en cualquier herramienta que utilice. Ese es un flujo de trabajo a partir de 2023.
+Piensa en cómo usas hoy los asistentes de IA. Pegas una captura de pantalla de un extracto bancario en Claude o ChatGPT, le pides que clasifique los gastos y te devuelve un resumen bonito en texto. Después copias esos números a mano en la herramienta que uses. Ese es un flujo de trabajo propio de 2023.
 
-Con una API SQL, su agente de IA no solo analiza sus datos, sino que **escribe en su base de datos**. El flujo de trabajo se convierte en:
+Con una API SQL, tu agente de IA no se limita a analizar tus datos: también **escribe en tu base de datos**. El flujo pasa a ser este:
 
-1. Introduzca un extracto bancario (CSV, PDF o captura de pantalla) en un agente de IA.
-2. El agente lee cada transacción, relaciona las categorías con las existentes y `INSERT` las convierte en `ledger_entries`.
-3. El agente verifica el saldo de su cuenta con el número del banco.
-4. Pasas 5 minutos revisando en lugar de una hora ingresando datos
+1. Arrastras un extracto bancario, ya sea CSV, PDF o una captura de pantalla, a un agente de IA.
+2. El agente lee cada transacción, la asigna a tus categorías existentes y hace `INSERT` en `ledger_entries`.
+3. El agente comprueba que el saldo de la cuenta coincide con la cifra del banco.
+4. Tú dedicas 5 minutos a revisar en vez de una hora a introducir datos.
 
-El esquema de la base de datos está diseñado para esto. Siete tablas planas, sin JSON anidado y sin necesidad de uniones complejas para operaciones básicas. La tabla `ledger_entries` es intencionalmente simple: una fila por movimiento de cuenta con nombres de columna claros. Un LLM puede escribir declaraciones INSERT correctas en el primer intento porque no hay nada de qué confundirse.
+El esquema de la base de datos está pensado justo para esto. Son siete tablas planas, sin JSON anidado y sin uniones SQL complejas para las operaciones básicas. La tabla `ledger_entries` es deliberadamente simple: una fila por movimiento de cuenta y nombres de columna claros. Un LLM puede generar sentencias INSERT correctas al primer intento porque no hay nada confuso en el esquema.
 
-Expense Budget Tracker también incluye un **chat de IA integrado** en la interfaz de usuario web. Conecte su clave OpenAI o Anthropic API y obtendrá un asistente que tiene una herramienta `query_database`: puede SELECCIONAR, INSERTAR, ACTUALIZAR y ELIMINAR directamente en su Postgres. Cargue una captura de pantalla de su aplicación bancaria y la IA analizará cada transacción, le pedirá que la confirme y las insertará. Sigue un protocolo estricto: descubra primero sus categorías existentes, verifique si hay duplicados, verifique que los saldos coincidan y solo escriba después de su aprobación explícita.
+Expense Budget Tracker también incluye un **chat de IA integrado** en la interfaz web. Conectas tu clave API de OpenAI o Anthropic y obtienes un asistente con la herramienta `query_database`, capaz de hacer SELECT, INSERT, UPDATE y DELETE directamente sobre tu Postgres. Subes una captura de pantalla de tu aplicación bancaria, la IA interpreta cada transacción, te pide confirmación y las inserta. Sigue un protocolo estricto: primero descubre tus categorías existentes, después busca duplicados, comprueba que los saldos cuadren y solo escribe cuando le das tu aprobación explícita.
 
-El chat de IA admite los modelos Claude (Anthropic) y GPT (OpenAI). Ambos utilizan la misma herramienta de base de datos con las mismas reglas de seguridad: listas blancas de palabras clave, tiempos de espera de declaraciones y cumplimiento de RLS. También puede usar la API SQL con cualquier agente externo: [Claude Code](https://docs.anthropic.com/en/docs/claude-code), OpenAI Codex, scripts personalizados o webhooks Zapier. Proporcione al agente su clave API `ebt_`, apúntela a su punto final y tendrá acceso completo de lectura/escritura en su espacio de trabajo.
+El chat de IA es compatible con modelos Claude de Anthropic y GPT de OpenAI. Ambos usan la misma herramienta de base de datos y las mismas reglas de seguridad: listas blancas de palabras clave, límites de tiempo por sentencia y aplicación de RLS. También puedes usar la API SQL con cualquier agente externo: [Claude Code](https://docs.anthropic.com/en/docs/claude-code), OpenAI Codex, scripts a medida o webhooks de Zapier. Le das al agente tu clave API `ebt_`, le indicas tu endpoint y tendrá acceso de lectura y escritura limitado a tu espacio de trabajo.
 
 ## Funciones del rastreador de presupuesto
 
-Este no es un libro de gastos básico. Todas las características que esperarías de un producto comercial están ahí:
+Esto no es un simple libro de gastos. Incluye las funciones que esperarías de un producto comercial:
 
-- **Cuadrícula de presupuesto**: las filas son categorías, las columnas son meses. Los meses pasados ​​muestran datos reales, los meses futuros muestran su pronóstico. Planifique con 12 meses de anticipación y vea los saldos proyectados de un vistazo
-- **Soporte multidivisa**: almacene cada transacción en su moneda nativa. Los tipos de cambio diarios del BCE, CBR y NBS se obtienen automáticamente. La conversión a la moneda de sus informes se produce en el momento de la consulta a través de combinaciones SQL: sin columnas precalculadas ni pérdida de precisión.
-- **Saldos de cuentas**: realice un seguimiento de cuentas corrientes, ahorros, tarjetas de crédito, efectivo e inversiones. Cada cuenta tiene un saldo corriente derivado del libro mayor.
-- **Transferencias**: mueve dinero entre tus propias cuentas (incluso entre divisas). Dos asientos contables con el mismo `event_id`, uno negativo y otro positivo
-- **Categorización de transacciones**: categorías de formato libre que usted define. Sin taxonomía forzada. La IA aprende sus categorías a partir de datos existentes
-- **UI multilingüe**: inglés, español, chino, árabe, hebreo, farsi, ucraniano y ruso. Soporte completo RTL
-- **Aislamiento del espacio de trabajo**: Postgres La seguridad de nivel de fila garantiza que los datos de cada usuario estén completamente aislados. Incluso si comparte el mismo servidor de base de datos, los usuarios no pueden ver los datos de los demás.
-- **Modo de demostración**: alterna un botón en la interfaz de usuario para cambiar a los datos de demostración en la memoria. No se requiere base de datos para explorar la interfaz
+- **Cuadrícula de presupuesto**: las filas son categorías y las columnas, meses. Los meses pasados muestran importes reales y los futuros, tu previsión. Puedes planificar con 12 meses de antelación y ver de un vistazo los saldos proyectados.
+- **Soporte multidivisa**: cada transacción se guarda en su moneda original. Los tipos de cambio diarios del BCE, el CBR y el NBS se obtienen automáticamente. La conversión a tu moneda de referencia se hace en tiempo de consulta mediante uniones SQL, sin columnas precalculadas ni pérdida de precisión.
+- **Saldos de cuentas**: puedes seguir cuentas corrientes, ahorros, tarjetas de crédito, efectivo e inversiones. Cada cuenta tiene un saldo acumulado derivado del libro mayor.
+- **Transferencias**: mueve dinero entre tus propias cuentas, incluso entre distintas monedas. Son dos asientos en el libro mayor con el mismo `event_id`, uno negativo y otro positivo.
+- **Categorización de transacciones**: tú defines libremente las categorías. No hay una taxonomía impuesta. La IA aprende tus categorías a partir de los datos existentes.
+- **Interfaz multilingüe**: inglés, español, chino, árabe, hebreo, persa, ucraniano y ruso. Con soporte RTL completo.
+- **Aislamiento por espacio de trabajo**: Row Level Security de Postgres garantiza que los datos de cada usuario estén completamente separados. Aunque varios usuarios compartan el mismo servidor de base de datos, no pueden ver los datos de los demás.
+- **Modo demo**: puedes activar un botón en la interfaz para cambiar a datos de demostración en memoria. No hace falta una base de datos para explorar la aplicación.
 
-## Esquema Postgres creado para desarrolladores
+## Esquema de Postgres pensado para desarrolladores
 
-Todo el esquema cabe en tu cabeza:
+El esquema entero cabe en la cabeza:
 
-- `ledger_entries`: una fila por movimiento de cuenta (la tabla principal)
-- `budget_lines`: plan presupuestario de solo agregar (la última escritura gana por celda)
-- `budget_comments` — notas sobre celdas de presupuesto
-- `exchange_rates`: tipos de cambio diarios (globales, sin control de acceso)
-- `workspace_settings`: moneda de informe por espacio de trabajo
+- `ledger_entries` — una fila por movimiento de cuenta, la tabla principal
+- `budget_lines` — plan presupuestario de solo inserción, donde en cada celda prevalece la última escritura
+- `budget_comments` — notas sobre celdas del presupuesto
+- `exchange_rates` — tipos de cambio diarios, globales y sin control de acceso
+- `workspace_settings` — moneda de referencia por espacio de trabajo
 - `account_metadata` — clasificación de liquidez
-- `accounts`: una VISTA derivada de `ledger_entries`
+- `accounts` — una VIEW derivada de `ledger_entries`
 
-Sin ORM. Sin marco de migración. Archivos SQL recién numerados en `db/migrations/` aplicados mediante un script de shell. Puede leer cada migración, comprender cada tabla y escribir consultas directamente en el esquema.
+Sin ORM. Sin framework de migraciones. Solo archivos SQL numerados en `db/migrations/`, aplicados mediante un script de shell. Puedes leer cada migración, entender cada tabla y escribir consultas directamente contra el esquema.
 
-Los cambios de esquema pasan por migraciones. La función de base de datos `app` (utilizada por la aplicación web) tiene privilegios limitados: no puede crear tablas ni modificar esquemas. La función `tracker` (utilizada únicamente por el script de migración) maneja DDL. Este es el tipo de separación de preocupaciones que se esperaría en un sistema de producción.
+Los cambios del esquema pasan por migraciones. El rol de base de datos `app`, que usa la aplicación web, tiene privilegios limitados: no puede crear tablas ni modificar el esquema. El rol `tracker`, que solo utiliza el script de migración, se encarga del DDL. Es la clase de separación de responsabilidades que esperarías en un sistema de producción.
 
-## ¿Por qué los desarrolladores alojan ellos mismos sus datos financieros?
+## Por qué los desarrolladores alojan sus datos financieros por su cuenta
 
-Ya tienes las habilidades para ejecutar esto. Entiendes Docker, Postgres y AWS (o cualquier nube que prefieras). La pregunta es si los beneficios justifican el esfuerzo.
+Ya tienes las habilidades necesarias para ejecutar esto. Entiendes Docker, Postgres y AWS, o la nube que prefieras. La cuestión es si las ventajas compensan el esfuerzo.
 
-**Propiedad total de los datos**: sus datos de finanzas personales nunca abandonan su infraestructura. Ningún incumplimiento de terceros le afecta. No hay políticas de privacidad para leer. No se venden análisis sobre sus hábitos de gasto a los anunciantes.
+**Control total sobre los datos**: tus datos de finanzas personales nunca salen de tu infraestructura. No te afecta ninguna brecha de un tercero. No hay políticas de privacidad interminables que leer. Nadie vende a anunciantes análisis sobre tus hábitos de gasto.
 
-**Personalización**: agregue columnas al esquema, cree informes personalizados con SQL sin procesar y conéctelo a sus herramientas existentes. ¿Quieres un bot de Telegram que informe los gastos diarios? Escriba un script que llame a la API SQL. ¿Quieres visualizar datos en Grafana? Apunte a la base de datos Postgres. El código es tuyo para modificarlo.
+**Personalización**: puedes añadir columnas al esquema, crear informes con SQL puro y conectarlo a tus herramientas habituales. ¿Quieres un bot de Telegram que te informe del gasto diario? Escribes un script que llame a la API SQL. ¿Quieres visualizar los datos en Grafana? Apuntas a la base de datos Postgres. El código es tuyo y puedes modificarlo como quieras.
 
-**Sin dependencia del proveedor**: si deja de usar la interfaz de usuario web, sus datos seguirán en una base de datos estándar Postgres. Exportarlo con `pg_dump`, consultarlo desde cualquier cliente SQL o migrarlo a algo completamente distinto.
+**Sin dependencia del proveedor**: si dejas de usar la interfaz web, tus datos siguen en una base de datos Postgres estándar. Puedes exportarlos con `pg_dump`, consultarlos desde cualquier cliente SQL o migrarlos a otra cosa cuando quieras.
 
-**Aprendizaje**: el código base es un ejemplo del mundo real de Next.js + Postgres + Docker + AWS CDK + Seguridad de nivel de fila + autenticación de clave API + integración de herramientas de IA. Si está creando un producto SaaS, encontrará patrones que vale la pena robar.
+**Aprendizaje**: la base de código es un ejemplo real de Next.js + Postgres + Docker + AWS CDK + Row Level Security + autenticación con claves API + integración de herramientas de IA. Si estás construyendo un producto SaaS, aquí hay patrones que merece la pena tomar prestados.
 
-## Comience con el rastreador de presupuestos de código abierto
+## Empieza con el rastreador de presupuesto de código abierto
 
 ```bash
 git clone https://github.com/kirill-markin/expense-budget-tracker.git
@@ -127,10 +127,10 @@ cd expense-budget-tracker
 make up
 ```
 
-Abra `http://localhost:3000`. Ingrese su primera transacción. Configure un presupuesto para el mes actual. Si desea realizar la prueba sin una base de datos, haga clic en el botón Demostración en el encabezado para cambiar a datos de muestra en memoria.
+Abre `http://localhost:3000`. Introduce tu primera transacción. Configura un presupuesto para el mes actual. Si quieres probarlo sin base de datos, haz clic en el botón Demo del encabezado para cambiar a datos de ejemplo en memoria.
 
-Cuando esté listo para la producción, siga la [guía de implementación AWS](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) o adapte la configuración de Docker Compose para su propia infraestructura.
+Cuando quieras llevarlo a producción, sigue la [guía de despliegue en AWS](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) o adapta la configuración de Docker Compose a tu propia infraestructura.
 
-El repositorio está en [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker). Inicie, bifurque o simplemente lea el código. Tiene licencia del MIT; úselo como quiera.
+El repositorio está en [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker). Puedes marcarlo con una estrella, bifurcarlo o simplemente leer el código. Tiene licencia MIT, así que úsalo como te convenga.
 
-Si ya administra servidores y bases de datos para el trabajo, ejecutar la misma pila para sus finanzas personales es un pequeño paso y obtendrá control total sobre los datos.
+Si ya administras servidores y bases de datos en el trabajo, usar la misma pila para tus finanzas personales es un paso pequeño a cambio de obtener control total sobre tus datos.
