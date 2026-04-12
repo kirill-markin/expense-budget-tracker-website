@@ -2,7 +2,7 @@ import {
   DEFAULT_LOCALE,
   SITE_URL,
   type AppLocale,
-  type PrefixedLocale,
+  isPrefixedLocale,
 } from "@/lib/i18n/config";
 
 interface ResolvedPagePath {
@@ -73,9 +73,9 @@ export function getResolvedPagePath(pagePath: string): ResolvedPagePath | null {
     return null;
   }
 
-  if (firstSegment === "es") {
+  if (isPrefixedLocale(firstSegment)) {
     return {
-      locale: firstSegment satisfies PrefixedLocale,
+      locale: firstSegment,
       pagePath: remainingSegments.join("/"),
     };
   }

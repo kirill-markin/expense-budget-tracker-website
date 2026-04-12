@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { getAvailableBlogIndexLocales } from "@/lib/blog";
+import { getAvailableDocIndexLocales, getAvailableDocLocales } from "@/lib/docs";
 import type { AppLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
 import { getLocalizedPath } from "@/lib/i18n/routing";
@@ -11,6 +13,9 @@ interface FooterProps {
 export const Footer = ({ locale }: FooterProps): React.JSX.Element => {
   const year = new Date().getFullYear();
   const messages = getSiteMessages(locale);
+  const hasDocsIndex = getAvailableDocIndexLocales().includes(locale);
+  const hasBlogIndex = getAvailableBlogIndexLocales().includes(locale);
+  const hasSelfHostingDoc = getAvailableDocLocales("self-hosting").includes(locale);
 
   return (
     <footer className={styles.footer}>
@@ -24,12 +29,16 @@ export const Footer = ({ locale }: FooterProps): React.JSX.Element => {
             <Link href={getLocalizedPath(locale, "/pricing/")}>
               {messages.header.pricing}
             </Link>
-            <Link href={getLocalizedPath(locale, "/docs/")}>
-              {messages.footer.documentation}
-            </Link>
-            <Link href={getLocalizedPath(locale, "/blog/")}>
-              {messages.header.blog}
-            </Link>
+            {hasDocsIndex ? (
+              <Link href={getLocalizedPath(locale, "/docs/")}>
+                {messages.footer.documentation}
+              </Link>
+            ) : null}
+            {hasBlogIndex ? (
+              <Link href={getLocalizedPath(locale, "/blog/")}>
+                {messages.header.blog}
+              </Link>
+            ) : null}
           </div>
           <div className={styles.column}>
             <h3>{messages.footer.openSourceTitle}</h3>
@@ -40,9 +49,11 @@ export const Footer = ({ locale }: FooterProps): React.JSX.Element => {
             >
               GitHub
             </a>
-            <Link href={getLocalizedPath(locale, "/docs/self-hosting/")}>
-              {messages.footer.selfHostingGuide}
-            </Link>
+            {hasSelfHostingDoc ? (
+              <Link href={getLocalizedPath(locale, "/docs/self-hosting/")}>
+                {messages.footer.selfHostingGuide}
+              </Link>
+            ) : null}
           </div>
           <div className={styles.column}>
             <h3>{messages.footer.legalTitle}</h3>

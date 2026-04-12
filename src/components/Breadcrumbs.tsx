@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { AppLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
-import { getAbsoluteUrl } from "@/lib/i18n/routing";
+import { getAbsoluteUrl, getLocalizedPath } from "@/lib/i18n/routing";
 import styles from "./Breadcrumbs.module.css";
 
 interface BreadcrumbItem {
@@ -17,7 +17,7 @@ interface BreadcrumbsProps {
 export function Breadcrumbs({ locale, items }: BreadcrumbsProps): React.JSX.Element {
   const messages = getSiteMessages(locale);
   const allItems: ReadonlyArray<BreadcrumbItem> = [
-    { label: messages.breadcrumbs.home, href: locale === "es" ? "/es/" : "/" },
+    { label: messages.breadcrumbs.home, href: getLocalizedPath(locale, "/") },
     ...items,
   ];
 

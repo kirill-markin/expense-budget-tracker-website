@@ -1,7 +1,10 @@
 import { existsSync, readFileSync } from "fs";
 import matter from "gray-matter";
 import { STRUCTURED_PAGE_CONTENT } from "@/content/pageRegistry";
-import type { AppLocale } from "@/lib/i18n/config";
+import {
+  SUPPORTED_LOCALES,
+  type AppLocale,
+} from "@/lib/i18n/config";
 import {
   getLocalizedPath,
   getResolvedPagePath,
@@ -27,16 +30,6 @@ import type {
   PricingTiersSection,
   SimpleMarkdownPageSection,
 } from "./types";
-
-const MARKETING_PAGE_LOCALES: Readonly<
-  Record<MarketingPageSlug, ReadonlyArray<AppLocale>>
-> = {
-  home: ["en", "es"],
-  features: ["en", "es"],
-  pricing: ["en", "es"],
-  privacy: ["en", "es"],
-  terms: ["en", "es"],
-};
 
 export const MARKETING_PAGE_SLUGS: ReadonlyArray<MarketingPageSlug> = [
   "home",
@@ -314,6 +307,10 @@ export function getMarketingPageSourcePath(
   slug: MarketingPageSlug,
   locale: AppLocale
 ): string {
+  if (!getAvailableLocalesForMarketingPage(slug).includes(locale)) {
+    throw new Error(`Missing source file for page ${slug} locale ${locale}`);
+  }
+
   if (slug in STRUCTURED_PAGE_CONTENT) {
     return getStructuredMarketingPageSourcePath(
       slug as StructuredMarketingPageSlug,
@@ -324,10 +321,32 @@ export function getMarketingPageSourcePath(
   return getMarkdownPageFilePath(slug as MarkdownBackedPageSlug, locale);
 }
 
+function getAvailableLocalesForStructuredMarketingPage(
+  slug: StructuredMarketingPageSlug
+): ReadonlyArray<AppLocale> {
+  return SUPPORTED_LOCALES.filter(
+    (locale) => STRUCTURED_PAGE_CONTENT[slug][locale] !== undefined
+  );
+}
+
+function getAvailableLocalesForMarkdownBackedPage(
+  slug: MarkdownBackedPageSlug
+): ReadonlyArray<AppLocale> {
+  return SUPPORTED_LOCALES.filter((locale) =>
+    existsSync(getMarkdownPageFilePath(slug, locale))
+  );
+}
+
 export function getAvailableLocalesForMarketingPage(
   slug: MarketingPageSlug
 ): ReadonlyArray<AppLocale> {
-  return MARKETING_PAGE_LOCALES[slug];
+  if (slug in STRUCTURED_PAGE_CONTENT) {
+    return getAvailableLocalesForStructuredMarketingPage(
+      slug as StructuredMarketingPageSlug
+    );
+  }
+
+  return getAvailableLocalesForMarkdownBackedPage(slug as MarkdownBackedPageSlug);
 }
 
 export function getMarketingPageRouteFromPath(
@@ -369,15 +388,13 @@ export function listMarketingPagePaths(locale: AppLocale): ReadonlyArray<string>
 }
 
 export function listAllMarketingPagePaths(): ReadonlyArray<string> {
-  return Object.values(MARKETING_PAGE_LOCALES)
-    .flatMap((_locales, index) => {
-      const slug = MARKETING_PAGE_SLUGS[index];
-      return getAvailableLocalesForMarketingPage(slug).map((locale) =>
-        getPagePathFromRoutePath(
-          getLocalizedPath(locale, getMarketingPageRoutePath(slug))
-        )
-      );
-    });
+  return MARKETING_PAGE_SLUGS.flatMap((slug) =>
+    getAvailableLocalesForMarketingPage(slug).map((locale) =>
+      getPagePathFromRoutePath(
+        getLocalizedPath(locale, getMarketingPageRoutePath(slug))
+      )
+    )
+  );
 }
 
 export function readPageContent(

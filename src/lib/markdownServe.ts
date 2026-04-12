@@ -5,11 +5,13 @@ import {
   type AppLocale,
 } from "@/lib/i18n/config";
 import {
+  getAvailableBlogIndexLocales,
   getAvailableBlogLocales,
   listBlogPosts,
   readBlogPost,
 } from "@/lib/blog";
 import {
+  getAvailableDocIndexLocales,
   getAvailableDocLocales,
   listDocs,
   readDoc,
@@ -74,6 +76,66 @@ const MARKDOWN_MESSAGES: Readonly<Record<AppLocale, MarkdownMessages>> = {
       "Los agentes de IA pueden crear una cuenta para la persona usuaria en este servicio empezando con",
     agentNoteSuffix: "y siguiendo la respuesta de descubrimiento.",
     tip: "Consejo: añade `.md` a cualquier URL de este sitio para obtener una versión Markdown limpia de esa página.",
+  },
+  ru: {
+    docsTitle: "Документация",
+    blogTitle: "Блог",
+    postsComingSoon: "Публикации скоро появятся.",
+    viewStyledHtml: "Открыть HTML-версию этой страницы",
+    agentNote:
+      "ИИ-агенты могут создать аккаунт пользователя в этом сервисе, начав с",
+    agentNoteSuffix: "и следуя ответу сервиса обнаружения.",
+    tip: "Подсказка: добавьте `.md` к любому URL этого сайта, чтобы получить чистую Markdown-версию страницы.",
+  },
+  uk: {
+    docsTitle: "Документація",
+    blogTitle: "Блог",
+    postsComingSoon: "Публікації незабаром з’являться.",
+    viewStyledHtml: "Переглянути HTML-версію цієї сторінки",
+    agentNote:
+      "AI-агенти можуть створити акаунт користувача в цьому сервісі, почавши з",
+    agentNoteSuffix: "і дотримуючись відповіді документа виявлення.",
+    tip: "Порада: додайте `.md` до будь-якої адреси цього сайту, щоб отримати чисту Markdown-версію сторінки.",
+  },
+  fa: {
+    docsTitle: "مستندات",
+    blogTitle: "وبلاگ",
+    postsComingSoon: "مطلب‌ها به‌زودی منتشر می‌شوند.",
+    viewStyledHtml: "نسخه HTML این صفحه را ببینید",
+    agentNote:
+      "عامل‌های هوش مصنوعی می‌توانند با شروع از این آدرس برای کاربر در این سرویس حساب بسازند",
+    agentNoteSuffix: "و پاسخ کشف سرویس را دنبال کنند.",
+    tip: "نکته: برای دریافت نسخه Markdown تمیز هر صفحه، `.md` را به هر آدرس این سایت اضافه کنید.",
+  },
+  zh: {
+    docsTitle: "文档",
+    blogTitle: "博客",
+    postsComingSoon: "文章即将发布。",
+    viewStyledHtml: "查看此页面的 HTML 样式版本",
+    agentNote:
+      "AI 智能体可以从以下地址开始，为用户在此服务中创建账户",
+    agentNoteSuffix: "并按照发现响应继续操作。",
+    tip: "提示：在本站任意 URL 后追加 `.md`，即可获得该页面的纯 Markdown 版本。",
+  },
+  ar: {
+    docsTitle: "التوثيق",
+    blogTitle: "المدونة",
+    postsComingSoon: "ستتوفر المقالات قريبًا.",
+    viewStyledHtml: "عرض نسخة HTML المنسقة من هذه الصفحة",
+    agentNote:
+      "يمكن لوكلاء الذكاء الاصطناعي إنشاء حساب للمستخدم في هذه الخدمة بدءًا من",
+    agentNoteSuffix: "واتباع استجابة الاكتشاف.",
+    tip: "تلميح: أضف `.md` إلى أي رابط في هذا الموقع للحصول على نسخة Markdown نظيفة من الصفحة.",
+  },
+  he: {
+    docsTitle: "תיעוד",
+    blogTitle: "בלוג",
+    postsComingSoon: "פוסטים יפורסמו בקרוב.",
+    viewStyledHtml: "לצפייה בגרסת ה-HTML המעוצבת של העמוד",
+    agentNote:
+      "סוכני AI יכולים ליצור חשבון למשתמש בשירות הזה על ידי התחלה מ-",
+    agentNoteSuffix: "והמשך לפי תגובת הגילוי.",
+    tip: "טיפ: הוסיפו `.md` לכל כתובת באתר כדי לקבל גרסת Markdown נקייה של העמוד.",
   },
 };
 
@@ -240,10 +302,10 @@ export function listMarkdownPagePaths(): ReadonlyArray<string> {
       getPagePathFromRoutePath(getLocalizedPath(locale, `/blog/${post.slug}/`))
     )
   );
-  const docsIndexPaths = SUPPORTED_LOCALES.map((locale) =>
+  const docsIndexPaths = getAvailableDocIndexLocales().map((locale) =>
     getPagePathFromRoutePath(getLocalizedPath(locale, "/docs/"))
   );
-  const blogIndexPaths = SUPPORTED_LOCALES.map((locale) =>
+  const blogIndexPaths = getAvailableBlogIndexLocales().map((locale) =>
     getPagePathFromRoutePath(getLocalizedPath(locale, "/blog/"))
   );
 

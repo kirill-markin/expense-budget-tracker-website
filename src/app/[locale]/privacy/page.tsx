@@ -1,11 +1,35 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import {
   getMarketingPageMetadata,
   MarketingPage,
 } from "@/components/pages/MarketingPage";
+import { isPrefixedLocale } from "@/lib/i18n/config";
 
-export const metadata: Metadata = getMarketingPageMetadata("es", "privacy");
+interface PageProps {
+  readonly params: Promise<{ locale: string }>;
+}
 
-export default function LocalizedPrivacyPage(): Promise<React.JSX.Element> {
-  return MarketingPage({ locale: "es", slug: "privacy" });
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!isPrefixedLocale(locale)) {
+    return { title: "Not Found" };
+  }
+
+  return getMarketingPageMetadata(locale, "privacy");
+}
+
+export default async function LocalizedPrivacyPage(
+  props: PageProps
+): Promise<React.JSX.Element> {
+  const { locale } = await props.params;
+
+  if (!isPrefixedLocale(locale)) {
+    notFound();
+  }
+
+  return MarketingPage({ locale, slug: "privacy" });
 }

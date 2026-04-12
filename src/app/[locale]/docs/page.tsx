@@ -1,42 +1,69 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { listDocs } from "@/lib/docs";
+import { getAvailableDocIndexLocales, listDocs } from "@/lib/docs";
+import { isPrefixedLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
+import { getLocalizedPath } from "@/lib/i18n/routing";
 import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "@/app/(default)/docs/page.module.css";
 
-const PAGE_COPY = {
-  title: "Documentación",
-  description:
-    "Primeros pasos, guía de autoalojamiento, referencia de API y resumen de la arquitectura.",
-};
+interface PageProps {
+  readonly params: Promise<{ locale: string }>;
+}
 
-export const metadata: Metadata = createPageMetadata({
-  title: PAGE_COPY.title,
-  description: PAGE_COPY.description,
-  locale: "es",
-  routePath: "/docs/",
-  openGraphType: "website",
-  availableLocales: ["en", "es"],
-});
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { locale } = await params;
 
-export default function LocalizedDocsPage(): React.JSX.Element {
-  const docs = listDocs("es");
-  const messages = getSiteMessages("es");
+  if (!isPrefixedLocale(locale)) {
+    return { title: "Not Found" };
+  }
+
+  const pageCopy = getSiteMessages(locale).docs;
+
+  return createPageMetadata({
+    title: pageCopy.title,
+    description: pageCopy.description,
+    locale,
+    routePath: "/docs/",
+    openGraphType: "website",
+    availableLocales: getAvailableDocIndexLocales(),
+  });
+}
+
+export default async function LocalizedDocsPage(
+  props: PageProps
+): Promise<React.JSX.Element> {
+  const { locale } = await props.params;
+
+  if (!isPrefixedLocale(locale)) {
+    notFound();
+  }
+
+  const docs = listDocs(locale);
+  const messages = getSiteMessages(locale);
+  const pageCopy = messages.docs;
 
   return (
     <div className={styles.container}>
       <Breadcrumbs
-        locale="es"
-        items={[{ label: messages.breadcrumbs.docs, href: "/es/docs/" }]}
+        locale={locale}
+        items={[
+          {
+            label: messages.breadcrumbs.docs,
+            href: getLocalizedPath(locale, "/docs/"),
+          },
+        ]}
       />
-      <h1 className={styles.title}>{PAGE_COPY.title}</h1>
+      <h1 className={styles.title}>{pageCopy.title}</h1>
       <div className={styles.grid}>
         {docs.map((doc) => (
           <Link
             key={doc.slug}
-            href={`/es/docs/${doc.slug}/`}
+            href={getLocalizedPath(locale, `/docs/${doc.slug}/`)}
             className={styles.card}
           >
             <h2>{doc.title}</h2>

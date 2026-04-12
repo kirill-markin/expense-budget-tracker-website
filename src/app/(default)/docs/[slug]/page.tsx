@@ -7,8 +7,11 @@ import {
   readDocContent,
 } from "@/lib/docs";
 import { getSiteMessages } from "@/lib/i18n/messages";
+import { getLocalizedPath } from "@/lib/i18n/routing";
 import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
+
+const LOCALE = "en";
 
 export const dynamicParams = false;
 
@@ -23,7 +26,7 @@ export const generateMetadata = async ({
   params,
 }: PageProps): Promise<Metadata> => {
   const { slug } = await params;
-  const doc = await readDocContent(slug, "en");
+  const doc = await readDocContent(slug, LOCALE);
 
   if (doc === null) {
     return { title: "Not Found" };
@@ -32,7 +35,7 @@ export const generateMetadata = async ({
   return createPageMetadata({
     title: doc.title,
     description: doc.description,
-    locale: "en",
+    locale: LOCALE,
     routePath: `/docs/${slug}/`,
     openGraphType: "website",
     availableLocales: getAvailableDocLocales(slug),
@@ -43,21 +46,21 @@ export default async function DocPage(
   props: PageProps
 ): Promise<React.JSX.Element> {
   const { slug } = await props.params;
-  const doc = await readDocContent(slug, "en");
+  const doc = await readDocContent(slug, LOCALE);
 
   if (doc === null) {
     notFound();
   }
 
-  const messages = getSiteMessages("en");
+  const messages = getSiteMessages(LOCALE);
 
   return (
     <div className={styles.container}>
       <Breadcrumbs
-        locale="en"
+        locale={LOCALE}
         items={[
-          { label: messages.breadcrumbs.docs, href: "/docs/" },
-          { label: doc.title, href: `/docs/${slug}/` },
+          { label: messages.breadcrumbs.docs, href: getLocalizedPath(LOCALE, "/docs/") },
+          { label: doc.title, href: getLocalizedPath(LOCALE, `/docs/${slug}/`) },
         ]}
       />
       <h1 className={styles.title}>{doc.title}</h1>

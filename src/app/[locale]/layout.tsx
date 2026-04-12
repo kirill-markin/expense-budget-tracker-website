@@ -8,6 +8,7 @@ import { JsonLdSchema } from "@/components/JsonLdSchema";
 import {
   PREFIXED_LOCALES,
   getHtmlLang,
+  getTextDirection,
   isPrefixedLocale,
   type PrefixedLocale,
 } from "@/lib/i18n/config";
@@ -35,7 +36,10 @@ export default async function LocaleLayout(
   }
 
   return (
-    <RootDocument lang={getHtmlLang(locale)}>
+    <RootDocument
+      lang={getHtmlLang(locale)}
+      dir={getTextDirection(locale)}
+    >
       <JsonLdSchema locale={locale} />
       <Header locale={locale} />
       <main lang={getHtmlLang(locale)}>{props.children}</main>

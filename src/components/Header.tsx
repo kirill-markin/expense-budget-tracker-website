@@ -32,7 +32,7 @@ export const Header = ({ locale }: HeaderProps): React.JSX.Element => {
           <AuthButton locale={locale} />
         </div>
 
-        <HeaderMobileMenu locale={locale} />
+        <HeaderMobileMenu locale={locale} headerLinks={headerLinks} />
       </div>
     </header>
   );
