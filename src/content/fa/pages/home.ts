@@ -2,9 +2,9 @@ import type { PageContent } from "@/lib/content/types";
 
 export const HOME_PAGE_CONTENT_FA: PageContent = {
   locale: "fa",
-  title: "Expense Budget Tracker - مدیریت مالی شخصی متن‌باز",
+  title: "Expense Budget Tracker - ابزار متن‌باز مدیریت مالی شخصی",
   description:
-    "ردیاب متن‌باز هزینه و بودجه با پشتیبانی چندارزی، داشبوردهای مالی و راه‌اندازی بومی برای Claude Code، Codex و OpenClaw.",
+    "ابزار متن‌باز ثبت هزینه و مدیریت بودجه با پشتیبانی چندارزی، داشبوردهای مالی و راه‌اندازی بومی برای ایجنت‌ها در Claude Code، Codex و OpenClaw.",
   slug: "home",
   sections: [
     {
@@ -15,7 +15,7 @@ export const HOME_PAGE_CONTENT_FA: PageContent = {
         "مالک داده‌های خود بمانید.",
       ],
       subtitle:
-        "ردیاب متن‌باز مالی شخصی با پشتیبانی چندارزی، برنامه‌ریزی بودجه، داشبوردهای مالی و راه‌اندازی بومی برای عامل‌ها. کافی است یک discovery URL به Claude Code، Codex یا OpenClaw بدهید، کد ایمیل را تایید کنید و بقیه کار را به عامل بسپارید.",
+        "ابزار متن‌باز مدیریت مالی شخصی با پشتیبانی چندارزی، برنامه‌ریزی بودجه، داشبوردهای مالی و راه‌اندازی بومی برای ایجنت‌ها. کافی است یک نشانی اکتشاف API را به Claude Code، Codex یا OpenClaw بدهید، کد تایید ایمیل را وارد کنید و بقیه کار را به ایجنت بسپارید.",
       primaryLink: {
         label: "شروع کنید",
         href: "https://app.expense-budget-tracker.com",
@@ -24,7 +24,7 @@ export const HOME_PAGE_CONTENT_FA: PageContent = {
         label: "مشاهده در GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "با GET روی این نشانی کشف شروع کنید:",
+      hintText: "برای شروع، یک درخواست GET به این نشانی اکتشاف بفرستید:",
       hintLink: {
         label: "https://api.expense-budget-tracker.com/v1/",
         href: "https://api.expense-budget-tracker.com/v1/",
@@ -32,39 +32,39 @@ export const HOME_PAGE_CONTENT_FA: PageContent = {
     },
     {
       type: "feature_list",
-      title: "امکانات",
+      title: "ویژگی‌ها",
       intro:
-        "همه چیزهایی که برای مدیریت مالی شخصی لازم دارید، بدون از دست دادن کنترل روی داده‌هایتان.",
+        "هر آنچه برای مدیریت مالی شخصی نیاز دارید، بدون اینکه کنترل داده‌هایتان را از دست بدهید.",
       items: [
         {
           title: "چندارزی",
           description:
-            "حساب‌ها را در هر ارزی مدیریت کنید. تبدیل خودکار با نرخ‌های ECB، CBR و NBS.",
+            "حساب‌ها را با هر ارزی ثبت و پیگیری کنید. تبدیل خودکار ارز با نرخ‌های ECB، CBR و NBS انجام می‌شود.",
         },
         {
           title: "برنامه‌ریزی بودجه",
           description:
-            "جدول ماهانه بودجه با دسته‌بندی درآمد و هزینه. برنامه را با واقعیت مقایسه کنید.",
+            "جدول ماهانه بودجه با دسته‌بندی‌های درآمد و هزینه. مقدار برنامه‌ریزی‌شده را با مقدار واقعی مقایسه کنید.",
         },
         {
           title: "داشبوردها",
           description:
-            "نمای دیداری از هزینه‌ها، روند مانده‌ها و اثر نرخ ارز بر سبد مالی شما.",
+            "نمایی بصری از هزینه‌ها، روند مانده حساب‌ها در طول زمان و اثر نوسان ارز بر سبد دارایی شما.",
         },
         {
-          title: "میزبانی شخصی",
+          title: "استقرار روی سرور خودتان",
           description:
-            "Docker Compose با Postgres. داده‌های شما روی سرور خودتان می‌ماند.",
+            "با Docker Compose و Postgres اجرا می‌شود. داده‌های شما روی سرور خودتان می‌ماند و به سرویس‌های شخص ثالث وابسته نیست.",
         },
         {
-          title: "API بومی برای عامل‌ها",
+          title: "API بومی برای ایجنت‌ها",
           description:
-            "یک discovery URL را با Claude Code، Codex یا OpenClaw به اشتراک بگذارید. عامل ایمیل را می‌گیرد، کد ۸ رقمی را تایید می‌کند، ApiKey خودش را می‌سازد و کار را شروع می‌کند.",
+            "یک نشانی اکتشاف API را با Claude Code، Codex یا OpenClaw به اشتراک بگذارید. ایجنت ایمیل شما را می‌پرسد، کد ۸ رقمی را تایید می‌کند، ApiKey خودش را می‌سازد، اطلاعات حساب را بارگذاری می‌کند، یک فضای کاری را انتخاب می‌کند و شروع به کار می‌کند.",
         },
         {
-          title: "جداسازی workspace",
+          title: "جداسازی فضای کاری",
           description:
-            "Row-level security در Postgres. هر کاربر workspace ایزوله خودش را دارد و دسترسی از طریق دعوت‌نامه‌ها به اشتراک گذاشته می‌شود.",
+            "در Postgres از Row-level Security استفاده می‌شود. هر کاربر یک فضای کاری ایزوله دارد و می‌تواند دسترسی را از طریق دعوت‌نامه با دیگران به اشتراک بگذارد.",
         },
       ],
     },

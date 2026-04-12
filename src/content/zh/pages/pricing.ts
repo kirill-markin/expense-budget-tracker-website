@@ -3,13 +3,13 @@ import type { PageContent } from "@/lib/content/types";
 export const PRICING_PAGE_CONTENT_ZH: PageContent = {
   locale: "zh",
   title: "价格",
-  description: "可免费自托管，也可使用托管云版本。开源，无功能阉割。",
+  description: "可免费自行托管，也可使用云端托管服务。开源，不设功能限制。",
   slug: "pricing",
   sections: [
     {
       type: "pricing_tiers",
       title: "价格",
-      intro: "所有方案都包含全部功能，没有 feature gating。",
+      intro: "所有方案都包含全部功能，没有任何功能限制。",
       tiers: [
         {
           type: "link_tier",
@@ -17,9 +17,9 @@ export const PRICING_PAGE_CONTENT_ZH: PageContent = {
           price: "免费",
           highlighted: false,
           bullets: [
-            "完整源代码托管在 GitHub",
+            "GitHub 提供完整源代码",
             "Docker Compose + Postgres",
-            "全部功能可用",
+            "包含全部功能",
             "你的服务器，你的数据",
             "社区支持",
           ],
@@ -30,14 +30,14 @@ export const PRICING_PAGE_CONTENT_ZH: PageContent = {
         },
         {
           type: "auth_tier",
-          name: "Cloud",
-          price: "测试期免费",
+          name: "云端托管",
+          price: "测试阶段免费",
           highlighted: true,
           bullets: [
-            "托管在 AWS",
+            "AWS 托管部署",
             "自动备份",
-            "全部功能可用",
-            "邮箱 OTP 登录",
+            "包含全部功能",
+            "邮箱一次性验证码登录",
             "每日汇率更新",
           ],
           cta: {

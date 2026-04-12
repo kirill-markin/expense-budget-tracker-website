@@ -4,18 +4,18 @@ export const HOME_PAGE_CONTENT_ES: PageContent = {
   locale: "es",
   title: "Expense Budget Tracker - Finanzas personales de código abierto",
   description:
-    "Gestor open source de gastos y presupuestos con soporte multimoneda, paneles financieros y onboarding nativo para agentes con Claude Code, Codex y OpenClaw.",
+    "Gestor de gastos y presupuestos de código abierto con soporte para múltiples divisas, paneles financieros y configuración nativa para agentes con Claude Code, Codex y OpenClaw.",
   slug: "home",
   sections: [
     {
       type: "hero",
       titleLines: [
-        "Controla gastos.",
+        "Registra gastos.",
         "Planifica presupuestos.",
-        "Tus datos son tuyos.",
+        "Tus datos, bajo tu control.",
       ],
       subtitle:
-        "Gestor open source de finanzas personales con soporte multimoneda, planificación presupuestaria, paneles financieros y configuración nativa para agentes. Dale a Claude Code, Codex u OpenClaw una sola URL de descubrimiento API, confirma el código enviado al correo y deja que el agente haga el resto.",
+        "Gestor de finanzas personales de código abierto con soporte para múltiples divisas, planificación presupuestaria, paneles financieros y configuración nativa para agentes. Dale a Claude Code, Codex u OpenClaw una única URL de descubrimiento de la API, confirma el código que recibes por correo y deja que el agente se encargue del resto.",
       primaryLink: {
         label: "Empezar",
         href: "https://app.expense-budget-tracker.com",
@@ -32,24 +32,24 @@ export const HOME_PAGE_CONTENT_ES: PageContent = {
     },
     {
       type: "feature_list",
-      title: "Funciones",
+      title: "Características",
       intro:
-        "Todo lo que necesitas para gestionar tus finanzas personales sin renunciar al control de tus datos.",
+        "Todo lo que necesitas para gestionar tus finanzas personales sin ceder el control de tus datos.",
       items: [
         {
-          title: "Multimoneda",
+          title: "Multidivisa",
           description:
-            "Gestiona cuentas en cualquier divisa. Conversión automática con tipos de cambio de ECB, CBR y NBS.",
+            "Lleva cuentas en cualquier divisa. Conversión automática con tipos de cambio del BCE, CBR y NBS.",
         },
         {
-          title: "Planificación de presupuestos",
+          title: "Planificación presupuestaria",
           description:
-            "Cuadrícula presupuestaria mensual con categorías de ingresos y gastos. Compara lo planificado con lo real.",
+            "Cuadrícula mensual de presupuesto con categorías de ingresos y gastos. Compara lo presupuestado con lo real.",
         },
         {
-          title: "Paneles",
+          title: "Paneles financieros",
           description:
-            "Desgloses visuales de gastos, saldos a lo largo del tiempo e impacto del tipo de cambio en tu cartera.",
+            "Desgloses visuales de gastos, evolución de saldos e impacto del tipo de cambio en tu cartera.",
         },
         {
           title: "Autoalojado",
@@ -59,12 +59,12 @@ export const HOME_PAGE_CONTENT_ES: PageContent = {
         {
           title: "API nativa para agentes",
           description:
-            "Comparte una única URL de descubrimiento con Claude Code, Codex u OpenClaw. El agente pide tu correo, verifica el código de 8 dígitos, crea su propia ApiKey, carga el contexto de cuentas, selecciona un workspace y empieza a trabajar.",
+            "Comparte una única URL de descubrimiento con Claude Code, Codex u OpenClaw. El agente te pide el correo, verifica el código de 8 dígitos, crea su propia ApiKey, carga el contexto de las cuentas, selecciona un espacio de trabajo y empieza a trabajar.",
         },
         {
-          title: "Aislamiento por workspace",
+          title: "Aislamiento por espacio de trabajo",
           description:
-            "Seguridad a nivel de fila en Postgres. Cada usuario obtiene un workspace aislado. Comparte acceso mediante invitaciones.",
+            "Seguridad a nivel de fila en Postgres. Cada usuario tiene un espacio de trabajo aislado. Comparte acceso mediante invitaciones.",
         },
       ],
     },

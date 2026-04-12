@@ -4,27 +4,27 @@ export const HOME_PAGE_CONTENT_HE: PageContent = {
   locale: "he",
   title: "Expense Budget Tracker - ניהול כספים אישי בקוד פתוח",
   description:
-    "מעקב הוצאות ותקציב בקוד פתוח עם תמיכה בריבוי מטבעות, דשבורדים פיננסיים וחיבור מובנה לסוכני Claude Code, Codex ו-OpenClaw.",
+    "כלי קוד פתוח למעקב אחר הוצאות ולתכנון תקציב, עם תמיכה בריבוי מטבעות, לוחות מחוונים פיננסיים ותהליך הגדרה מותאם לסוכנים כמו Claude Code, Codex ו-OpenClaw.",
   slug: "home",
   sections: [
     {
       type: "hero",
       titleLines: [
-        "עקבו אחרי הוצאות.",
-        "תכננו תקציב.",
-        "שמרו את הנתונים אצלכם.",
+        "עקבו אחר הוצאות.",
+        "תכננו תקציבים.",
+        "שמרו על הנתונים שלכם.",
       ],
       subtitle:
-        "כלי קוד פתוח לניהול כספים אישיים עם תמיכה בריבוי מטבעות, תכנון תקציב, דשבורדים פיננסיים והתחברות מובנית לסוכנים. תנו ל-Claude Code, Codex או OpenClaw כתובת discovery אחת, אשרו את הקוד מהאימייל ותנו לסוכן להשלים את השאר.",
+        "כלי קוד פתוח לניהול כספים אישיים עם תמיכה בריבוי מטבעות, תכנון תקציב, לוחות מחוונים פיננסיים ותהליך הגדרה מותאם לסוכנים. תנו ל-Claude Code, ל-Codex או ל-OpenClaw כתובת גילוי אחת של ה-API, אשרו את הקוד שנשלח באימייל, ותנו לסוכן לטפל בכל השאר.",
       primaryLink: {
         label: "התחילו",
         href: "https://app.expense-budget-tracker.com",
       },
       secondaryLink: {
-        label: "צפו ב-GitHub",
+        label: "צפו בפרויקט ב-GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "התחילו עם בקשת GET לכתובת discovery הזו:",
+      hintText: "התחילו בבקשת GET לכתובת הגילוי הזו:",
       hintLink: {
         label: "https://api.expense-budget-tracker.com/v1/",
         href: "https://api.expense-budget-tracker.com/v1/",
@@ -32,33 +32,39 @@ export const HOME_PAGE_CONTENT_HE: PageContent = {
     },
     {
       type: "feature_list",
-      title: "יכולות",
-      intro: "כל מה שצריך כדי לנהל כספים אישיים בלי לוותר על שליטה בנתונים.",
+      title: "תכונות",
+      intro:
+        "כל מה שצריך כדי לעקוב אחר הכספים האישיים שלכם, בלי לוותר על השליטה בנתונים.",
       items: [
         {
           title: "ריבוי מטבעות",
-          description: "ניהול חשבונות בכל מטבע עם המרות אוטומטיות לפי שערי ECB, CBR ו-NBS.",
+          description:
+            "עקבו אחר חשבונות בכל מטבע, עם המרות אוטומטיות לפי שערי ECB, CBR ו-NBS.",
         },
         {
           title: "תכנון תקציב",
-          description: "רשת תקציב חודשית עם קטגוריות הכנסה והוצאה והשוואה בין תכנון לביצוע.",
+          description:
+            "טבלת תקציב חודשית עם קטגוריות הכנסה והוצאה, והשוואה בין התכנון לבין הביצוע בפועל.",
         },
         {
-          title: "דשבורדים",
-          description: "פירוק ויזואלי של הוצאות, מגמות יתרה והשפעת שערי מטבע.",
+          title: "לוחות מחוונים",
+          description:
+            "תצוגה חזותית של ההוצאות, היתרות לאורך זמן והשפעת שערי המטבע על התיק שלכם.",
         },
         {
           title: "אירוח עצמי",
-          description: "Docker Compose עם Postgres. הנתונים נשארים על השרת שלכם.",
-        },
-        {
-          title: "API מובנה לסוכנים",
           description:
-            "שתפו כתובת discovery אחת עם Claude Code, Codex או OpenClaw, ותנו לסוכן להשלים את תהליך החיבור וליצור ApiKey משלו.",
+            "Docker Compose עם Postgres. הנתונים שלכם נשארים על השרת שלכם, בלי תלות בשירותי צד שלישי.",
         },
         {
-          title: "בידוד workspace",
-          description: "Postgres RLS מבודד כל workspace, עם שיתוף גישה דרך הזמנות.",
+          title: "API מותאם לסוכנים",
+          description:
+            "שתפו כתובת גילוי אחת עם Claude Code, Codex או OpenClaw. הסוכן יבקש את כתובת האימייל שלכם, יאמת את הקוד בן 8 הספרות, ינפיק לעצמו ApiKey, יטען את נתוני החשבונות, יבחר סביבת עבודה ויתחיל לעבוד.",
+        },
+        {
+          title: "בידוד סביבת עבודה",
+          description:
+            "אבטחה ברמת שורה ב-Postgres מבודדת כל סביבת עבודה. אפשר לשתף גישה באמצעות הזמנות.",
         },
       ],
     },
