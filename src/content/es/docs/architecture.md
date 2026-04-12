@@ -1,9 +1,9 @@
 ---
-title: "Arquitectura"
-description: "Descripción general del sistema, modelo de datos, diseño multidivisa y modelo de autenticación."
+title: Arquitectura
+description: Visión general del sistema, modelo de datos, diseño multidivisa y modelo de autenticación.
 ---
 
-## Descripción general del sistema
+## Visión general del sistema
 
 ```
 Browser UI  -->  Next.js web app  -->  Postgres (RLS)
@@ -18,36 +18,36 @@ Browser UI  -->  Next.js web app  -->  Postgres (RLS)
                 Worker (FX fetchers) ------
 ```
 
-Cinco componentes, una base de datos:
+Cinco componentes y una sola base de datos:
 
-1. **web**: aplicación Next.js con paneles de interfaz de usuario y rutas API
-2. **auth**: envíe por correo electrónico el inicio de sesión de OTP y el arranque del agente en el dominio de autenticación.
-3. **sql-api** — AWS Lambda detrás de API Gateway para clientes de máquinas
-4. **trabajador**: obtiene tipos de cambio diarios del BCE, CBR y NBS
-5. **Postgres**: fuente única de verdad con seguridad a nivel de fila
+1. **web** — aplicación Next.js con paneles de interfaz y rutas API
+2. **auth** — inicio de sesión mediante OTP por correo electrónico y aprovisionamiento inicial del agente en el dominio de autenticación
+3. **sql-api** — AWS Lambda detrás de API Gateway para clientes automatizados
+4. **worker** — obtiene tipos de cambio diarios del BCE, el CBR y el NBS
+5. **Postgres** — fuente única de verdad con seguridad a nivel de fila
 
 ## Modelo de datos
 
-- **ledger_entries** — Una fila por movimiento de cuenta (ingresos, gastos, transferencias)
-- **budget_lines**: celdas de presupuesto de solo agregar con victorias de última escritura
-- **budget_comments**: notas adjuntas únicamente a las celdas del presupuesto
-- **workspace_settings**: moneda de informes y configuración a nivel de espacio de trabajo
-- **account_metadata** — Metadatos por cuenta, como la clasificación de liquidez
-- **exchange_rates**: tipos de cambio diarios utilizados para la conversión en el momento de la consulta
-- **workspaces** / **workspace_members** — Aislamiento multiinquilino
-- **cuentas** — Vista derivada de asientos contables
+- **ledger_entries** — una fila por cada movimiento de cuenta (ingreso, gasto o transferencia)
+- **budget_lines** — celdas de presupuesto de solo anexado donde prevalece la última escritura
+- **budget_comments** — notas de solo anexado asociadas a celdas de presupuesto
+- **workspace_settings** — moneda de informe y configuración a nivel de espacio de trabajo
+- **account_metadata** — metadatos por cuenta, como la clasificación de liquidez
+- **exchange_rates** — tipos de cambio diarios usados para la conversión en tiempo de consulta
+- **workspaces** / **workspace_members** — aislamiento multiinquilino
+- **accounts** — vista derivada de `ledger_entries`
 
 ## Multidivisa
 
-Todos los montos almacenados en moneda nativa. La conversión a la moneda de informe se produce en el momento de la lectura a través de combinaciones SQL con `exchange_rates`. Sin preconversión con pérdidas.
+Todos los importes se almacenan en su moneda nativa. La conversión a la moneda de informe se realiza en el momento de la lectura mediante JOINs SQL sobre `exchange_rates`. No hay preconversión con pérdida de precisión.
 
-## autenticación
+## Autenticación
 
-Dos modos a través de `AUTH_MODE` env var:
+Dos modos mediante la variable de entorno `AUTH_MODE`:
 
-- `none`: sin autenticación, espacio de trabajo local único
-- `cognito` — Correo electrónico sin contraseña OTP a través de AWS Cognito, registro abierto
+- `none` — sin autenticación; un único espacio de trabajo local
+- `cognito` — OTP por correo electrónico sin contraseña mediante AWS Cognito, con registro abierto
 
-Para clientes de máquinas, el punto de entrada de descubrimiento público es `GET /v1/`. La incorporación del agente utiliza el correo electrónico OTP en el dominio de autenticación, devuelve un ApiKey de larga duración y luego ejecuta SQL a través de la API de la máquina API Gateway.
+Para clientes automatizados, el punto de descubrimiento público es `GET /v1/`. El flujo de incorporación del agente usa OTP por correo electrónico en el dominio de autenticación, devuelve una `ApiKey` de larga duración y después ejecuta SQL a través de la API para máquinas detrás de API Gateway.
 
-Cada usuario obtiene un espacio de trabajo aislado. Las políticas RLS verifican la membresía en cada consulta, incluidas las solicitudes SQL orientadas a la máquina.
+Cada usuario recibe un espacio de trabajo aislado. Las políticas de RLS verifican la pertenencia en cada consulta, incluidas las solicitudes SQL dirigidas a clientes automatizados.
