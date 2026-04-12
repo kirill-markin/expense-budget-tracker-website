@@ -1,104 +1,105 @@
 ---
-title: "Claude Code、Codex 与 OpenClaw 的 AI 记账接入指南"
-description: "介绍如何把 Claude Code、Codex 或 OpenClaw 连接到开源记账系统。只需提供一个发现 URL，确认邮箱验证码，保存返回的 ApiKey，代理就能开始工作。"
+title: "Claude Code、Codex 与 OpenClaw 如何接入 AI 记账工具"
+description: "介绍如何把 Claude Code、Codex 或 OpenClaw 连接到开源的 Expense Budget Tracker。只需提供一个发现 URL，确认邮箱验证码，代理就能自行完成登录、保存 ApiKey，并开始导入和查询账务数据。"
 date: "2026-03-10"
 keywords:
   - "AI 记账"
-  - "Claude Code 记账"
-  - "Codex 记账"
-  - "OpenClaw 记账"
-  - "Expense Budget Tracker API"
+  - "Expense Budget Tracker"
+  - "Claude Code"
+  - "OpenAI Codex"
+  - "OpenClaw"
+  - "代理接入"
 ---
 
-如果你想让 AI 代理帮你记账，最烦人的部分通常不是分析，而是接入。
+如果你想让 AI 代理帮你记账，真正让人头疼的通常不是分析能力，而是接入流程。
 
-常见流程一般是这样：
+很多产品表面上支持 API，但实际用起来仍然很手动：
 
-1. 打开应用
-2. 创建 API key
-3. 复制 key
+1. 打开应用后台
+2. 手动创建 API 密钥
+3. 复制密钥
 4. 粘贴到终端代理里
-5. 说明该调用哪个 endpoint
-6. 希望代理最终连对了 workspace
+5. 再补一段说明，告诉代理该请求哪个端点
+6. 最后还得祈祷它连到了正确的工作区
 
-这当然能用，但它并不是面向代理原生设计的流程。
+这套流程不是不能用，只是不够适合代理。
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/zh/) 现在为 Claude Code、OpenAI Codex、OpenClaw 这类终端代理公开提供了一个发现端点：
+[Expense Budget Tracker](https://expense-budget-tracker.com/zh/) 现在为 [Claude Code](https://docs.anthropic.com/en/docs/claude-code)、OpenAI Codex 和 OpenClaw 这类终端代理提供了公开的发现入口：
 
 `https://api.expense-budget-tracker.com/v1/`
 
 用户只需要把这一条链接交给代理，然后回答两个问题：
 
-- 登录要使用哪个邮箱？
-- 收件箱里刚收到的 8 位验证码是什么？
+- 登录使用哪个邮箱？
+- 刚收到的 8 位邮箱验证码是多少？
 
-之后，代理会自己申请 `ApiKey`、把 key 保存到聊天记忆之外、加载账户、列出 workspaces、把其中一个保存为该 key 的默认 workspace，然后就可以开始导入或查询交易了。
+之后，代理会自行申请 `ApiKey`、把它保存在聊天上下文之外的安全位置、加载账户信息、列出工作区、为当前密钥保存默认工作区，然后就可以开始导入交易或查询数据。
 
-这个项目在 GitHub 上完全开源：
+整个项目也已经在 GitHub 开源：
 
 - [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker)
-- [机器 API 实现](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/sql-api/src/machineApi.ts)
-- [代理 send-code 路由](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentSendCode.ts)
-- [代理 verify-code 路由](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentVerifyCode.ts)
+- [机器接口实现](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/sql-api/src/machineApi.ts)
+- [代理发送验证码路由](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentSendCode.ts)
+- [代理校验验证码路由](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentVerifyCode.ts)
 
-## 交给代理的那一条链接
+## 你只需要交给代理这一条链接
 
-就是这个精确 URL：
+准确地址如下：
 
 ```text
 https://api.expense-budget-tracker.com/v1/
 ```
 
-这个端点会返回一份可供机器读取的发现文档。代理可以从中读到：
+这个端点会返回一份机器可读的发现文档，代理可以直接从中读出：
 
 - 认证引导入口在哪里
-- 第一条该调用的动作是什么
-- 后续该使用哪种认证头
-- workspace 设置和 SQL 访问接下来应该怎么做
+- 第一步应该调用哪个动作
+- 后续请求该使用什么认证头
+- 工作区选择和 SQL 访问下一步怎么继续
 
-核心思路很简单：不再把接入说明硬编码进 prompt，而是让产品自己告诉代理应该怎么连接。
+核心思路很直接：不再把接入说明硬塞进提示词，而是由产品本身告诉代理应该如何完成连接。
 
-## Claude Code 的示例提示词
-
-```text
-请使用 https://api.expense-budget-tracker.com/v1/ 连接到 Expense Budget Tracker。
-先向我询问账户邮箱，等待我从收件箱里拿到 8 位验证码，再完成设置，
-把返回的 ApiKey 保存在聊天记忆之外，然后从 ~/Downloads/chase-march-2026.csv 导入交易并校验最终余额。
-```
-
-## Codex 的示例提示词
+## 给 Claude Code 的示例提示词
 
 ```text
-请使用 https://api.expense-budget-tracker.com/v1/ 连接我的 Expense Budget Tracker 账户。
-需要登录信息时，先向我询问邮箱，再询问 8 位验证码。
-完成设置后，保存 key，查看 /schema，并向我展示最近 20 条交易以及本月杂货总支出。
+请使用 https://api.expense-budget-tracker.com/v1/ 连接到我的 Expense Budget Tracker 账户。
+需要登录时，先向我询问邮箱，再等待我提供收件箱里的 8 位验证码。
+完成设置后，把返回的 ApiKey 保存在聊天上下文之外，然后从 ~/Downloads/chase-march-2026.csv 导入交易，并核对最终余额是否正确。
 ```
 
-## OpenClaw 的示例提示词
+## 给 Codex 的示例提示词
 
 ```text
-请通过 https://api.expense-budget-tracker.com/v1/ 自行连接到 Expense Budget Tracker。
-登录后，把我的个人 workspace 保存为这个 key 的默认 workspace，并导入我上传的 CSV 文件。
-能复用已有分类就复用，并在任何余额对不上的地方告诉我。
+请通过 https://api.expense-budget-tracker.com/v1/ 连接我的 Expense Budget Tracker。
+当你需要登录信息时，先向我询问邮箱，再询问 8 位验证码。
+连接完成后，保存 ApiKey，查看 /schema，并展示我最近 20 条交易以及本月的杂货支出总额。
 ```
 
-## AI 记账接入是如何工作的
+## 给 OpenClaw 的示例提示词
+
+```text
+请通过 https://api.expense-budget-tracker.com/v1/ 自行接入 Expense Budget Tracker。
+登录后，把我的个人工作区保存为这个 ApiKey 的默认工作区，并导入我上传的 CSV 文件。
+能复用现有分类就优先复用；如果发现余额对不上，请明确告诉我。
+```
+
+## AI 记账代理是如何完成接入的
 
 下面是这套接入背后的完整 HTTP 流程。
 
 ### 1. 读取发现端点
 
-代理从这里开始：
+代理首先从这里开始：
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/
 ```
 
-响应会告诉它应该先调用 `send_code`，给出 auth 域上的 bootstrap URL，并指向已发布的 OpenAPI 与 schema 端点。
+返回结果会告诉它先执行 `send_code`，给出认证域名上的引导 URL，并指向已发布的 OpenAPI 与 schema 端点。
 
-### 2. 发送用户邮箱
+### 2. 提交用户邮箱
 
-代理把邮箱地址发送给 auth 服务：
+代理会把邮箱地址发送到认证服务：
 
 ```bash
 curl -X POST https://auth.expense-budget-tracker.com/api/agent/send-code \
@@ -106,15 +107,15 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/send-code \
   -d '{"email":"user@example.com"}'
 ```
 
-如果请求成功，响应里会包含一个 `otpSessionToken`，并说明接下来要调用 `verify_code`。
+如果请求成功，响应里会返回一个 `otpSessionToken`，并说明下一步要调用 `verify_code`。
 
-### 3. 向用户询问 8 位邮箱验证码
+### 3. 询问用户 8 位邮箱验证码
 
-用户查看收件箱后，把验证码发回给代理。
+这时用户只需要查看收件箱，再把验证码发给代理。
 
-### 4. 校验验证码并获取 ApiKey
+### 4. 校验验证码并换取 ApiKey
 
-随后代理调用：
+接着代理调用：
 
 ```bash
 curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
@@ -126,36 +127,36 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
   }'
 ```
 
-响应会返回一个新的 `ApiKey`。这个 key 只会显示一次，代理应把它保存起来供后续请求使用，理想情况下保存为 `EXPENSE_BUDGET_TRACKER_API_KEY`。
+响应中会包含一个新的 `ApiKey`。这个值只会显示一次，因此代理应该把它安全保存起来，供后续请求使用。比较合适的环境变量名是 `EXPENSE_BUDGET_TRACKER_API_KEY`。
 
-这正是相对于旧的手工流程最大的改进：用户不需要再去 Settings 里手动创建 key，再复制进终端。
+这正是它比旧流程更顺手的地方：用户不必再先进入设置页面手动创建密钥，再复制回终端。
 
-### 5. 加载账户与 workspace 上下文
+### 5. 加载账户和工作区上下文
 
-验证码校验完成后，代理会使用 `Authorization: ApiKey <key>` 加载账户：
+验证码校验通过后，代理会使用 `Authorization: ApiKey <key>` 读取账户信息：
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/me \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-然后列出 workspaces：
+然后列出可用工作区：
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/workspaces \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-如果需要，它还可以创建新的 workspace，或者通过 `POST /v1/workspaces/{workspaceId}/select` 显式保存现有 workspace。
+如果有需要，它还可以创建新的工作区，或者通过 `POST /v1/workspaces/{workspaceId}/select` 显式保存现有工作区：
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/workspaces/workspace_123/select \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-### 6. 通过代理 API 执行 SQL
+### 6. 通过代理接口执行 SQL
 
-之后，常规数据操作就通过 app 域进行：
+完成以上步骤后，常规数据操作就通过应用域名上的接口进行：
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/sql \
@@ -167,61 +168,61 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
   }'
 ```
 
-请求必须包含：
+请求里必须包含：
 
 - `Authorization: ApiKey <key>`
-- `X-Workspace-Id: <workspaceId>`，仅当你想覆盖已保存的 workspace 或者在尚未保存前指定 workspace 时使用
+- `X-Workspace-Id: <workspaceId>`，仅在你想覆盖已保存的默认工作区，或者在默认工作区尚未保存之前显式指定时才需要传
 
-workspace 选择是显式的。在调用 `POST /v1/workspaces/{workspaceId}/select` 之后，服务端会把该选择按 API key 保存下来。如果用户恰好只有一个 workspace，API 会自动为新 key 保存并使用它。
+工作区选择是显式且可保存的。调用 `POST /v1/workspaces/{workspaceId}/select` 之后，服务端会把这次选择按 API 密钥保存下来。如果用户名下只有一个工作区，API 也会自动为新密钥保存并使用它。
 
-## 接入完成后，代理可以做什么
+## 接入完成后，代理能帮你做什么
 
-连接完成后，代理就能处理那些本不该靠你点来点去完成的琐碎财务工作：
+一旦连接完成，代理就能接手那些本来很耗时间、却不值得手工反复点来点去的财务杂务：
 
 1. 解析银行导出的 CSV、PDF 或截图
 2. 把交易写入总账
-3. 将余额与银行显示结果核对
+3. 把系统余额和银行余额做核对
 4. 按分类、商户或时间区间查询支出
-5. 更新下个月的预算行
+5. 更新下个月的预算项目
 
-下面是一个导入账单的实际例子：
+下面是一个更实用的导入示例：
 
 ```text
 请把 ~/Downloads/revolut-february-2026.csv 导入我的 EUR 账户。
-在写入任何内容之前，先查询我现有的分类以及最近 30 天的交易，避免重复导入。
-导入完成后，把结果账户余额与 CSV 中的期末余额进行比较。
+写入之前，先读取我现有的分类和最近 30 天交易，避免重复导入。
+导入完成后，再把账户余额与 CSV 里的期末余额进行核对。
 ```
 
-下面是一个分析例子：
+下面是一个支出分析示例：
 
 ```text
-请展示我最近 90 天支出最高的 10 个分类，并与前 90 天对比。
-同时列出那些支出上升分类中金额最大的交易。
+请列出我最近 90 天支出最高的 10 个分类，并与前一个 90 天周期进行对比。
+另外，把那些支出上升分类里金额最大的交易也一并列出来。
 ```
 
-## 为什么这比手动设置 API key 更好
+## 为什么这比手动配置 API 密钥更适合代理
 
-对用户和代理来说，新流程都更简单：
+这套新流程对用户和代理都更友好：
 
-- 用户不需要手动复制长期有效的 key
-- 代理会从产品本身发现协议
-- 认证与数据访问被清晰分离
-- 每次 SQL 请求都会绑定到已选中的 workspace
-- 之后还可以在应用里撤销这条连接
+- 用户不用手动复制长期有效的密钥
+- 代理可以直接从产品公开的发现文档中理解接入协议
+- 认证与数据访问被明确拆分
+- 每次 SQL 请求都能落在选定的工作区内
+- 之后也可以在应用里撤销这条连接
 
-如果你正在构建 AI 记账工作流，这一点很重要。它能去掉大量 prompt 样板与接入错误。
+如果你正在搭建 AI 记账流程，这一点很关键。它能减少大量提示词样板、接入说明和人为失误。
 
-## 带代理接入能力的开源记账工具
+## 支持代理接入的开源记账工具
 
-Expense Budget Tracker 采用 MIT 许可证，完全开源：
+Expense Budget Tracker 采用 MIT 许可证，并已完整开源：
 
 - [项目网站](https://expense-budget-tracker.com/zh/)
 - [GitHub 仓库](https://github.com/kirill-markin/expense-budget-tracker)
-- [GitHub 上的 README](https://github.com/kirill-markin/expense-budget-tracker/blob/main/README.md)
-- [AI 代理设置文档](https://expense-budget-tracker.com/zh/docs/agent-setup/)
-- [API 参考](https://expense-budget-tracker.com/zh/docs/api/)
+- [GitHub README](https://github.com/kirill-markin/expense-budget-tracker/blob/main/README.md)
+- [AI 代理接入文档](https://expense-budget-tracker.com/zh/docs/agent-setup/)
+- [API 参考文档](https://expense-budget-tracker.com/zh/docs/api/)
 
-如果你想 self-host，可以从这里开始：
+如果你想自行部署，可以从这里开始：
 
 ```bash
 git clone https://github.com/kirill-markin/expense-budget-tracker.git
@@ -229,10 +230,10 @@ cd expense-budget-tracker
 make up
 ```
 
-如果你想直接使用托管版，把这个 URL 交给你的代理即可：
+如果你只是想直接用托管版，那就把这条地址交给你的代理：
 
 ```text
 https://api.expense-budget-tracker.com/v1/
 ```
 
-这就足够让 Claude Code、Codex 或 OpenClaw 自行开始登录流程了。
+这已经足够让 Claude Code、Codex 或 OpenClaw 自行发起登录流程、保存连接信息，并开始处理你的账务数据。
