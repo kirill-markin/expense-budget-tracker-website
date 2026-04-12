@@ -1,41 +1,50 @@
 ---
-title: "Configuración del rastreador de gastos de IA para Claude Code, Codex y OpenClaw"
-description: "Cómo conectar Claude Code, Codex o OpenClaw a un rastreador de gastos de código abierto. Comparta una URL de descubrimiento, confirme el código de correo electrónico, guarde el ApiKey devuelto y deje que el agente comience a trabajar."
+title: "Cómo configurar un rastreador de gastos con IA para Claude Code, Codex y OpenClaw"
+description: "Cómo conectar Claude Code, Codex u OpenClaw a un rastreador de gastos de código abierto. Comparte una sola URL de descubrimiento, confirma el código recibido por correo, guarda el ApiKey devuelto y deja que el agente empiece a trabajar."
 date: "2026-03-10"
+keywords:
+  - "rastreador de gastos con IA"
+  - "configurar Claude Code para finanzas personales"
+  - "configurar Codex con Expense Budget Tracker"
+  - "OpenClaw rastreador de gastos"
+  - "agente de IA para seguimiento de gastos"
+  - "Expense Budget Tracker API"
+  - "configuración de agente con ApiKey"
+  - "endpoint de descubrimiento para agentes"
 ---
 
-Si desea utilizar un agente de inteligencia artificial para el seguimiento de gastos, la parte molesta suele ser la configuración.
+Si quiere usar un agente de inteligencia artificial para llevar sus gastos, la parte molesta casi siempre es la configuración.
 
-El flujo habitual se ve así:
+El flujo habitual suele ser este:
 
-1. Abre la aplicación
-2. Cree una clave API
-3. Copia la clave
-4. Pégalo en tu agente terminal
-5. Explique a qué punto final llamar
-6. Espero que el agente utilice el espacio de trabajo adecuado
+1. Abrir la aplicación
+2. Crear una API key
+3. Copiar la clave
+4. Pegarla en el agente de terminal
+5. Explicarle qué endpoint debe llamar
+6. Confiar en que use el workspace correcto
 
-Eso es viable, pero no es nativo del agente.
+Eso funciona, pero no está pensado de forma nativa para agentes.
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/es/) ahora expone un punto final de descubrimiento público para agentes terminales como [Claude Code](https://docs.anthropic.com/en/docs/claude-code), OpenAI Codex o OpenClaw:
+[Expense Budget Tracker](https://expense-budget-tracker.com/es/) ahora expone un endpoint público de descubrimiento para agentes de terminal como [Claude Code](https://docs.anthropic.com/en/docs/claude-code), OpenAI Codex u OpenClaw:
 
 `https://api.expense-budget-tracker.com/v1/`
 
-El usuario le da al agente ese enlace y luego responde dos preguntas:
+El usuario le da al agente ese único enlace y luego responde dos preguntas:
 
-- ¿Qué correo electrónico se debe utilizar para iniciar sesión?
-- ¿Cuál es el código de 8 dígitos que acaba de llegar a la bandeja de entrada?
+- ¿Qué correo debe usarse para iniciar sesión?
+- ¿Cuál es el código de 8 dígitos que acaba de llegar al correo?
 
-Después de eso, el agente aprovisiona su propio `ApiKey`, lo guarda fuera de la memoria del chat, carga la cuenta, enumera los espacios de trabajo, guarda uno como predeterminado para esa clave y puede comenzar a importar o consultar transacciones.
+Después de eso, el agente aprovisiona su propio `ApiKey`, lo guarda fuera de la memoria del chat, carga la cuenta, lista los workspaces, guarda uno como predeterminado para esa clave y ya puede empezar a importar o consultar transacciones.
 
-El proyecto es de código abierto en GitHub:
+El proyecto es de código abierto y está en GitHub:
 
 - [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker)
-- [Implementación de API de máquina](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/sql-api/src/machineApi.ts)
-- [Ruta del código de envío del agente](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentSendCode.ts)
-- [Ruta del código de verificación del agente](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentVerifyCode.ts)
+- [Implementación de la Machine API](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/sql-api/src/machineApi.ts)
+- [Ruta del agente para enviar el código](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentSendCode.ts)
+- [Ruta del agente para verificar el código](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentVerifyCode.ts)
 
-## El único enlace para darle a su agente
+## El único enlace que debe darle a su agente
 
 Esta es la URL exacta:
 
@@ -43,56 +52,56 @@ Esta es la URL exacta:
 https://api.expense-budget-tracker.com/v1/
 ```
 
-Ese punto final devuelve un documento de descubrimiento legible por máquina. El agente puede leer:
+Ese endpoint devuelve un documento de descubrimiento legible por máquinas. El agente puede leer:
 
-- donde vive el arranque de autenticación
-- qué acción llamar primero
-- qué encabezado de autenticación usar más tarde
-- qué pasos siguen para la configuración del espacio de trabajo y el acceso a SQL
+- dónde empieza el flujo de autenticación
+- qué acción debe llamar primero
+- qué cabecera de autenticación tendrá que usar después
+- qué pasos siguen para configurar el workspace y acceder a SQL
 
-Esta es la idea central: en lugar de codificar las instrucciones de incorporación en un mensaje, el producto le dice al agente cómo conectarse.
+Esa es la idea central: en lugar de meter las instrucciones de conexión dentro del prompt, es el propio producto quien le dice al agente cómo conectarse.
 
-## Ejemplo de mensaje para Claude Code
-
-```text
-Connect to Expense Budget Tracker using https://api.expense-budget-tracker.com/v1/.
-Ask me for the account email, wait for the 8-digit code from my inbox, finish the setup,
-save the returned ApiKey outside chat memory, then import transactions from ~/Downloads/chase-march-2026.csv and verify the final balance.
-```
-
-## Ejemplo de mensaje para Codex
+## Prompt de ejemplo para Claude Code
 
 ```text
-Use https://api.expense-budget-tracker.com/v1/ to connect to my Expense Budget Tracker account.
-When you need login information, ask me for the email and then the 8-digit code.
-After setup, save the key, inspect /schema, and show me my latest 20 transactions and total grocery spend this month.
+Conéctate a Expense Budget Tracker usando https://api.expense-budget-tracker.com/v1/.
+Pídeme el correo de la cuenta, espera el código de 8 dígitos que llegará a mi bandeja de entrada, termina la configuración,
+guarda el ApiKey devuelto fuera de la memoria del chat y luego importa las transacciones desde ~/Downloads/chase-march-2026.csv y verifica el saldo final.
 ```
 
-## Ejemplo de mensaje para OpenClaw
+## Prompt de ejemplo para Codex
 
 ```text
-Connect yourself to Expense Budget Tracker through https://api.expense-budget-tracker.com/v1/.
-After login, save my personal workspace as the default for this key and import the CSV file I uploaded.
-Use existing categories when possible, and tell me if any balance does not match.
+Usa https://api.expense-budget-tracker.com/v1/ para conectarte a mi cuenta de Expense Budget Tracker.
+Cuando necesites los datos de acceso, pídeme primero el correo y después el código de 8 dígitos.
+Después de la configuración, guarda la clave, revisa /schema y muéstrame mis últimas 20 transacciones y el gasto total en supermercado de este mes.
 ```
 
-## Cómo funciona la configuración del rastreador de gastos de IA
+## Prompt de ejemplo para OpenClaw
 
-Aquí está el flujo HTTP completo detrás de esa configuración.
+```text
+Conéctate a Expense Budget Tracker mediante https://api.expense-budget-tracker.com/v1/.
+Después de iniciar sesión, guarda mi workspace personal como predeterminado para esta clave e importa el archivo CSV que he subido.
+Usa las categorías existentes siempre que sea posible y avísame si algún saldo no coincide.
+```
 
-### 1. Leer el punto final de descubrimiento
+## Cómo funciona la configuración del rastreador de gastos con IA
 
-El agente comienza aquí:
+Este es el flujo HTTP completo que hay detrás de esa configuración.
+
+### 1. Leer el endpoint de descubrimiento
+
+El agente empieza aquí:
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/
 ```
 
-La respuesta le indica que comience con `send_code`, incluye la URL de arranque en el dominio de autenticación y apunta al OpenAPI publicado y a los puntos finales del esquema.
+La respuesta le indica que debe empezar con `send_code`, incluye la URL de arranque en el dominio de autenticación y apunta a los endpoints publicados de OpenAPI y del esquema.
 
-### 2. Enviar el correo electrónico del usuario
+### 2. Enviar el correo del usuario
 
-El agente envía la dirección de correo electrónico al servicio de autenticación:
+El agente envía la dirección de correo al servicio de autenticación:
 
 ```bash
 curl -X POST https://auth.expense-budget-tracker.com/api/agent/send-code \
@@ -100,15 +109,15 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/send-code \
   -d '{"email":"user@example.com"}'
 ```
 
-Si la solicitud tiene éxito, la respuesta contiene un `otpSessionToken` e instrucciones para llamar a `verify_code`.
+Si la solicitud sale bien, la respuesta contiene un `otpSessionToken` e instrucciones para llamar a `verify_code`.
 
-### 3. Solicite al usuario el código de correo electrónico de 8 dígitos
+### 3. Pedir al usuario el código de correo de 8 dígitos
 
-El usuario revisa la bandeja de entrada y envía el código al agente.
+El usuario revisa la bandeja de entrada y le devuelve el código al agente.
 
-### 4. Verifique el código y obtenga un ApiKey
+### 4. Verificar el código y obtener un ApiKey
 
-Luego el agente llama:
+Después el agente llama a:
 
 ```bash
 curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
@@ -120,11 +129,11 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
   }'
 ```
 
-La respuesta incluye un nuevo `ApiKey`. Esa clave se muestra una vez y el agente debe almacenarla para solicitudes posteriores, idealmente como `EXPENSE_BUDGET_TRACKER_API_KEY`.
+La respuesta incluye un nuevo `ApiKey`. Esa clave solo se muestra una vez y el agente debería guardarla para solicitudes posteriores, idealmente como `EXPENSE_BUDGET_TRACKER_API_KEY`.
 
-Esta es la principal mejora con respecto al antiguo flujo manual: el usuario no necesita crear una clave en Configuración y copiarla en el terminal.
+Esa es la mejora principal frente al flujo manual anterior: el usuario no tiene que crear una clave en Settings ni copiarla al terminal.
 
-### 5. Cargar contexto de cuenta y espacio de trabajo
+### 5. Cargar el contexto de cuenta y workspace
 
 Después de la verificación, el agente usa `Authorization: ApiKey <key>` y carga la cuenta:
 
@@ -133,23 +142,23 @@ curl https://api.expense-budget-tracker.com/v1/me \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-Luego enumera los espacios de trabajo:
+Luego lista los workspaces:
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/workspaces \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-Si es necesario, puede crear un nuevo espacio de trabajo o guardar explícitamente uno existente con `POST /v1/workspaces/{workspaceId}/select`.
+Si hace falta, puede crear un workspace nuevo o guardar explícitamente uno existente con `POST /v1/workspaces/{workspaceId}/select`.
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/workspaces/workspace_123/select \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-### 6. Ejecute SQL a través de la API del agente
+### 6. Ejecutar SQL a través de la API para agentes
 
-Después de eso, el trabajo normal con los datos se realiza a través del dominio de la aplicación:
+Después de eso, el trabajo normal con los datos sucede a través del dominio de la aplicación:
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/sql \
@@ -164,58 +173,58 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 La solicitud debe incluir ambos:
 
 - `Authorization: ApiKey <key>`
-- `X-Workspace-Id: <workspaceId>` solo cuando desea anular el espacio de trabajo guardado o antes de guardar uno
+- `X-Workspace-Id: <workspaceId>` solo cuando quiera sobrescribir el workspace guardado o antes de que se haya guardado uno
 
-La selección del espacio de trabajo es explícita y el servidor guarda esa selección por clave API después de `POST /v1/workspaces/{workspaceId}/select`. Si el usuario tiene exactamente un espacio de trabajo, la API lo guarda automáticamente y lo usa para una nueva clave.
+La selección del workspace es explícita y el servidor guarda esa selección por API key después de `POST /v1/workspaces/{workspaceId}/select`. Si el usuario tiene exactamente un workspace, la API lo guarda automáticamente y lo usa para una clave nueva.
 
 ## Qué puede hacer su agente después de la configuración
 
-Una vez conectado, el agente puede encargarse del aburrido trabajo financiero que no debería requerir horas de clic:
+Una vez conectado, el agente puede encargarse del trabajo financiero aburrido que no debería exigir horas de clics:
 
-1. Analizar CSV, PDF o exportaciones de capturas de pantalla del banco.
-2. Insertar transacciones en el libro mayor.
-3. Verifique los saldos con lo que muestra el banco.
-4. Consultar gasto por categoría, comerciante o período
-5. Actualizar las líneas presupuestarias para el próximo mes.
+1. Analizar exportaciones bancarias en CSV, PDF o capturas de pantalla
+2. Insertar transacciones en el libro mayor
+3. Comprobar saldos contra lo que muestra el banco
+4. Consultar gasto por categoría, comercio o período
+5. Actualizar líneas presupuestarias para el mes siguiente
 
-A continuación se muestra un ejemplo práctico para importar una declaración:
-
-```text
-Import ~/Downloads/revolut-february-2026.csv into my EUR account.
-Before writing anything, query my existing categories and the last 30 days of transactions to avoid duplicates.
-After import, compare the resulting account balance with the closing balance in the CSV.
-```
-
-Y aquí hay un ejemplo para el análisis:
+Aquí tiene un ejemplo práctico para importar un extracto:
 
 ```text
-Show me my top 10 spending categories in the last 90 days, then compare them with the previous 90-day period.
-Also list the largest transactions in categories where spending increased.
+Importa ~/Downloads/revolut-february-2026.csv en mi cuenta en EUR.
+Antes de escribir nada, consulta mis categorías actuales y las transacciones de los últimos 30 días para evitar duplicados.
+Después de la importación, compara el saldo resultante de la cuenta con el saldo de cierre que aparece en el CSV.
 ```
 
-## Por qué esto es mejor que la configuración manual de la clave API
+Y aquí tiene un ejemplo de análisis:
 
-El nuevo flujo es más sencillo tanto para el usuario como para el agente:
+```text
+Muéstrame mis 10 categorías de gasto principales de los últimos 90 días y compáralas con los 90 días anteriores.
+Incluye también las transacciones más grandes en las categorías donde el gasto haya aumentado.
+```
+
+## Por qué esto es mejor que configurar una API key manualmente
+
+El nuevo flujo es más simple tanto para el usuario como para el agente:
 
 - el usuario no tiene que copiar manualmente una clave de larga duración
-- el agente descubre el protocolo a partir del propio producto
-- la autenticación está separada limpiamente del acceso a los datos
-- cada solicitud SQL tiene como alcance un espacio de trabajo seleccionado
-- la conexión se puede revocar más tarde desde la aplicación
+- el agente descubre el protocolo desde el propio producto
+- la autenticación queda claramente separada del acceso a los datos
+- cada solicitud SQL queda acotada a un workspace seleccionado
+- la conexión puede revocarse más tarde desde la aplicación
 
-Si está creando un flujo de trabajo de seguimiento de gastos con IA, eso es importante. Elimina muchos errores de configuración y texto repetitivo.
+Si está montando un flujo de seguimiento de gastos con IA, eso importa. Elimina mucho texto repetitivo en los prompts y muchos errores de configuración.
 
-## Rastreador de gastos de código abierto con configuración de agente
+## Rastreador de gastos de código abierto con configuración para agentes
 
-Expense Budget Tracker tiene licencia del MIT y es de código totalmente abierto:
+Expense Budget Tracker tiene licencia MIT y es completamente de código abierto:
 
 - [Sitio web del proyecto](https://expense-budget-tracker.com/es/)
-- [repositorio GitHub](https://github.com/kirill-markin/expense-budget-tracker)
+- [Repositorio de GitHub](https://github.com/kirill-markin/expense-budget-tracker)
 - [README en GitHub](https://github.com/kirill-markin/expense-budget-tracker/blob/main/README.md)
-- [Documentos de configuración del agente AI](https://expense-budget-tracker.com/es/docs/agent-setup/)
-- [Referencia API](https://expense-budget-tracker.com/es/docs/api/)
+- [Documentación de configuración para agentes de IA](https://expense-budget-tracker.com/es/docs/agent-setup/)
+- [Referencia de la API](https://expense-budget-tracker.com/es/docs/api/)
 
-Si desea autoalojarlo, comience con:
+Si quiere autoalojarlo, empiece por aquí:
 
 ```bash
 git clone https://github.com/kirill-markin/expense-budget-tracker.git
@@ -223,10 +232,10 @@ cd expense-budget-tracker
 make up
 ```
 
-Si desea utilizar la versión alojada, proporcione a su agente esta URL:
+Si quiere usar la versión alojada, dele a su agente esta URL:
 
 ```text
 https://api.expense-budget-tracker.com/v1/
 ```
 
-Esto es suficiente para que Claude Code, Codex o OpenClaw inicien el flujo de inicio de sesión por sí solos.
+Eso basta para que Claude Code, Codex u OpenClaw inicien por su cuenta el flujo de inicio de sesión.
