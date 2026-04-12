@@ -1,39 +1,39 @@
 ---
-title: "Налаштування AI-трекера витрат для Claude Code, Codex і OpenClaw"
-description: "Як підключити Claude Code, Codex або OpenClaw до open-source трекера витрат. Передайте один discovery URL, підтвердьте код з email, збережіть отриманий ApiKey і дозвольте агенту одразу почати роботу."
+title: "Як підключити ШІ-агента до Expense Budget Tracker: Claude Code, Codex і OpenClaw"
+description: "Як підключити Claude Code, Codex або OpenClaw до трекера витрат Expense Budget Tracker з відкритим кодом. Передайте один URL discovery, підтвердьте код із пошти, збережіть отриманий ApiKey і дозвольте агенту одразу почати роботу."
 date: "2026-03-10"
 keywords:
-  - "ai трекер витрат"
-  - "налаштування claude code"
-  - "налаштування codex"
-  - "підключення openclaw"
-  - "агент для обліку витрат"
-  - "open source трекер витрат"
+  - "ші трекер витрат"
+  - "expense budget tracker"
+  - "claude code для обліку витрат"
+  - "codex для обліку витрат"
+  - "openclaw для обліку витрат"
+  - "трекер витрат з відкритим кодом"
 ---
 
-Якщо ви хочете використовувати AI-агента для обліку витрат, найдратівливіша частина зазвичай не сама робота, а налаштування.
+Якщо ви хочете вести облік витрат через ШІ-агента, найнеприємніше зазвичай не саме використання, а початкове підключення.
 
 Зазвичай це виглядає так:
 
 1. Відкрити застосунок
 2. Створити API-ключ
-3. Скопіювати ключ
-4. Вставити його у свого термінального агента
-5. Пояснити, який endpoint викликати
-6. Сподіватися, що агент використає правильний workspace
+3. Скопіювати цей ключ
+4. Вставити його у термінального агента
+5. Пояснити, який ендпойнт треба викликати
+6. Сподіватися, що агент працюватиме з правильним робочим простором
 
-Працювати так можна, але це не agent-native підхід.
+Такий сценарій робочий, але його складно назвати агентно-орієнтованим.
 
 [Expense Budget Tracker](https://expense-budget-tracker.com/uk/) тепер має публічний discovery endpoint для термінальних агентів на кшталт [Claude Code](https://docs.anthropic.com/en/docs/claude-code), OpenAI Codex або OpenClaw:
 
 `https://api.expense-budget-tracker.com/v1/`
 
-Користувач передає агенту одне це посилання, а потім відповідає лише на два запитання:
+Користувач передає агенту лише це посилання, а далі відповідає всього на два запитання:
 
-- Який email треба використати для входу?
-- Який 8-значний код щойно прийшов у вхідні?
+- Яку адресу електронної пошти використати для входу?
+- Який 8-значний код щойно надійшов на пошту?
 
-Після цього агент сам створює `ApiKey`, зберігає його поза пам’яттю чату, завантажує акаунт, показує список workspace, зберігає один із них як типовий для цього ключа і може одразу почати імпорт чи запити до транзакцій.
+Після цього агент сам отримує `ApiKey`, зберігає його поза пам'яттю чату, завантажує акаунт, показує список робочих просторів, зберігає один із них як типовий для цього ключа й одразу може імпортувати транзакції або виконувати запити.
 
 Проєкт має відкритий код на GitHub:
 
@@ -50,42 +50,42 @@ keywords:
 https://api.expense-budget-tracker.com/v1/
 ```
 
-Цей endpoint повертає machine-readable discovery document. Агент із нього дізнається:
+Цей endpoint повертає документ discovery у машинозчитуваному форматі. З нього агент дізнається:
 
-- де знаходиться bootstrap для авторизації
+- де знаходиться початкова точка авторизації
 - яку дію треба викликати першою
-- який auth header використовувати далі
-- які наступні кроки для налаштування workspace і SQL-доступу
+- який заголовок авторизації використовувати далі
+- які наступні кроки потрібні для налаштування робочого простору і SQL-доступу
 
-У цьому і є суть: замість того щоб жорстко прописувати інструкції з онбордингу в prompt, сам продукт пояснює агенту, як підключитися.
+У цьому і є головна ідея: замість того щоб вручну зашивати інструкції з початкового налаштування в запит, сам продукт пояснює агенту, як до нього підключитися.
 
-## Приклад prompt для Claude Code
-
-```text
-Connect to Expense Budget Tracker using https://api.expense-budget-tracker.com/v1/.
-Ask me for the account email, wait for the 8-digit code from my inbox, finish the setup,
-save the returned ApiKey outside chat memory, then import transactions from ~/Downloads/chase-march-2026.csv and verify the final balance.
-```
-
-## Приклад prompt для Codex
+## Приклад запиту для Claude Code
 
 ```text
-Use https://api.expense-budget-tracker.com/v1/ to connect to my Expense Budget Tracker account.
-When you need login information, ask me for the email and then the 8-digit code.
-After setup, save the key, inspect /schema, and show me my latest 20 transactions and total grocery spend this month.
+Підключися до Expense Budget Tracker через https://api.expense-budget-tracker.com/v1/.
+Запитай у мене адресу електронної пошти для входу, дочекайся 8-значного коду з пошти, заверши налаштування,
+збережи отриманий ApiKey поза пам'яттю чату, а потім імпортуй транзакції з ~/Downloads/chase-march-2026.csv і перевір підсумковий баланс.
 ```
 
-## Приклад prompt для OpenClaw
+## Приклад запиту для Codex
 
 ```text
-Connect yourself to Expense Budget Tracker through https://api.expense-budget-tracker.com/v1/.
-After login, save my personal workspace as the default for this key and import the CSV file I uploaded.
-Use existing categories when possible, and tell me if any balance does not match.
+Використай https://api.expense-budget-tracker.com/v1/, щоб підключитися до мого акаунта Expense Budget Tracker.
+Коли знадобляться дані для входу, спочатку запитай адресу електронної пошти, а потім 8-значний код із пошти.
+Після налаштування збережи ключ, переглянь /schema і покажи мої останні 20 транзакцій та загальну суму витрат на продукти за цей місяць.
 ```
 
-## Як працює налаштування AI-трекера витрат
+## Приклад запиту для OpenClaw
 
-Ось повний HTTP-флоу за цим налаштуванням.
+```text
+Підключися до Expense Budget Tracker через https://api.expense-budget-tracker.com/v1/.
+Після входу збережи мій особистий робочий простір як типовий для цього ключа й імпортуй CSV-файл, який я завантажив.
+За можливості використовуй наявні категорії та повідом мені, якщо якийсь баланс не зійдеться.
+```
+
+## Як працює підключення ШІ-агента до трекера витрат
+
+Нижче наведено повний HTTP-флоу цього налаштування.
 
 ### 1. Прочитати discovery endpoint
 
@@ -95,11 +95,11 @@ Use existing categories when possible, and tell me if any balance does not match
 curl https://api.expense-budget-tracker.com/v1/
 ```
 
-У відповіді сказано, що починати треба з `send_code`, там же є bootstrap URL на auth-домені та посилання на опубліковані OpenAPI і schema endpoints.
+У відповіді сказано, що починати треба з `send_code`. Там само є bootstrap URL на auth-домені й посилання на опубліковані OpenAPI та schema endpoints.
 
-### 2. Надіслати email користувача
+### 2. Надіслати адресу електронної пошти користувача
 
-Агент відправляє email-адресу до auth-сервісу:
+Агент надсилає адресу електронної пошти до auth-сервісу:
 
 ```bash
 curl -X POST https://auth.expense-budget-tracker.com/api/agent/send-code \
@@ -109,9 +109,9 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/send-code \
 
 Якщо запит успішний, у відповіді буде `otpSessionToken` та інструкція викликати `verify_code`.
 
-### 3. Запитати у користувача 8-значний код із email
+### 3. Запитати у користувача 8-значний код із пошти
 
-Користувач перевіряє пошту і надсилає код назад агенту.
+Користувач перевіряє вхідні й передає код агенту.
 
 ### 4. Перевірити код і отримати ApiKey
 
@@ -123,13 +123,13 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
   -d '{
     "code":"12345678",
     "otpSessionToken":"opaque-token-from-send-code",
-    "label":"Claude Code on macbook"
+    "label":"Claude Code на MacBook"
   }'
 ```
 
 У відповіді буде новий `ApiKey`. Цей ключ показується лише один раз, тому агент має зберегти його для подальших запитів, бажано як `EXPENSE_BUDGET_TRACKER_API_KEY`.
 
-Це і є головне покращення порівняно зі старим ручним флоу: користувачу не треба створювати ключ у Settings і копіювати його в термінал.
+Це і є головне покращення порівняно зі старим ручним сценарієм: користувачу не треба створювати ключ у налаштуваннях і вручну переносити його в термінал.
 
 ### 5. Завантажити контекст акаунта і workspace
 
@@ -140,14 +140,14 @@ curl https://api.expense-budget-tracker.com/v1/me \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-Потім запитує список workspace:
+Потім запитує список робочих просторів:
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/workspaces \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-За потреби він може створити новий workspace або явно зберегти наявний через `POST /v1/workspaces/{workspaceId}/select`.
+За потреби він може створити новий робочий простір або явно зберегти наявний через `POST /v1/workspaces/{workspaceId}/select`.
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/workspaces/workspace_123/select \
@@ -156,7 +156,7 @@ curl -X POST https://api.expense-budget-tracker.com/v1/workspaces/workspace_123/
 
 ### 6. Виконувати SQL через API агента
 
-Після цього звичайна робота з даними йде через домен застосунку:
+Після цього звичайна робота з даними відбувається через домен застосунку:
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/sql \
@@ -171,58 +171,58 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 Запит обов’язково має містити обидва заголовки:
 
 - `Authorization: ApiKey <key>`
-- `X-Workspace-Id: <workspaceId>` лише якщо ви хочете перевизначити збережений workspace або поки його ще не збережено
+- `X-Workspace-Id: <workspaceId>` лише якщо ви хочете перевизначити збережений робочий простір або поки його ще не збережено
 
-Вибір workspace є явним, а сервер зберігає його для кожного API-ключа після `POST /v1/workspaces/{workspaceId}/select`. Якщо у користувача рівно один workspace, API автоматично зберігає і використовує його для нового ключа.
+Вибір робочого простору є явним, а сервер зберігає його для кожного API-ключа після `POST /v1/workspaces/{workspaceId}/select`. Якщо у користувача рівно один робочий простір, API автоматично зберігає й використовує його для нового ключа.
 
 ## Що агент може робити після налаштування
 
-Після підключення агент може забрати на себе нудну фінансову рутину, яка не повинна вимагати годин кліків:
+Після підключення агент може взяти на себе рутинну фінансову роботу, яка не повинна забирати години ручних дій:
 
-1. Парсити CSV, PDF або скриншоти з банку
-2. Додавати транзакції в ledger
+1. Розбирати CSV, PDF або скриншоти з банку
+2. Додавати транзакції в обліковий журнал
 3. Звіряти баланси з тим, що показує банк
-4. Аналізувати витрати за категорією, merchant або періодом
+4. Аналізувати витрати за категорією, продавцем або періодом
 5. Оновлювати бюджетні рядки на наступний місяць
 
-Ось практичний приклад для імпорту виписки:
+Ось практичний приклад запиту для імпорту виписки:
 
 ```text
-Import ~/Downloads/revolut-february-2026.csv into my EUR account.
-Before writing anything, query my existing categories and the last 30 days of transactions to avoid duplicates.
-After import, compare the resulting account balance with the closing balance in the CSV.
+Імпортуй ~/Downloads/revolut-february-2026.csv у мій рахунок у EUR.
+Перш ніж щось записувати, перевір мої наявні категорії та транзакції за останні 30 днів, щоб уникнути дублікатів.
+Після імпорту порівняй підсумковий баланс рахунку з кінцевим балансом у CSV.
 ```
 
-А ось приклад для аналітики:
+А ось приклад запиту для аналітики:
 
 ```text
-Show me my top 10 spending categories in the last 90 days, then compare them with the previous 90-day period.
-Also list the largest transactions in categories where spending increased.
+Покажи мої 10 найбільших категорій витрат за останні 90 днів, а потім порівняй їх із попереднім 90-денним періодом.
+Також переліч найбільші транзакції в категоріях, де витрати зросли.
 ```
 
-## Чому це краще за ручне налаштування API-ключа
+## Чому це краще за ручне створення API-ключа
 
-Новий флоу простіший і для користувача, і для агента:
+Новий сценарій простіший і для користувача, і для агента:
 
 - користувачу не треба вручну копіювати довгоживучий ключ
 - агент дізнається протокол безпосередньо від продукту
 - авторизація чітко відокремлена від доступу до даних
-- кожен SQL-запит прив’язаний до вибраного workspace
+- кожен SQL-запит прив’язаний до вибраного робочого простору
 - підключення можна пізніше відкликати з застосунку
 
-Якщо ви будуєте AI-флоу для обліку витрат, це важливо. Воно прибирає багато зайвого boilerplate у prompt і типових помилок під час налаштування.
+Якщо ви будуєте сценарій обліку витрат через ШІ-агента, це важливо. Такий підхід прибирає зайвий шаблонний текст у запиті й суттєво зменшує кількість типових помилок під час налаштування.
 
-## Open-source трекер витрат із налаштуванням для агентів
+## Трекер витрат з відкритим кодом і підтримкою агентів
 
 Expense Budget Tracker має ліцензію MIT і повністю відкритий код:
 
 - [Сайт проєкту](https://expense-budget-tracker.com/uk/)
 - [Репозиторій на GitHub](https://github.com/kirill-markin/expense-budget-tracker)
 - [README на GitHub](https://github.com/kirill-markin/expense-budget-tracker/blob/main/README.md)
-- [Документація з налаштування AI-агента](https://expense-budget-tracker.com/uk/docs/agent-setup/)
+- [Документація з налаштування ШІ-агента](https://expense-budget-tracker.com/uk/docs/agent-setup/)
 - [Довідник API](https://expense-budget-tracker.com/uk/docs/api/)
 
-Якщо хочете self-hosted варіант, почніть так:
+Якщо ви хочете розгорнути все самостійно, почніть так:
 
 ```bash
 git clone https://github.com/kirill-markin/expense-budget-tracker.git
@@ -230,10 +230,10 @@ cd expense-budget-tracker
 make up
 ```
 
-Якщо хочете користуватися хостинговою версією, дайте своєму агенту ось цей URL:
+Якщо вам підходить хостингова версія, просто дайте своєму агенту ось цей URL:
 
 ```text
 https://api.expense-budget-tracker.com/v1/
 ```
 
-Цього достатньо, щоб Claude Code, Codex або OpenClaw самі запустили флоу входу.
+Цього достатньо, щоб Claude Code, Codex або OpenClaw самостійно запустили вхід і далі виконували практичну роботу з вашими витратами.
