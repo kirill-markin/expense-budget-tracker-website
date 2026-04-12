@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { SiteFrame } from "@/components/SiteFrame";
 import { getAvailableDocIndexLocales, listDocs } from "@/lib/docs";
 import { isPrefixedLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
@@ -48,29 +49,35 @@ export default async function LocalizedDocsPage(
   const pageCopy = messages.docs;
 
   return (
-    <div className={styles.container}>
-      <Breadcrumbs
-        locale={locale}
-        items={[
-          {
-            label: messages.breadcrumbs.docs,
-            href: getLocalizedPath(locale, "/docs/"),
-          },
-        ]}
-      />
-      <h1 className={styles.title}>{pageCopy.title}</h1>
-      <div className={styles.grid}>
-        {docs.map((doc) => (
-          <Link
-            key={doc.slug}
-            href={getLocalizedPath(locale, `/docs/${doc.slug}/`)}
-            className={styles.card}
-          >
-            <h2>{doc.title}</h2>
-            <p>{doc.description}</p>
-          </Link>
-        ))}
+    <SiteFrame
+      locale={locale}
+      routePath="/docs/"
+      availableLocales={getAvailableDocIndexLocales()}
+    >
+      <div className={styles.container}>
+        <Breadcrumbs
+          locale={locale}
+          items={[
+            {
+              label: messages.breadcrumbs.docs,
+              href: getLocalizedPath(locale, "/docs/"),
+            },
+          ]}
+        />
+        <h1 className={styles.title}>{pageCopy.title}</h1>
+        <div className={styles.grid}>
+          {docs.map((doc) => (
+            <Link
+              key={doc.slug}
+              href={getLocalizedPath(locale, `/docs/${doc.slug}/`)}
+              className={styles.card}
+            >
+              <h2>{doc.title}</h2>
+              <p>{doc.description}</p>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </SiteFrame>
   );
 }

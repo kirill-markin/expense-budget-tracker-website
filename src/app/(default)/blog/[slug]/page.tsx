@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { SiteFrame } from "@/components/SiteFrame";
 import {
   getAvailableBlogLocales,
   getRecommendedBlogPosts,
@@ -93,49 +94,55 @@ export default async function BlogPostPage(
   const recommendedPosts = getRecommendedBlogPosts(LOCALE, slug, 4);
 
   return (
-    <article className={styles.container}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <Breadcrumbs
-        locale={LOCALE}
-        items={[
-          { label: messages.breadcrumbs.blog, href: getLocalizedPath(LOCALE, "/blog/") },
-          { label: post.title, href: getLocalizedPath(LOCALE, `/blog/${slug}/`) },
-        ]}
-      />
-      <time className={styles.date}>{post.date}</time>
-      <a href={AUTHOR_URL} className={styles.byline}>
-        {messages.blogPost.bylinePrefix} {AUTHOR_NAME}
-      </a>
-      <h1 className={styles.title}>{post.title}</h1>
-      <div
-        className={styles.content}
-        dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-      />
-      {recommendedPosts.length > 0 ? (
-        <section className={styles.relatedSection}>
-          <h2 className={styles.relatedHeading}>
-            {messages.blogPost.relatedHeading}
-          </h2>
-          <div className={styles.relatedList}>
-            {recommendedPosts.map((recommendedPost) => (
-              <Link
-                key={recommendedPost.slug}
-                href={getLocalizedPath(LOCALE, `/blog/${recommendedPost.slug}/`)}
-                className={styles.relatedCard}
-              >
-                <time className={styles.date}>{recommendedPost.date}</time>
-                <h3>{recommendedPost.title}</h3>
-                <p className={styles.relatedDescription}>
-                  {recommendedPost.description}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      ) : null}
-    </article>
+    <SiteFrame
+      locale={LOCALE}
+      routePath={`/blog/${slug}/`}
+      availableLocales={getAvailableBlogLocales(slug)}
+    >
+      <article className={styles.container}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+        <Breadcrumbs
+          locale={LOCALE}
+          items={[
+            { label: messages.breadcrumbs.blog, href: getLocalizedPath(LOCALE, "/blog/") },
+            { label: post.title, href: getLocalizedPath(LOCALE, `/blog/${slug}/`) },
+          ]}
+        />
+        <time className={styles.date}>{post.date}</time>
+        <a href={AUTHOR_URL} className={styles.byline}>
+          {messages.blogPost.bylinePrefix} {AUTHOR_NAME}
+        </a>
+        <h1 className={styles.title}>{post.title}</h1>
+        <div
+          className={styles.content}
+          dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+        />
+        {recommendedPosts.length > 0 ? (
+          <section className={styles.relatedSection}>
+            <h2 className={styles.relatedHeading}>
+              {messages.blogPost.relatedHeading}
+            </h2>
+            <div className={styles.relatedList}>
+              {recommendedPosts.map((recommendedPost) => (
+                <Link
+                  key={recommendedPost.slug}
+                  href={getLocalizedPath(LOCALE, `/blog/${recommendedPost.slug}/`)}
+                  className={styles.relatedCard}
+                >
+                  <time className={styles.date}>{recommendedPost.date}</time>
+                  <h3>{recommendedPost.title}</h3>
+                  <p className={styles.relatedDescription}>
+                    {recommendedPost.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
+      </article>
+    </SiteFrame>
   );
 }

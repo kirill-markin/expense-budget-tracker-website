@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { SiteFrame } from "@/components/SiteFrame";
 import { getAlternateBlogIndexLocales, listBlogPosts } from "@/lib/blog";
+import type { AppLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
 import { getLocalizedPath } from "@/lib/i18n/routing";
 import { createPageMetadata } from "@/lib/seo/createPageMetadata";
@@ -25,36 +27,46 @@ export const metadata: Metadata = createPageMetadata({
 export default function BlogPage(): React.JSX.Element {
   const posts = listBlogPosts(LOCALE);
   const messages = getSiteMessages(LOCALE);
+  const availableLocales: ReadonlyArray<AppLocale> =
+    BLOG_INDEX_ALTERNATE_LOCALES.includes(LOCALE)
+      ? BLOG_INDEX_ALTERNATE_LOCALES
+      : [LOCALE];
 
   return (
-    <div className={styles.container}>
-      <Breadcrumbs
-        locale={LOCALE}
-        items={[
-          {
-            label: messages.breadcrumbs.blog,
-            href: getLocalizedPath(LOCALE, "/blog/"),
-          },
-        ]}
-      />
-      <h1 className={styles.title}>{PAGE_COPY.title}</h1>
-      {posts.length === 0 ? (
-        <p className={styles.empty}>{PAGE_COPY.empty}</p>
-      ) : (
-        <div className={styles.list}>
-          {posts.map((post) => (
-            <Link
-              key={post.slug}
-              href={getLocalizedPath(LOCALE, `/blog/${post.slug}/`)}
-              className={styles.card}
-            >
-              <time className={styles.date}>{post.date}</time>
-              <h2>{post.title}</h2>
-              <p>{post.description}</p>
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
+    <SiteFrame
+      locale={LOCALE}
+      routePath="/blog/"
+      availableLocales={availableLocales}
+    >
+      <div className={styles.container}>
+        <Breadcrumbs
+          locale={LOCALE}
+          items={[
+            {
+              label: messages.breadcrumbs.blog,
+              href: getLocalizedPath(LOCALE, "/blog/"),
+            },
+          ]}
+        />
+        <h1 className={styles.title}>{PAGE_COPY.title}</h1>
+        {posts.length === 0 ? (
+          <p className={styles.empty}>{PAGE_COPY.empty}</p>
+        ) : (
+          <div className={styles.list}>
+            {posts.map((post) => (
+              <Link
+                key={post.slug}
+                href={getLocalizedPath(LOCALE, `/blog/${post.slug}/`)}
+                className={styles.card}
+              >
+                <time className={styles.date}>{post.date}</time>
+                <h2>{post.title}</h2>
+                <p>{post.description}</p>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </SiteFrame>
   );
 }

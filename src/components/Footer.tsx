@@ -4,13 +4,20 @@ import { getAvailableDocIndexLocales, getAvailableDocLocales } from "@/lib/docs"
 import type { AppLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
 import { getLocalizedPath } from "@/lib/i18n/routing";
+import { LocaleSwitcher } from "./LocaleSwitcher";
 import styles from "./Footer.module.css";
 
 interface FooterProps {
+  readonly availableLocales: ReadonlyArray<AppLocale>;
   readonly locale: AppLocale;
+  readonly routePath: string;
 }
 
-export const Footer = ({ locale }: FooterProps): React.JSX.Element => {
+export const Footer = ({
+  availableLocales,
+  locale,
+  routePath,
+}: FooterProps): React.JSX.Element => {
   const year = new Date().getFullYear();
   const messages = getSiteMessages(locale);
   const hasDocsIndex = getAvailableDocIndexLocales().includes(locale);
@@ -66,21 +73,30 @@ export const Footer = ({ locale }: FooterProps): React.JSX.Element => {
           </div>
         </div>
         <div className={styles.bottom}>
-          <span className={styles.copyright}>{year} Expense Budget Tracker</span>
-          <div className={styles.attribution}>
-            <span className={styles.attributionLine}>
-              {messages.footer.builtBy} ·{" "}
-              <a
-                href="https://kirill-markin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                kirill-markin.com
-              </a>
-            </span>
-            <span className={styles.attributionLine}>
-              {messages.footer.operatedBy}
-            </span>
+          <div className={styles.bottomMeta}>
+            <span className={styles.copyright}>{year} Expense Budget Tracker</span>
+            <div className={styles.attribution}>
+              <span className={styles.attributionLine}>
+                {messages.footer.builtBy} ·{" "}
+                <a
+                  href="https://kirill-markin.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  kirill-markin.com
+                </a>
+              </span>
+              <span className={styles.attributionLine}>
+                {messages.footer.operatedBy}
+              </span>
+            </div>
+          </div>
+          <div className={styles.localePicker}>
+            <LocaleSwitcher
+              locale={locale}
+              routePath={routePath}
+              availableLocales={availableLocales}
+            />
           </div>
         </div>
       </div>
