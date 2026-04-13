@@ -1,31 +1,31 @@
 ---
 title: "Primeros pasos"
-description: "Regístrese para obtener la versión en la nube o configure su propia instancia en minutos."
+description: "Regístrate para usar la versión en la nube o configura tu propia instancia en minutos."
 ---
 
 ## Versión en la nube
 
-La forma más rápida de empezar es la versión cloud administrada:
+La forma más rápida de empezar es usar la versión en la nube gestionada:
 
-1. Vaya a [app.expense-budget-tracker.com](https://app.expense-budget-tracker.com)
+1. Ve a [app.expense-budget-tracker.com](https://app.expense-budget-tracker.com)
 2. Regístrate con tu correo electrónico (OTP sin contraseña)
-3. Comience a realizar un seguimiento de los gastos en la aplicación web.
-4. Si desea conectar Claude Code, Codex o OpenClaw, proporcione al agente `https://api.expense-budget-tracker.com/v1/`
+3. Empieza a registrar gastos en la aplicación web
+4. Si quieres conectar Claude Code, Codex u OpenClaw, facilita al agente `https://api.expense-budget-tracker.com/v1/`
 
-Sin instalación, sin configuración del servidor. Sus datos están aislados mediante seguridad de nivel de fila a nivel de espacio de trabajo en Postgres.
+Sin instalación ni configuración del servidor. Tus datos quedan aislados por espacio de trabajo mediante la seguridad a nivel de fila de Postgres.
 
-## Acceso al agente y al programa
+## Acceso para agentes y programas
 
 La misma cuenta alojada funciona para:
 
 - la interfaz de usuario web en `https://app.expense-budget-tracker.com`
-- acceso para agentes en `GET https://api.expense-budget-tracker.com/v1/`
+- la configuración para agentes mediante `GET https://api.expense-budget-tracker.com/v1/`
 - clientes HTTP directos usando `Authorization: ApiKey <key>`
 
-## Autoalojado
+## Autoalojamiento
 
-Si prefiere ejecutar su propia instancia, consulte la [Guía de autoalojamiento](/es/docs/self-hosting/).
+Si prefieres ejecutar tu propia instancia, consulta la [Guía de autoalojamiento](/es/docs/self-hosting/).
 
 ## Modo de demostración
 
-La aplicación incluye un modo de demostración incorporado. Cambie el botón Todo/Demostración en el encabezado para explorar la interfaz con datos de muestra, sin necesidad de base de datos.
+La aplicación incluye un modo de demostración integrado. Usa el selector Todo/Demostración del encabezado para explorar la interfaz con datos de ejemplo, sin necesidad de base de datos.

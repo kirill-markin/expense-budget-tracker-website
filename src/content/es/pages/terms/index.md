@@ -8,7 +8,7 @@ sections:
 ---
 ## Servicio
 
-Expense Budget Tracker es una herramienta open source de finanzas personales. La versión cloud se ofrece tal cual durante el periodo beta y sin coste.
+Expense Budget Tracker es una herramienta de finanzas personales de código abierto. La versión en la nube se ofrece tal cual durante el periodo beta y sin coste.
 
 ## Proveedor del servicio
 
@@ -20,11 +20,11 @@ Tus datos te pertenecen. No reclamamos ningún derecho sobre la información fin
 
 ## Uso aceptable
 
-No uses el servicio para actividades ilegales, no intentes acceder a datos de otros usuarios y no abuses de los límites de tasa de la API.
+No uses el servicio para actividades ilegales, no intentes acceder a datos de otros usuarios y no abuses de los límites de uso de la API.
 
 ## Disponibilidad
 
-El servicio cloud se ofrece sobre la base de mejor esfuerzo. Si necesitas disponibilidad garantizada, autoaloja la aplicación en tu propia infraestructura.
+El servicio en la nube se ofrece en régimen de mejor esfuerzo. Si necesitas disponibilidad garantizada, aloja la aplicación en tu propia infraestructura.
 
 ## Código abierto
 

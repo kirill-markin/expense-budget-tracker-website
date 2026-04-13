@@ -4,17 +4,17 @@ export const PRICING_PAGE_CONTENT_UK: PageContent = {
   locale: "uk",
   title: "Ціни",
   description:
-    "Безкоштовне self-hosted розгортання або керований cloud-хостинг. Відкритий код без обмеження функцій.",
+    "Безкоштовне самостійне розгортання або керований хмарний хостинг. Відкритий код без обмежень за функціями.",
   slug: "pricing",
   sections: [
     {
       type: "pricing_tiers",
       title: "Ціни",
-      intro: "Усі функції доступні в кожному варіанті. Жодного feature gating.",
+      intro: "Усі функції доступні в кожному варіанті. Жодних обмежень за функціями.",
       tiers: [
         {
           type: "link_tier",
-          name: "Self-hosted",
+          name: "Самостійне розгортання",
           price: "Безкоштовно",
           highlighted: false,
           bullets: [
@@ -31,18 +31,18 @@ export const PRICING_PAGE_CONTENT_UK: PageContent = {
         },
         {
           type: "auth_tier",
-          name: "Cloud",
-          price: "Безкоштовно під час бети",
+          name: "Хмарна версія",
+          price: "Безкоштовно під час бета-періоду",
           highlighted: true,
           bullets: [
             "Керований хостинг на AWS",
             "Автоматичні резервні копії",
             "Усі функції включено",
-            "Email OTP-аутентифікація",
-            "Щоденне оновлення FX-курсів",
+            "Вхід за одноразовим кодом із email",
+            "Щоденне оновлення валютних курсів",
           ],
           cta: {
-            label: "Почати",
+            label: "Почати користуватися",
             href: "https://app.expense-budget-tracker.com",
           },
         },

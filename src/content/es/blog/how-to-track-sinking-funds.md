@@ -1,261 +1,262 @@
 ---
-title: "Cómo realizar un seguimiento de los fondos de amortización en 2026: presupuestar los gastos anuales sin saquear su fondo de emergencia"
-description: "¿Necesita una forma práctica de realizar un seguimiento de los fondos de amortización en 2026? A continuación se explica cómo presupuestar gastos anuales como viajes, vacaciones, seguros y reparaciones del hogar sin asaltar su fondo de emergencia ni perder la cuenta en una hoja de cálculo."
+title: "Cómo llevar el control de tus fondos para gastos previstos en 2026: presupuesta los gastos anuales sin tirar de tu fondo de emergencia"
+description: "¿Buscas una forma práctica de llevar el control de tus fondos para gastos previstos en 2026? Aquí tienes cómo presupuestar gastos anuales como viajes, vacaciones, seguros y reparaciones del hogar sin tocar tu fondo de emergencia ni perderte en una hoja de cálculo."
 date: "2026-03-26"
 keywords:
-  - "cómo realizar un seguimiento de los fondos de amortización"
-  - "presupuesto de fondos de amortización"
+  - "cómo llevar el control de los fondos para gastos previstos"
+  - "presupuesto para gastos previstos"
   - "presupuesto de gastos anuales"
-  - "realizar un seguimiento de los fondos de amortización en el presupuesto"
+  - "controlar los fondos para gastos previstos en el presupuesto"
   - "presupuesto de gastos anuales"
-  - "aplicación de presupuesto de fondo de amortización"
+  - "sinking funds"
+  - "app de presupuesto para gastos previstos"
   - "ahorrar para gastos irregulares"
-  - "categorías de fondos de amortización"
+  - "categorías para gastos previstos"
 ---
 
-El seguro de mi automóvil se renovó el mes pasado con perfectos modales financieros. No es de extrañar. Ningún escándalo. La factura vencía en la fecha exacta en que vencía el año anterior.
+El seguro del coche se renovó el mes pasado con una puntualidad impecable. Ninguna sorpresa. Ningún escándalo. El recibo vencía exactamente el mismo día que el año anterior.
 
-Y todavía tenía la energía de una emergencia.
+Y aun así parecía una emergencia.
 
-Generalmente es entonces cuando la gente empieza a buscar **cómo realizar un seguimiento de los fondos de amortización**.
+Ese suele ser el momento en el que la gente empieza a buscar **cómo llevar el control de los fondos para gastos previstos**.
 
-No porque la idea sea complicada. No lo es. Lo molesto es que los presupuestos normales a menudo se elaboran para la vida mensual, mientras que muchos gastos reales aparecen en un cronograma más lento y mezquino. Renovaciones de seguros. Gasto de vacaciones. Renovaciones de pasaporte. Suscripciones anuales. Viajes de verano. Reparaciones en el hogar que puede ver venir pero que no pueden realizarse claramente dentro de un mes normal.
+No porque la idea sea complicada. No lo es. Lo molesto es que los presupuestos normales suelen estar pensados para el mes a mes, mientras que muchos gastos reales aparecen con otro ritmo, más lento y más traicionero. Renovaciones de seguros. Gastos de vacaciones. Renovaciones del pasaporte. Suscripciones anuales. Viajes de verano. Reparaciones en casa que sabes que llegarán, pero que no encajan bien en un único mes corriente.
 
-Ahí es donde un **presupuesto de fondos de amortización** comienza a tener mucho más sentido que una promesa más de "ser más disciplinados la próxima vez".
+Ahí es donde un **presupuesto para gastos previstos** tiene mucho más sentido que otra promesa de "la próxima vez seré más disciplinado".
 
-## Los fondos de amortización son simplemente gastos futuros planificados con un nombre
+## Los fondos para gastos previstos no son más que gasto futuro planificado
 
-Ésta es la forma más limpia de pensar en ellos.
+Esta es la forma más clara de entenderlos.
 
-Un fondo de amortización es dinero que se reserva poco a poco para un gasto específico que ya se espera que ocurra.
+Un fondo para gastos previstos es dinero que apartas poco a poco para un gasto concreto que ya sabes que va a llegar.
 
 Eso es todo.
 
-No es un fondo de emergencia. No se trata de ahorros aleatorios. No es un montón vago de "probablemente debería prepararme para algunas cosas".
+No es un fondo de emergencia. No son ahorros al azar. No es ese montón difuso de "debería ir preparándome para cosas".
 
-Es un gasto específico con un propósito claro.
+Es un gasto concreto con un propósito claro.
 
-Esa distinción es importante porque los costos planificados no deberían seguir pretendiendo ser sorpresas. Si su factura anual de seguro, sus vuelos de vacaciones o sus cuotas escolares siguen aumentando el mes en que aterrizan, el verdadero problema no suele ser el autocontrol. El verdadero problema es que el presupuesto nunca dio a esos gastos un lugar adecuado donde vivir antes de que llegaran.
+Esa diferencia importa porque los gastos planificados no deberían seguir haciéndose pasar por sorpresas. Si el seguro anual, los vuelos de vacaciones o las cuotas del colegio te descuadran el mes en que llegan, el problema normalmente no es la falta de disciplina. El problema real es que el presupuesto nunca les dio un sitio antes de que aparecieran.
 
 ## El error del fondo de emergencia es caro y extrañamente común
 
-La gente hace esto todo el tiempo.
+La gente hace esto constantemente.
 
-Se ven afectados por un costo predecible, retiran dinero del fondo de emergencia y luego se dicen a sí mismos que "lo volverán a llenar más tarde".
+Llega un gasto previsible, sacan dinero del fondo de emergencia y luego se dicen que "ya lo repondrán más adelante".
 
-Lo curioso es que esa lógica convierte cada factura anual esperada en una emergencia falsa.
+Lo curioso es que esa lógica convierte cada recibo anual previsto en una falsa emergencia.
 
-Ese es un mal trato.
+Es un mal negocio.
 
-Su fondo de emergencia es para cosas que razonablemente no podría programar con anticipación. Un fondo de amortización es para el tipo opuesto de problema: costos conocidos con retraso en el momento.
+El fondo de emergencia es para cosas que razonablemente no podías planificar con antelación. Un fondo para gastos previstos sirve justo para lo contrario: costes conocidos que llegarán más adelante.
 
-Si desea un **presupuesto de gastos anuales** más tranquilo, separar esas dos categorías cambia mucho. Dejas de sentir que la vida te sigue acechando con las mismas facturas predecibles todos los años.
+Si quieres un **presupuesto de gastos anuales** más tranquilo, separar esas dos categorías cambia mucho. Dejas de sentir que la vida te embosca todos los años con las mismas facturas de siempre.
 
-## El problema de software suele ser mayor que el problema de matemáticas.
+## El problema del sistema suele ser mayor que el problema de las cuentas
 
-Las matemáticas son aburridas.
+Las cuentas son aburridas.
 
-Si recibirá una factura de $1200 en 6 meses, necesita ahorrar $200 por mes.
+Si te viene una factura de $1,200 dentro de 6 meses, tienes que ahorrar $200 al mes.
 
-Nadie se queda estancado en esa parte.
+Nadie se atasca ahí.
 
-La gente se queda atrapada en el sistema que la rodea.
+La gente se atasca en el sistema que hay alrededor.
 
-Las preguntas comienzan a acumularse rápidamente:
+Las preguntas se acumulan enseguida:
 
-- ¿Debería el dinero depositarse en cuentas corrientes o en cajas de ahorro?
-- ¿Cada fondo de amortización debería tener su propia categoría?
+- ¿Debería dejar el dinero en la cuenta corriente o pasarlo a una cuenta de ahorro?
+- ¿Cada fondo para gastos previstos debería tener su propia categoría?
 - ¿Qué sucede cuando el dinero se mueve entre cuentas?
-- ¿Cómo se mantienen visibles las facturas anuales antes del mes en que llegan?
-- ¿Cómo evitas contar dos veces el mismo dinero?
+- ¿Cómo mantienes visibles las facturas anuales antes del mes en que llegan?
+- ¿Cómo evitas contar el mismo dinero dos veces?
 
-Aquí es donde muchos consejos se vuelven confusos. Le dice "crear fondos de amortización", pero no cómo hacer que se comporten dentro de un presupuesto real con saldos, transferencias, transacciones importadas y varias cuentas.
+Aquí es donde muchos consejos se vuelven difusos. Te dicen "crea sinking funds", pero no te explican cómo hacer que encajen en un presupuesto real con saldos, transferencias, movimientos importados y varias cuentas.
 
 ## La mejor configuración suele ser más sencilla de lo que parece
 
-Si quisiera un flujo de trabajo práctico para una **aplicación de presupuesto de fondos de amortización**, lo dejaría muy claro:
+Si quisiera un flujo de trabajo práctico en una **app de presupuesto para gastos previstos**, lo mantendría así de simple:
 
 1. definir el gasto real
 2. convertirlo en un objetivo de ahorro mensual
-3. mantener la categoría de gasto ligada al propósito real
-4. Trate el movimiento de dinero entre cuentas como una transferencia, no como un gasto.
-5. Verifique los meses futuros antes de que llegue el proyecto de ley.
+3. mantener la categoría de gasto ligada a su propósito real
+4. tratar el movimiento de dinero entre cuentas como una transferencia, no como un gasto
+5. revisar los meses futuros antes de que llegue el recibo
 
 Esa estructura evita la mayor parte del caos.
 
-La categoría te dice para qué sirve el dinero.
+La categoría te dice para qué es ese dinero.
 
-La transferencia le indica dónde está el dinero.
+La transferencia te dice dónde está guardado.
 
-El presupuesto del mes futuro le indica si realmente se está preparando a tiempo.
+El presupuesto de los meses futuros te dice si de verdad te estás preparando con tiempo.
 
-Una vez que esos trabajos se separan, los fondos de amortización dejan de parecer místicos.
+Cuando separas bien esas funciones, los fondos para gastos previstos dejan de parecer algo misterioso.
 
-## No crees una categoría falsa llamada "fondos de amortización"
+## No inventes una categoría genérica llamada "fondos para gastos previstos"
 
-Yo no haría eso.
+Yo no lo haría.
 
-Si el gasto futuro es un seguro de automóvil, llámelo seguro de automóvil.
+Si el gasto futuro es el seguro del coche, llámalo seguro del coche.
 
-Si se trata de un viaje de vacaciones, llámelo viaje.
+Si es un viaje de vacaciones, llámalo viaje.
 
-Si se trata de renovaciones anuales de software, llámelo software o suscripciones.
+Si son renovaciones anuales de software, llámalo software o suscripciones.
 
-Si se trata de mantenimiento del hogar, llámelo mantenimiento del hogar.
+Si es mantenimiento de la vivienda, llámalo mantenimiento de la vivienda.
 
-El objetivo de las **categorías de fondos de amortización** no es crear un segundo lenguaje financiero. La cuestión es distribuir un gasto futuro real a lo largo del tiempo sin perder de vista lo que realmente es.
+El objetivo de las **categorías para gastos previstos** no es inventarse un segundo idioma financiero. La idea es repartir en el tiempo un gasto futuro real sin perder de vista qué gasto es.
 
-Una vez que la gente crea una gran categoría llamada "fondos de amortización", el presupuesto se vuelve vago rápidamente. Ahorraste para algo, pero ¿para qué exactamente? ¿Qué factura futura está cubierta? ¿Cuál todavía no cuenta con fondos suficientes? Ahí es donde la claridad desaparece.
+En cuanto la gente crea una gran categoría llamada "fondos para gastos previstos", el presupuesto se vuelve impreciso muy rápido. Has ahorrado para algo, sí, pero ¿para qué exactamente? ¿Qué factura futura está cubierta? ¿Cuál sigue sin estar bien financiada? Ahí es donde se pierde la claridad.
 
 ## La parte que muchos presupuestos pasan por alto es la visibilidad futura
 
-Por eso el tema sigue volviendo.
+Por eso este tema vuelve una y otra vez.
 
-La mayoría de los presupuestos son decentes al mostrar lo que ya sucedió. Muchos menos son buenos para ayudarlo a prepararse para un costo que aún faltan tres o seis meses.
+La mayoría de los presupuestos se defienden mostrando lo que ya ha pasado. Muchos menos sirven para prepararte para un gasto que todavía está a tres o seis meses vista.
 
-Ese es el objetivo de **seguir el seguimiento de los fondos de amortización en el presupuesto** como un flujo de trabajo en lugar de un eslogan de ahorro.
+Ese es el sentido de **llevar el control de los fondos para gastos previstos dentro del presupuesto** como un sistema de trabajo, no como un simple eslogan de ahorro.
 
-Necesitas ver la presión antes de que llegue el mes.
+Necesitas ver la presión antes de que llegue ese mes.
 
-Si el presupuesto de viaje necesita dinero todos los meses de enero a junio, eso ya debería ser visible mientras aún estás en marzo. Si la factura anual del seguro llega en septiembre, el sistema no debería esperar hasta septiembre para empezar a actuar en serio.
+Si el presupuesto de viaje necesita dinero todos los meses de enero a junio, eso ya debería verse cuando todavía estás en marzo. Si el recibo anual del seguro llega en septiembre, el sistema no debería esperar a septiembre para empezar a tomárselo en serio.
 
-Aquí es donde una cuadrícula presupuestaria mes a mes es mucho más útil que una masa de ahorro gigante que se encuentra fuera del plan.
+Aquí es donde una cuadrícula presupuestaria mes a mes es mucho más útil que una gran bolsa de ahorro que queda fuera del plan.
 
-## Algunos fondos de amortización comunes que merecen su propia línea
+## Algunos gastos previstos habituales merecen su propia línea
 
-Algunos gastos futuros son tan obvios que vale la pena realizar un seguimiento por separado de inmediato:
+Hay gastos futuros tan evidentes que merece la pena seguirlos por separado desde el principio:
 
-|Gastos|¿Por qué se vuelve molesto?|Mejor trato económico|
+| Gasto | Por qué acaba siendo molesto | Mejor tratamiento en el presupuesto |
 |---|---|---|
-|Seguro anual|Un billete grande golpea todo a la vez|Ahorre mensualmente en la categoría de seguro|
-|vacaciones y regalos|El gasto excesivo estacional se siente "especial" cada año|Distribuir el total esperado a lo largo del año.|
-|Viajar|Vuelos y hoteles se acumulan en un período|Construya el costo del viaje con meses de anticipación|
-|Reparaciones del hogar|No siempre es una emergencia, a menudo sigue siendo predecible|Mantenga una línea dedicada al mantenimiento del hogar|
-|mantenimiento del coche|Los neumáticos, el servicio, el registro y las reparaciones se acumulan mal|Trate el mantenimiento esperado por separado del combustible.|
-|Suscripciones anuales|Fácil de olvidar hasta que llegan los correos electrónicos de renovación|Mantenga los costos de renovación visibles antes de que se publiquen|
+| Seguro anual | Es una factura grande que cae de golpe | Ahorra cada mes dentro de la categoría de seguro |
+| Vacaciones y regalos | El exceso de gasto estacional parece "especial" todos los años | Reparte el total previsto a lo largo del año |
+| Viajes | Vuelos y hoteles se concentran en poco tiempo | Construye el coste del viaje con meses de antelación |
+| Reparaciones del hogar | No siempre son una emergencia, pero muchas veces sí son previsibles | Mantén una línea propia para mantenimiento del hogar |
+| Mantenimiento del coche | Neumáticos, revisiones, impuestos y reparaciones se acumulan mal | Separa el mantenimiento previsto del combustible |
+| Suscripciones anuales | Es fácil olvidarlas hasta que llegan los correos de renovación | Mantén esos importes visibles antes de que se carguen |
 
-Ésta es una de las razones por las que el tema combina bien con el seguimiento de suscripciones. Muchas renovaciones anuales parecen pequeñas hasta que varias de ellas se juntan. Si eso es parte de tu problema, este artículo también te ayudará:
+Esta es una de las razones por las que este tema encaja tan bien con el seguimiento de suscripciones. Muchas renovaciones anuales parecen pequeñas hasta que varias coinciden a la vez. Si ese también es tu problema, este artículo te puede ayudar:
 
-- [Cómo realizar un seguimiento de las suscripciones en 2026](https://expense-budget-tracker.com/es/blog/how-to-track-subscriptions/)
+- [Cómo llevar el control de las suscripciones en 2026](https://expense-budget-tracker.com/es/blog/how-to-track-subscriptions/)
 
 ## Separar el gasto de la cuenta de almacenamiento
 
-Esto importa más de lo que la gente espera.
+Esto importa más de lo que parece.
 
-A veces, el dinero de un fondo de amortización permanece en su cuenta principal hasta que llega la factura. A veces lo mueves a una cuenta de ahorros separada para tener menos tentación de tocarlo.
+A veces el dinero para uno de estos fondos se queda en tu cuenta principal hasta que llega el recibo. Otras veces lo mueves a una cuenta de ahorro aparte para tener menos tentación de tocarlo.
 
-Cualquiera de los dos está bien.
+Las dos opciones pueden funcionar.
 
-Lo que importa es no confundir almacenamiento con gasto.
+Lo importante es no confundir dónde guardas el dinero con en qué lo gastas.
 
-Si mueve $200 de la cuenta corriente a ahorros para viajes, todavía no gastó $200 en viajes.
+Si mueves $200 de la cuenta corriente a una cuenta de ahorro para viajes, todavía no has gastado $200 en viajes.
 
-Moviste dinero.
+Solo has movido dinero.
 
-Eso debería comportarse como una transferencia.
+Eso debería tratarse como una transferencia.
 
-Luego, cuando el cargo de la aerolínea realmente llegue, ese será el gasto real.
+Después, cuando llegue el cargo real de la aerolínea, ese sí será el gasto.
 
-Aquí es exactamente donde empiezan a residir los sistemas presupuestarios débiles. Cuentan el movimiento hacia los ahorros como gasto y luego también cuentan la compra de viajes real. De repente, el mismo dinero ha conseguido salir dos veces del presupuesto.
+Aquí es exactamente donde los sistemas de presupuesto flojos empiezan a mentir. Cuentan el traslado a la cuenta de ahorro como gasto y luego vuelven a contar la compra real del viaje. De repente, el mismo dinero ha salido del presupuesto dos veces.
 
-Por eso me importa mucho que las transferencias sean tratadas como datos de primera clase, no como extraños gastos fingidos.
+Por eso es tan importante que las transferencias se traten como datos de primera clase, y no como gastos ficticios.
 
-## Probablemente no necesites quince fondos de amortización
+## Probablemente no necesitas quince fondos para gastos previstos
 
-Esta es la otra trampa.
+Esa es la otra trampa.
 
-Una vez que la gente descubre el concepto, a veces empiezan a crear un cubo separado para cada posible inconveniente futuro. Eso puede volverse tonto rápidamente.
+Cuando la gente descubre el concepto, a veces empieza a crear un compartimento separado para cada pequeña molestia futura. Eso se puede volver absurdo muy rápido.
 
 Yo empezaría por los gastos que son:
 
-- predecible
-- significativo en tamaño
-- doloroso cuando golpean todos a la vez
+- predecibles
+- relevantes por importe
+- dolorosos cuando llegan todos de golpe
 
-Por lo general, esto le brinda una lista breve y útil.
+Eso normalmente te deja una lista corta y útil.
 
-Puede agregar más más tarde si el sistema aún se siente tranquilo.
+Ya añadirás más después si el sistema sigue siendo manejable.
 
-Una buena configuración de **cómo realizar un seguimiento de los fondos de amortización** debería reducir la ansiedad, no convertir su presupuesto en un museo de futuros administradores.
+Una buena forma de **llevar el control de los fondos para gastos previstos** debería reducir la ansiedad, no convertir tu presupuesto en un museo de gestiones futuras.
 
 ## Lo que aquí hace bien Expense Budget Tracker
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/es/) es una buena opción para **gastos anuales presupuestarios** porque el producto ya tiene las piezas que este flujo de trabajo necesita en un solo lugar:
+[Expense Budget Tracker](https://expense-budget-tracker.com/es/) encaja muy bien para **presupuestar gastos anuales** porque el producto ya reúne en un solo sitio las piezas que este sistema necesita:
 
 - planificación mensual basada en categorías
 - saldos en cuentas reales
 - transferencias separadas del gasto normal
 - transacciones importadas de extractos y archivos
-- visibilidad del mes futuro en lugar de teatro solo del mes actual
+- visibilidad de los meses futuros, no solo teatro del mes actual
 
 Esa combinación importa.
 
-Algunos productos son paneles de ahorro decentes pero sistemas presupuestarios débiles. Algunos son presupuestos de categoría decentes, pero incómodos una vez que el dinero se mueve entre cuentas. Los fondos de amortización funcionan mejor cuando las categorías, los saldos, las transferencias y la planificación futura conviven en el mismo modelo.
+Algunos productos son buenos paneles de ahorro, pero malos sistemas de presupuesto. Otros funcionan aceptablemente con categorías, pero se vuelven incómodos cuando el dinero se mueve entre cuentas. Los fondos para gastos previstos funcionan mejor cuando categorías, saldos, transferencias y planificación futura conviven en el mismo modelo.
 
-Si sus gastos varían más de un mes a otro, este combina bien con la misma idea:
+Si tus gastos varían bastante de un mes a otro, este otro artículo encaja muy bien con la misma idea:
 
 - [Cómo hacer un presupuesto con ingresos irregulares en 2026](https://expense-budget-tracker.com/es/blog/how-to-budget-with-irregular-income/)
 
 ## Un ejemplo práctico
 
-Supongamos que espera estos tres costos:
+Imagina que esperas estos tres gastos:
 
-- $1,200 seguro de auto anual en 6 meses
-- $900 para viajes de vacaciones en 9 meses
-- Renovaciones de software anuales de $360 en 12 meses
+- $1,200 de seguro anual del coche dentro de 6 meses
+- $900 para viajes de vacaciones dentro de 9 meses
+- $360 de renovaciones anuales de software dentro de 12 meses
 
-Eso significa que su preparación mensual se ve así:
+Eso significa que tu preparación mensual quedaría más o menos así:
 
-- $200 por mes para seguro
-- $100 por mes para viajes
-- $30 por mes para renovaciones
+- $200 al mes para el seguro
+- $100 al mes para viajes
+- $30 al mes para renovaciones
 
-Ahora el presupuesto dice la verdad.
+Ahora el presupuesto está diciendo la verdad.
 
-No la dramática verdad que llega de repente más tarde.
+No la verdad dramática que cae de golpe más adelante.
 
-La tranquila verdad mensual de que esos costos futuros ya son parte de su vida financiera en este momento.
+La verdad tranquila de cada mes: esos gastos futuros ya forman parte de tu vida financiera ahora mismo.
 
-Eso es lo que hace que un **presupuesto de fondo de amortización** sea realmente útil. Traduce un feo mes futuro en varios meses ordinarios manejables.
+Eso es lo que hace que un **presupuesto para gastos previstos** sea realmente útil. Convierte un mes futuro horrible en varios meses normales y manejables.
 
 ## Importar las transacciones reales sigue siendo importante
 
-No ejecutaría este sistema desde la memoria.
+Yo no llevaría este sistema de memoria.
 
-Cuando llegue el cargo real, impórtelo de su estado de cuenta y clasifíquelo adecuadamente. Eso mantiene el plan conectado con la realidad.
+Cuando llegue el cargo real, impórtalo desde tu extracto y asígnale la categoría correcta. Eso mantiene el plan conectado con la realidad.
 
 Esto es especialmente útil cuando:
 
-- el nombre del comerciante es vago
-- el cargo llega en un mes diferente al esperado
-- el importe final está ligeramente desviado
+- el nombre del comercio es poco claro
+- el cargo llega en un mes distinto del esperado
+- el importe final cambia un poco
 - el gasto es en otra moneda
 
-Este último importa más que antes. Mucha gente tiene ahora sus gastos anuales en una moneda, su vida diaria en otra y sus ahorros en una tercera. Si esa es su situación, este artículo complementario va más allá:
+Esto último importa más que antes. Mucha gente tiene ahora sus gastos anuales en una moneda, su día a día en otra y sus ahorros en una tercera. Si es tu caso, este artículo complementario entra más a fondo:
 
 - [Presupuesto multidivisa para expatriados en 2026](https://expense-budget-tracker.com/es/blog/multi-currency-budgeting-for-expats/)
 
 ## La mejor regla
 
-No espere a que una factura anual se vuelva emocionalmente dramática para darle un lugar en el presupuesto.
+No esperes a que una factura anual se vuelva emocionalmente dramática para hacerle sitio en el presupuesto.
 
-Si ya sabe que el gasto se avecina, pertenece al plan ahora.
+Si ya sabes que ese gasto viene de camino, tiene que estar en el plan desde ahora.
 
-Ese es el objetivo de **cómo realizar un seguimiento de los fondos de amortización** de una manera útil.
+Ese es el objetivo de **llevar el control de los fondos para gastos previstos** de una forma útil.
 
-Nombra el gasto real. Distribuirlo en el tiempo. Mantenga los movimientos de cuenta como transferencias. Consulte los meses futuros con antelación. Luego, deje que la transacción importada real cierre el círculo cuando llegue la factura.
+Ponle nombre al gasto real. Repártelo en el tiempo. Mantén los movimientos entre cuentas como transferencias. Revisa los meses futuros con antelación. Y deja que la transacción importada cierre el círculo cuando llegue el recibo.
 
-Se trata de un sistema mucho más tranquilo que pretender que los mismos costes predecibles son, de algún modo, impactantes cada año.
+Es un sistema mucho más tranquilo que seguir fingiendo que los mismos gastos previsibles son una conmoción cada año.
 
-## Pruebe el flujo de trabajo de gastos anuales que no simula emergencias
+## Prueba un sistema para gastos anuales que no convierta todo en una emergencia
 
-Si está buscando una **aplicación de presupuesto de fondos de amortización** mejor, comience aquí:
+Si buscas una **app de presupuesto para gastos previstos** mejor, empieza aquí:
 
 - [Abrir Expense Budget Tracker](https://expense-budget-tracker.com/es/)
-- [Leer la página de características](https://expense-budget-tracker.com/es/features/)
-- [Lea la guía de autoalojamiento](https://expense-budget-tracker.com/es/docs/self-hosting/)
-- [Ver la fuente en GitHub](https://github.com/kirill-markin/expense-budget-tracker)
+- [Leer la página de funciones](https://expense-budget-tracker.com/es/features/)
+- [Leer la guía de autoalojamiento](https://expense-budget-tracker.com/es/docs/self-hosting/)
+- [Ver el código en GitHub](https://github.com/kirill-markin/expense-budget-tracker)
 
-La versión útil de los fondos de amortización no consiste en hacer que sus finanzas sean más elaboradas.
+La versión útil de los fondos para gastos previstos no consiste en complicar más tus finanzas.
 
 Se trata de hacer que los gastos predecibles se comporten como gastos predecibles.
