@@ -4,17 +4,17 @@ export const PRICING_PAGE_CONTENT_RU: PageContent = {
   locale: "ru",
   title: "Цены",
   description:
-    "Бесплатный self-hosted вариант или управляемый облачный хостинг. Открытый код без ограничения функций.",
+    "Бесплатное самостоятельное размещение или управляемый облачный хостинг. Открытый исходный код без ограничений по функциям.",
   slug: "pricing",
   sections: [
     {
       type: "pricing_tiers",
       title: "Цены",
-      intro: "Все функции доступны в каждом варианте. Без feature gating.",
+      intro: "Все функции доступны в любом варианте. Без ограничений по функциям.",
       tiers: [
         {
           type: "link_tier",
-          name: "Self-hosted",
+          name: "Самостоятельное размещение",
           price: "Бесплатно",
           highlighted: false,
           bullets: [
@@ -25,7 +25,7 @@ export const PRICING_PAGE_CONTENT_RU: PageContent = {
             "Поддержка сообщества",
           ],
           cta: {
-            label: "Смотреть на GitHub",
+            label: "Открыть на GitHub",
             href: "https://github.com/kirill-markin/expense-budget-tracker",
           },
         },
@@ -35,11 +35,11 @@ export const PRICING_PAGE_CONTENT_RU: PageContent = {
           price: "Бесплатно во время беты",
           highlighted: true,
           bullets: [
-            "Управляемый хостинг на AWS",
+            "Управляемый хостинг в AWS",
             "Автоматические резервные копии",
             "Все функции включены",
-            "Аутентификация по email OTP",
-            "Ежедневное обновление FX-курсов",
+            "Вход по одноразовому коду из email",
+            "Ежедневное обновление курсов валют",
           ],
           cta: {
             label: "Начать",

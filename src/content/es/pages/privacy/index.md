@@ -8,7 +8,7 @@ sections:
 ---
 ## Qué recopilamos
 
-Cuando usas la versión cloud, almacenamos los datos financieros que introduces (transacciones, presupuestos y nombres de cuentas) y tu correo electrónico para la autenticación. Las instalaciones autoalojadas no nos envían ningún dato.
+Cuando usas la versión en la nube, almacenamos los datos financieros que introduces (transacciones, presupuestos y nombres de cuentas) y tu dirección de correo electrónico para la autenticación. Las instalaciones autoalojadas no nos envían ningún dato.
 
 ## Operador
 
@@ -16,11 +16,11 @@ El servicio alojado de Expense Budget Tracker está operado por SAMO DANNI EOOD 
 
 ## Cómo usamos tus datos
 
-Tus datos financieros se utilizan únicamente para prestar el servicio. No vendemos, compartimos ni usamos tus datos para publicidad. Cada workspace está aislado mediante seguridad a nivel de fila de Postgres.
+Tus datos financieros se utilizan únicamente para prestar el servicio. No vendemos, compartimos ni usamos tus datos con fines publicitarios. Cada espacio de trabajo queda aislado mediante la seguridad a nivel de fila de Postgres.
 
 ## Almacenamiento de datos
 
-Los datos cloud se almacenan en AWS RDS (Postgres) en la región `eu-central-1` con copias de seguridad automáticas diarias. Los datos están cifrados en reposo y en tránsito.
+Los datos de la nube se almacenan en AWS RDS (Postgres), en la región `eu-central-1`, con copias de seguridad automáticas diarias. Los datos están cifrados en reposo y en tránsito.
 
 ## Cookies
 
@@ -28,8 +28,8 @@ Usamos una cookie `session` para la autenticación (HttpOnly, Secure, SameSite=L
 
 ## Eliminación de datos
 
-Puedes eliminar tu cuenta y todos los datos asociados en cualquier momento desde Settings en la app. En instalaciones autoalojadas, controlas directamente la base de datos.
+Puedes eliminar tu cuenta y todos los datos asociados en cualquier momento desde Configuración en la aplicación. En las instalaciones autoalojadas, controlas directamente la base de datos.
 
 ## Código abierto
 
-Todo el código es open source. Puedes auditar exactamente qué hace la aplicación con tus datos.
+Todo el código fuente está disponible como código abierto. Puedes auditar exactamente qué hace la aplicación con tus datos.

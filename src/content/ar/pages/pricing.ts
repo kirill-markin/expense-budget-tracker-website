@@ -3,13 +3,13 @@ import type { PageContent } from "@/lib/content/types";
 export const PRICING_PAGE_CONTENT_AR: PageContent = {
   locale: "ar",
   title: "الأسعار",
-  description: "استضافة ذاتية مجانية أو استضافة سحابية مُدارة. مفتوح المصدر ومن دون حجب ميزات.",
+  description: "استضافة ذاتية مجانية أو استضافة سحابية مُدارة. مفتوح المصدر من دون حجب أي ميزة.",
   slug: "pricing",
   sections: [
     {
       type: "pricing_tiers",
       title: "الأسعار",
-      intro: "كل الميزات متاحة في جميع الخطط.",
+      intro: "كل الميزات متاحة في جميع الخطط، من دون حجب أي ميزة.",
       tiers: [
         {
           type: "link_tier",
@@ -17,10 +17,10 @@ export const PRICING_PAGE_CONTENT_AR: PageContent = {
           price: "مجاني",
           highlighted: false,
           bullets: [
-            "الكود الكامل على GitHub",
-            "Docker Compose + Postgres",
-            "كل الميزات متاحة",
-            "خادمك وبياناتك",
+            "الشيفرة المصدرية كاملة على GitHub",
+            "Docker Compose مع Postgres",
+            "كل الميزات مشمولة",
+            "خادمك، وبياناتك تحت سيطرتك",
             "دعم المجتمع",
           ],
           cta: {
@@ -30,14 +30,14 @@ export const PRICING_PAGE_CONTENT_AR: PageContent = {
         },
         {
           type: "auth_tier",
-          name: "Cloud",
-          price: "مجاني خلال البيتا",
+          name: "السحابة",
+          price: "مجاني خلال المرحلة التجريبية",
           highlighted: true,
           bullets: [
             "استضافة مُدارة على AWS",
             "نسخ احتياطية تلقائية",
-            "كل الميزات متاحة",
-            "تسجيل دخول عبر OTP بالبريد",
+            "كل الميزات مشمولة",
+            "تسجيل الدخول برمز تحقق عبر البريد الإلكتروني",
             "تحديث يومي لأسعار الصرف",
           ],
           cta: {

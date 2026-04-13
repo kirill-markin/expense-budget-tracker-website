@@ -4,25 +4,25 @@ export const PRICING_PAGE_CONTENT_FA: PageContent = {
   locale: "fa",
   title: "قیمت‌گذاری",
   description:
-    "استقرار رایگان self-hosted یا میزبانی cloud مدیریت‌شده. متن‌باز و بدون محدودیت قابلیت.",
+    "استقرار رایگان به‌صورت خودمیزبان یا میزبانی ابری مدیریت‌شده. متن‌باز و بدون محدودیت قابلیتی.",
   slug: "pricing",
   sections: [
     {
       type: "pricing_tiers",
       title: "قیمت‌گذاری",
-      intro: "همه قابلیت‌ها در همه پلن‌ها در دسترس هستند.",
+      intro: "همه قابلیت‌ها در همه طرح‌ها در دسترس هستند. هیچ قابلیتی قفل نشده است.",
       tiers: [
         {
           type: "link_tier",
-          name: "میزبانی شخصی",
+          name: "خودمیزبان",
           price: "رایگان",
           highlighted: false,
           bullets: [
-            "کد کامل در GitHub",
-            "Docker Compose + Postgres",
-            "همه قابلیت‌ها فعال",
+            "کد منبع کامل در GitHub",
+            "Docker Compose به‌همراه Postgres",
+            "همه قابلیت‌ها در دسترس",
             "سرور شما، داده‌های شما",
-            "پشتیبانی جامعه",
+            "پشتیبانی انجمن",
           ],
           cta: {
             label: "مشاهده در GitHub",
@@ -31,14 +31,14 @@ export const PRICING_PAGE_CONTENT_FA: PageContent = {
         },
         {
           type: "auth_tier",
-          name: "Cloud",
+          name: "ابری",
           price: "در دوره بتا رایگان",
           highlighted: true,
           bullets: [
             "میزبانی مدیریت‌شده روی AWS",
-            "نسخه پشتیبان خودکار",
-            "همه قابلیت‌ها فعال",
-            "احراز هویت با ایمیل OTP",
+            "پشتیبان‌گیری خودکار",
+            "همه قابلیت‌ها در دسترس",
+            "احراز هویت ایمیلی با رمز یک‌بارمصرف",
             "به‌روزرسانی روزانه نرخ ارز",
           ],
           cta: {
