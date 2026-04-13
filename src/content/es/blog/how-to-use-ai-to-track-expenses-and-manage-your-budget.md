@@ -1,34 +1,34 @@
 ---
-title: "Cómo utilizar la IA para realizar un seguimiento de los gastos y gestionar su presupuesto"
-description: "Una guía práctica para las finanzas personales impulsadas por la IA. Proporcione a su agente de IA una clave API y este analizará extractos bancarios, categorizará transacciones, rastreará gastos y administrará su presupuesto, todo a través de una API SQL."
+title: "Cómo usar la IA para registrar gastos y gestionar tu presupuesto"
+description: "Guía práctica para aplicar la IA a tus finanzas personales. Dale a tu agente una clave de API y podrá procesar extractos bancarios, categorizar movimientos, registrar gastos y ayudarte con el presupuesto a través de una API SQL."
 date: "2026-03-05"
 ---
 
-Probablemente ya utilices la IA de alguna forma para tus finanzas personales. Tal vez pegue un extracto bancario en ChatGPT y le pida que clasifique sus gastos. O toma una captura de pantalla de tu aplicación bancaria y le pides a Claude que cuente cuánto gastaste en comestibles este mes.
+Probablemente ya uses la IA de alguna forma para tus finanzas personales. Puede que pegues un extracto bancario en ChatGPT y le pidas que clasifique tus gastos. O que subas una captura de tu aplicación bancaria y le preguntes a Claude cuánto has gastado este mes en supermercado.
 
-Eso funciona una vez. Pero la respuesta se queda en el chat. No se guarda nada, no se rastrea nada y la semana que viene vuelves a hacer lo mismo. La IA lee sus datos, le brinda un resumen y luego desaparece.
+Eso sirve una vez. Pero la respuesta se queda en el chat. No se guarda nada, no se registra nada y la semana siguiente vuelves a hacer lo mismo. La IA analiza tus datos, te da un resumen y luego todo se pierde.
 
-Existe una forma más útil de utilizar la IA para el seguimiento de gastos. En lugar de pedirle a la IA que analice capturas de pantalla, bríndele acceso de escritura real a su base de datos financiera. Deje que la IA registre transacciones, actualice su presupuesto y verifique los saldos directamente, no solo hable de ellos.
+Hay una forma más útil de usar la IA para llevar tus gastos. En vez de pedirle que analice capturas de pantalla, dale acceso real de escritura a tu base de datos financiera. Así podrá registrar movimientos, actualizar tu presupuesto y comprobar saldos directamente, no solo hablar de ellos.
 
-## Cómo se ve realmente en la práctica el "seguimiento de gastos de IA"
+## Cómo es de verdad el seguimiento de gastos con IA
 
-Kirill Markin, el creador de [Expense Budget Tracker](https://expense-budget-tracker.com/es/), ha estado categorizando cada transacción personal durante más de cinco años. Comenzó a hacerlo a mano y luego comenzó a crear herramientas para hacerlo más rápido. El sistema actual utiliza un agente de inteligencia artificial que se conecta directamente a la base de datos a través de una API SQL.
+Kirill Markin, creador de [Expense Budget Tracker](https://expense-budget-tracker.com/es/), lleva más de cinco años categorizando cada movimiento personal. Empezó haciéndolo a mano y después fue creando herramientas para acelerar el proceso. El sistema actual usa un agente de IA que se conecta directamente a la base de datos mediante una API SQL.
 
-Su rutina semanal es la siguiente: descargar extractos bancarios (CSV o PDF), colocarlos en un agente de inteligencia artificial, dejar que el agente analice cada transacción y la registre. El agente ya conoce sus categorías de gastos a partir de entradas anteriores, por lo que relaciona correctamente la mayoría de las transacciones por sí solo. Kirill revisa lo que hizo la IA, corrige algunos errores y sigue adelante. Todo el proceso lleva unos 10 minutos, en comparación con una hora cuando ingresaba todo manualmente.
+Su rutina semanal es esta: descarga extractos bancarios en CSV o PDF, los sube a un agente de IA y deja que procese cada movimiento y lo registre. El agente ya conoce sus categorías de gasto gracias a los registros anteriores, así que clasifica bien la mayoría de las transacciones por sí solo. Kirill revisa lo que hizo la IA, corrige los pocos errores y sigue adelante. Todo el proceso le lleva unos 10 minutos, frente a la hora que tardaba cuando lo introducía todo manualmente.
 
-El mismo enfoque funciona con [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenAI Codex](https://openai.com/index/codex/), GPT personalizados o cualquier agente de IA que pueda llamar a puntos finales HTTP. El ingrediente clave es el acceso directo a la base de datos: no un complemento, ni una extensión del navegador, sino una clave API que permite a la IA leer y escribir sus datos financieros.
+El mismo enfoque funciona con [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenAI Codex](https://openai.com/index/codex/), GPT personalizados o cualquier agente de IA capaz de hacer peticiones HTTP. La clave está en el acceso directo a la base de datos: no un complemento, ni una extensión del navegador, sino una clave de API que permita a la IA leer y escribir tus datos financieros.
 
 ## Cómo conectar tu agente de IA con tus finanzas
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/es/) es un sistema de finanzas personales de código abierto construido sobre Postgres. Tiene un punto final API SQL en `POST /v1/sql` que acepta consultas SQL a través de HTTP y devuelve resultados JSON.
+[Expense Budget Tracker](https://expense-budget-tracker.com/es/) es un sistema de finanzas personales de código abierto basado en Postgres. Tiene un punto de acceso SQL en `POST /v1/sql` que acepta consultas SQL por HTTP y devuelve resultados en JSON.
 
 Para conectar cualquier agente de IA:
 
-1. Abra la aplicación y vaya a **Configuración → Claves API → Crear clave**
-2. Copie la clave (comienza con `ebt_` y solo la verá una vez)
-3. Dígale a su agente de IA dos cosas: la URL del punto final de la API y la clave
+1. Abre la aplicación y ve a **Configuración → Claves de API → Crear clave**
+2. Copia la clave (empieza por `ebt_` y solo podrás verla una vez)
+3. Dale a tu agente de IA dos datos: la URL del punto de acceso y la clave
 
-Eso es todo. El agente ahora puede consultar y modificar sus datos de gastos. No hay servidor MCP para ejecutar. No hay complementos para instalar. No hay integración personalizada que mantener. Cualquier IA que pueda realizar una solicitud HTTP POST, que son todas, funciona de inmediato.
+Y ya está. El agente puede consultar y modificar tus datos de gastos. No hay que levantar ningún servidor MCP. No hay complementos que instalar. No hay integraciones a medida que mantener. Cualquier IA que pueda hacer una petición HTTP POST, es decir, prácticamente todas, funciona desde el primer momento.
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/sql \
@@ -38,75 +38,75 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
   -d '{"sql": "SELECT * FROM ledger_entries ORDER BY ts DESC LIMIT 10"}'
 ```
 
-La respuesta regresa como una matriz JSON de filas. Sin tokens de paginación, sin objetos anidados, sin SDK.
+La respuesta vuelve como una lista JSON de filas. Sin cursores de paginación, sin objetos anidados y sin SDK.
 
-## Qué puede hacer su agente de IA con este acceso
+## Qué puede hacer tu agente de IA con este acceso
 
-Con la clave API, el agente de IA opera con sus datos reales de gastos y presupuesto, no una copia, ni un resumen, sino la base de datos en vivo:
+Con la clave de API, el agente trabaja sobre tus datos reales de gastos y presupuesto: no una copia, ni un resumen, sino la base de datos en vivo.
 
-**Analice y registre los gastos.** Introduzca un extracto bancario (CSV, PDF o una captura de pantalla de su aplicación bancaria) en su agente de IA. El agente lee cada línea, calcula el monto, la fecha, la contraparte y la categoría, luego escribe una instrucción INSERT en la tabla `ledger_entries`. Cada gasto va directamente a tu base de datos.
+**Procesar y registrar gastos.** Sube un extracto bancario en CSV o PDF, o incluso una captura de tu aplicación bancaria, al agente. El agente lee cada línea, identifica el importe, la fecha, la contraparte y la categoría, y luego escribe una instrucción `INSERT` en la tabla `ledger_entries`. Cada gasto entra directamente en tu base de datos.
 
-**Clasifique las transacciones utilizando sus categorías existentes.** El agente comienza consultando qué categorías ya utiliza. Si ha estado clasificando "alimentos integrales" como "comestibles" durante meses, la IA lo detecta y hace lo mismo. No es necesario volver a explicar su sistema cada vez.
+**Clasificar movimientos con tus categorías actuales.** El agente empieza consultando qué categorías ya usas. Si llevas meses clasificando "Whole Foods" como "supermercado", la IA lo detecta y hace lo mismo. No tienes que volver a explicarle tu sistema cada vez.
 
-**Verifique los saldos de las cuentas.** Después de registrar todos los gastos de un extracto bancario, el agente puede consultar la vista `accounts` y comparar los totales con los números de su banco. Si algo no cuadra, sabrá que falta una transacción.
+**Comprobar saldos de cuentas.** Después de registrar todos los gastos de un extracto, el agente puede consultar la vista `accounts` y comparar los totales con los datos de tu banco. Si algo no cuadra, sabrás que falta una transacción.
 
-**Actualice su previsión presupuestaria.** La tabla `budget_lines` contiene su plan presupuestario mensual: ingresos esperados y gastos planificados por categoría. El agente de IA puede leer los datos reales de este mes, compararlos con el plan y sugerir (o realizar directamente) ajustes para el próximo mes.
+**Actualizar tu previsión presupuestaria.** La tabla `budget_lines` contiene tu plan mensual: ingresos esperados y gastos previstos por categoría. El agente puede leer los datos reales de este mes, compararlos con el plan y sugerir, o incluso aplicar, ajustes para el mes siguiente.
 
-**Trabaja con múltiples monedas.** Cada transacción en la base de datos permanece en su moneda original. Los tipos de cambio se obtienen diariamente del BCE, CBR y NBS. La IA no necesita convertir nada: la base de datos maneja las matemáticas monetarias en el momento de la consulta.
+**Trabajar con varias divisas.** Cada transacción en la base de datos se mantiene en su moneda original. Los tipos de cambio se obtienen cada día del BCE, del CBR y del NBS. La IA no necesita convertir nada: la base de datos resuelve los cálculos de divisa en el momento de la consulta.
 
-El esquema es intencionalmente plano y simple. Siete tablas, nombres de columnas claros, sin estructuras profundamente anidadas. Los modelos de IA producen declaraciones SQL correctas contra este esquema en el primer intento porque no hay casi nada que malinterpretar.
+El esquema está diseñado para ser plano y sencillo. Siete tablas, nombres de columna claros y ninguna estructura profundamente anidada. Los modelos de IA suelen generar consultas SQL correctas a la primera porque aquí hay muy poco margen para malinterpretar.
 
-## Chat AI integrado para tareas rápidas
+## Asistente de IA integrado para tareas rápidas
 
-Expense Budget Tracker también tiene un asistente de IA integrado en la interfaz web. Conecta su clave OpenAI o Anthropic API en Configuración y el chat obtiene una herramienta `query_database`: el mismo acceso SQL, pero desde dentro de la aplicación.
+Expense Budget Tracker también incluye un asistente de IA dentro de la interfaz web. Conectas tu clave de API de OpenAI o Anthropic en Configuración y el chat obtiene una herramienta llamada `query_database`: el mismo acceso SQL, pero desde dentro de la aplicación.
 
-Esto es conveniente para cosas rápidas: cargue una captura de pantalla de un recibo, pídale a la IA que lo agregue como gasto, confirme y listo. La IA integrada sigue un protocolo estricto: verifica sus categorías existentes, busca transacciones duplicadas, verifica saldos y solo escribe en la base de datos después de su aprobación.
+Esto resulta muy cómodo para tareas rápidas: subes una captura de un recibo, le pides a la IA que lo añada como gasto, confirmas y listo. El asistente integrado sigue un protocolo estricto: revisa tus categorías actuales, busca transacciones duplicadas, comprueba saldos y solo escribe en la base de datos después de tu aprobación.
 
-Para tareas más grandes (procesamiento por lotes de múltiples extractos bancarios, creación de flujos de trabajo automatizados e integración con otros sistemas), la API externa SQL es más práctica. Puedes usarlo desde cualquier agente o script fuera de la aplicación.
+Para tareas más grandes, como procesar por lotes varios extractos bancarios, montar flujos de trabajo automatizados o integrarlo con otros sistemas, la API SQL externa es más práctica. Puedes usarla desde cualquier agente o script fuera de la aplicación.
 
-## Por qué el SQL directo es mejor que los servidores y complementos MCP
+## Por qué el SQL directo es mejor que los servidores MCP y los complementos
 
-Los servidores MCP, las acciones GPT personalizadas y los complementos específicos de proveedores son populares en este momento para conectar la IA a herramientas externas. Para las finanzas personales, introducen piezas móviles innecesarias.
+Los servidores MCP, las acciones personalizadas de GPT y los complementos específicos de cada proveedor están de moda para conectar la IA con herramientas externas. En finanzas personales añaden complejidad innecesaria.
 
-Un servidor MCP es un proceso adicional que debes ejecutar y mantener activo. Si falla, la IA pierde el acceso a sus datos de gastos en mitad de la conversación. Los complementos GPT personalizados solo funcionan con ChatGPT; no te ayudarán si cambias a Claude o creas tu propio agente. Las integraciones específicas del proveedor se interrumpen cada vez que el proveedor actualiza su API.
+Un servidor MCP es un proceso adicional que tienes que arrancar y mantener funcionando. Si falla, la IA pierde el acceso a tus datos de gastos en mitad de la conversación. Los complementos personalizados de GPT solo funcionan con ChatGPT; no te sirven si cambias a Claude o si montas tu propio agente. Las integraciones específicas de cada proveedor se rompen cada vez que ese proveedor actualiza su API.
 
-Una API SQL evita todo esto. La interfaz es un punto final HTTP y el lenguaje SQL. Ambos han existido durante décadas y no van a ninguna parte. Cambie de un modelo de IA a otro: la misma clave API, el mismo punto final, el mismo SQL. Al agente de IA no le importa si se ejecuta dentro de ChatGPT, Claude Code o un script de Python que usted mismo escribió.
+Una API SQL evita todo eso. La interfaz se reduce a un punto de acceso HTTP y al lenguaje SQL. Ambos llevan décadas existiendo y no van a desaparecer. Puedes pasar de un modelo de IA a otro y seguir usando la misma clave de API, el mismo punto de acceso y el mismo SQL. Al agente le da igual si se ejecuta dentro de ChatGPT, Claude Code o un script de Python escrito por ti.
 
 ## ¿Es seguro dar acceso directo a la base de datos a la IA?
 
-Sí, dentro de las limitaciones adecuadas. La API SQL en Expense Budget Tracker aplica varias capas de protección:
+Sí, siempre que existan límites adecuados. La API SQL de Expense Budget Tracker aplica varias capas de protección:
 
-Cada consulta se ejecuta a través de la seguridad de nivel de fila Postgres. La clave API está vinculada a su usuario y espacio de trabajo: la IA solo puede ver y modificar sus datos de gastos, los de nadie más.
+Cada consulta se ejecuta con seguridad a nivel de fila de Postgres. La clave de API está vinculada a tu usuario y a tu espacio de trabajo, así que la IA solo puede ver y modificar tus datos de gastos, no los de nadie más.
 
-Sólo se permiten operaciones de datos: SELECCIONAR, INSERTAR, ACTUALIZAR, ELIMINAR. El agente de IA no puede crear tablas, eliminar nada ni cambiar permisos. Se bloquean varias declaraciones en una sola solicitud. También lo es `set_config()`, que evita la escalada de privilegios.
+Solo se permiten operaciones sobre datos: `SELECT`, `INSERT`, `UPDATE` y `DELETE`. El agente no puede crear tablas, eliminar estructuras ni cambiar permisos. También se bloquean varias sentencias en una sola petición y el uso de `set_config()`, lo que evita escaladas de privilegios.
 
-Las claves API se almacenan como hashes SHA-256: el texto sin formato nunca permanece en la base de datos. Puede revocar una clave instantáneamente desde Configuración. Si eliminas a un miembro del espacio de trabajo, todas sus claves se eliminan automáticamente.
+Las claves de API se almacenan como hashes SHA-256: el valor en texto plano nunca queda guardado en la base de datos. Puedes revocar una clave al instante desde Configuración. Si eliminas a una persona del espacio de trabajo, todas sus claves se borran automáticamente.
 
-La tarifa limita el uso del límite a 10 solicitudes por segundo y 10 000 por día por clave. Las consultas expiran después de 30 segundos. Las respuestas devuelven como máximo 100 filas. Estas cifras son más que suficientes para el seguimiento de gastos y la elaboración de presupuestos con IA, pero evitan cualquier comportamiento descontrolado.
+Además, hay límites de uso: 10 solicitudes por segundo y 10.000 al día por clave. Las consultas caducan a los 30 segundos. Las respuestas devuelven como máximo 100 filas. Son cifras más que suficientes para registrar gastos y gestionar presupuestos con IA, pero sirven para frenar cualquier comportamiento descontrolado.
 
-## Consejos prácticos para el seguimiento de gastos impulsado por IA
+## Consejos prácticos para llevar gastos con IA
 
-Algunas cosas que hacen que el flujo de trabajo de seguimiento de gastos de IA sea más fluido, basado en el uso diario real:
+Algunas ideas que hacen más fluido este flujo de trabajo, basadas en el uso diario real:
 
-**Mantenga sus categorías de gastos consistentes.** La IA aprende de sus datos existentes. Si a veces lo llama "restaurantes" y otras veces "salir a cenar", el agente se confundirá. Elija un nombre por categoría y manténgalo.
+**Mantén tus categorías de gasto consistentes.** La IA aprende de los datos que ya tienes. Si unas veces llamas a algo "restaurantes" y otras "comer fuera", el agente se confundirá. Elige un nombre por categoría y úsalo siempre.
 
-**Verifique los saldos cada semana.** Después de que la IA registre sus gastos a partir de un extracto bancario, verifique que el saldo de la cuenta en el sistema coincida con su banco. Esto detecta temprano las transacciones perdidas o duplicadas, antes de que se acumulen.
+**Comprueba los saldos cada semana.** Después de que la IA registre tus gastos a partir de un extracto, comprueba que el saldo de la cuenta en el sistema coincida con el de tu banco. Así detectas pronto movimientos perdidos o duplicados, antes de que el problema se acumule.
 
-**Comience con una cuenta.** No intente configurar todas sus cuentas bancarias, tarjetas de crédito y cuentas de inversión el primer día. Comience con su cuenta corriente principal. Deje que la IA se encargue de eso durante algunas semanas. Agregue más cuentas una vez que el flujo de trabajo se sienta sólido.
+**Empieza con una sola cuenta.** No intentes configurar todas tus cuentas bancarias, tarjetas y cuentas de inversión el primer día. Empieza por tu cuenta principal. Deja que la IA se encargue de esa durante unas semanas. Añade más cuentas cuando el flujo ya te resulte sólido.
 
-**Revise la categorización de la IA cada vez.** La IA realiza correctamente la mayoría de las transacciones, pero en ocasiones categoriza incorrectamente algo, especialmente nuevos comerciantes o gastos inusuales. Dedique cinco minutos a revisar. Corregir los errores de la IA mejora la precisión futura, porque la próxima vez que consulte sus categorías, los datos corregidos son los que ve.
+**Revisa siempre la categorización de la IA.** La mayoría de las transacciones quedarán bien clasificadas, pero de vez en cuando habrá errores, sobre todo con comercios nuevos o gastos poco habituales. Dedica cinco minutos a revisar. Corregir esos fallos mejora la precisión futura, porque la próxima vez que consulte tus categorías verá los datos corregidos.
 
-**Utilice la tabla de presupuesto, no solo el seguimiento de gastos.** Registrar lo que ya gastó es útil pero limitado. El valor real está en mantener un presupuesto móvil de 12 meses: las filas son categorías, las columnas son meses y los meses futuros contienen su pronóstico. Los agentes de IA son buenos para actualizar estos pronósticos en función de patrones de gasto reales. Pídale al agente que ajuste el presupuesto del próximo mes después de revisar los datos reales de este mes.
+**Usa la tabla de presupuesto, no solo el registro de gastos.** Registrar lo que ya has gastado es útil, pero se queda corto. El valor real está en mantener un presupuesto móvil de 12 meses: las filas son categorías, las columnas son meses y los meses futuros contienen tu previsión. Los agentes de IA son buenos actualizando esas previsiones a partir de patrones reales de gasto. Pídele al agente que ajuste el presupuesto del próximo mes después de revisar los datos reales de este mes.
 
 ## Primeros pasos
 
-1. Regístrese en [expense-budget-tracker.com](https://expense-budget-tracker.com/es/) (gratuito, de código abierto) o [self-host](https://github.com/kirill-markin/expense-budget-tracker) la aplicación en su propio servidor
-2. Vaya a **Configuración → Claves API → Crear clave** y copie la clave.
-3. Proporcione la clave, el ID del espacio de trabajo y el punto final (`https://api.expense-budget-tracker.com/v1/sql`) a su agente de IA.
-4. Envíe un extracto bancario al agente y pídale que analice y registre sus gastos.
+1. Regístrate en [expense-budget-tracker.com](https://expense-budget-tracker.com/es/) (gratis y de código abierto) o [aloja la aplicación por tu cuenta](https://github.com/kirill-markin/expense-budget-tracker)
+2. Ve a **Configuración → Claves de API → Crear clave** y copia la clave
+3. Dale al agente la clave, el ID del espacio de trabajo y el punto de acceso `https://api.expense-budget-tracker.com/v1/sql`
+4. Sube un extracto bancario al agente y pídele que procese y registre tus gastos
 
-La IA descubrirá el esquema de su base de datos, comparará sus categorías de gastos y comenzará a escribir transacciones. Revise lo que registró, arregle cualquier cosa y tendrá un presupuesto administrado por IA en ejecución.
+La IA descubrirá el esquema de tu base de datos, entenderá tus categorías de gasto y empezará a registrar movimientos. Revisa lo que haya guardado, corrige cualquier desajuste y tendrás un presupuesto gestionado con IA en marcha.
 
-Kirill Markin escribió en detalle sobre su metodología personal: [Cómo uso la IA para manejar mis gastos de cuentas bancarias y presupuesto](https://kirill-markin.com/articles/ai-expense-tracking-bank-accounts-budget/). Cinco años de cada transacción categorizada y rastreada: el mismo enfoque descrito en este artículo, probado en batalla con dinero real en múltiples monedas y países.
+Kirill Markin explicó su metodología personal con detalle en este artículo: [How I Use AI to Handle My Expenses from Bank Accounts and Budget](https://kirill-markin.com/articles/ai-expense-tracking-bank-accounts-budget/). Son cinco años registrando y categorizando cada movimiento: el mismo enfoque descrito aquí, probado con dinero real, varias divisas y varios países.
 
-La herramienta tiene licencia del MIT y es de código abierto en [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker). Utilice la versión alojada o ejecútela usted mismo; la API SQL funciona igual de cualquier manera.
+La herramienta tiene licencia MIT y es completamente de código abierto en [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker). Puedes usar la versión alojada o ejecutarla por tu cuenta: la API SQL funciona igual en ambos casos.
