@@ -8,7 +8,7 @@ keywords:
   - "presupuesto de gastos anuales"
   - "controlar los fondos para gastos previstos en el presupuesto"
   - "presupuesto de gastos anuales"
-  - "sinking funds"
+  - "fondos para gastos futuros"
   - "app de presupuesto para gastos previstos"
   - "ahorrar para gastos irregulares"
   - "categorías para gastos previstos"
@@ -70,7 +70,7 @@ Las preguntas se acumulan enseguida:
 - ¿Cómo mantienes visibles las facturas anuales antes del mes en que llegan?
 - ¿Cómo evitas contar el mismo dinero dos veces?
 
-Aquí es donde muchos consejos se vuelven difusos. Te dicen "crea sinking funds", pero no te explican cómo hacer que encajen en un presupuesto real con saldos, transferencias, movimientos importados y varias cuentas.
+Aquí es donde muchos consejos se vuelven difusos. Te dicen "crea fondos para gastos futuros", pero no te explican cómo hacer que encajen en un presupuesto real con saldos, transferencias, movimientos importados y varias cuentas.
 
 ## La mejor configuración suele ser más sencilla de lo que parece
 

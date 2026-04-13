@@ -1,14 +1,14 @@
 ---
 title: "הגדרת מעקב הוצאות עם בינה מלאכותית עבור Claude Code, Codex ו-OpenClaw"
-description: "כך מחברים את Claude Code, את Codex או את OpenClaw למנהל הוצאות בקוד פתוח: משתפים כתובת גילוי אחת, מאשרים את קוד האימייל, שומרים את ה-ApiKey שמתקבל, ונותנים לסוכן להתחיל לעבוד."
+description: "כך מחברים את Claude Code, את Codex או את OpenClaw למנהל הוצאות בקוד פתוח: משתפים כתובת גילוי אחת, מאשרים את קוד האימייל, שומרים את מפתח ה-API שמתקבל, ונותנים לסוכן להתחיל לעבוד."
 date: "2026-03-10"
 keywords:
-  - "מעקב הוצאות עם AI"
-  - "Claude Code Expense Budget Tracker"
-  - "Codex Expense Budget Tracker"
-  - "OpenClaw Expense Budget Tracker"
-  - "ApiKey expense tracker"
-  - "agent setup expense tracker"
+  - "מעקב הוצאות עם בינה מלאכותית"
+  - "חיבור Claude Code ל-Expense Budget Tracker"
+  - "חיבור Codex ל-Expense Budget Tracker"
+  - "חיבור OpenClaw ל-Expense Budget Tracker"
+  - "מפתח API של Expense Budget Tracker"
+  - "הגדרת סוכן ל-Expense Budget Tracker"
 ---
 
 אם אתם רוצים להשתמש בסוכן בינה מלאכותית לניהול הוצאות, החלק המתסכל בדרך כלל הוא שלב ההגדרה.
@@ -219,7 +219,7 @@ Expense Budget Tracker הוא פרויקט MIT ובקוד פתוח מלא:
 - [אתר הפרויקט](https://expense-budget-tracker.com/he/)
 - [מאגר GitHub](https://github.com/kirill-markin/expense-budget-tracker)
 - [README ב-GitHub](https://github.com/kirill-markin/expense-budget-tracker/blob/main/README.md)
-- [תיעוד הגדרת סוכן AI](https://expense-budget-tracker.com/he/docs/agent-setup/)
+- [תיעוד הגדרת סוכן בינה מלאכותית](https://expense-budget-tracker.com/he/docs/agent-setup/)
 - [תיעוד ה-API](https://expense-budget-tracker.com/he/docs/api/)
 
 אם אתם רוצים לארח אותו בעצמכם, התחילו כאן:
