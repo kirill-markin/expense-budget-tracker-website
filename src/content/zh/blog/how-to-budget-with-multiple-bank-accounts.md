@@ -5,11 +5,11 @@ date: "2026-04-11"
 keywords:
   - "多个银行账户预算"
   - "如何用多个银行账户做预算"
-  - "multiple bank accounts budget"
+  - "多账户预算方法"
   - "多个活期账户预算"
   - "如何组织银行账户做预算"
-  - "separate bank accounts budgeting"
-  - "bank account budgeting system"
+  - "分开账户做预算"
+  - "银行账户预算系统"
   - "多账户理财预算"
 ---
 

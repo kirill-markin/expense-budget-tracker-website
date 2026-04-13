@@ -1,6 +1,6 @@
 ---
-title: Руководство по self-hosting
-description: Запускайте Expense Budget Tracker на собственном сервере с Docker Compose и Postgres.
+title: Руководство по самостоятельному развертыванию
+description: Разверните Expense Budget Tracker на собственном сервере с Docker Compose и Postgres.
 ---
 
 ## Требования
@@ -20,18 +20,18 @@ make up
 Команда поднимает Postgres, применяет миграции и запускает:
 
 - веб-приложение на `http://localhost:3000`
-- auth-сервис на `http://localhost:8081`
+- сервис авторизации на `http://localhost:8081`
 - FX-worker в Docker Compose
 
 ## Конфигурация
 
 Скопируйте `.env.example` в `.env` и настройте:
 
-- `MIGRATION_DATABASE_URL` — owner-роль для миграций
-- `DATABASE_URL` — app-роль для web-процесса
-- `AUTH_DATABASE_URL` — роль auth-схемы для auth-сервиса
-- `AUTH_MODE` — `none` для локального режима, `cognito` для email OTP
-- `AUTH_DOMAIN`, `COOKIE_DOMAIN`, `ALLOWED_REDIRECT_URIS` — домены auth и cookie
+- `MIGRATION_DATABASE_URL` — роль владельца для миграций
+- `DATABASE_URL` — роль приложения для веб-процесса
+- `AUTH_DATABASE_URL` — роль схемы авторизации для сервиса авторизации
+- `AUTH_MODE` — `none` для локального режима, `cognito` для входа по одноразовому коду из письма
+- `AUTH_DOMAIN`, `COOKIE_DOMAIN`, `ALLOWED_REDIRECT_URIS` — домены авторизации и cookie
 
 Если `AUTH_MODE=cognito`, также понадобятся настройки Cognito и `SESSION_ENCRYPTION_KEY` из `.env.example`.
 

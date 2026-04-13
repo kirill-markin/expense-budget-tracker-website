@@ -8,7 +8,7 @@ keywords:
   - "controlar gastos en varias divisas"
   - "gestor de gastos para expatriados"
   - "app de presupuesto para nómadas digitales"
-  - "gestor de presupuesto open source"
+  - "gestor de presupuesto de código abierto"
 ---
 
 Salario en USD. Alquiler en EUR. Una escapada a Londres pagada en GBP.
@@ -172,13 +172,13 @@ Dejas de gastar energía en la parte más tediosa.
 
 Esa es la parte que merece la pena automatizar.
 
-## Por qué aquí tiene sentido el open source
+## Por qué aquí tiene sentido el código abierto
 
 Las finanzas en varias divisas se llenan de supuestos muy rápido.
 
 En cuanto un producto se equivoca con tu moneda de referencia, con las transferencias o con el tratamiento del tipo de cambio, lo notas en todas partes.
 
-Por eso creo que esta categoría encaja especialmente bien con un enfoque open source y un modelo de datos claro.
+Por eso creo que esta categoría encaja especialmente bien con un enfoque de código abierto y un modelo de datos claro.
 
 Si todo tu historial financiero vive dentro de una caja negra, dependes de los atajos que ese producto haya decidido que son "suficientemente buenos". Si el sistema es inspeccionable y autoalojable, al menos sabes que tus datos no quedan atrapados detrás de decisiones ajenas.
 
