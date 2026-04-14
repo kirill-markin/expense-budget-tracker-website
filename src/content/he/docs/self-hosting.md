@@ -1,6 +1,6 @@
 ---
 title: מדריך לאירוח עצמי
-description: הפעילו את Expense Budget Tracker על השרת שלכם באמצעות Docker Compose ו-Postgres.
+description: הפעילו את Expense Budget Tracker על שרת משלכם באמצעות Docker Compose ו-Postgres.
 ---
 
 ## דרישות
@@ -17,23 +17,23 @@ cp .env.example .env
 make up
 ```
 
-הפקודות האלה מפעילות את Postgres, מריצות את המיגרציות, ומעלות את:
+הפקודות האלה מעלות את Postgres, מריצות את המיגרציות ומפעילות את:
 
-- יישום האינטרנט ב-`http://localhost:3000`
+- אפליקציית הווב ב-`http://localhost:3000`
 - שירות האימות ב-`http://localhost:8081`
-- תהליך ה-FX ב-Docker Compose
+- תהליך ה-FX כחלק מ-`Docker Compose`
 
 ## תצורה
 
-העתיקו את `.env.example` אל `.env` והתאימו את הערכים:
+העתיקו את `.env.example` אל `.env` ועדכנו את הערכים לפי הצורך:
 
-- `MIGRATION_DATABASE_URL` — תפקיד הבעלים שבו משתמשות המיגרציות
-- `DATABASE_URL` — תפקיד האפליקציה עבור תהליך יישום האינטרנט
-- `AUTH_DATABASE_URL` — תפקיד סכמת האימות עבור שירות האימות
-- `AUTH_MODE` — הערך `none` לשימוש מקומי, או `cognito` עבור סביבות עם קוד חד-פעמי באימייל
-- `AUTH_DOMAIN`, `COOKIE_DOMAIN`, ו-`ALLOWED_REDIRECT_URIS` — ניתוב האימות והעוגיות
+- `MIGRATION_DATABASE_URL` — כתובת ההתחברות עם הרשאת הבעלים שבה משתמשות המיגרציות
+- `DATABASE_URL` — כתובת ההתחברות עם הרשאת האפליקציה עבור תהליך הווב
+- `AUTH_DATABASE_URL` — כתובת ההתחברות עם הרשאת סכמת האימות עבור שירות האימות
+- `AUTH_MODE` — `none` לשימוש מקומי, או `cognito` לסביבות עם קוד חד-פעמי באימייל
+- `AUTH_DOMAIN`, `COOKIE_DOMAIN`, ו-`ALLOWED_REDIRECT_URIS` — הגדרות ניתוב האימות והעוגיות
 
-כאשר `AUTH_MODE=cognito`, צריך גם את הגדרות Cognito ואת `SESSION_ENCRYPTION_KEY` מתוך `.env.example`.
+כאשר `AUTH_MODE=cognito`, נדרשות גם הגדרות Cognito וכן `SESSION_ENCRYPTION_KEY` מתוך `.env.example`.
 
 ## עדכון
 
@@ -42,8 +42,8 @@ git pull
 make up
 ```
 
-`Docker Compose` בונה מחדש את השירותים ומריץ שוב את המיגרציות דרך מכל `migrate`.
+`Docker Compose` יבנה מחדש את השירותים ויריץ שוב את המיגרציות דרך הקונטיינר `migrate`.
 
 ## פריסה ל-AWS
 
-לפריסה בסביבת ייצור על AWS ‏(ECS Fargate + RDS + ALB + Cognito), ראו את [מדריך AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).
+לפריסה לפרודקשן ב-AWS ‏(ECS Fargate + RDS + ALB + Cognito), עיינו ב-[מדריך AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).
