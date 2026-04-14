@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFrame } from "@/components/SiteFrame";
 import {
   getAvailableBlogLocales,
+  getRepresentativeBlogPostImage,
   getRecommendedBlogPosts,
   listBlogPosts,
   readBlogPostContent,
@@ -54,6 +55,8 @@ export const generateMetadata = async ({
     return { title: "Not Found" };
   }
 
+  const image = getRepresentativeBlogPostImage(post);
+
   return createPageMetadata({
     title: post.title,
     description: post.description,
@@ -63,7 +66,7 @@ export const generateMetadata = async ({
     availableLocales: getAvailableBlogLocales(slug),
     publishedTime: post.date,
     modifiedTime: post.updated ?? undefined,
-    imageUrl: resolveBlogPostImageUrl(post.image) ?? undefined,
+    imageUrl: resolveBlogPostImageUrl(image) ?? undefined,
   });
 };
 
@@ -84,7 +87,8 @@ export default async function LocalizedBlogPostPage(
 
   const pageUrl = getAbsoluteUrl(getLocalizedPath(locale, `/blog/${slug}/`));
   const imageUrl =
-    resolveBlogPostImageUrl(post.image) ?? getDefaultOpenGraphImageUrl();
+    resolveBlogPostImageUrl(getRepresentativeBlogPostImage(post)) ??
+    getDefaultOpenGraphImageUrl();
   const messages = getSiteMessages(locale);
   const articleSchema = createBlogPostingStructuredData({
     locale,
@@ -114,9 +118,14 @@ export default async function LocalizedBlogPostPage(
         />
         <header className={styles.header}>
           <div className={styles.meta}>
-            <time className={styles.date} dateTime={post.date}>
-              {post.date}
-            </time>
+            <p className={styles.dateMeta}>
+              <span className={styles.dateLabel}>
+                {messages.blogPost.publishedLabel}
+              </span>
+              <time className={styles.date} dateTime={post.date}>
+                {post.date}
+              </time>
+            </p>
             <p className={styles.byline}>
               {messages.blogPost.bylinePrefix}{" "}
               <a href={AUTHOR_URL} rel="author">

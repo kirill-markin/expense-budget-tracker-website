@@ -4,12 +4,24 @@
   padding: 64px 24px;
 }
 
+.header {
+  margin-bottom: 32px;
+}
+
 .title {
   font-size: 32px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  margin-bottom: 32px;
+  margin: 0 0 16px;
+}
+
+.description {
+  margin: 0;
+  font-family: var(--serif-font-family);
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--muted);
 }
 
 .content {
@@ -87,7 +99,15 @@
     padding: 40px 24px;
   }
 
+  .header {
+    margin-bottom: 24px;
+  }
+
   .title {
     font-size: 24px;
+  }
+
+  .description {
+    font-size: 18px;
   }
 }

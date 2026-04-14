@@ -9,7 +9,11 @@ import {
 } from "@/lib/docs";
 import { PREFIXED_LOCALES, isPrefixedLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
-import { getLocalizedPath } from "@/lib/i18n/routing";
+import {
+  getAbsoluteUrl,
+  getLocalizedPath,
+} from "@/lib/i18n/routing";
+import { createTechArticleStructuredData } from "@/lib/seo/createTechArticleStructuredData";
 import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "@/app/(default)/docs/[slug]/page.module.css";
 
@@ -44,7 +48,7 @@ export const generateMetadata = async ({
     description: doc.description,
     locale,
     routePath: `/docs/${slug}/`,
-    openGraphType: "website",
+    openGraphType: "article",
     availableLocales: getAvailableDocLocales(slug),
   });
 };
@@ -65,6 +69,12 @@ export default async function LocalizedDocPage(
   }
 
   const messages = getSiteMessages(locale);
+  const pageUrl = getAbsoluteUrl(getLocalizedPath(locale, `/docs/${slug}/`));
+  const articleSchema = createTechArticleStructuredData({
+    locale,
+    pageUrl,
+    article: doc,
+  });
 
   return (
     <SiteFrame
@@ -72,7 +82,11 @@ export default async function LocalizedDocPage(
       routePath={`/docs/${slug}/`}
       availableLocales={getAvailableDocLocales(slug)}
     >
-      <div className={styles.container}>
+      <article className={styles.container}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
         <Breadcrumbs
           locale={locale}
           items={[
@@ -80,12 +94,15 @@ export default async function LocalizedDocPage(
             { label: doc.title, href: getLocalizedPath(locale, `/docs/${slug}/`) },
           ]}
         />
-        <h1 className={styles.title}>{doc.title}</h1>
+        <header className={styles.header}>
+          <h1 className={styles.title}>{doc.title}</h1>
+          <p className={styles.description}>{doc.description}</p>
+        </header>
         <div
           className={styles.content}
           dangerouslySetInnerHTML={{ __html: doc.contentHtml }}
         />
-      </div>
+      </article>
     </SiteFrame>
   );
 }
