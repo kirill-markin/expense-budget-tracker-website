@@ -54,6 +54,7 @@ interface BlogIndexMessages {
 }
 
 interface BlogPostMessages {
+  readonly publishedLabel: string;
   readonly bylinePrefix: string;
   readonly relatedHeading: string;
 }
@@ -125,6 +126,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       empty: "Posts coming soon.",
     },
     blogPost: {
+      publishedLabel: "Published",
       bylinePrefix: "By",
       relatedHeading: "Read next",
     },
@@ -183,6 +185,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       empty: "Próximamente habrá publicaciones.",
     },
     blogPost: {
+      publishedLabel: "Publicado",
       bylinePrefix: "Por",
       relatedHeading: "Sigue leyendo",
     },
@@ -241,6 +244,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       empty: "Публикации скоро появятся.",
     },
     blogPost: {
+      publishedLabel: "Опубликовано",
       bylinePrefix: "Автор",
       relatedHeading: "Читайте дальше",
     },
@@ -299,6 +303,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       empty: "Публікації незабаром з’являться.",
     },
     blogPost: {
+      publishedLabel: "Опубліковано",
       bylinePrefix: "Автор",
       relatedHeading: "Читайте далі",
     },
@@ -356,6 +361,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       empty: "مطلب‌ها به‌زودی منتشر می‌شوند.",
     },
     blogPost: {
+      publishedLabel: "منتشر شده",
       bylinePrefix: "نویسنده",
       relatedHeading: "ادامه مطلب",
     },
@@ -412,6 +418,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       empty: "文章即将发布。",
     },
     blogPost: {
+      publishedLabel: "发布于",
       bylinePrefix: "作者",
       relatedHeading: "继续阅读",
     },
@@ -469,6 +476,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       empty: "ستتوفر المقالات قريبًا.",
     },
     blogPost: {
+      publishedLabel: "نُشر",
       bylinePrefix: "بقلم",
       relatedHeading: "اقرأ التالي",
     },
@@ -526,6 +534,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       empty: "פוסטים יפורסמו בקרוב.",
     },
     blogPost: {
+      publishedLabel: "פורסם",
       bylinePrefix: "מאת",
       relatedHeading: "להמשך קריאה",
     },

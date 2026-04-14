@@ -855,6 +855,20 @@ export function readBlogPost(
   return loadBlogPosts(locale).find((post) => post.slug === slug) ?? null;
 }
 
+export function getRepresentativeBlogPostImage(
+  post: Pick<BlogPostRecord, "slug" | "locale" | "image">
+): string | null {
+  if (post.image !== null) {
+    return post.image;
+  }
+
+  if (post.locale === DEFAULT_LOCALE) {
+    return null;
+  }
+
+  return readBlogPost(post.slug, DEFAULT_LOCALE)?.image ?? null;
+}
+
 export async function readBlogPostContent(
   slug: string,
   locale: AppLocale

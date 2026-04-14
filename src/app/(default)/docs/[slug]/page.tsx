@@ -8,7 +8,11 @@ import {
   readDocContent,
 } from "@/lib/docs";
 import { getSiteMessages } from "@/lib/i18n/messages";
-import { getLocalizedPath } from "@/lib/i18n/routing";
+import {
+  getAbsoluteUrl,
+  getLocalizedPath,
+} from "@/lib/i18n/routing";
+import { createTechArticleStructuredData } from "@/lib/seo/createTechArticleStructuredData";
 import { createPageMetadata } from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
@@ -38,7 +42,7 @@ export const generateMetadata = async ({
     description: doc.description,
     locale: LOCALE,
     routePath: `/docs/${slug}/`,
-    openGraphType: "website",
+    openGraphType: "article",
     availableLocales: getAvailableDocLocales(slug),
   });
 };
@@ -54,6 +58,12 @@ export default async function DocPage(
   }
 
   const messages = getSiteMessages(LOCALE);
+  const pageUrl = getAbsoluteUrl(getLocalizedPath(LOCALE, `/docs/${slug}/`));
+  const articleSchema = createTechArticleStructuredData({
+    locale: LOCALE,
+    pageUrl,
+    article: doc,
+  });
 
   return (
     <SiteFrame
@@ -61,7 +71,11 @@ export default async function DocPage(
       routePath={`/docs/${slug}/`}
       availableLocales={getAvailableDocLocales(slug)}
     >
-      <div className={styles.container}>
+      <article className={styles.container}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
         <Breadcrumbs
           locale={LOCALE}
           items={[
@@ -69,12 +83,15 @@ export default async function DocPage(
             { label: doc.title, href: getLocalizedPath(LOCALE, `/docs/${slug}/`) },
           ]}
         />
-        <h1 className={styles.title}>{doc.title}</h1>
+        <header className={styles.header}>
+          <h1 className={styles.title}>{doc.title}</h1>
+          <p className={styles.description}>{doc.description}</p>
+        </header>
         <div
           className={styles.content}
           dangerouslySetInnerHTML={{ __html: doc.contentHtml }}
         />
-      </div>
+      </article>
     </SiteFrame>
   );
 }
