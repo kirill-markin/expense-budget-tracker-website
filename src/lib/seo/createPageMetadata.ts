@@ -27,6 +27,8 @@ interface CreatePageMetadataParams {
   readonly openGraphType: OpenGraphType;
   readonly availableLocales: ReadonlyArray<AppLocale>;
   readonly publishedTime?: string;
+  readonly modifiedTime?: string;
+  readonly imageUrl?: string;
 }
 
 function getMarkdownAlternateUrl(
@@ -63,6 +65,9 @@ export function createPageMetadata(
     alternates.languages = languageAlternates;
   }
 
+  const socialImageUrl = params.imageUrl ?? OPEN_GRAPH_IMAGE_URL;
+  const twitterImageUrl = params.imageUrl ?? TWITTER_IMAGE_URL;
+
   return {
     title: browserTitle,
     description: params.description,
@@ -76,16 +81,21 @@ export function createPageMetadata(
       description: params.description,
       images: [
         {
-          url: OPEN_GRAPH_IMAGE_URL,
+          url: socialImageUrl,
         },
       ],
       publishedTime: params.publishedTime,
+      modifiedTime: params.modifiedTime,
     },
     twitter: {
       card: "summary_large_image",
       title: socialTitle,
       description: params.description,
-      images: [TWITTER_IMAGE_URL],
+      images: [twitterImageUrl],
     },
   };
+}
+
+export function getDefaultOpenGraphImageUrl(): string {
+  return OPEN_GRAPH_IMAGE_URL;
 }

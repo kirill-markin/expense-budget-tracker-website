@@ -14,24 +14,19 @@ import {
   getAbsoluteUrl,
   getLocalizedPath,
 } from "@/lib/i18n/routing";
-import { createPageMetadata } from "@/lib/seo/createPageMetadata";
+import {
+  createBlogPostingStructuredData,
+  resolveBlogPostImageUrl,
+} from "@/lib/seo/createBlogPostingStructuredData";
+import {
+  createPageMetadata,
+  getDefaultOpenGraphImageUrl,
+} from "@/lib/seo/createPageMetadata";
 import styles from "./page.module.css";
 
 const LOCALE = "en";
 const AUTHOR_NAME = "Kirill Markin";
 const AUTHOR_URL = "https://kirill-markin.com/";
-
-interface ArticleAuthor {
-  readonly "@type": "Person";
-  readonly name: string;
-  readonly url: string;
-}
-
-const ARTICLE_AUTHOR: ArticleAuthor = {
-  "@type": "Person",
-  name: AUTHOR_NAME,
-  url: AUTHOR_URL,
-};
 
 export const dynamicParams = false;
 
@@ -61,6 +56,8 @@ export const generateMetadata = async ({
     openGraphType: "article",
     availableLocales: getAvailableBlogLocales(slug),
     publishedTime: post.date,
+    modifiedTime: post.updated ?? undefined,
+    imageUrl: resolveBlogPostImageUrl(post.image) ?? undefined,
   });
 };
 
@@ -75,22 +72,15 @@ export default async function BlogPostPage(
   }
 
   const pageUrl = getAbsoluteUrl(getLocalizedPath(LOCALE, `/blog/${slug}/`));
+  const imageUrl =
+    resolveBlogPostImageUrl(post.image) ?? getDefaultOpenGraphImageUrl();
   const messages = getSiteMessages(LOCALE);
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    url: pageUrl,
-    author: ARTICLE_AUTHOR,
-    publisher: {
-      "@type": "Organization",
-      name: "Expense Budget Tracker",
-      url: getAbsoluteUrl("/"),
-    },
-    inLanguage: LOCALE,
-  };
+  const articleSchema = createBlogPostingStructuredData({
+    locale: LOCALE,
+    pageUrl,
+    imageUrl,
+    post,
+  });
   const recommendedPosts = getRecommendedBlogPosts(LOCALE, slug, 4);
 
   return (
@@ -111,11 +101,21 @@ export default async function BlogPostPage(
             { label: post.title, href: getLocalizedPath(LOCALE, `/blog/${slug}/`) },
           ]}
         />
-        <time className={styles.date}>{post.date}</time>
-        <a href={AUTHOR_URL} className={styles.byline}>
-          {messages.blogPost.bylinePrefix} {AUTHOR_NAME}
-        </a>
-        <h1 className={styles.title}>{post.title}</h1>
+        <header className={styles.header}>
+          <div className={styles.meta}>
+            <time className={styles.date} dateTime={post.date}>
+              {post.date}
+            </time>
+            <p className={styles.byline}>
+              {messages.blogPost.bylinePrefix}{" "}
+              <a href={AUTHOR_URL} rel="author">
+                {AUTHOR_NAME}
+              </a>
+            </p>
+          </div>
+          <h1 className={styles.title}>{post.title}</h1>
+          <p className={styles.description}>{post.description}</p>
+        </header>
         <div
           className={styles.content}
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
@@ -132,7 +132,9 @@ export default async function BlogPostPage(
                   href={getLocalizedPath(LOCALE, `/blog/${recommendedPost.slug}/`)}
                   className={styles.relatedCard}
                 >
-                  <time className={styles.date}>{recommendedPost.date}</time>
+                  <time className={styles.date} dateTime={recommendedPost.date}>
+                    {recommendedPost.date}
+                  </time>
                   <h3>{recommendedPost.title}</h3>
                   <p className={styles.relatedDescription}>
                     {recommendedPost.description}
