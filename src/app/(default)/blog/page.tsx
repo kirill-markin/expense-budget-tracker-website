@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFrame } from "@/components/SiteFrame";
-import { getAlternateBlogIndexLocales, listBlogPosts } from "@/lib/blog";
+import { getAvailableBlogIndexLocales, listBlogPosts } from "@/lib/blog";
 import type { AppLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
 import { getLocalizedPath } from "@/lib/i18n/routing";
@@ -11,7 +11,7 @@ import styles from "./page.module.css";
 
 const LOCALE = "en";
 const PAGE_COPY = getSiteMessages(LOCALE).blogIndex;
-const BLOG_INDEX_ALTERNATE_LOCALES = getAlternateBlogIndexLocales();
+const BLOG_INDEX_AVAILABLE_LOCALES = getAvailableBlogIndexLocales();
 
 export const metadata: Metadata = createPageMetadata({
   title: PAGE_COPY.title,
@@ -19,8 +19,8 @@ export const metadata: Metadata = createPageMetadata({
   locale: LOCALE,
   routePath: "/blog/",
   openGraphType: "website",
-  availableLocales: BLOG_INDEX_ALTERNATE_LOCALES.includes(LOCALE)
-    ? BLOG_INDEX_ALTERNATE_LOCALES
+  availableLocales: BLOG_INDEX_AVAILABLE_LOCALES.includes(LOCALE)
+    ? BLOG_INDEX_AVAILABLE_LOCALES
     : [LOCALE],
 });
 
@@ -28,8 +28,8 @@ export default function BlogPage(): React.JSX.Element {
   const posts = listBlogPosts(LOCALE);
   const messages = getSiteMessages(LOCALE);
   const availableLocales: ReadonlyArray<AppLocale> =
-    BLOG_INDEX_ALTERNATE_LOCALES.includes(LOCALE)
-      ? BLOG_INDEX_ALTERNATE_LOCALES
+    BLOG_INDEX_AVAILABLE_LOCALES.includes(LOCALE)
+      ? BLOG_INDEX_AVAILABLE_LOCALES
       : [LOCALE];
 
   return (

@@ -739,18 +739,6 @@ export function getAvailableBlogIndexLocales(): ReadonlyArray<AppLocale> {
   return SUPPORTED_LOCALES.filter((locale) => listBlogPosts(locale).length > 0);
 }
 
-export function getAlternateBlogIndexLocales(): ReadonlyArray<AppLocale> {
-  const defaultLocaleBlogSlugs = getDefaultLocaleBlogSlugs();
-
-  if (defaultLocaleBlogSlugs.length === 0) {
-    return [];
-  }
-
-  return SUPPORTED_LOCALES.filter(
-    (locale) => listBlogPosts(locale).length === defaultLocaleBlogSlugs.length
-  );
-}
-
 export function listBlogPosts(locale: AppLocale): ReadonlyArray<BlogPostRecord> {
   return loadBlogPosts(locale);
 }

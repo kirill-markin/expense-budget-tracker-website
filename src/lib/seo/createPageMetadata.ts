@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  DEFAULT_LOCALE,
   SITE_NAME,
   type AppLocale,
 } from "@/lib/i18n/config";
@@ -13,6 +12,7 @@ import {
   getPagePathFromHtmlPathname,
 } from "@/lib/markdownAssetPaths";
 import { getOpenGraphLocale } from "@/lib/i18n/config";
+import { getLanguageAlternates } from "@/lib/seo/getLanguageAlternates";
 
 const OPEN_GRAPH_IMAGE_URL = getAbsoluteUrl("/opengraph-image");
 const TWITTER_IMAGE_URL = getAbsoluteUrl("/twitter-image");
@@ -27,27 +27,6 @@ interface CreatePageMetadataParams {
   readonly openGraphType: OpenGraphType;
   readonly availableLocales: ReadonlyArray<AppLocale>;
   readonly publishedTime?: string;
-}
-
-function getLanguageAlternates(
-  routePath: string,
-  availableLocales: ReadonlyArray<AppLocale>
-): Record<string, string> {
-  if (availableLocales.length <= 1) {
-    return {};
-  }
-
-  const alternates = Object.fromEntries(
-    availableLocales.map((locale) => [
-      locale,
-      getAbsoluteUrl(getLocalizedPath(locale, routePath)),
-    ])
-  );
-
-  return {
-    ...alternates,
-    "x-default": getAbsoluteUrl(getLocalizedPath(DEFAULT_LOCALE, routePath)),
-  };
 }
 
 function getMarkdownAlternateUrl(
@@ -80,7 +59,7 @@ export function createPageMetadata(
     types: { "text/markdown": markdownUrl },
   };
 
-  if (Object.keys(languageAlternates).length > 0) {
+  if (languageAlternates !== undefined) {
     alternates.languages = languageAlternates;
   }
 

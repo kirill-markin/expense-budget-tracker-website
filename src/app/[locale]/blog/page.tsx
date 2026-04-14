@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFrame } from "@/components/SiteFrame";
-import { getAlternateBlogIndexLocales, listBlogPosts } from "@/lib/blog";
+import { getAvailableBlogIndexLocales, listBlogPosts } from "@/lib/blog";
 import { isPrefixedLocale, type AppLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
 import { getLocalizedPath } from "@/lib/i18n/routing";
@@ -24,7 +24,7 @@ export async function generateMetadata({
   }
 
   const pageCopy = getSiteMessages(locale).blogIndex;
-  const alternateLocales = getAlternateBlogIndexLocales();
+  const availableBlogIndexLocales = getAvailableBlogIndexLocales();
 
   return createPageMetadata({
     title: pageCopy.title,
@@ -32,8 +32,8 @@ export async function generateMetadata({
     locale,
     routePath: "/blog/",
     openGraphType: "website",
-    availableLocales: alternateLocales.includes(locale)
-      ? alternateLocales
+    availableLocales: availableBlogIndexLocales.includes(locale)
+      ? availableBlogIndexLocales
       : [locale],
   });
 }
@@ -50,10 +50,10 @@ export default async function LocalizedBlogPage(
   const posts = listBlogPosts(locale);
   const messages = getSiteMessages(locale);
   const pageCopy = messages.blogIndex;
-  const alternateLocales = getAlternateBlogIndexLocales();
+  const availableBlogIndexLocales = getAvailableBlogIndexLocales();
   const availableLocales: ReadonlyArray<AppLocale> =
-    alternateLocales.includes(locale)
-      ? alternateLocales
+    availableBlogIndexLocales.includes(locale)
+      ? availableBlogIndexLocales
       : [locale];
 
   return (
