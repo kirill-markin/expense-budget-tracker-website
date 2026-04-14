@@ -5,8 +5,8 @@ description: شغّل Expense Budget Tracker على خادمك باستخدام 
 
 ## المتطلبات
 
-- Docker وDocker Compose
-- Postgres 18 (مضمّن في ملف Compose)
+- توفر Docker وDocker Compose
+- Postgres 18 (مضمّن ضمن ملف Compose)
 
 ## البدء السريع
 
@@ -17,23 +17,23 @@ cp .env.example .env
 make up
 ```
 
-يؤدي ذلك إلى تشغيل Postgres، وتنفيذ عمليات الترحيل، ثم تشغيل:
+تؤدي هذه الخطوات إلى تشغيل Postgres، ثم تنفيذ عمليات الترحيل، ثم تشغيل الخدمات التالية:
 
 - تطبيق الويب على `http://localhost:3000`
 - خدمة المصادقة على `http://localhost:8081`
-- عامل أسعار الصرف (FX) ضمن Docker Compose
+- عامل أسعار الصرف (FX) ضمن بيئة Docker Compose
 
 ## التهيئة
 
-انسخ `.env.example` إلى `.env` ثم عدّل القيم التالية:
+انسخ الملف `.env.example` إلى `.env`، ثم اضبط القيم التالية حسب بيئتك:
 
-- `MIGRATION_DATABASE_URL` — دور المالك المستخدم في عمليات الترحيل
-- `DATABASE_URL` — دور التطبيق لعملية الويب
-- `AUTH_DATABASE_URL` — دور مخطط المصادقة لخدمة المصادقة
-- `AUTH_MODE` — استخدم `none` للاستخدام المحلي و`cognito` للبيئات التي تعتمد OTP عبر البريد الإلكتروني
-- `AUTH_DOMAIN` و`COOKIE_DOMAIN` و`ALLOWED_REDIRECT_URIS` — توجيه المصادقة وإعدادات ملفات تعريف الارتباط
+- `MIGRATION_DATABASE_URL` — دور المالك الذي تستخدمه عمليات الترحيل
+- `DATABASE_URL` — دور التطبيق الذي تستخدمه خدمة الويب
+- `AUTH_DATABASE_URL` — دور مخطط المصادقة الذي تستخدمه خدمة المصادقة
+- `AUTH_MODE` — استخدم `none` للتشغيل المحلي، و`cognito` في البيئات التي تعتمد OTP عبر البريد الإلكتروني
+- `AUTH_DOMAIN` و`COOKIE_DOMAIN` و`ALLOWED_REDIRECT_URIS` — إعدادات توجيه المصادقة وملفات تعريف الارتباط
 
-عند استخدام `AUTH_MODE=cognito`، ستحتاج أيضًا إلى إعدادات Cognito و`SESSION_ENCRYPTION_KEY` الموجودة في `.env.example`.
+عند استخدام `AUTH_MODE=cognito`، ستحتاج أيضًا إلى إعدادات Cognito وقيمة `SESSION_ENCRYPTION_KEY` كما هي مبيّنة في `.env.example`.
 
 ## التحديث
 
@@ -46,4 +46,4 @@ make up
 
 ## النشر على AWS
 
-للنشر في بيئة الإنتاج على AWS (`ECS Fargate` + `RDS` + `ALB` + `Cognito`)، راجع [دليل AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).
+إذا كنت تنشر بيئة الإنتاج على AWS (`ECS Fargate` + `RDS` + `ALB` + `Cognito`)، فراجع [دليل AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).

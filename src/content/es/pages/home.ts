@@ -4,7 +4,7 @@ export const HOME_PAGE_CONTENT_ES: PageContent = {
   locale: "es",
   title: "Expense Budget Tracker - Finanzas personales de código abierto",
   description:
-    "Gestor de gastos y presupuestos de código abierto con soporte para múltiples divisas, paneles financieros y configuración nativa para agentes con Claude Code, Codex y OpenClaw.",
+    "Gestor de gastos y presupuestos de código abierto con soporte multidivisa, paneles financieros e integración nativa con agentes como Claude Code, Codex y OpenClaw.",
   slug: "home",
   sections: [
     {
@@ -12,10 +12,10 @@ export const HOME_PAGE_CONTENT_ES: PageContent = {
       titleLines: [
         "Registra gastos.",
         "Planifica presupuestos.",
-        "Tus datos, bajo tu control.",
+        "Tus datos siguen siendo tuyos.",
       ],
       subtitle:
-        "Gestor de finanzas personales de código abierto con soporte para múltiples divisas, planificación presupuestaria, paneles financieros y configuración nativa para agentes. Dale a Claude Code, Codex u OpenClaw una única URL de descubrimiento de la API, confirma el código que recibes por correo y deja que el agente se encargue del resto.",
+        "Gestor de finanzas personales de código abierto con soporte multidivisa, planificación presupuestaria, paneles financieros e integración nativa con agentes. Comparte con Claude Code, Codex u OpenClaw una única URL pública de descubrimiento, confirma el código que recibes por correo y deja que el agente se encargue del resto.",
       primaryLink: {
         label: "Empezar",
         href: "https://app.expense-budget-tracker.com",
@@ -24,7 +24,7 @@ export const HOME_PAGE_CONTENT_ES: PageContent = {
         label: "Ver en GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "Empieza con GET en esta URL de descubrimiento:",
+      hintText: "Empieza con una petición GET a esta URL de descubrimiento:",
       hintLink: {
         label: "https://api.expense-budget-tracker.com/v1/",
         href: "https://api.expense-budget-tracker.com/v1/",
@@ -34,37 +34,37 @@ export const HOME_PAGE_CONTENT_ES: PageContent = {
       type: "feature_list",
       title: "Características",
       intro:
-        "Todo lo que necesitas para gestionar tus finanzas personales sin ceder el control de tus datos.",
+        "Todo lo que necesitas para llevar tus finanzas personales sin renunciar al control de tus datos.",
       items: [
         {
           title: "Multidivisa",
           description:
-            "Lleva cuentas en cualquier divisa. Conversión automática con tipos de cambio del BCE, CBR y NBS.",
+            "Gestiona cuentas en cualquier divisa. Conversión automática con tipos de cambio del BCE, el CBR y el NBS.",
         },
         {
           title: "Planificación presupuestaria",
           description:
-            "Cuadrícula mensual de presupuesto con categorías de ingresos y gastos. Compara lo presupuestado con lo real.",
+            "Planifica cada mes en una cuadrícula de presupuesto con categorías de ingresos y gastos. Compara lo previsto con lo real.",
         },
         {
           title: "Paneles financieros",
           description:
-            "Desgloses visuales de gastos, evolución de saldos e impacto del tipo de cambio en tu cartera.",
+            "Visualiza el desglose de tus gastos, la evolución de tus saldos y el impacto del tipo de cambio en tu cartera.",
         },
         {
           title: "Autoalojado",
           description:
-            "Docker Compose con Postgres. Tus datos se quedan en tu servidor. Sin dependencias de terceros.",
+            "Despliegue con Docker Compose y Postgres. Tus datos permanecen en tu servidor, sin dependencias de terceros.",
         },
         {
           title: "API nativa para agentes",
           description:
-            "Comparte una única URL de descubrimiento con Claude Code, Codex u OpenClaw. El agente te pide el correo, verifica el código de 8 dígitos, crea su propia ApiKey, carga el contexto de las cuentas, selecciona un espacio de trabajo y empieza a trabajar.",
+            "Comparte una única URL de descubrimiento con Claude Code, Codex u OpenClaw. El agente te pedirá el correo, verificará el código de 8 dígitos, generará su propia ApiKey, cargará el contexto de tus cuentas, seleccionará un espacio de trabajo y se pondrá a trabajar.",
         },
         {
           title: "Aislamiento por espacio de trabajo",
           description:
-            "Seguridad a nivel de fila en Postgres. Cada usuario tiene un espacio de trabajo aislado. Comparte acceso mediante invitaciones.",
+            "Seguridad a nivel de fila en Postgres para aislar los datos de cada espacio de trabajo. Cada usuario dispone de su propio espacio y puede compartir acceso mediante invitaciones.",
         },
       ],
     },

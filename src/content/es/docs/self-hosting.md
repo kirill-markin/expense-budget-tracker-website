@@ -17,7 +17,7 @@ cp .env.example .env
 make up
 ```
 
-Esto inicia Postgres, ejecuta las migraciones y pone en marcha:
+Con esto se inicia Postgres, se ejecutan las migraciones y se ponen en marcha:
 
 - la aplicación web en `http://localhost:3000`
 - el servicio de autenticación en `http://localhost:8081`
@@ -25,15 +25,15 @@ Esto inicia Postgres, ejecuta las migraciones y pone en marcha:
 
 ## Configuración
 
-Copia `.env.example` a `.env` y ajusta:
+Copia `.env.example` a `.env` y revisa estos valores:
 
-- `MIGRATION_DATABASE_URL`: rol propietario que usan las migraciones
-- `DATABASE_URL`: rol de la aplicación para el proceso web
-- `AUTH_DATABASE_URL`: rol del esquema de autenticación para el servicio de autenticación
-- `AUTH_MODE`: `none` para uso local, `cognito` para entornos con OTP por correo electrónico
-- `AUTH_DOMAIN`, `COOKIE_DOMAIN` y `ALLOWED_REDIRECT_URIS`: enrutamiento de autenticación y cookies
+- `MIGRATION_DATABASE_URL`: URL de conexión con el rol propietario que usan las migraciones
+- `DATABASE_URL`: URL de conexión con el rol de la aplicación que usa el proceso web
+- `AUTH_DATABASE_URL`: URL de conexión con el rol del esquema de autenticación que usa el servicio de autenticación
+- `AUTH_MODE`: `none` para uso local; `cognito` para entornos con códigos OTP por correo electrónico
+- `AUTH_DOMAIN`, `COOKIE_DOMAIN` y `ALLOWED_REDIRECT_URIS`: dominios, cookies y redirecciones permitidas para la autenticación
 
-Cuando `AUTH_MODE=cognito`, también necesitas la configuración de Cognito y `SESSION_ENCRYPTION_KEY` de `.env.example`.
+Si `AUTH_MODE=cognito`, también debes configurar los valores de Cognito y `SESSION_ENCRYPTION_KEY` indicados en `.env.example`.
 
 ## Cómo actualizar
 
@@ -42,8 +42,8 @@ git pull
 make up
 ```
 
-Docker Compose reconstruye los servicios y vuelve a ejecutar las migraciones a través del contenedor `migrate`.
+Al hacerlo, Docker Compose reconstruye los servicios y vuelve a ejecutar las migraciones a través del contenedor `migrate`.
 
 ## Despliegue en AWS
 
-Para un despliegue de producción en AWS (ECS Fargate + RDS + ALB + Cognito), consulta la [guía de AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).
+Para desplegar en producción en AWS (ECS Fargate + RDS + ALB + Cognito), consulta la [guía de AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).
