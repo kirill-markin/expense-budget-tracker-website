@@ -1,65 +1,65 @@
 ---
 title: "راه‌اندازی رهگیر هزینه با هوش مصنوعی برای Claude Code، Codex و OpenClaw"
-description: "چطور Claude Code، Codex یا OpenClaw را به یک رهگیر هزینهٔ متن‌باز وصل کنید: یک لینک discovery بدهید، کد ایمیل را تایید کنید، ApiKey برگردانده‌شده را ذخیره کنید و بگذارید عامل کار را شروع کند."
+description: "چطور Claude Code، Codex یا OpenClaw را به یک رهگیر هزینهٔ متن‌باز وصل کنید: یک نشانی معرفی سرویس بدهید، کد ایمیل را تأیید کنید، ApiKey دریافتی را ذخیره کنید و بگذارید ایجنت کار را شروع کند."
 date: "2026-03-10"
 keywords:
   - "راه‌اندازی رهگیر هزینه با هوش مصنوعی"
-  - "رهگیر هزینه برای codex"
-  - "رهگیر هزینه برای claude code"
-  - "رهگیر هزینه برای openclaw"
-  - "اتصال عامل هوش مصنوعی به بودجه"
-  - "api expense budget tracker"
+  - "رهگیر هزینه برای Codex"
+  - "رهگیر هزینه برای Claude Code"
+  - "رهگیر هزینه برای OpenClaw"
+  - "اتصال ایجنت هوش مصنوعی به بودجه"
+  - "API Expense Budget Tracker"
 ---
 
-اگر می‌خواهید برای پیگیری هزینه‌ها از یک عامل هوش مصنوعی استفاده کنید، بخش آزاردهنده معمولاً مرحلهٔ راه‌اندازی است.
+اگر می‌خواهید برای پیگیری هزینه‌ها از یک ایجنت هوش مصنوعی استفاده کنید، معمولاً دردسر اصلی همان راه‌اندازی اولیه است.
 
-جریان معمول معمولاً این شکلی است:
+این فرایند معمولاً این‌طور پیش می‌رود:
 
 1. برنامه را باز کنید
-2. یک API key بسازید
+2. یک کلید API بسازید
 3. کلید را کپی کنید
-4. آن را در عامل ترمینالی خود پیست کنید
-5. توضیح بدهید کدام endpoint باید صدا زده شود
-6. امیدوار باشید عامل فضای‌کار درست را انتخاب کند
+4. آن را داخل ایجنت ترمینالی خود جای‌گذاری کنید
+5. توضیح بدهید باید کدام نشانی را فراخوانی کند
+6. امیدوار باشید ایجنت فضای کاری درست را انتخاب کند
 
-این روش شدنی است، اما agent-native نیست.
+این روش شدنی است، اما برای کار با ایجنت‌ها طراحی نشده است.
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/fa/) حالا یک endpoint عمومی discovery برای عامل‌های ترمینالی مثل [Claude Code](https://docs.anthropic.com/en/docs/claude-code)، OpenAI Codex یا OpenClaw ارائه می‌کند:
+[Expense Budget Tracker](https://expense-budget-tracker.com/fa/) حالا یک نشانی عمومی برای معرفی سرویس به ایجنت‌های ترمینالی مثل [Claude Code](https://docs.anthropic.com/en/docs/claude-code)، OpenAI Codex و OpenClaw ارائه می‌کند:
 
 `https://api.expense-budget-tracker.com/v1/`
 
-کاربر فقط همان یک لینک را به عامل می‌دهد و بعد به دو سؤال جواب می‌دهد:
+کاربر فقط همین یک لینک را به ایجنت می‌دهد و بعد به دو سؤال جواب می‌دهد:
 
-- برای ورود از کدام ایمیل باید استفاده شود؟
-- کد ۸ رقمی‌ای که همین الان به صندوق ورودی رسیده چیست؟
+- برای ورود باید از کدام ایمیل استفاده شود؟
+- کد ۸ رقمی‌ای که همین حالا به صندوق ورودی رسیده چیست؟
 
-بعد از آن، عامل `ApiKey` خودش را می‌گیرد، آن را بیرون از حافظهٔ چت ذخیره می‌کند، حساب را بار می‌کند، فضاهای‌کار را فهرست می‌کند، یکی را به‌عنوان پیش‌فرض همان کلید ذخیره می‌کند و می‌تواند وارد کردن یا پرس‌وجوی تراکنش‌ها را شروع کند.
+بعد از آن، ایجنت برای خودش یک `ApiKey` می‌گیرد، آن را بیرون از حافظهٔ چت ذخیره می‌کند، اطلاعات حساب را می‌خواند، فهرست فضاهای کاری را می‌گیرد، یکی را به‌عنوان پیش‌فرض همان کلید ذخیره می‌کند و می‌تواند وارد کردن یا پرس‌وجوی تراکنش‌ها را شروع کند.
 
 این پروژه روی GitHub متن‌باز است:
 
 - [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker)
-- [پیاده‌سازی Machine API](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/sql-api/src/machineApi.ts)
-- [مسیر send-code برای عامل](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentSendCode.ts)
-- [مسیر verify-code برای عامل](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentVerifyCode.ts)
+- [پیاده‌سازی API ماشینی](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/sql-api/src/machineApi.ts)
+- [مسیر ارسال کد برای ایجنت](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentSendCode.ts)
+- [مسیر تأیید کد برای ایجنت](https://github.com/kirill-markin/expense-budget-tracker/blob/main/apps/auth/src/routes/agentVerifyCode.ts)
 
-## همان یک لینکی که باید به عامل بدهید
+## همان یک لینکی که باید به ایجنت بدهید
 
-این URL دقیق است:
+این دقیقاً همان نشانی است:
 
 ```text
 https://api.expense-budget-tracker.com/v1/
 ```
 
-این endpoint یک سند discovery ماشین‌خوان برمی‌گرداند. عامل می‌تواند از آن بخواند:
+این نشانی یک سند معرفی ماشین‌خوان برمی‌گرداند. ایجنت می‌تواند از آن بفهمد:
 
-- bootstrap احراز هویت کجا قرار دارد
-- اولین action کدام است
-- بعداً باید از چه auth headerی استفاده شود
-- برای راه‌اندازی فضای‌کار و دسترسی SQL چه مرحله‌هایی بعد از آن می‌آید
+- آغاز فرایند احراز هویت کجاست
+- اول باید کدام عمل را اجرا کند
+- بعداً باید از کدام سرآیند احراز هویت استفاده کند
+- برای انتخاب فضای کاری و دسترسی SQL چه مراحلی بعد از آن می‌آید
 
-ایدهٔ اصلی همین است: به‌جای اینکه دستورالعمل راه‌اندازی اولیه را داخل prompt هاردکد کنید، خود محصول به عامل می‌گوید چطور وصل شود.
+اصل ماجرا همین است: به‌جای اینکه دستورهای راه‌اندازی را داخل پرامپت به‌صورت ثابت بنویسید، خود محصول به ایجنت می‌گوید چطور وصل شود.
 
-## نمونه prompt برای Claude Code
+## نمونه پرامپت برای Claude Code
 
 ```text
 Connect to Expense Budget Tracker using https://api.expense-budget-tracker.com/v1/.
@@ -67,7 +67,7 @@ Ask me for the account email, wait for the 8-digit code from my inbox, finish th
 save the returned ApiKey outside chat memory, then import transactions from ~/Downloads/chase-march-2026.csv and verify the final balance.
 ```
 
-## نمونه prompt برای Codex
+## نمونه پرامپت برای Codex
 
 ```text
 Use https://api.expense-budget-tracker.com/v1/ to connect to my Expense Budget Tracker account.
@@ -75,7 +75,7 @@ When you need login information, ask me for the email and then the 8-digit code.
 After setup, save the key, inspect /schema, and show me my latest 20 transactions and total grocery spend this month.
 ```
 
-## نمونه prompt برای OpenClaw
+## نمونه پرامپت برای OpenClaw
 
 ```text
 Connect yourself to Expense Budget Tracker through https://api.expense-budget-tracker.com/v1/.
@@ -85,21 +85,21 @@ Use existing categories when possible, and tell me if any balance does not match
 
 ## راه‌اندازی رهگیر هزینه با هوش مصنوعی چطور کار می‌کند
 
-در ادامه، کل جریان HTTP پشت این راه‌اندازی را می‌بینید.
+در ادامه، کل فرایند HTTP پشت این راه‌اندازی را می‌بینید.
 
-### 1. خواندن endpoint discovery
+### 1. خواندن نشانی معرفی سرویس
 
-عامل از اینجا شروع می‌کند:
+ایجنت از اینجا شروع می‌کند:
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/
 ```
 
-پاسخ به آن می‌گوید با `send_code` شروع کند، URL مربوط به bootstrap را روی دامنهٔ auth می‌دهد و به endpointهای منتشرشدهٔ OpenAPI و schema اشاره می‌کند.
+پاسخ به آن می‌گوید کار را با `send_code` شروع کند، نشانی آغاز احراز هویت را روی دامنهٔ احراز هویت می‌دهد و به نشانی‌های منتشرشدهٔ OpenAPI و schema اشاره می‌کند.
 
 ### 2. فرستادن ایمیل کاربر
 
-عامل آدرس ایمیل را به سرویس auth می‌فرستد:
+ایجنت آدرس ایمیل را به سرویس احراز هویت می‌فرستد:
 
 ```bash
 curl -X POST https://auth.expense-budget-tracker.com/api/agent/send-code \
@@ -107,15 +107,15 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/send-code \
   -d '{"email":"user@example.com"}'
 ```
 
-اگر درخواست موفق باشد، پاسخ شامل `otpSessionToken` و دستورالعمل فراخوانی `verify_code` است.
+اگر درخواست موفق باشد، پاسخ شامل `otpSessionToken` و دستور فراخوانی `verify_code` است.
 
 ### 3. درخواست کد ۸ رقمی ایمیل از کاربر
 
-کاربر صندوق ورودی را چک می‌کند و کد را برای عامل می‌فرستد.
+کاربر صندوق ورودی را بررسی می‌کند و کد را برای ایجنت می‌فرستد.
 
-### 4. تایید کد و گرفتن ApiKey
+### 4. تأیید کد و گرفتن ApiKey
 
-بعد از آن، عامل این درخواست را می‌زند:
+بعد از آن، ایجنت این درخواست را ارسال می‌کند:
 
 ```bash
 curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
@@ -127,36 +127,36 @@ curl -X POST https://auth.expense-budget-tracker.com/api/agent/verify-code \
   }'
 ```
 
-پاسخ شامل یک `ApiKey` جدید است. این کلید فقط یک بار نمایش داده می‌شود و بهتر است عامل آن را برای درخواست‌های بعدی ذخیره کند، ترجیحاً با نام `EXPENSE_BUDGET_TRACKER_API_KEY`.
+پاسخ شامل یک `ApiKey` جدید است. این کلید فقط یک بار نمایش داده می‌شود و ایجنت باید آن را برای درخواست‌های بعدی نگه دارد، ترجیحاً با نام `EXPENSE_BUDGET_TRACKER_API_KEY`.
 
-این بزرگ‌ترین بهبود نسبت به جریان دستی قبلی است: کاربر دیگر لازم نیست در Settings کلید بسازد و آن را دستی وارد ترمینال کند.
+این همان بهبود اصلی نسبت به روش دستی قبلی است: کاربر دیگر لازم نیست از داخل تنظیمات یک کلید بسازد و آن را دستی داخل ترمینال کپی کند.
 
-### 5. بار کردن زمینهٔ حساب و فضای‌کار
+### 5. خواندن اطلاعات حساب و فضای کاری
 
-بعد از تایید، عامل با `Authorization: ApiKey <key>` حساب را بار می‌کند:
+بعد از تأیید، ایجنت با `Authorization: ApiKey <key>` اطلاعات حساب را می‌خواند:
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/me \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-بعد، فضاهای‌کار را فهرست می‌کند:
+بعد، فهرست فضاهای کاری را می‌گیرد:
 
 ```bash
 curl https://api.expense-budget-tracker.com/v1/workspaces \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-اگر لازم باشد، می‌تواند فضای‌کار جدید بسازد یا با `POST /v1/workspaces/{workspaceId}/select` یکی از فضاهای‌کار موجود را صریحاً ذخیره کند.
+اگر لازم باشد، می‌تواند یک فضای کاری تازه بسازد یا با `POST /v1/workspaces/{workspaceId}/select` یکی از فضاهای کاری موجود را به‌طور صریح ذخیره کند.
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/workspaces/workspace_123/select \
   -H "Authorization: ApiKey ebta_ABCDEFGH_0123456789ABCDEFGHJKMNPQ"
 ```
 
-### 6. اجرای SQL از طریق Agent API
+### 6. اجرای SQL از طریق API ایجنت
 
-بعد از آن، کار عادی داده از طریق دامنهٔ اپ انجام می‌شود:
+بعد از آن، کارهای معمول داده‌ای از طریق دامنهٔ برنامه انجام می‌شود:
 
 ```bash
 curl -X POST https://api.expense-budget-tracker.com/v1/sql \
@@ -168,22 +168,22 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
   }'
 ```
 
-درخواست باید هر دو مورد زیر را شامل شود:
+درخواست باید هر دو مورد زیر را داشته باشد:
 
 - `Authorization: ApiKey <key>`
-- `X-Workspace-Id: <workspaceId>` فقط وقتی که می‌خواهید فضای‌کار ذخیره‌شده را نادیده بگیرید یا هنوز چیزی ذخیره نشده است
+- `X-Workspace-Id: <workspaceId>` فقط وقتی که می‌خواهید فضای کاری ذخیره‌شده را نادیده بگیرید، یا هنوز هیچ فضای کاری‌ای برای آن ذخیره نشده است
 
-انتخاب فضای‌کار صریح است و سرور بعد از `POST /v1/workspaces/{workspaceId}/select` آن انتخاب را برای هر API key ذخیره می‌کند. اگر کاربر دقیقاً یک فضای‌کار داشته باشد، API آن را برای کلید جدید به‌صورت خودکار ذخیره و استفاده می‌کند.
+انتخاب فضای کاری صریح است و سرور بعد از `POST /v1/workspaces/{workspaceId}/select` آن انتخاب را برای هر کلید API ذخیره می‌کند. اگر کاربر دقیقاً یک فضای کاری داشته باشد، API آن را برای کلید جدید به‌صورت خودکار ذخیره و استفاده می‌کند.
 
-## عامل شما بعد از راه‌اندازی چه کارهایی می‌تواند انجام دهد
+## ایجنت شما بعد از راه‌اندازی چه کارهایی می‌تواند انجام دهد
 
-وقتی اتصال برقرار شد، عامل می‌تواند کارهای خسته‌کنندهٔ مالی را انجام بدهد؛ کارهایی که نباید ساعت‌ها کلیک بخواهند:
+وقتی اتصال برقرار شد، ایجنت می‌تواند آن بخش خسته‌کنندهٔ کارهای مالی را انجام بدهد؛ همان کارهایی که نباید ساعت‌ها کلیک لازم داشته باشند:
 
-1. خروجی‌های CSV، PDF یا اسکرین‌شات بانک را تجزیه کند
+1. خروجی‌های CSV، PDF یا اسکرین‌شات بانک را پردازش کند
 2. تراکنش‌ها را در دفتر کل ثبت کند
 3. مانده‌ها را با چیزی که بانک نشان می‌دهد تطبیق بدهد
 4. هزینه‌ها را بر اساس دسته‌بندی، فروشنده یا بازهٔ زمانی پرس‌وجو کند
-5. خطوط بودجهٔ ماه بعد را به‌روزرسانی کند
+5. ردیف‌های بودجهٔ ماه بعد را به‌روزرسانی کند
 
 در ادامه یک نمونهٔ عملی برای وارد کردن صورت‌حساب آمده است:
 
@@ -200,29 +200,29 @@ Show me my top 10 spending categories in the last 90 days, then compare them wit
 Also list the largest transactions in categories where spending increased.
 ```
 
-## چرا این روش از راه‌اندازی دستی API key بهتر است
+## چرا این روش از راه‌اندازی دستی کلید API بهتر است
 
-جریان جدید هم برای کاربر ساده‌تر است و هم برای عامل:
+این فرایند جدید هم برای کاربر ساده‌تر است و هم برای ایجنت:
 
 - کاربر لازم نیست یک کلید بلندمدت را دستی کپی کند
-- عامل پروتکل را از خود محصول کشف می‌کند
-- auth به‌صورت تمیز از دسترسی به داده جدا شده است
-- هر درخواست SQL در محدودهٔ فضای‌کار انتخاب‌شده اجرا می‌شود
-- بعداً می‌توان اتصال را از داخل برنامه لغو کرد
+- ایجنت پروتکل اتصال را از خود محصول یاد می‌گیرد
+- احراز هویت به‌صورت تمیز از دسترسی به داده جدا شده است
+- هر درخواست SQL در محدودهٔ فضای کاری انتخاب‌شده اجرا می‌شود
+- بعداً می‌توان این اتصال را از داخل برنامه لغو کرد
 
-اگر در حال ساختن یک گردش‌کار برای رهگیری هزینه با هوش مصنوعی هستید، این موضوع مهم است. این روش مقدار زیادی کار تکراری اولیه داخل prompt و خطاهای راه‌اندازی را حذف می‌کند.
+اگر در حال ساختن یک گردش‌کار رهگیری هزینه با هوش مصنوعی هستید، این تفاوت مهم است. هم متن تکراری پرامپت را کمتر می‌کند و هم خطاهای راه‌اندازی را.
 
-## رهگیر هزینهٔ متن‌باز با راه‌اندازی مخصوص عامل
+## رهگیر هزینهٔ متن‌باز با راه‌اندازی مخصوص ایجنت
 
 Expense Budget Tracker تحت مجوز MIT منتشر شده و کاملاً متن‌باز است:
 
 - [وب‌سایت پروژه](https://expense-budget-tracker.com/fa/)
 - [مخزن GitHub](https://github.com/kirill-markin/expense-budget-tracker)
 - [README روی GitHub](https://github.com/kirill-markin/expense-budget-tracker/blob/main/README.md)
-- [مستندات راه‌اندازی AI Agent](https://expense-budget-tracker.com/fa/docs/agent-setup/)
+- [مستندات راه‌اندازی ایجنت هوش مصنوعی](https://expense-budget-tracker.com/fa/docs/agent-setup/)
 - [مرجع API](https://expense-budget-tracker.com/fa/docs/api/)
 
-اگر می‌خواهید خودتان میزبانی‌اش کنید، از اینجا شروع کنید:
+اگر می‌خواهید آن را روی زیرساخت خودتان میزبانی کنید، از اینجا شروع کنید:
 
 ```bash
 git clone https://github.com/kirill-markin/expense-budget-tracker.git
@@ -230,10 +230,10 @@ cd expense-budget-tracker
 make up
 ```
 
-اگر می‌خواهید از نسخهٔ میزبانی‌شده استفاده کنید، این URL را به عامل خود بدهید:
+اگر می‌خواهید از نسخهٔ میزبانی‌شده استفاده کنید، این نشانی را به ایجنت خود بدهید:
 
 ```text
 https://api.expense-budget-tracker.com/v1/
 ```
 
-همین برای شروع جریان ورود خودکار توسط Claude Code، Codex یا OpenClaw کافی است.
+همین برای Claude Code، Codex یا OpenClaw کافی است تا فرایند ورود را خودشان شروع کنند.

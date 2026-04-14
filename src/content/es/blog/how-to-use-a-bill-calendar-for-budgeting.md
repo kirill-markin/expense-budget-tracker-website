@@ -1,293 +1,293 @@
 ---
-title: "Cómo utilizar un calendario de facturas para hacer presupuestos en 2026: consulte las fechas de vencimiento, los cheques de pago y los saldos reales antes de que el mes se vuelva hostil"
-description: "¿Necesita un calendario de facturas para presupuestar en 2026? Aquí hay un práctico sistema de calendario presupuestario para fechas de vencimiento, cheques de pago, cuentas múltiples y saldos proyectados sin el caos de las hojas de cálculo."
+title: "Cómo usar un calendario de pagos para hacer tu presupuesto en 2026: ve vencimientos, cobros y saldos reales antes de que el mes se ponga cuesta arriba"
+description: "¿Necesitas un calendario de pagos para organizar tu presupuesto en 2026? Aquí tienes un sistema práctico para ver vencimientos, cobros, varias cuentas y saldos previstos sin acabar en el caos de las hojas de cálculo."
 date: "2026-04-10"
 keywords:
-  - "presupuesto del calendario de facturas"
-  - "cómo utilizar un calendario de facturas para hacer presupuestos"
-  - "calendario presupuestario"
+  - "calendario de pagos presupuesto"
+  - "cómo usar un calendario de pagos para hacer presupuesto"
+  - "calendario de presupuesto"
   - "cómo hacer un calendario de presupuesto"
-  - "calendario de factura mensual"
+  - "calendario mensual de facturas"
   - "presupuesto por fecha de vencimiento"
-  - "calendario de cheques y facturas"
-  - "aplicación de calendario de facturas"
+  - "calendario de cobros y pagos"
+  - "app de calendario de pagos"
 ---
 
-Ayer miré una cuenta corriente que estaba técnicamente bien, un pago con tarjeta de crédito que vencía en cuatro días, un alquiler que vencía en seis y una segunda cuenta que se suponía que cubriría los alimentos pero que había comenzado a emitir energía poco confiable. Suele ser entonces cuando la gente empieza a buscar **presupuesto del calendario de facturas**.
+Ayer estuve mirando una cuenta corriente que, técnicamente, estaba bien; un pago de tarjeta de crédito que vencía en cuatro días; el alquiler, que vencía en seis; y una segunda cuenta que en teoría tenía que cubrir la compra, pero ya transmitía poca confianza. Suele ser justo ahí cuando la gente empieza a buscar **cómo usar un calendario de pagos para hacer presupuesto**.
 
-No porque hayan olvidado cómo funcionan las matemáticas. Normalmente ya hacían los cálculos mensuales.
+No porque se le hayan olvidado las matemáticas. Normalmente las cuentas del mes ya están hechas.
 
-El problema es el tiempo.
+El problema es cuándo cae cada cosa.
 
-Muchos presupuestos parecen razonables a nivel mensual y aún así se vuelven estresantes a mitad de mes porque el dinero y las fechas de vencimiento no llegan en el mismo orden.
+Muchos presupuestos parecen razonables a escala mensual y, aun así, se vuelven estresantes a mitad de mes porque el dinero y los vencimientos no llegan en el mismo orden.
 
-Por eso es importante un **calendario presupuestario**. No reemplaza tus categorías. Les da un calendario para vivir.
+Por eso importa un **calendario de presupuesto**. No sustituye a tus categorías. Les da un calendario donde aterrizar.
 
-## Un calendario de facturas es realmente una herramienta de sincronización, no una filosofía de presupuestación.
+## Un calendario de pagos es una herramienta de fechas, no una filosofía presupuestaria
 
 Esto es lo primero que aclararía.
 
-A veces la gente habla de un **calendario de facturas mensuales** como si fuera un método financiero completo. No lo es.
+A veces se habla de un **calendario mensual de facturas** como si fuera un método financiero completo. No lo es.
 
-Es solo una forma de responder tempranamente a una pregunta muy práctica:
+Es solo una forma de responder pronto a una pregunta muy práctica:
 
-¿Qué se debe pagar, de qué cuenta, antes de que llegue el próximo cheque de pago?
+¿Qué hay que pagar, desde qué cuenta y antes de que entre el próximo cobro?
 
-Eso es importante porque las categorías por sí solas no resuelven el estrés del tiempo.
+Eso importa porque las categorías, por sí solas, no resuelven el estrés de las fechas.
 
-Puedes saber perfectamente bien que el alquiler, los servicios públicos, los comestibles, el transporte y los pagos de deudas caben dentro del mes y aun así te sientes fatal el día 12 si las facturas se adelantan y el cheque de pago llega lo suficientemente tarde como para ser molesto.
+Puedes saber perfectamente que el alquiler, los suministros, la compra, el transporte y los pagos de deuda caben dentro del mes y, aun así, sentirte fatal el día 12 si las facturas se concentran al principio y el próximo ingreso llega lo bastante tarde como para fastidiarte.
 
-La vista de calendario resuelve un problema diferente al de la vista de categorías:
+La vista de calendario resuelve un problema distinto de la vista por categorías:
 
-- las categorías te dicen para qué sirve el dinero
-- el calendario te indica cuándo necesita el dinero para sobrevivir al contacto con la realidad
+- las categorías te dicen para qué es el dinero
+- el calendario te dice cuándo ese dinero tiene que aguantar el golpe de la realidad
 
-Quieres ambos.
+Necesitas las dos cosas.
 
-## El calendario presupuestario debe incluir más que facturas
+## El calendario de presupuesto debe incluir algo más que facturas
 
-No haría un calendario sólo de facturas.
+Yo no haría un calendario solo de facturas.
 
-Eso crea un documento muy dramático que sabe todo lo malo que viene hacia usted y nada del dinero que llega para ayudarlo.
+Eso crea un documento muy dramático que sabe todo lo malo que se acerca y nada del dinero que entra para aliviarlo.
 
-Un **calendario de cheques de pago y facturas** útil debe incluir:
+Un **calendario de cobros y pagos** útil debería incluir:
 
-- días de pago
+- fechas de cobro
 - alquiler o hipoteca
-- utilidades
-- fechas de vencimiento de la tarjeta de crédito
+- suministros
+- vencimientos de la tarjeta de crédito
 - pagos de préstamos
-- suscripciones que realmente importan
+- suscripciones que de verdad importan
 - pagos de seguros
-- cuidado de niños o matrícula
-- transferencias que utilizas intencionalmente para facturas
-- cualquier gasto anual o irregular que sea lo suficientemente cercano como para importar ahora
+- guardería o matrícula
+- transferencias que haces expresamente para cubrir recibos
+- cualquier gasto anual o irregular que ya esté lo bastante cerca como para importar
 
-La cuestión es ver la secuencia del flujo de efectivo, no sólo las obligaciones.
+La idea es ver la secuencia del flujo de caja, no solo la lista de obligaciones.
 
-Si el calendario sólo muestra salidas, se vuelve emocionalmente ruidoso y operacionalmente incompleto.
+Si el calendario solo muestra salidas de dinero, se vuelve agobiante y además se queda incompleto.
 
-## Hacer un presupuesto por fecha de vencimiento se vuelve más útil cuando el margen es pequeño
+## Presupuestar por vencimientos se vuelve más útil cuando vas justo
 
-Si sus cuentas siempre tienen suficiente margen de maniobra, puede ser un poco descuidado con el tiempo y salirse con la suya.
+Si tus cuentas siempre tienen colchón de sobra, puedes ser algo descuidado con las fechas y, la mayoría de las veces, no pasa nada.
 
-Si el margen es menor, **presupuestar antes de la fecha de vencimiento** se vuelve mucho más importante.
+Si el margen es más estrecho, **presupuestar por fecha de vencimiento** se vuelve mucho más importante.
 
 Ahí es cuando empiezas a notar cosas como:
 
-- dos pagos grandes que llegan antes del mismo cheque de pago
-- una fecha de vencimiento de la tarjeta de crédito creaba presión a pesar de que el gasto de la categoría parecía normal
-- un grupo de suscripciones que silenciosamente hace que una semana sea más cara que el resto del mes
-- dinero depositado en la cuenta equivocada exactamente en el momento equivocado
+- dos pagos grandes que caen antes del mismo cobro
+- una fecha de pago de la tarjeta generando presión aunque el gasto de la categoría pareciera normal
+- un bloque de suscripciones que, sin hacer ruido, vuelve una semana más cara que el resto del mes
+- dinero parado en la cuenta equivocada justo en el peor momento
 
-Es por eso que creo que una **aplicación de calendario de facturas** o un calendario de presupuesto manual a menudo tiene menos que ver con la organización y más con la reducción de sorpresas evitables.
+Por eso creo que una **app de calendario de pagos** o incluso un calendario manual muchas veces tiene menos que ver con ser más ordenado y más con reducir sorpresas evitables.
 
-La sorpresa es lo que duele.
+Lo que hace daño es la sorpresa.
 
 No siempre el total.
 
-## Un buen calendario presupuestario separa las fechas fijas del gasto flexible
+## Un buen calendario de presupuesto separa las fechas fijas del gasto flexible
 
-Aquí es donde la gente hace que el sistema sea más difícil de lo necesario.
+Aquí es donde mucha gente complica el sistema más de la cuenta.
 
-No todas las categorías pertenecen al calendario con el mismo nivel de seriedad.
+No todas las categorías tienen que vivir en el calendario con el mismo peso.
 
-Separaría el mes en dos grupos.
+Yo separaría el mes en dos grupos.
 
-### Obligaciones a fecha fija
+### Obligaciones con fecha fija
 
-Estas son las cosas que importan en el calendario, te sientas organizado o no:
+Son las cosas a las que el calendario les importa, estés organizado o no:
 
 - alquiler
 - hipoteca
-- utilidades
+- suministros
 - pagos de deuda
 - seguro
-- factura de teléfono
+- factura del teléfono
 - matrícula
-- renovaciones de suscripción con fechas fijas
+- renovaciones de suscripciones con fecha fija
 
-### Gasto operativo flexible
+### Gasto flexible del día a día
 
-Estos siguen siendo importantes, pero normalmente no están vinculados a una fecha exacta:
+Sigue importando, pero normalmente no depende de una fecha exacta:
 
-- comestibles
-- gasolina
-- salir a cenar
-- artículos para el hogar
+- compra
+- combustible
+- comer fuera
+- artículos para casa
 - gastos personales
-- gastos varios para niños
+- gastos varios de los niños
 
-Esa distinción ayuda porque **cómo hacer un calendario presupuestario** no es lo mismo que "poner cada dólar en la pared y esperar que se convierta en sabiduría".
+Esa distinción ayuda porque **cómo hacer un calendario de presupuesto** no es lo mismo que empapelar una pared con cada euro y esperar que de ahí salga claridad.
 
-El calendario debería centrarse primero en los temas urgentes.
+El calendario debería centrarse primero en lo que es sensible a las fechas.
 
-Sus categorías flexibles todavía pertenecen a la cuadrícula de presupuesto. Simplemente no necesitan el mismo calendario de tratamiento a menos que una semana específica sea inusualmente apretada.
+Tus categorías flexibles siguen perteneciendo al presupuesto. Simplemente no necesitan el mismo tratamiento en el calendario, salvo que una semana concreta venga especialmente apretada.
 
-## La pregunta más útil no es "¿Puedo pagar este mes?"
+## La pregunta más útil no es "¿Puedo permitirme este mes?"
 
-Es:
+Es esta:
 
-¿Podrá esta cuenta sobrevivir con seguridad los próximos ocho días?
+¿Puede esta cuenta aguantar con seguridad los próximos ocho días?
 
-Esa es toda la diferencia.
+Ahí está toda la diferencia.
 
-Cuando las personas buscan **cómo utilizar un calendario de facturas para hacer presupuestos**, no creo que normalmente busquen una lista de verificación más bonita.
+Cuando la gente busca **cómo usar un calendario de pagos para hacer presupuesto**, no creo que normalmente esté buscando una lista de control más bonita.
 
-Están tratando de detener exactamente este tipo de confusión:
+Está intentando frenar exactamente este tipo de confusión:
 
-- los totales mensuales dicen que sí
-- el saldo corriente dice tal vez
-- la próxima fecha de vencimiento dice absolutamente no
+- los totales del mes dicen que sí
+- el saldo de la cuenta dice que tal vez
+- el próximo vencimiento dice que ni de broma
 
-Por eso leería el calendario junto con los saldos reales, no como un ritual de planificación independiente.
+Por eso yo leería el calendario junto con los saldos reales, no como un ritual de planificación aislado.
 
-El equilibrio te dice lo que es verdad en este momento.
+El saldo te dice lo que es verdad ahora mismo.
 
-El calendario te dice lo que está por importar.
+El calendario te dice lo que está a punto de importar.
 
-El presupuesto le indica si el patrón tiene algún sentido.
+El presupuesto te dice si ese patrón tiene sentido en absoluto.
 
-## Varias cuentas hacen que el presupuesto del calendario sea más importante
+## Con varias cuentas, el calendario importa todavía más
 
-Esta es una de las razones más comunes por las que el mes empieza a parecer falso.
+Esta es una de las razones más habituales por las que el mes empieza a parecer una ficción.
 
-Es posible que tengas:
+Puede que tengas:
 
-- una cuenta corriente para ingresos
-- una cuenta para facturas regulares
-- una cuenta de ahorros con reservas a corto plazo
-- una tarjeta que maneja una gran cantidad de gastos recurrentes
+- una cuenta corriente donde entra el dinero
+- una cuenta para los recibos habituales
+- una cuenta de ahorro con pequeños colchones a corto plazo
+- una tarjeta que concentra buena parte del gasto recurrente
 
-No hay nada malo en esa configuración.
+No hay nada malo en ese esquema.
 
-El lío comienza cuando el presupuesto rastrea la categoría pero no la ruta que debe tomar el dinero antes de que llegue la fecha de vencimiento.
+El lío empieza cuando el presupuesto sigue la categoría, pero no el recorrido que tiene que hacer el dinero antes de que llegue el vencimiento.
 
-Es por eso que un **calendario de facturas mensuales** se vuelve más importante en hogares con:
+Por eso un **calendario mensual de facturas** se vuelve más importante en hogares con:
 
 - cuentas separadas
-- cuentas conjuntas más personales
-- gastos excesivos con tarjetas
+- cuentas conjuntas y personales a la vez
+- mucho gasto con tarjeta
 - reembolsos
-- transferencias basadas en el tiempo
+- transferencias que dependen del momento del mes
 
-Si la factura se pagará desde la Cuenta B pero el cheque de pago llega a la Cuenta A, el calendario debe mostrar esa relación antes de que se acerque la fecha de vencimiento.
+Si un recibo se va a pagar desde la cuenta B, pero el ingreso entra en la cuenta A, el calendario tiene que mostrar esa relación antes de que se acerque la fecha.
 
-De lo contrario no estás presupuestando. Estás improvisando con una terminología un poco más agradable.
+Si no, no estás presupuestando. Estás improvisando con un vocabulario un poco más elegante.
 
 ## Las facturas anuales no deberían seguir colándose en el mes como si fueran una sorpresa
 
-Ésta es otra razón por la que un calendario ayuda.
+Esta es otra razón por la que el calendario ayuda.
 
-Algunos gastos no son mensuales, pero tampoco son aleatorios:
+Hay gastos que no son mensuales, pero tampoco son aleatorios:
 
 - suscripciones anuales
-- renovaciones de seguros de automóvil
+- renovaciones del seguro del coche
 - pagos de impuestos
-- tasas escolares
+- cuotas escolares
 - viajes reservados con meses de antelación
 
-A menudo es mejor tratarlos como fondos de amortización en el presupuesto y luego colocarlos en el calendario cuando se acerca la ventana de pago real.
+Muchas veces funciona mejor tratarlos como fondos para gastos futuros dentro del presupuesto y colocarlos en el calendario cuando ya se acerca la ventana real de pago.
 
-Esa combinación funciona mejor que pretender que el gasto surgió de la nada.
+Eso funciona mejor que fingir que el gasto ha aparecido de la nada.
 
-Si desea conocer el lado del fondo de amortización con más detalle, comience aquí:
+Si quieres profundizar en esa parte, empieza aquí:
 
-- [Cómo realizar un seguimiento de los fondos de amortización en 2026](https://expense-budget-tracker.com/es/blog/how-to-track-sinking-funds/)
+- [Cómo hacer seguimiento de los fondos para gastos futuros en 2026](https://expense-budget-tracker.com/es/blog/how-to-track-sinking-funds/)
 
-## El calendario presupuestario debería ayudarle a realizar transferencias más tempranas, no rescates de última hora
+## El calendario debería ayudarte a mover dinero antes, no a rescatar el mes en el último minuto
 
-No creo que el objetivo de un calendario sea crear más administradores.
+No creo que el objetivo de un calendario sea crear más administración.
 
-La cuestión es adelantar las decisiones.
+El objetivo es adelantar las decisiones.
 
-Eso podría significar:
+Eso puede significar:
 
-- transferir dinero a la cuenta de facturas antes de la semana de presión
-- subir una categoría de suscripción porque varias renovaciones se acumulan juntas
-- retrasar el gasto discrecional porque dos pagos fijos llegan primero
-- planificar las compras en torno a la ventana de efectivo real en lugar de un vago optimismo mensual
+- transferir dinero a la cuenta de recibos antes de la semana complicada
+- reservar antes más dinero para suscripciones porque varias renovaciones se te juntan
+- retrasar gasto discrecional porque antes caen dos pagos fijos
+- planificar la compra según la ventana real de efectivo, no según un optimismo mensual bastante vago
 
-Esto es muy importante porque una transferencia entre cuentas propias no es gasto. Es fontanería.
+Esto importa mucho porque una transferencia entre tus propias cuentas no es gasto. Es fontanería.
 
-Si el sistema mezcla transferencias internas con gasto real, el mes se vuelve más difícil de leer de lo que debería ser.
+Si el sistema mezcla transferencias internas con gasto real, el mes se vuelve más difícil de leer de lo que debería.
 
-Ésa es una de las razones por las que me gustan las herramientas que tratan las transferencias como datos de primera clase en lugar de gastos falsos.
+Esa es una de las razones por las que me gustan las herramientas que tratan las transferencias como datos de primera clase en lugar de disfrazarlas de gasto.
 
-## El error es crear un calendario que está desconectado del libro mayor.
+## El error es montar un calendario desconectado de tus movimientos reales
 
-Un calendario independiente aún puede ayudar, pero se estropea rápidamente si se aleja de las transacciones y saldos reales.
+Un calendario aislado aún puede ayudar, pero se rompe enseguida si se aleja de las transacciones y de los saldos de verdad.
 
-Así es como la gente termina con:
+Así es como la gente acaba con:
 
-- un pago marcado como próximo después de que ya haya ocurrido
-- una cuenta corriente que se ve bien en el papel pero que ya cubre algo más
-- un plan de categoría que olvidó la fecha de vencimiento movido
-- un mes que parece organizado y aún crea drama asociado a los sobregiros
+- un pago marcado como pendiente cuando en realidad ya pasó
+- una cuenta corriente que sobre el papel parece sana, pero en realidad ya está cubriendo otra cosa
+- un plan por categorías que no recogió un cambio de fecha de vencimiento
+- un mes que parece organizado y aun así te deja al borde del descubierto
 
-El calendario tiene que permanecer ligado a la realidad.
+El calendario tiene que seguir atado a la realidad.
 
 Eso normalmente significa:
 
 - transacciones importadas
 - saldos reales por cuenta
-- clara separación entre gasto y transferencias
-- un presupuesto para el mes futuro que muestra lo que el plan intenta hacer a continuación
+- una separación clara entre gasto y transferencias
+- un presupuesto para los próximos meses que enseñe qué intenta hacer el plan
 
 Sin eso, el calendario se vuelve decorativo.
 
-## Un simple ritmo mensual funciona mejor que la improvisación financiera constante
+## Una rutina mensual simple funciona mejor que estar improvisando con el dinero todo el tiempo
 
-Mantendría la rutina casi aburrida:
+Yo mantendría la rutina casi aburrida:
 
-1. enumerar las obligaciones conocidas con fecha fija para las próximas cuatro a seis semanas
-2. coloque los días de pago en la misma línea de tiempo
-3. verifique de qué cuenta saldrá realmente cada factura
-4. mueva dinero temprano si una cuenta estará corta
-5. Mantenga los comestibles y otras categorías flexibles visibles en el presupuesto, no solo en su cabeza
-6. revise la próxima semana antes de que se convierta en una emergencia
+1. apunta las obligaciones conocidas con fecha fija para las próximas cuatro a seis semanas
+2. coloca las fechas de cobro en la misma línea temporal
+3. comprueba desde qué cuenta saldrá realmente cada pago
+4. mueve dinero con antelación si una cuenta se va a quedar corta
+5. mantén la compra y las demás categorías flexibles visibles en el presupuesto, no solo en tu cabeza
+6. revisa la semana siguiente antes de que se convierta en una urgencia
 
-Eso es suficiente.
+Con eso basta.
 
-Gran parte de la **presupuestación del calendario de facturas** se complica demasiado porque las personas intentan diseñar un sistema operativo de finanzas personales cuando lo que realmente necesitan es una mejor visibilidad de los tiempos.
+Gran parte de la **planificación con calendario de pagos** se complica de más porque la gente intenta diseñar un sistema operativo de finanzas personales cuando lo que de verdad necesita es ver mejor el orden real de cobros y pagos.
 
 ## Dónde encaja Expense Budget Tracker
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/es/) es una buena opción para un flujo de trabajo de **calendario de presupuesto** incluso sin convertir el producto en una aplicación de recordatorios, porque las partes que importan ya están ahí:
+[Expense Budget Tracker](https://expense-budget-tracker.com/es/) encaja muy bien en un flujo de trabajo de **calendario de presupuesto** sin necesidad de convertir el producto en una app de recordatorios, porque las piezas importantes ya están ahí:
 
-- planificación del presupuesto mensual con meses futuros
-- saldos proyectados en la vista de presupuesto en lugar de solo totales retrospectivos
+- planificación mensual con meses futuros
+- saldos previstos en la vista de presupuesto, no solo totales mirando hacia atrás
 - saldos reales entre cuentas
-- las transferencias se manejan por separado del gasto
-- importaciones de declaraciones CSV, PDF, capturas de pantalla y otras fuentes de declaraciones
+- transferencias separadas del gasto
+- importaciones desde CSV, PDF, capturas de pantalla y otros extractos
 - espacios de trabajo compartidos cuando más de una persona necesita ver el mismo mes
-- soporte multidivisa si sus ingresos, tarjetas y cuentas no se encuentran todos en una sola moneda
+- soporte multidivisa si tus ingresos, tus tarjetas y tus cuentas no viven todos en la misma moneda
 
-Esa combinación es importante porque la parte difícil del **presupuesto por fecha de vencimiento** rara vez es anotar las fechas.
+Esa combinación importa porque la parte difícil de **presupuestar por vencimientos** rara vez es apuntar las fechas.
 
-La parte difícil es mantener las fechas conectadas con los saldos reales y los movimientos de las cuentas que harán que tengan éxito o fracasen.
+La parte difícil es mantener esas fechas conectadas con los saldos reales y con los movimientos entre cuentas que harán que todo salga bien o mal.
 
-Si su mes es más ajustado de lo que desea, estos artículos complementarios también se adaptan bien:
+Si este mes vas más justo de lo que te gustaría, estos artículos complementarios también encajan bien:
 
-- [Cómo presupuestar sueldo a sueldo en 2026](https://expense-budget-tracker.com/es/blog/how-to-budget-paycheck-to-paycheck/)
-- [Cómo presupuestar los cheques de pago quincenales en 2026](https://expense-budget-tracker.com/es/blog/how-to-budget-biweekly-paychecks/)
-- [Cómo realizar un seguimiento de las suscripciones en 2026](https://expense-budget-tracker.com/es/blog/how-to-track-subscriptions/)
+- [Cómo hacer un presupuesto cuando vives de sueldo en sueldo en 2026](https://expense-budget-tracker.com/es/blog/how-to-budget-paycheck-to-paycheck/)
+- [Cómo hacer un presupuesto con cobros quincenales en 2026](https://expense-budget-tracker.com/es/blog/how-to-budget-biweekly-paychecks/)
+- [Cómo hacer seguimiento de tus suscripciones en 2026](https://expense-budget-tracker.com/es/blog/how-to-track-subscriptions/)
 
 ## La regla útil
 
-Vale la pena usar una **aplicación de calendario de facturas** o un calendario de presupuesto manual cuando te ayuda a detectar problemas con suficiente antelación como para hacer algo aburrido al respecto.
+Merece la pena usar una **app de calendario de pagos** o un calendario manual cuando te ayuda a detectar un problema con tiempo suficiente como para resolverlo de una manera aburrida.
 
 Ese es todo el objetivo.
 
-Mejor no entrar en pánico.
+No entrar en pánico con más eficacia.
 
-No memorizar más las fechas de vencimiento.
+No memorizar mejor los vencimientos.
 
-Basta con ver las próximas obligaciones, los próximos cheques de pago y los saldos reales en el mismo sistema con suficiente antelación para que el mes deje de parecer una emboscada.
+Solo ver en el mismo sistema los próximos pagos, los próximos cobros y los saldos reales con suficiente margen como para que el mes deje de sentirse como una emboscada.
 
-Si ese es el problema que estás intentando resolver, comienza aquí:
+Si ese es el problema que estás intentando resolver, empieza aquí:
 
 - [Abrir Expense Budget Tracker](https://expense-budget-tracker.com/es/)
-- [Ver las características](https://expense-budget-tracker.com/es/features/)
-- [Abre la aplicación](https://app.expense-budget-tracker.com/)
-- [Ver la fuente en GitHub](https://github.com/kirill-markin/expense-budget-tracker)
+- [Ver las funcionalidades](https://expense-budget-tracker.com/es/features/)
+- [Abrir la aplicación](https://app.expense-budget-tracker.com/)
+- [Ver el código fuente en GitHub](https://github.com/kirill-markin/expense-budget-tracker)
