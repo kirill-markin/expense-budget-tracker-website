@@ -26,6 +26,26 @@
   margin-bottom: 16px;
 }
 
+.content ul,
+.content ol {
+  padding-inline-start: 24px;
+  margin-bottom: 16px;
+}
+
+.content ul {
+  list-style: disc;
+}
+
+.content ol {
+  list-style: decimal;
+}
+
+.content li {
+  font-size: 15px;
+  line-height: 1.75;
+  margin-bottom: 8px;
+}
+
 .content code {
   background: #f3f3f3;
   padding: 2px 6px;
