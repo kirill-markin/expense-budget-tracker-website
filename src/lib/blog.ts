@@ -1,4 +1,5 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
+import { join } from "path";
 import matter from "gray-matter";
 import {
   getBlogFilePath,
@@ -177,6 +178,8 @@ interface BlogFrontmatterInput {
   readonly title?: unknown;
   readonly description?: unknown;
   readonly date?: unknown;
+  readonly image?: unknown;
+  readonly updated?: unknown;
 }
 
 export interface BlogPostRecord {
@@ -185,6 +188,8 @@ export interface BlogPostRecord {
   readonly title: string;
   readonly description: string;
   readonly date: string;
+  readonly image: string | null;
+  readonly updated: string | null;
   readonly publishedAt: number;
   readonly bodyMarkdown: string;
 }
@@ -214,12 +219,29 @@ let cachedBlogPosts: ReadonlyArray<BlogPostRecord> | null = null;
 const cachedBlogPostsByLocale = new Map<AppLocale, ReadonlyArray<BlogPostRecord>>();
 let cachedArticleVectors: ReadonlyMap<string, ArticleTokenVector> | null = null;
 const renderedHtmlBySlug = new Map<string, Promise<string>>();
+const MARKDOWN_IMAGE_PATTERN = /!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/u;
 
 function assertNonEmptyString(
   value: unknown,
   fieldName: string,
   filePath: string
 ): string {
+  if (typeof value !== "string" || value.trim().length === 0) {
+    throw new Error(`Invalid blog ${fieldName} in ${filePath}`);
+  }
+
+  return value.trim();
+}
+
+function readOptionalNonEmptyString(
+  value: unknown,
+  fieldName: string,
+  filePath: string
+): string | null {
+  if (value === undefined) {
+    return null;
+  }
+
   if (typeof value !== "string" || value.trim().length === 0) {
     throw new Error(`Invalid blog ${fieldName} in ${filePath}`);
   }
@@ -237,12 +259,76 @@ function parsePublishedAt(date: string, filePath: string): number {
   return publishedAt;
 }
 
+function assertValidIsoDateString(
+  date: string,
+  fieldName: string,
+  filePath: string
+): string {
+  const parsedDate = Date.parse(date);
+
+  if (Number.isNaN(parsedDate)) {
+    throw new Error(`Invalid blog ${fieldName} in ${filePath}: ${date}`);
+  }
+
+  return date;
+}
+
 function getSlugFromFileName(fileName: string): string {
   return fileName.replace(/\.md$/, "");
 }
 
 function hasBlogFile(slug: string, locale: AppLocale): boolean {
   return existsSync(getBlogFilePath(slug, locale));
+}
+
+function isHttpUrl(value: string): boolean {
+  return /^https?:\/\//u.test(value);
+}
+
+function doesPublicAssetExist(imagePath: string): boolean {
+  const publicFilePath = join(
+    process.cwd(),
+    "public",
+    imagePath.replace(/^\/+/u, "")
+  );
+
+  return existsSync(publicFilePath);
+}
+
+function readFirstMarkdownImage(markdown: string): string | null {
+  const match = markdown.match(MARKDOWN_IMAGE_PATTERN);
+
+  if (match === null) {
+    return null;
+  }
+
+  return match[1] ?? null;
+}
+
+function normalizeBlogImage(
+  image: string | null,
+  filePath: string,
+  isRequiredToBeValid: boolean
+): string | null {
+  if (image === null) {
+    return null;
+  }
+
+  if (isHttpUrl(image)) {
+    return image;
+  }
+
+  if (image.startsWith("/") && doesPublicAssetExist(image)) {
+    return image;
+  }
+
+  if (isRequiredToBeValid) {
+    throw new Error(
+      `Invalid blog image in ${filePath}: ${image}. Use an absolute http(s) URL or a /public asset path.`
+    );
+  }
+
+  return null;
 }
 
 function parseBlogPost(slug: string, locale: AppLocale): BlogPostRecord {
@@ -264,6 +350,20 @@ function parseBlogPost(slug: string, locale: AppLocale): BlogPostRecord {
     filePath
   );
   const date = assertNonEmptyString(frontmatter.date, "date", filePath);
+  const frontmatterImage = readOptionalNonEmptyString(
+    frontmatter.image,
+    "image",
+    filePath
+  );
+  const updated = readOptionalNonEmptyString(
+    frontmatter.updated,
+    "updated",
+    filePath
+  );
+  const fallbackImage = readFirstMarkdownImage(content);
+  const image =
+    normalizeBlogImage(frontmatterImage, filePath, true) ??
+    normalizeBlogImage(fallbackImage, filePath, false);
 
   return {
     slug,
@@ -271,6 +371,11 @@ function parseBlogPost(slug: string, locale: AppLocale): BlogPostRecord {
     title,
     description,
     date,
+    image,
+    updated:
+      updated === null
+        ? null
+        : assertValidIsoDateString(updated, "updated", filePath),
     publishedAt: parsePublishedAt(date, filePath),
     bodyMarkdown: content,
   };
