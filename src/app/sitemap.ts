@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { join } from "path";
 import {
-  getAlternateBlogIndexLocales,
   getAvailableBlogIndexLocales,
   getAvailableBlogLocales,
   listBlogPosts,
@@ -24,6 +23,7 @@ import {
   getMarketingPageSourcePath,
   MARKETING_PAGE_SLUGS,
 } from "@/lib/content/readPageContent";
+import { getLanguageAlternates } from "@/lib/seo/getLanguageAlternates";
 import {
   getFileLastModified,
   getNewestDirectoryFileLastModified,
@@ -31,29 +31,19 @@ import {
 
 const APP_DIR = join(process.cwd(), "src/app", "(default)");
 
-function getLanguageAlternates(
-  routePath: string,
-  locales: ReadonlyArray<AppLocale>
-): NonNullable<MetadataRoute.Sitemap[number]["alternates"]> {
-  return {
-    languages: Object.fromEntries(
-      locales.map((locale) => [
-        locale,
-        getAbsoluteUrl(getLocalizedPath(locale, routePath)),
-      ])
-    ),
-  };
-}
-
 function getOptionalAlternates(
   routePath: string,
   locales: ReadonlyArray<AppLocale>
 ): NonNullable<MetadataRoute.Sitemap[number]["alternates"]> | undefined {
-  if (locales.length <= 1) {
+  const languageAlternates = getLanguageAlternates(routePath, locales);
+
+  if (languageAlternates === undefined) {
     return undefined;
   }
 
-  return getLanguageAlternates(routePath, locales);
+  return {
+    languages: languageAlternates,
+  };
 }
 
 function getNewestLocaleDirectoryFileLastModified(
@@ -76,7 +66,6 @@ function getNewestLocaleDirectoryFileLastModified(
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const availableBlogIndexLocales = getAvailableBlogIndexLocales();
-  const alternateBlogIndexLocales = getAlternateBlogIndexLocales();
   const availableDocIndexLocales = getAvailableDocIndexLocales();
   const blogPosts = listBlogPosts("en");
   const docs = listDocs("en");
@@ -117,16 +106,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticEntries: MetadataRoute.Sitemap = [
     ...availableBlogIndexLocales.map((locale) => {
-      const alternates = alternateBlogIndexLocales.includes(locale)
-        ? getOptionalAlternates("/blog/", alternateBlogIndexLocales)
-        : undefined;
-
       return {
         url: getAbsoluteUrl(getLocalizedPath(locale, "/blog/")),
         lastModified: blogIndexLastModified,
         changeFrequency: "weekly" as const,
         priority: 0.7,
-        alternates,
+        alternates: getOptionalAlternates("/blog/", availableBlogIndexLocales),
       };
     }),
     ...availableDocIndexLocales.map((locale) => ({
