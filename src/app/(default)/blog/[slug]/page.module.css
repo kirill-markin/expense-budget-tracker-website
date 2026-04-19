@@ -128,6 +128,30 @@
   text-decoration: underline;
 }
 
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+  display: block;
+  overflow-x: auto;
+}
+
+.content th,
+.content td {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+  font-family: var(--serif-font-family);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.content th {
+  font-weight: 700;
+  background: #f7f7f7;
+}
+
 .content img {
   max-width: 100%;
   height: auto;
