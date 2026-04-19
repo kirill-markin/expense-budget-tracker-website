@@ -52,6 +52,29 @@
   font-size: 13px;
 }
 
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+  display: block;
+  overflow-x: auto;
+}
+
+.content th,
+.content td {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.content th {
+  font-weight: 700;
+  background: #f7f7f7;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 40px 24px;
