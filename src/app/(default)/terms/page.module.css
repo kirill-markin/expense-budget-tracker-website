@@ -12,6 +12,13 @@
   margin-bottom: 32px;
 }
 
+.content h2,
+.content h3,
+.content h4,
+.content h5 {
+  font-weight: 700;
+}
+
 .content h2 {
   font-size: 18px;
   text-transform: uppercase;
