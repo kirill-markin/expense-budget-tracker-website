@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "next": "16.2.3",
+    "next": "16.2.4",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "remark": "^15.0.1",
@@ -24,16 +24,16 @@
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.2.2",
+    "@tailwindcss/postcss": "^4.2.3",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.4",
-    "eslint-config-next": "16.2.3",
-    "postcss": "^8.5.9",
-    "tailwindcss": "^4.2.2",
+    "eslint-config-next": "16.2.4",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.3",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
+    "typescript": "^5.9.3"
   },
   "engines": {
     "node": "24.x"
