@@ -2,6 +2,7 @@
 title: "How to Reset Your Budget After Overspending in 2026: Recover Without Starting Over"
 description: "Overspent this month or blew past a few categories? Here is a practical 2026 budget reset: review the last 30 to 90 days, separate one-off misses from recurring leaks, cover overspending with real cash, resize categories, and rebuild next month without spreadsheet guilt."
 date: "2026-04-25"
+image: "/blog/budget-view-example.jpg"
 keywords:
   - "budget reset"
   - "how to reset your budget"
@@ -18,6 +19,8 @@ One ugly week can make a whole budget look fake. Groceries ran high, dining out 
 Not because they need a new budgeting personality, but because they need a way to recover from overspending without deleting the categories, starting a new spreadsheet, or pretending the month never happened.
 
 That is the right instinct. A **budget reset after overspending** works better when it feels more like repair work and less like a dramatic breakup with your own numbers.
+
+![Budget table showing categories and a monthly spending plan](/blog/budget-view-example.jpg)
 
 ## Overspending does not automatically mean the budget failed
 
