@@ -2,6 +2,7 @@
 title: "Cómo reajustar tu presupuesto después de gastar de más en 2026: recupérate sin empezar de cero"
 description: "¿Te pasaste este mes o reventaste varias categorías? Aquí tienes un reajuste presupuestario práctico para 2026: revisa los últimos 30 a 90 días, separa los desajustes puntuales de las fugas recurrentes, cubre el exceso con dinero real, ajusta categorías y reconstruye el mes siguiente sin drama financiero."
 date: "2026-04-25"
+image: "/blog/budget-view-example.jpg"
 keywords:
   - "reajuste presupuestario"
   - "cómo reajustar tu presupuesto"
@@ -18,6 +19,8 @@ Una semana fea puede hacer que todo un presupuesto parezca mentira. El supermerc
 No porque necesites convertirte en otra persona con el dinero, sino porque necesitas recuperarte después de gastar de más sin borrar categorías, empezar otra hoja de cálculo o fingir que el mes nunca ocurrió.
 
 Ese instinto es bueno. Un **reajuste presupuestario después de gastar de más** funciona mejor cuando se parece más a una reparación que a una ruptura dramática con tus propios números.
+
+![Tabla de presupuesto con categorías y plan de gasto mensual](/blog/budget-view-example.jpg)
 
 ## Gastar de más no significa automáticamente que el presupuesto fracasó
 
