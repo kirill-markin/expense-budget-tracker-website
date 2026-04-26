@@ -14,6 +14,13 @@ function getMarkdownAlternatePathname(pathname: string): string {
 
 export function proxy(request: NextRequest): NextResponse {
   const { pathname } = request.nextUrl;
+  const host = request.headers.get("host") ?? "";
+
+  if (host === "www.expense-budget-tracker.com") {
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.host = "expense-budget-tracker.com";
+    return NextResponse.redirect(redirectUrl, 308);
+  }
 
   if (pathname.startsWith("/__markdown/")) {
     return NextResponse.next();
