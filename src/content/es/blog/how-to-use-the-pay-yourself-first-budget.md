@@ -26,7 +26,7 @@ No me fío de la versión perezosa.
 
 Este método solo funciona cuando "lo que queda" se apoya en facturas reales, saldos reales y fechas reales de cobros y pagos, no en una estimación demasiado optimista.
 
-![Ejemplo de presupuesto pay yourself first con notas manuscritas sobre el ahorro inicial, las facturas antes del día de cobro y el colchón en la cuenta corriente](/blog/how-to-use-the-pay-yourself-first-budget.jpg)
+![Naturaleza muerta editorial de presupuesto con sobres de ahorro, facturas, cuaderno, calculadora y colchón de efectivo](/blog/how-to-use-the-pay-yourself-first-budget.jpg)
 
 ## El método sigue apareciendo porque el consejo básico todavía tiene sentido
 

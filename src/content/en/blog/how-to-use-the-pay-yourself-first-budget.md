@@ -24,7 +24,7 @@ I like the simplicity. I do not trust the lazy version.
 
 This method only works when "what is left" is based on real bills, real balances, and actual cash timing instead of a flattering guess.
 
-![Pay yourself first budget example with handwritten notes showing save-first transfer, bills before payday, and a checking buffer](/blog/how-to-use-the-pay-yourself-first-budget.jpg)
+![Editorial budgeting still life with savings envelopes, bills, notebook, calculator, and cash buffer](/blog/how-to-use-the-pay-yourself-first-budget.jpg)
 
 ## The method keeps showing up because the basic advice still makes sense
 
