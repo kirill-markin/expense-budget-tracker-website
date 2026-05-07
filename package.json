@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "next": "16.2.4",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
+    "next": "16.2.5",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1"
@@ -29,7 +29,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.4",
-    "eslint-config-next": "16.2.4",
+    "eslint-config-next": "16.2.5",
     "postcss": "^8.5.14",
     "tailwindcss": "^4.2.4",
     "tsx": "^4.21.0",
