@@ -5,6 +5,7 @@
   "description": "Marketing website for Expense Budget Tracker",
   "author": "Kirill Markin",
   "license": "MIT",
+  "packageManager": "npm@11.14.1",
   "scripts": {
     "generate:static-content": "tsx scripts/generateStaticContent.ts",
     "predev": "npm run generate:static-content",
@@ -25,14 +26,14 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",
-    "@types/node": "^24.12.3",
-    "@types/react": "^19.2.14",
+    "@types/node": "^24.12.4",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.4",
     "eslint-config-next": "16.2.6",
-    "postcss": "^8.5.14",
+    "postcss": "^8.5.15",
     "tailwindcss": "^4.3.0",
-    "tsx": "^4.21.0",
+    "tsx": "^4.22.3",
     "typescript": "^6.0.3"
   },
   "engines": {
