@@ -5,7 +5,7 @@
   "description": "Marketing website for Expense Budget Tracker",
   "author": "Kirill Markin",
   "license": "MIT",
-  "packageManager": "npm@11.14.1",
+  "packageManager": "npm@11.15.0",
   "scripts": {
     "generate:static-content": "tsx scripts/generateStaticContent.ts",
     "predev": "npm run generate:static-content",
