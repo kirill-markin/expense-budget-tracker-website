@@ -59,6 +59,11 @@ interface BlogPostMessages {
   readonly relatedHeading: string;
 }
 
+interface BlogCtaMessages {
+  readonly heading: string;
+  readonly buttonLabel: string;
+}
+
 interface LegalMessages {
   readonly lastUpdated: string;
 }
@@ -72,6 +77,7 @@ interface SiteMessages {
   readonly docs: DocsPageMessages;
   readonly blogIndex: BlogIndexMessages;
   readonly blogPost: BlogPostMessages;
+  readonly blogCta: BlogCtaMessages;
   readonly legal: LegalMessages;
 }
 
@@ -129,6 +135,10 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       publishedLabel: "Published",
       bylinePrefix: "By",
       relatedHeading: "Read next",
+    },
+    blogCta: {
+      heading: "Try Expense Budget Tracker",
+      buttonLabel: "Try it",
     },
     legal: {
       lastUpdated: "Last updated:",
@@ -189,6 +199,10 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       bylinePrefix: "Por",
       relatedHeading: "Sigue leyendo",
     },
+    blogCta: {
+      heading: "Prueba Expense Budget Tracker",
+      buttonLabel: "Pruébalo",
+    },
     legal: {
       lastUpdated: "Última actualización:",
     },
@@ -247,6 +261,10 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       publishedLabel: "Опубликовано",
       bylinePrefix: "Автор",
       relatedHeading: "Читайте дальше",
+    },
+    blogCta: {
+      heading: "Попробуйте Expense Budget Tracker",
+      buttonLabel: "Попробовать",
     },
     legal: {
       lastUpdated: "Последнее обновление:",
@@ -307,6 +325,10 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       bylinePrefix: "Автор",
       relatedHeading: "Читайте далі",
     },
+    blogCta: {
+      heading: "Спробуйте Expense Budget Tracker",
+      buttonLabel: "Спробувати",
+    },
     legal: {
       lastUpdated: "Останнє оновлення:",
     },
@@ -365,6 +387,10 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       bylinePrefix: "نویسنده",
       relatedHeading: "ادامه مطلب",
     },
+    blogCta: {
+      heading: "Expense Budget Tracker را امتحان کنید",
+      buttonLabel: "امتحان کنید",
+    },
     legal: {
       lastUpdated: "آخرین به‌روزرسانی:",
     },
@@ -421,6 +447,10 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       publishedLabel: "发布于",
       bylinePrefix: "作者",
       relatedHeading: "继续阅读",
+    },
+    blogCta: {
+      heading: "试用 Expense Budget Tracker",
+      buttonLabel: "立即试用",
     },
     legal: {
       lastUpdated: "最后更新：",
@@ -480,6 +510,10 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       bylinePrefix: "بقلم",
       relatedHeading: "اقرأ التالي",
     },
+    blogCta: {
+      heading: "جرّب Expense Budget Tracker",
+      buttonLabel: "جرّبه",
+    },
     legal: {
       lastUpdated: "آخر تحديث:",
     },
@@ -537,6 +571,10 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       publishedLabel: "פורסם",
       bylinePrefix: "מאת",
       relatedHeading: "להמשך קריאה",
+    },
+    blogCta: {
+      heading: "נסו את Expense Budget Tracker",
+      buttonLabel: "נסו עכשיו",
     },
     legal: {
       lastUpdated: "עודכן לאחרונה:",

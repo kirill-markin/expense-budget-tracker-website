@@ -1,8 +1,11 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BlogCta } from "@/components/BlogCta";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFrame } from "@/components/SiteFrame";
+import { getArticleHtmlSegments } from "@/lib/content/getArticleHtmlSegments";
 import {
   getAvailableBlogLocales,
   getRepresentativeBlogPostImage,
@@ -86,6 +89,7 @@ export default async function BlogPostPage(
     post,
   });
   const recommendedPosts = getRecommendedBlogPosts(LOCALE, slug, 4);
+  const { chunks, midInsertIndex } = getArticleHtmlSegments(post.contentHtml);
 
   return (
     <SiteFrame
@@ -125,10 +129,16 @@ export default async function BlogPostPage(
           <h1 className={styles.title}>{post.title}</h1>
           <p className={styles.description}>{post.description}</p>
         </header>
-        <div
-          className={styles.content}
-          dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-        />
+        {chunks.map((chunkHtml, index) => (
+          <Fragment key={index}>
+            {index === midInsertIndex && <BlogCta locale={LOCALE} />}
+            <div
+              className={styles.content}
+              dangerouslySetInnerHTML={{ __html: chunkHtml }}
+            />
+          </Fragment>
+        ))}
+        <BlogCta locale={LOCALE} />
         {recommendedPosts.length > 0 ? (
           <section className={styles.relatedSection}>
             <h2 className={styles.relatedHeading}>
