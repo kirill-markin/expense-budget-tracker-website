@@ -1,0 +1,43 @@
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-block: 40px;
+  padding: 24px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.image {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 4px;
+}
+
+.heading {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.button {
+  padding: 10px 16px;
+  min-height: 40px;
+  background: var(--accent);
+  color: var(--bg);
+  border: 1px solid var(--accent);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    opacity: 0.85;
+    text-decoration: none;
+  }
+}
