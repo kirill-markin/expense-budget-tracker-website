@@ -1,3 +1,4 @@
+import { useId } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { AppLocale } from "@/lib/i18n/config";
@@ -12,9 +13,10 @@ interface BlogCtaProps {
 export const BlogCta = ({ locale }: BlogCtaProps): React.JSX.Element => {
   const messages = getSiteMessages(locale);
   const homeHref = getLocalizedPath(locale, "/");
+  const headingId = useId();
 
   return (
-    <aside className={styles.cta}>
+    <aside aria-labelledby={headingId} className={styles.cta}>
       <Image
         src="/home/budget-screenshot.jpg"
         alt={messages.home.showcaseImageAlt}
@@ -23,7 +25,7 @@ export const BlogCta = ({ locale }: BlogCtaProps): React.JSX.Element => {
         sizes="(max-width: 768px) 90vw, 420px"
         className={styles.image}
       />
-      <p className={styles.heading}>{messages.blogCta.heading}</p>
+      <p id={headingId} className={styles.heading}>{messages.blogCta.heading}</p>
       <Link href={homeHref} className={styles.button}>
         {messages.blogCta.buttonLabel}
       </Link>
