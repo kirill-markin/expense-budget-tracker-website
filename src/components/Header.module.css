@@ -69,6 +69,11 @@
 }
 
 @media (max-width: 768px) {
+  .inner {
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+
   .desktopNav,
   .desktopAuth {
     display: none;
@@ -80,5 +85,6 @@
 
   .mobileNav {
     display: flex;
+    flex-basis: 100%;
   }
 }
