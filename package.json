@@ -13,6 +13,7 @@
   "license": "MIT",
   "packageManager": "npm@11.18.0",
   "scripts": {
+    "bigquery:query": "node --env-file=.env.bigquery.local --import tsx scripts/queryBigQuery.ts",
     "generate:static-content": "tsx scripts/generateStaticContent.ts",
     "predev": "npm run generate:static-content",
     "prebuild": "npm run generate:static-content",
@@ -31,6 +32,7 @@
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
+    "@google-cloud/bigquery": "^9.0.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.17",

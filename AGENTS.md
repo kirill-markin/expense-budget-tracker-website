@@ -22,6 +22,13 @@ Marketing website for Expense Budget Tracker. Static Next.js site deployed on Ve
 - `npm run build`: production build
 - `npm run lint`: ESLint
 
+## BigQuery Analytics
+
+- BigQuery contains the Google Search Console bulk export for `expense-budget-tracker.com`, enabled on 2026-08-09. Use it for page and query clicks, search impressions, CTR, and average position; do not expect exported data from before this date.
+- Use `npm run bigquery:query` with GoogleSQL on stdin for Search Console and SEO analysis; the implementation is `scripts/queryBigQuery.ts`.
+- The ignored `.env.bigquery.local` stores the local key path, project ID, location, and per-query byte limit. The service-account JSON stays outside the repository.
+- Never use or modify `gcloud` authentication for this integration, and never commit local configuration or credentials. If the configuration, key, or API access is unavailable, ask the user to provision or restore it instead of falling back to another Google identity.
+
 ## Stack
 
 - Next.js 15 App Router, TypeScript, React 19 Server Components
