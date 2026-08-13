@@ -17,56 +17,54 @@ export type MarkdownBackedPageSlug = Extract<
 >;
 
 const CONTENT_ROOT_DIR = join(process.cwd(), "src", "content");
-const CONTENT_SECTION_DIRECTORIES: Readonly<
-  Record<AppLocale, Readonly<Record<ContentSection, string>>>
-> = {
-  en: {
-    blog: join(CONTENT_ROOT_DIR, "en", "blog"),
-    docs: join(CONTENT_ROOT_DIR, "en", "docs"),
-    pages: join(CONTENT_ROOT_DIR, "en", "pages"),
-  },
-  es: {
-    blog: join(CONTENT_ROOT_DIR, "es", "blog"),
-    docs: join(CONTENT_ROOT_DIR, "es", "docs"),
-    pages: join(CONTENT_ROOT_DIR, "es", "pages"),
-  },
-  ru: {
-    blog: join(CONTENT_ROOT_DIR, "ru", "blog"),
-    docs: join(CONTENT_ROOT_DIR, "ru", "docs"),
-    pages: join(CONTENT_ROOT_DIR, "ru", "pages"),
-  },
-  uk: {
-    blog: join(CONTENT_ROOT_DIR, "uk", "blog"),
-    docs: join(CONTENT_ROOT_DIR, "uk", "docs"),
-    pages: join(CONTENT_ROOT_DIR, "uk", "pages"),
-  },
-  fa: {
-    blog: join(CONTENT_ROOT_DIR, "fa", "blog"),
-    docs: join(CONTENT_ROOT_DIR, "fa", "docs"),
-    pages: join(CONTENT_ROOT_DIR, "fa", "pages"),
-  },
-  zh: {
-    blog: join(CONTENT_ROOT_DIR, "zh", "blog"),
-    docs: join(CONTENT_ROOT_DIR, "zh", "docs"),
-    pages: join(CONTENT_ROOT_DIR, "zh", "pages"),
-  },
-  ar: {
-    blog: join(CONTENT_ROOT_DIR, "ar", "blog"),
-    docs: join(CONTENT_ROOT_DIR, "ar", "docs"),
-    pages: join(CONTENT_ROOT_DIR, "ar", "pages"),
-  },
-  he: {
-    blog: join(CONTENT_ROOT_DIR, "he", "blog"),
-    docs: join(CONTENT_ROOT_DIR, "he", "docs"),
-    pages: join(CONTENT_ROOT_DIR, "he", "pages"),
-  },
-};
 
 export function getContentSectionDirectory(
   locale: AppLocale,
   section: ContentSection
 ): string {
-  return CONTENT_SECTION_DIRECTORIES[locale][section];
+  switch (section) {
+    case "blog":
+      switch (locale) {
+        case "en": return join(CONTENT_ROOT_DIR, "en", "blog");
+        case "es": return join(CONTENT_ROOT_DIR, "es", "blog");
+        case "ru": return join(CONTENT_ROOT_DIR, "ru", "blog");
+        case "uk": return join(CONTENT_ROOT_DIR, "uk", "blog");
+        case "fa": return join(CONTENT_ROOT_DIR, "fa", "blog");
+        case "zh": return join(CONTENT_ROOT_DIR, "zh", "blog");
+        case "ar": return join(CONTENT_ROOT_DIR, "ar", "blog");
+        case "he": return join(CONTENT_ROOT_DIR, "he", "blog");
+        default:
+          throw new Error(`Unsupported content locale: ${locale}`);
+      }
+    case "docs":
+      switch (locale) {
+        case "en": return join(CONTENT_ROOT_DIR, "en", "docs");
+        case "es": return join(CONTENT_ROOT_DIR, "es", "docs");
+        case "ru": return join(CONTENT_ROOT_DIR, "ru", "docs");
+        case "uk": return join(CONTENT_ROOT_DIR, "uk", "docs");
+        case "fa": return join(CONTENT_ROOT_DIR, "fa", "docs");
+        case "zh": return join(CONTENT_ROOT_DIR, "zh", "docs");
+        case "ar": return join(CONTENT_ROOT_DIR, "ar", "docs");
+        case "he": return join(CONTENT_ROOT_DIR, "he", "docs");
+        default:
+          throw new Error(`Unsupported content locale: ${locale}`);
+      }
+    case "pages":
+      switch (locale) {
+        case "en": return join(CONTENT_ROOT_DIR, "en", "pages");
+        case "es": return join(CONTENT_ROOT_DIR, "es", "pages");
+        case "ru": return join(CONTENT_ROOT_DIR, "ru", "pages");
+        case "uk": return join(CONTENT_ROOT_DIR, "uk", "pages");
+        case "fa": return join(CONTENT_ROOT_DIR, "fa", "pages");
+        case "zh": return join(CONTENT_ROOT_DIR, "zh", "pages");
+        case "ar": return join(CONTENT_ROOT_DIR, "ar", "pages");
+        case "he": return join(CONTENT_ROOT_DIR, "he", "pages");
+        default:
+          throw new Error(`Unsupported content locale: ${locale}`);
+      }
+    default:
+      throw new Error(`Unsupported content section: ${section}`);
+  }
 }
 
 export function getContentSectionDirectories(
