@@ -94,5 +94,47 @@ export function getStructuredMarketingPageSourcePath(
   slug: StructuredMarketingPageSlug,
   locale: AppLocale
 ): string {
-  return join(getContentSectionDirectory(locale, "pages"), `${slug}.ts`);
+  switch (slug) {
+    case "home":
+      switch (locale) {
+        case "en": return join(CONTENT_ROOT_DIR, "en", "pages", "home.ts");
+        case "es": return join(CONTENT_ROOT_DIR, "es", "pages", "home.ts");
+        case "ru": return join(CONTENT_ROOT_DIR, "ru", "pages", "home.ts");
+        case "uk": return join(CONTENT_ROOT_DIR, "uk", "pages", "home.ts");
+        case "fa": return join(CONTENT_ROOT_DIR, "fa", "pages", "home.ts");
+        case "zh": return join(CONTENT_ROOT_DIR, "zh", "pages", "home.ts");
+        case "ar": return join(CONTENT_ROOT_DIR, "ar", "pages", "home.ts");
+        case "he": return join(CONTENT_ROOT_DIR, "he", "pages", "home.ts");
+        default:
+          throw new Error(`Unsupported content locale: ${locale}`);
+      }
+    case "features":
+      switch (locale) {
+        case "en": return join(CONTENT_ROOT_DIR, "en", "pages", "features.ts");
+        case "es": return join(CONTENT_ROOT_DIR, "es", "pages", "features.ts");
+        case "ru": return join(CONTENT_ROOT_DIR, "ru", "pages", "features.ts");
+        case "uk": return join(CONTENT_ROOT_DIR, "uk", "pages", "features.ts");
+        case "fa": return join(CONTENT_ROOT_DIR, "fa", "pages", "features.ts");
+        case "zh": return join(CONTENT_ROOT_DIR, "zh", "pages", "features.ts");
+        case "ar": return join(CONTENT_ROOT_DIR, "ar", "pages", "features.ts");
+        case "he": return join(CONTENT_ROOT_DIR, "he", "pages", "features.ts");
+        default:
+          throw new Error(`Unsupported content locale: ${locale}`);
+      }
+    case "pricing":
+      switch (locale) {
+        case "en": return join(CONTENT_ROOT_DIR, "en", "pages", "pricing.ts");
+        case "es": return join(CONTENT_ROOT_DIR, "es", "pages", "pricing.ts");
+        case "ru": return join(CONTENT_ROOT_DIR, "ru", "pages", "pricing.ts");
+        case "uk": return join(CONTENT_ROOT_DIR, "uk", "pages", "pricing.ts");
+        case "fa": return join(CONTENT_ROOT_DIR, "fa", "pages", "pricing.ts");
+        case "zh": return join(CONTENT_ROOT_DIR, "zh", "pages", "pricing.ts");
+        case "ar": return join(CONTENT_ROOT_DIR, "ar", "pages", "pricing.ts");
+        case "he": return join(CONTENT_ROOT_DIR, "he", "pages", "pricing.ts");
+        default:
+          throw new Error(`Unsupported content locale: ${locale}`);
+      }
+    default:
+      throw new Error(`Unsupported structured marketing page slug: ${slug}`);
+  }
 }
