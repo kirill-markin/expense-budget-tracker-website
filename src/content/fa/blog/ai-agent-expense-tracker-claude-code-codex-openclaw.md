@@ -95,7 +95,7 @@ Use existing categories when possible, and tell me if any balance does not match
 curl https://api.expense-budget-tracker.com/v1/
 ```
 
-پاسخ به آن می‌گوید کار را با `send_code` شروع کند، نشانی آغاز احراز هویت را روی دامنهٔ احراز هویت می‌دهد و به نشانی‌های منتشرشدهٔ OpenAPI و schema اشاره می‌کند.
+پاسخ به آن می‌گوید کار را با `send_code` شروع کند، نشانی آغاز احراز هویت را روی دامنهٔ احراز هویت می‌دهد و به شِمای زمان اجرا و پیوندهای پیاده‌سازی متن‌باز اشاره می‌کند.
 
 ### 2. فرستادن ایمیل کاربر
 

@@ -124,7 +124,7 @@ Expense Budget Tracker automates through an inspectable machine interface. It pr
 - a restricted SQL API protected by workspace-level row-level security
 - a discovery flow that lets Claude Code, Codex, OpenClaw, or another capable agent create its own connection after email verification
 - AI chat over the user's financial data
-- published schema and API specifications
+- runtime discovery, schema introspection, and open-source implementation links
 - Docker Compose self-hosting with Postgres
 
 This makes it an **open source Monarch Money alternative** for people who want scripts, agents, or their own infrastructure to participate in the workflow. The [source is available on GitHub](https://github.com/kirill-markin/expense-budget-tracker). It is also a more demanding choice. API keys must be stored carefully, agent-written changes need review, and self-hosting means operating the service yourself.

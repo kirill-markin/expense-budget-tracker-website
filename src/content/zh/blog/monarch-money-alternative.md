@@ -124,7 +124,7 @@ Expense Budget Tracker 则通过明确、可查验的程序接口实现自动化
 - 权限受限的 SQL API，并由工作区级行级安全策略提供保护
 - 一套自助发现与接入流程，让 Claude Code、Codex、OpenClaw 或其他有能力的智能体在完成邮件验证后自行建立连接
 - 可访问用户财务数据的 AI 对话
-- 公开的数据模式和 API 规范
+- 运行时发现、schema 自省和开源实现链接
 - 基于 Postgres 和 Docker Compose 的自托管方案
 
 凭借这些能力，对于希望让脚本、智能体或自有基础设施参与财务流程的人来说，它是一款合适的**开源 Monarch Money 替代方案**。[源代码已在 GitHub 上公开](https://github.com/kirill-markin/expense-budget-tracker)。当然，它也要求用户承担更多责任：API 密钥必须妥善保存，智能体写入的变更需要审核，自托管则意味着要由你自己运维服务。
