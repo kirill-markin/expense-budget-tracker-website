@@ -262,7 +262,7 @@ The API key stays in your local environment variable. Claude Code reads it from 
 
 If you already have a long-lived Expense Budget Tracker ApiKey, Claude Code can skip the email OTP setup and just use that existing key. In that mode, you still call the same endpoints:
 
-- `GET /v1/openapi.json` for the published machine-readable spec
+- `GET /v1/` for current runtime discovery and implementation-source links
 - `GET /v1/schema` for the allowed relations
 - `POST /v1/sql` for the actual queries
 

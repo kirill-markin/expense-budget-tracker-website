@@ -272,7 +272,7 @@ API key 以 SHA-256 哈希形式保存，明文不会进入数据库。你之后
 
 如果你已经有一个长期可用的 Expense Budget Tracker ApiKey，Claude Code 也可以跳过邮箱验证码流程，直接使用现成密钥。此时调用的仍然是同一组端点：
 
-- `GET /v1/openapi.json`：获取机器可读的 OpenAPI 规范
+- `GET /v1/`：获取当前运行时发现信息和实现源码链接
 - `GET /v1/schema`：查看允许访问的关系
 - `POST /v1/sql`：执行实际查询
 

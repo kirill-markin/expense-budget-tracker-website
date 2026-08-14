@@ -16,17 +16,16 @@ Expense Budget Tracker 对外公开提供一个面向程序和智能体的 API�
 
 所有请求都使用与 Web 应用相同的 Postgres 行级安全（Row Level Security，RLS）机制。
 
-## 发现入口与已发布规范
+## 运行时发现、源码与 schema
 
 从这里开始：
 
 `https://api.expense-budget-tracker.com/v1/`
 
-发现响应会告诉智能体如何启动认证流程，以及接下来该调用哪些端点。这套 API 还发布了以下规范：
+发现响应会告诉智能体如何启动认证流程，以及接下来该调用哪些端点。它还提供 README 和实现源码链接。API 公开以下端点：
 
-- `GET /v1/openapi.json`
-- `GET /v1/swagger.json`
 - `GET /v1/schema`
+- `GET /v1/openapi.json` 和 `GET /v1/swagger.json` 作为兼容探测端点；它们会说明 OpenAPI 不可用，并把客户端引导回发现文档与源码
 
 如果你需要确认 `/v1/sql` 实际开放了哪些关系和列，请使用 `schema`。
 
@@ -88,7 +87,7 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 ## 端点一览
 
 - `GET /v1/` — 公开的发现文档
-- `GET /v1/openapi.json` 和 `GET /v1/swagger.json` — 已发布的 API 规范
+- `GET /v1/openapi.json` 和 `GET /v1/swagger.json` — 源码发现兼容探测端点，不是 API 规范
 - `GET /v1/me` — 已认证的账户上下文
 - `GET /v1/workspaces` — 列出该 API 密钥所有者可访问的工作区
 - `POST /v1/workspaces` — 创建工作区

@@ -97,7 +97,7 @@ El agente empieza aquí:
 curl https://api.expense-budget-tracker.com/v1/
 ```
 
-La respuesta le indica que debe empezar con `send_code`, incluye la URL de arranque en el dominio de autenticación y apunta a los endpoints publicados de OpenAPI y del esquema.
+La respuesta le indica que debe empezar con `send_code`, incluye la URL de arranque en el dominio de autenticación y apunta al esquema en tiempo de ejecución y a los enlaces del código fuente de la implementación.
 
 ### 2. Enviar el correo del usuario
 

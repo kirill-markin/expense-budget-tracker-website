@@ -88,7 +88,7 @@ The agent starts here:
 curl https://api.expense-budget-tracker.com/v1/
 ```
 
-The response tells it to begin with `send_code`, includes the bootstrap URL on the auth domain, and points to the published OpenAPI and schema endpoints.
+The response tells it to begin with `send_code`, includes the bootstrap URL on the auth domain, and points to the runtime schema and open-source implementation links.
 
 ### 2. Send the user email
 

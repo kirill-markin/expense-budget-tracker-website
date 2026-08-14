@@ -9,7 +9,7 @@ description: 把同一个发现入口 URL 提供给 Claude Code、Codex 或 Open
 
 `https://api.expense-budget-tracker.com/v1/`
 
-这个端点是面向 AI 智能体的标准公开发现文档。它会告诉智能体如何启动认证流程、接下来该调用哪些端点、后续应使用哪种认证方式，以及到哪里获取已发布的 API 规范。
+这个端点是面向 AI 智能体的标准公开发现文档。它会告诉智能体如何启动认证流程、接下来该调用哪些端点、后续应使用哪种认证方式，以及到哪里查看运行时 schema 和开源实现。
 
 ## 用户需要做什么
 
@@ -72,7 +72,7 @@ curl https://api.expense-budget-tracker.com/v1/
 - `/v1/me`，用于获取账户上下文
 - `/v1/workspaces`，用于获取可用工作区
 - `/v1/schema`，用于查看允许使用的 SQL 关系和列
-- `/v1/openapi.json` 或 `/v1/swagger.json`，用于获取已发布的机器可读 API 规范
+- `/v1/openapi.json` 或 `/v1/swagger.json` 仅供客户端探测传统规范 URL；它们返回发现文档与源码链接，而不是 API 规范
 
 ## 给用户的提示词示例
 
