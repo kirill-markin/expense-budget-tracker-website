@@ -48,7 +48,7 @@ La [cuadrícula presupuestaria y las funciones de seguimiento de saldos](/es/fea
 
 ## Empieza por el contrato vigente
 
-El punto de entrada público es el [documento de descubrimiento de Expense Budget Tracker](https://api.expense-budget-tracker.com/v1/). Describe el flujo de autenticación actual, enlaza la [especificación OpenAPI](https://api.expense-budget-tracker.com/v1/openapi.json) e indica a un script o agente qué llamada debe hacer a continuación.
+El punto de entrada público es el [documento de descubrimiento de Expense Budget Tracker](https://api.expense-budget-tracker.com/v1/). Describe el flujo de autenticación actual, dirige a los clientes al esquema en tiempo de ejecución, enlaza la implementación de código abierto e indica a un script o agente qué llamada debe hacer a continuación.
 
 Toma esas respuestas vigentes como contrato. Una lista de relaciones guardada o un ejemplo de código antiguo pueden quedar obsoletos sin dejar de parecer del todo fiables.
 
@@ -63,7 +63,7 @@ La secuencia de configuración actual es esta:
 7. Lee los datos mediante `/v1/sql` antes de proponer cualquier modificación.
 8. Ejecuta únicamente el cambio aprobado y vuelve a consultar los datos afectados.
 
-La [referencia de la API](/es/docs/api/) detalla los puntos de acceso, y la [guía de configuración del agente](/es/docs/agent-setup/) explica paso a paso el flujo del código por correo. Si alguna contradice la respuesta actual de descubrimiento o de OpenAPI, prevalece el contrato publicado por el servicio.
+La [referencia de la API](/es/docs/api/) detalla los puntos de acceso, y la [guía de configuración del agente](/es/docs/agent-setup/) explica paso a paso el flujo del código por correo. Si alguna contradice la respuesta actual de descubrimiento o `/v1/schema`, prevalece el contrato publicado por el servicio.
 
 ### Consulta el servicio y autentícate
 
@@ -111,7 +111,7 @@ Después de seleccionarlo, las solicitudes posteriores a `/v1/sql` pueden omitir
 
 ### Inspecciona el esquema disponible para esta clave
 
-El documento OpenAPI describe el transporte. La respuesta autenticada de `/v1/schema` describe la parte de la base de datos que puede utilizar el espacio de trabajo seleccionado.
+El documento de descubrimiento describe la incorporación y el flujo de transporte. La respuesta autenticada de `/v1/schema` describe la parte de la base de datos que puede utilizar el espacio de trabajo seleccionado.
 
 ```bash
 curl --fail --silent --show-error \
@@ -196,7 +196,7 @@ Las instrucciones de descubrimiento actuales exigen que una persona apruebe las 
 
 ## Comprueba la estructura de la escritura y después usa lotes controlados
 
-El contrato OpenAPI vigente permite que `/v1/sql` reciba una o varias sentencias `SELECT`, `WITH`, `INSERT`, `UPDATE` o `DELETE` separadas por punto y coma. Poder enviar varias sentencias resulta útil, pero no justifica meter una importación completa en una sola solicitud opaca.
+El contrato SQL vigente permite que `/v1/sql` reciba una o varias sentencias `SELECT`, `WITH`, `INSERT`, `UPDATE` o `DELETE` separadas por punto y coma. Poder enviar varias sentencias resulta útil, pero no justifica meter una importación completa en una sola solicitud opaca.
 
 Para un `INSERT` largo, prueba primero la misma estructura SQL con entre 1 y 3 filas literales de los datos aprobados. Para un `UPDATE` largo, limita la primera solicitud a una sola fila aprobada. Utiliza filas reales del conjunto de cambios, no registros financieros ficticios que después habría que limpiar.
 
@@ -212,7 +212,7 @@ El contrato SQL restringido actual también indica que:
 - los filtros de fecha deben usar intervalos explícitos en lugar de funciones de fecha en tiempo de ejecución
 - los literales de cadena usan comillas simples normales; las cadenas con delimitadores de dólar están bloqueadas
 
-Consulta esas reglas en el OpenAPI actual y en `/v1/schema` cada vez que desarrolles o actualices un cliente reutilizable. Forman parte de la interfaz, no son detalles casuales de implementación.
+Consulta esas reglas en las instrucciones de descubrimiento actuales, en el código fuente enlazado y en `/v1/schema` cada vez que desarrolles o actualices un cliente reutilizable. Forman parte de la interfaz, no son detalles casuales de implementación.
 
 El contrato no publica ningún mecanismo de idempotencia para las escrituras. Si una solicitud agota el tiempo de espera o se pierde la respuesta, no la repitas a ciegas. Consulta primero el intervalo de destino y determina si se aplicó la modificación anterior.
 
@@ -247,7 +247,7 @@ Consulta la [guía para llevar el control de tus gastos con Claude Code](/es/blo
 
 Sigue este orden para una tarea real y acotada:
 
-1. Consulta el documento de descubrimiento y la especificación OpenAPI vigentes.
+1. Consulta el documento de descubrimiento vigente y sigue los enlaces a la documentación y al código fuente que devuelve.
 2. Completa la autenticación mediante código por correo y guarda la ApiKey fuera del chat.
 3. Consulta el contexto de la cuenta, obtén la lista de espacios de trabajo y selecciona el previsto.
 4. Inspecciona `/v1/schema` con autenticación, incluidas las operaciones y las indicaciones.

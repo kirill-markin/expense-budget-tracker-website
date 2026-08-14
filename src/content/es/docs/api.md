@@ -16,17 +16,16 @@ Puedes acceder a esta misma API de dos maneras:
 
 Todas las solicitudes se someten a la misma seguridad a nivel de fila de Postgres que usa la aplicación web.
 
-## Descubrimiento y especificaciones publicadas
+## Descubrimiento, código fuente y esquema en tiempo de ejecución
 
 Empieza aquí:
 
 `https://api.expense-budget-tracker.com/v1/`
 
-La respuesta de descubrimiento indica a los agentes cómo iniciar la autenticación y qué llamadas hacer a continuación. Esta misma API también publica:
+La respuesta de descubrimiento indica a los agentes cómo iniciar la autenticación y qué llamadas hacer a continuación. También enlaza al README y al código fuente de la implementación. La API expone:
 
-- `GET /v1/openapi.json`
-- `GET /v1/swagger.json`
 - `GET /v1/schema`
+- `GET /v1/openapi.json` y `GET /v1/swagger.json` como sondas de compatibilidad que indican que OpenAPI no está disponible y remiten al descubrimiento y al código fuente
 
 Usa `schema` cuando necesites la lista exacta de relaciones y columnas permitidas que expone `/v1/sql`.
 
@@ -88,7 +87,7 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 ## Resumen de rutas
 
 - `GET /v1/` — documento público de descubrimiento
-- `GET /v1/openapi.json` y `GET /v1/swagger.json` — especificaciones publicadas de la API
+- `GET /v1/openapi.json` y `GET /v1/swagger.json` — sondas de compatibilidad para descubrir el código fuente, no especificaciones de la API
 - `GET /v1/me` — contexto de la cuenta autenticada
 - `GET /v1/workspaces` — lista los espacios de trabajo disponibles para el propietario de la clave
 - `POST /v1/workspaces` — crea un espacio de trabajo

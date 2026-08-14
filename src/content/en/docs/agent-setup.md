@@ -9,7 +9,7 @@ Share this exact URL:
 
 `https://api.expense-budget-tracker.com/v1/`
 
-That endpoint is the canonical public discovery document for AI agents. It tells the agent how to bootstrap auth, which endpoints to call next, which auth scheme to use afterward, and where to find the published API spec.
+That endpoint is the canonical public discovery document for AI agents. It tells the agent how to bootstrap auth, which endpoints to call next, which auth scheme to use afterward, and where to find the runtime schema and open-source implementation.
 
 ## What the user does
 
@@ -72,7 +72,7 @@ After `verify-code`, store the returned `ApiKey` securely. Then load:
 - `/v1/me` for account context
 - `/v1/workspaces` for available workspaces
 - `/v1/schema` for the allowed SQL relations and columns
-- `/v1/openapi.json` or `/v1/swagger.json` for the published machine-readable API spec
+- `/v1/openapi.json` or `/v1/swagger.json` only when a client probes conventional spec URLs; they return discovery and source links, not an API spec
 
 ## Example prompts for humans
 
