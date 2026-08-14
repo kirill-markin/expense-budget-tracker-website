@@ -16,17 +16,16 @@ You can use that same surface in two ways:
 
 All requests use the same Postgres Row Level Security enforcement as the web app.
 
-## Discovery and published specs
+## Discovery, source, and runtime schema
 
 Start here:
 
 `https://api.expense-budget-tracker.com/v1/`
 
-The discovery response tells agents how to bootstrap auth and what to call next. The same API also publishes:
+The discovery response tells agents how to bootstrap auth and what to call next. It also links to the README and implementation source. The API exposes:
 
-- `GET /v1/openapi.json`
-- `GET /v1/swagger.json`
 - `GET /v1/schema`
+- `GET /v1/openapi.json` and `GET /v1/swagger.json` as compatibility probes that report OpenAPI is unavailable and point clients back to discovery and source
 
 Use `schema` when you need the exact list of allowed relations and columns exposed by `/v1/sql`.
 
@@ -88,7 +87,7 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 ## Endpoint summary
 
 - `GET /v1/` — public discovery document
-- `GET /v1/openapi.json` and `GET /v1/swagger.json` — published API specs
+- `GET /v1/openapi.json` and `GET /v1/swagger.json` — source-discovery compatibility probes, not API specs
 - `GET /v1/me` — authenticated account context
 - `GET /v1/workspaces` — list workspaces available to the key owner
 - `POST /v1/workspaces` — create a workspace

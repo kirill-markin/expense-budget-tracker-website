@@ -9,7 +9,7 @@ Comparte esta URL exacta:
 
 `https://api.expense-budget-tracker.com/v1/`
 
-Esa dirección es el documento público de inicio para agentes de IA. Ahí se indica cómo empezar la autenticación, qué llamadas debe hacer después, qué método de autenticación debe usar a continuación y dónde encontrar la especificación pública de la API.
+Esa dirección es el documento público de inicio para agentes de IA. Ahí se indica cómo empezar la autenticación, qué llamadas debe hacer después, qué método de autenticación debe usar a continuación y dónde encontrar el esquema en tiempo de ejecución y la implementación de código abierto.
 
 ## Qué hace el usuario
 
@@ -72,7 +72,7 @@ Después de `verify-code`, guarda de forma segura la `ApiKey` devuelta. Luego ca
 - `/v1/me` para obtener el contexto de la cuenta
 - `/v1/workspaces` para ver los espacios de trabajo disponibles
 - `/v1/schema` para consultar las relaciones y columnas SQL permitidas
-- `/v1/openapi.json` o `/v1/swagger.json` para acceder a la especificación pública de la API en un formato legible por máquina
+- `/v1/openapi.json` o `/v1/swagger.json` solo cuando un cliente pruebe las URL convencionales de especificaciones; devuelven enlaces al descubrimiento y al código fuente, no una especificación de la API
 
 ## Ejemplos de prompts para personas
 

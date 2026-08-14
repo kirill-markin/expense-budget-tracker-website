@@ -95,7 +95,7 @@ https://api.expense-budget-tracker.com/v1/
 curl https://api.expense-budget-tracker.com/v1/
 ```
 
-返回结果会告诉它先执行 `send_code`，给出认证域名上的引导 URL，并指向已发布的 OpenAPI 与 schema 端点。
+返回结果会告诉它先执行 `send_code`，给出认证域名上的引导 URL，并指向运行时 schema 与开源实现链接。
 
 ### 2. 提交用户邮箱
 

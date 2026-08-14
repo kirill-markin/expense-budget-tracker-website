@@ -124,7 +124,7 @@ Expense Budget Tracker adopta otro enfoque: ofrece una interfaz programable que 
 - una API SQL restringida y protegida mediante seguridad de nivel de fila por espacio de trabajo
 - un flujo de descubrimiento que permite a Claude Code, Codex, OpenClaw u otro agente compatible conectarse por sí mismo después de verificar el correo electrónico
 - chat con IA sobre los datos financieros del usuario
-- especificaciones publicadas del esquema y de la API
+- descubrimiento en tiempo de ejecución, introspección del esquema y enlaces a la implementación de código abierto
 - autoalojamiento con Docker Compose y Postgres
 
 Esto lo convierte en una **alternativa de código abierto a Monarch Money** para quienes quieren incorporar scripts, agentes o su propia infraestructura al flujo de trabajo. El [código fuente está disponible en GitHub](https://github.com/kirill-markin/expense-budget-tracker). También es una opción más exigente: las claves de API deben guardarse con cuidado, los cambios realizados por agentes requieren revisión y el autoalojamiento implica gestionar el servicio por tu cuenta.

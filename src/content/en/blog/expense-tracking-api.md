@@ -48,7 +48,7 @@ Expense Budget Tracker's [budget grid and balance features](/features/) use this
 
 ## Start with the live contract
 
-The public entry point is the [Expense Budget Tracker discovery document](https://api.expense-budget-tracker.com/v1/). It describes the current authentication flow, links the [OpenAPI specification](https://api.expense-budget-tracker.com/v1/openapi.json), and tells a script or agent what to call next.
+The public entry point is the [Expense Budget Tracker discovery document](https://api.expense-budget-tracker.com/v1/). It describes the current authentication flow, points clients to the runtime schema, links the open-source implementation, and tells a script or agent what to call next.
 
 Use those live responses as the contract. A saved relation list or an old code example can become stale while remaining completely believable.
 
@@ -63,7 +63,7 @@ The current setup sequence is:
 7. Read through `/v1/sql` before proposing any mutation.
 8. Run only the approved change, then query the affected data again.
 
-The [API reference](/docs/api/) is useful for endpoint details, and the [agent setup guide](/docs/agent-setup/) walks through the email-code flow. When either differs from the live discovery or OpenAPI response, follow the live contract.
+The [API reference](/docs/api/) is useful for endpoint details, and the [agent setup guide](/docs/agent-setup/) walks through the email-code flow. When either differs from the live discovery response or `/v1/schema`, follow the live contract.
 
 ### Discover and authenticate
 
@@ -111,7 +111,7 @@ Later `/v1/sql` requests can omit `X-Workspace-Id` after that selection. The hea
 
 ### Inspect the schema available to this key
 
-The OpenAPI document describes the transport. Authenticated `/v1/schema` describes the database surface the selected workspace can use.
+The discovery document describes onboarding and the transport workflow. Authenticated `/v1/schema` describes the database surface the selected workspace can use.
 
 ```bash
 curl --fail --silent --show-error \
@@ -196,7 +196,7 @@ The current discovery instructions require human-approved mutations. Once the us
 
 ## Probe the write shape, then use deliberate batches
 
-The live OpenAPI contract allows `/v1/sql` to receive one or more semicolon-separated `SELECT`, `WITH`, `INSERT`, `UPDATE`, or `DELETE` statements. Multi-statement support is useful, but it is not a reason to pack an entire import into one opaque request.
+The live SQL contract allows `/v1/sql` to receive one or more semicolon-separated `SELECT`, `WITH`, `INSERT`, `UPDATE`, or `DELETE` statements. Multi-statement support is useful, but it is not a reason to pack an entire import into one opaque request.
 
 For a long `INSERT`, first send the same SQL shape with 1–3 literal rows from the approved data. For a long `UPDATE`, target one approved row first. Use real rows from the change set rather than dummy financial records that would need cleanup.
 
@@ -212,7 +212,7 @@ The current restricted SQL contract also says:
 - date filters should use explicit ranges rather than runtime date functions
 - string literals use regular single quotes; dollar-quoted strings are blocked
 
-Read those rules from the current OpenAPI and `/v1/schema` each time you build or update a reusable client. They are part of the interface, not incidental implementation details.
+Read those rules from the current discovery instructions, linked source implementation, and `/v1/schema` each time you build or update a reusable client. They are part of the interface, not incidental implementation details.
 
 The contract does not publish an idempotency mechanism for writes. If a request times out or the response is lost, do not replay it blindly. Read the target range first and determine whether the previous mutation landed.
 
@@ -247,7 +247,7 @@ See the [Claude Code expense-tracking guide](/blog/how-to-track-expenses-and-man
 
 Use this order for one narrow, real task:
 
-1. Load the live discovery document and OpenAPI specification.
+1. Load the live discovery document and follow the documentation and source links it returns.
 2. Complete email-code authentication and store the ApiKey outside chat.
 3. Load account context, list workspaces, and select the intended one.
 4. Inspect authenticated `/v1/schema`, including operations and hints.
