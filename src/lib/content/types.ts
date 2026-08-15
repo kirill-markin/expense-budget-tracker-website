@@ -4,6 +4,7 @@ export type MarketingPageSlug =
   | "home"
   | "features"
   | "pricing"
+  | "support"
   | "privacy"
   | "terms";
 

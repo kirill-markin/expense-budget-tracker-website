@@ -35,6 +35,7 @@ export const MARKETING_PAGE_SLUGS: ReadonlyArray<MarketingPageSlug> = [
   "home",
   "features",
   "pricing",
+  "support",
   "privacy",
   "terms",
 ] as const;
@@ -283,6 +284,21 @@ function validatePageStructure(pageContent: PageContent): PageContent {
 
       if (pageContent.body.trim() === "") {
         throw new Error(`Missing markdown body for page: ${pageContent.slug}`);
+      }
+
+      return pageContent;
+    case "support":
+      if (
+        pageContent.sections.length !== 1 ||
+        pageContent.sections[0].type !== "simple_markdown_page"
+      ) {
+        throw new Error(
+          "Support page content must contain one simple_markdown_page section"
+        );
+      }
+
+      if (pageContent.body.trim() === "") {
+        throw new Error("Missing markdown body for page: support");
       }
 
       return pageContent;
