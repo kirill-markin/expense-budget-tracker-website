@@ -20,6 +20,7 @@ interface FooterMessages {
   readonly legalTitle: string;
   readonly documentation: string;
   readonly selfHostingGuide: string;
+  readonly support: string;
   readonly privacyPolicy: string;
   readonly termsOfService: string;
   readonly builtBy: string;
@@ -101,6 +102,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       legalTitle: "Legal",
       documentation: "Documentation",
       selfHostingGuide: "Self-Hosting Guide",
+      support: "Support",
       privacyPolicy: "Privacy Policy",
       termsOfService: "Terms of Service",
       builtBy: "Built by Kirill Markin",
@@ -124,7 +126,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
     docs: {
       title: "Documentation",
       description:
-        "Getting started, self-hosting guide, API reference, and architecture overview.",
+        "Getting started, AI-agent and MCP setup, self-hosting, API reference, and architecture overview.",
     },
     blogIndex: {
       title: "Blog",
@@ -163,6 +165,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       legalTitle: "Legal",
       documentation: "Documentación",
       selfHostingGuide: "Guía de autoalojamiento",
+      support: "Soporte",
       privacyPolicy: "Política de privacidad",
       termsOfService: "Términos del servicio",
       builtBy: "Creado por Kirill Markin",
@@ -187,7 +190,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
     docs: {
       title: "Documentación",
       description:
-        "Primeros pasos, guía de autoalojamiento, referencia de API y resumen de la arquitectura.",
+        "Primeros pasos, configuración de agentes de IA y MCP, autoalojamiento, referencia de API y arquitectura.",
     },
     blogIndex: {
       title: "Blog",
@@ -226,6 +229,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       legalTitle: "Правовая информация",
       documentation: "Документация",
       selfHostingGuide: "Руководство по self-hosting",
+      support: "Поддержка",
       privacyPolicy: "Политика конфиденциальности",
       termsOfService: "Условия использования",
       builtBy: "Создано Кириллом Маркиным",
@@ -250,7 +254,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
     docs: {
       title: "Документация",
       description:
-        "Быстрый старт, руководство по self-hosting, справочник API и обзор архитектуры.",
+        "Быстрый старт, настройка ИИ-агентов и MCP, self-hosting, справочник API и обзор архитектуры.",
     },
     blogIndex: {
       title: "Блог",
@@ -289,6 +293,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       legalTitle: "Юридична інформація",
       documentation: "Документація",
       selfHostingGuide: "Посібник із self-hosting",
+      support: "Підтримка",
       privacyPolicy: "Політика конфіденційності",
       termsOfService: "Умови використання",
       builtBy: "Створено Кирилом Маркіним",
@@ -313,7 +318,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
     docs: {
       title: "Документація",
       description:
-        "Швидкий старт, посібник із self-hosting, довідник API та огляд архітектури.",
+        "Швидкий старт, налаштування AI-агентів і MCP, self-hosting, довідник API та огляд архітектури.",
     },
     blogIndex: {
       title: "Блог",
@@ -352,6 +357,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       legalTitle: "حقوقی",
       documentation: "مستندات",
       selfHostingGuide: "راهنمای میزبانی شخصی",
+      support: "پشتیبانی",
       privacyPolicy: "حریم خصوصی",
       termsOfService: "شرایط استفاده",
       builtBy: "ساخته‌شده توسط Kirill Markin",
@@ -375,7 +381,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
     docs: {
       title: "مستندات",
       description:
-        "شروع سریع، راهنمای میزبانی شخصی، مرجع API و نمای کلی معماری.",
+        "شروع سریع، راه‌اندازی عامل هوش مصنوعی و MCP، میزبانی شخصی، مرجع API و نمای کلی معماری.",
     },
     blogIndex: {
       title: "وبلاگ",
@@ -414,6 +420,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       legalTitle: "法律信息",
       documentation: "文档",
       selfHostingGuide: "自托管指南",
+      support: "支持",
       privacyPolicy: "隐私政策",
       termsOfService: "服务条款",
       builtBy: "由 Kirill Markin 构建",
@@ -436,7 +443,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
     },
     docs: {
       title: "文档",
-      description: "快速开始、自托管指南、API 参考和架构概览。",
+      description: "快速开始、AI 智能体与 MCP 接入、自托管、API 参考和架构概览。",
     },
     blogIndex: {
       title: "博客",
@@ -475,6 +482,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       legalTitle: "قانوني",
       documentation: "التوثيق",
       selfHostingGuide: "دليل الاستضافة الذاتية",
+      support: "الدعم",
       privacyPolicy: "سياسة الخصوصية",
       termsOfService: "شروط الخدمة",
       builtBy: "بناء Kirill Markin",
@@ -498,7 +506,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
     docs: {
       title: "التوثيق",
       description:
-        "البدء السريع، دليل الاستضافة الذاتية، مرجع API، ونظرة عامة على البنية.",
+        "البدء السريع، وإعداد وكيل الذكاء الاصطناعي وMCP، والاستضافة الذاتية، ومرجع API، ونظرة عامة على البنية.",
     },
     blogIndex: {
       title: "المدونة",
@@ -537,6 +545,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       legalTitle: "משפטי",
       documentation: "תיעוד",
       selfHostingGuide: "מדריך אירוח עצמי",
+      support: "תמיכה",
       privacyPolicy: "מדיניות פרטיות",
       termsOfService: "תנאי שימוש",
       builtBy: "נבנה על ידי Kirill Markin",
@@ -560,7 +569,7 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
     docs: {
       title: "תיעוד",
       description:
-        "התחלה מהירה, מדריך אירוח עצמי, הפניה ל-API וסקירת ארכיטקטורה.",
+        "התחלה מהירה, הגדרת סוכני AI ו-MCP, אירוח עצמי, מדריך API וסקירת ארכיטקטורה.",
     },
     blogIndex: {
       title: "בלוג",

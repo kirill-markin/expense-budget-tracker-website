@@ -18,11 +18,15 @@ This policy applies to the hosted website, app, API, and remote MCP service oper
 
 ## How We Use Your Data
 
-Your financial data is used solely to provide the service. We do not sell your data or use it for advertising. Each workspace is isolated via Postgres row-level security.
+Your financial data is used solely to provide the service. We do not sell it or use it for advertising. We disclose it to a third-party client only when you direct the service to do so, such as by authorizing an MCP connection. Each workspace is isolated via Postgres row-level security.
 
-## External AI Clients
+## MCP and Third-Party AI Clients
 
-When you connect an external AI client to the hosted MCP service using OAuth, you choose the client and authorize the access it receives. The financial data you ask that client to retrieve or change is also processed by the client and its AI or model provider under their own terms and privacy policies. We do not control that separate processing.
+When you connect an AI client to the hosted MCP service, Expense Budget Tracker processes the OAuth authorization request, the requested tool and its arguments, the selected workspace, and the financial records needed to fulfill a read request or apply an approved write. Writes made through MCP become part of the same hosted financial data as changes made in the web app.
+
+The service stores the registered client's name and redirect URLs, connection and scope metadata, creation, activity, and revocation timestamps, and one-way hashes of OAuth authorization codes and access and refresh tokens. It does not store the raw OAuth tokens. The MCP service does not store the AI client's conversation as a product conversation, although it receives each tool request and returns the requested result.
+
+The AI client is a separate third party and may process or retain prompts, tool arguments, and returned financial data under its own terms and privacy policy. Review the client's policy before connecting it. You can revoke an MCP connection at any time from **Settings > Agent Access**. You can delete your account and associated hosted data from Settings as described below.
 
 ## Data Storage
 
