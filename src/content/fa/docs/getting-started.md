@@ -10,7 +10,8 @@ description: در چند دقیقه در نسخهٔ ابری ثبت‌نام ک�
 1. به [app.expense-budget-tracker.com](https://app.expense-budget-tracker.com) بروید.
 2. با ایمیل خود ثبت‌نام کنید (ورود بدون گذرواژه با رمز یک‌بارمصرف).
 3. پیگیری هزینه‌ها را در برنامهٔ وب آغاز کنید.
-4. اگر می‌خواهید Claude Code، Codex یا OpenClaw را متصل کنید، این نشانی را در اختیار عامل قرار دهید: `https://api.expense-budget-tracker.com/v1/`
+4. برای کلاینتی که از MCP پشتیبانی می‌کند، `https://mcp.expense-budget-tracker.com/mcp` را اضافه کنید و دسترسی را در مرورگر تأیید کنید.
+5. برای عامل ترمینال یا کلاینت HTTP مستقیم، از `GET https://api.expense-budget-tracker.com/v1/` شروع کنید.
 
 به نصب چیزی یا راه‌اندازی سرور نیازی ندارید. داده‌های شما در Postgres با امنیت در سطح ردیف و به تفکیک هر فضای کاری از داده‌های دیگران جدا نگه داشته می‌شوند.
 
@@ -19,8 +20,8 @@ description: در چند دقیقه در نسخهٔ ابری ثبت‌نام ک�
 همان حساب ابری برای همهٔ این روش‌های دسترسی قابل استفاده است:
 
 - رابط وب در `https://app.expense-budget-tracker.com`
-- دسترسی و راه‌اندازی ویژهٔ عامل‌ها از طریق `GET https://api.expense-budget-tracker.com/v1/`
-- کلاینت‌های HTTP که مستقیماً به API وصل می‌شوند، با `Authorization: ApiKey <key>`
+- [اتصال‌دهندهٔ MCP](/fa/docs/mcp-connector/) میزبانی‌شده در `https://mcp.expense-budget-tracker.com/mcp` با مجوز OAuth در مرورگر
+- [راه‌اندازی Agent API](/docs/agent-setup/) از `GET https://api.expense-budget-tracker.com/v1/` و سپس درخواست‌های HTTP مستقیم با `Authorization: ApiKey <key>`
 
 ## نسخهٔ خودمیزبان
 

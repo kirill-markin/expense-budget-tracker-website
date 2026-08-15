@@ -11,6 +11,8 @@ Comparte esta URL exacta:
 
 Esa dirección es el documento público de inicio para agentes de IA. Ahí se indica cómo empezar la autenticación, qué llamadas debe hacer después, qué método de autenticación debe usar a continuación y dónde encontrar el esquema en tiempo de ejecución y la implementación de código abierto.
 
+Esta guía describe la incorporación directa mediante la Agent API para agentes de terminal y clientes HTTP. Si tu cliente habla MCP, usa en su lugar el [conector MCP](/es/docs/mcp-connector/) alojado: se conecta a `https://mcp.expense-budget-tracker.com/mcp` y autoriza de forma interactiva mediante OAuth en el navegador, sin este flujo de creación de `ApiKey`.
+
 ## Qué hace el usuario
 
 1. Abre Claude Code, Codex, OpenClaw u otro agente que pueda hacer solicitudes HTTP.
@@ -39,9 +41,9 @@ La secuencia completa es esta:
 11. Si hace falta, crear un espacio de trabajo con `POST /v1/workspaces`
 12. Guardar un espacio de trabajo predeterminado con `POST /v1/workspaces/{workspaceId}/select`
 13. Inspeccionar las relaciones permitidas con `GET https://api.expense-budget-tracker.com/v1/schema`
-14. Ejecutar SQL mediante `POST https://api.expense-budget-tracker.com/v1/sql`
+14. Leer mediante `POST https://api.expense-budget-tracker.com/v1/sql/query` y enviar escrituras aprobadas mediante `POST https://api.expense-budget-tracker.com/v1/sql/execute`
 
-La selección del espacio de trabajo es explícita, pero el sistema conserva ese estado. El espacio de trabajo elegido se guarda para esa clave después de `POST /v1/workspaces/{workspaceId}/select`, así que las llamadas posteriores a `/v1/sql` pueden omitir `X-Workspace-Id`. Aun así, puedes enviar `X-Workspace-Id` para sustituir el espacio de trabajo guardado en una petición concreta.
+La selección del espacio de trabajo es explícita, pero el sistema conserva ese estado. El espacio de trabajo elegido se guarda para esa clave después de `POST /v1/workspaces/{workspaceId}/select`, así que las llamadas posteriores a `/v1/sql/query` y `/v1/sql/execute` pueden omitir `X-Workspace-Id`. Aun así, puedes enviar `X-Workspace-Id` para sustituir el espacio de trabajo guardado en una petición concreta. La ruta de compatibilidad `POST /v1/sql` queda reservada para scripts atómicos con varias instrucciones, no para lecturas o escrituras normales.
 
 Si el usuario tiene exactamente un espacio de trabajo y la clave todavía no tiene ninguno guardado, el backend lo guarda y lo usa automáticamente.
 

@@ -16,6 +16,8 @@ Puedes acceder a esta misma API de dos maneras:
 
 Todas las solicitudes se someten a la misma seguridad a nivel de fila de Postgres que usa la aplicación web.
 
+Si tu cliente habla MCP, usa el [conector MCP](/es/docs/mcp-connector/) alojado en `https://mcp.expense-budget-tracker.com/mcp` y autorízalo mediante OAuth en el navegador. Esta página describe el flujo independiente de la Agent API y el contrato HTTP directo, que usan una `ApiKey` de larga duración.
+
 ## Descubrimiento, código fuente y esquema en tiempo de ejecución
 
 Empieza aquí:
@@ -27,7 +29,7 @@ La respuesta de descubrimiento indica a los agentes cómo iniciar la autenticaci
 - `GET /v1/schema`
 - `GET /v1/openapi.json` y `GET /v1/swagger.json` como sondas de compatibilidad que indican que OpenAPI no está disponible y remiten al descubrimiento y al código fuente
 
-Usa `schema` cuando necesites la lista exacta de relaciones y columnas permitidas que expone `/v1/sql`.
+Usa `schema` cuando necesites la lista exacta de relaciones y columnas permitidas que exponen `/v1/sql/query`, `/v1/sql/execute` y la ruta de compatibilidad `/v1/sql`.
 
 ## Configuración nativa para agentes
 
@@ -48,7 +50,7 @@ Si quieres que Claude Code, Codex, OpenClaw u otro agente se conecte por sí sol
 11. Opcionalmente, haz `POST https://api.expense-budget-tracker.com/v1/workspaces` para crear un espacio de trabajo
 12. `POST https://api.expense-budget-tracker.com/v1/workspaces/{workspaceId}/select`
 13. `GET https://api.expense-budget-tracker.com/v1/schema`
-14. Ejecuta SQL con `POST https://api.expense-budget-tracker.com/v1/sql`
+14. Lee con `POST https://api.expense-budget-tracker.com/v1/sql/query` y envía escrituras aprobadas con `POST https://api.expense-budget-tracker.com/v1/sql/execute`
 
 ### Cabecera de autenticación
 
@@ -57,7 +59,7 @@ Si quieres que Claude Code, Codex, OpenClaw u otro agente se conecte por sí sol
 ### Gestión del espacio de trabajo
 
 - `POST /v1/workspaces/{workspaceId}/select` guarda el espacio de trabajo predeterminado para esa clave de API
-- después de guardar un espacio de trabajo, `/v1/sql` puede omitir `X-Workspace-Id`
+- después de guardar un espacio de trabajo, `/v1/sql/query`, `/v1/sql/execute` y la ruta de compatibilidad `/v1/sql` pueden omitir `X-Workspace-Id`
 - `X-Workspace-Id: <workspaceId>` sigue siendo compatible si quieres usar, en una sola solicitud, un espacio de trabajo distinto del que quedó guardado
 - si el usuario tiene exactamente un espacio de trabajo y la clave todavía no tiene ninguno guardado, la API lo guarda automáticamente y lo usa
 
@@ -72,7 +74,7 @@ Los scripts, las tareas cron, los paneles y las aplicaciones personalizadas pued
 Pasa la clave en una cabecera de autenticación `ApiKey`:
 
 ```bash
-curl -X POST https://api.expense-budget-tracker.com/v1/sql \
+curl -X POST https://api.expense-budget-tracker.com/v1/sql/query \
   -H "Authorization: ApiKey ebta_your_key_here" \
   -H "X-Workspace-Id: workspace-id" \
   -H "Content-Type: application/json" \
@@ -93,23 +95,21 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 - `POST /v1/workspaces` — crea un espacio de trabajo
 - `POST /v1/workspaces/{workspaceId}/select` — guarda el espacio de trabajo predeterminado para esta clave
 - `GET /v1/schema` — muestra las relaciones y columnas permitidas para SQL
-- `POST /v1/sql` — ejecuta una única instrucción SQL restringida
+- `POST /v1/sql/query` — ejecuta una instrucción de solo lectura `SELECT` o `WITH ... SELECT`
+- `POST /v1/sql/execute` — ejecuta una instrucción aprobada `INSERT`, `UPDATE` o `DELETE`
+- `POST /v1/sql` — ruta de compatibilidad para scripts atómicos con varias instrucciones
 
 ## Política SQL
 
-`POST /v1/sql` acepta exactamente una instrucción SQL por solicitud.
+Las rutas principales separan de forma deliberada las lecturas de las escrituras:
 
-Tipos de instrucciones permitidos:
-
-- `SELECT`
-- `WITH`
-- `INSERT`
-- `UPDATE`
-- `DELETE`
+- `POST /v1/sql/query` acepta exactamente una instrucción de solo lectura `SELECT` o `WITH ... SELECT`
+- `POST /v1/sql/execute` acepta exactamente una mutación `INSERT`, `UPDATE` o `DELETE`, incluidas las formas compatibles con `WITH`
+- la ruta de compatibilidad `POST /v1/sql` acepta scripts restringidos con varias instrucciones y los aplica de forma atómica; úsala solo cuando necesites ese comportamiento atómico
 
 Patrones bloqueados o rechazados:
 
-- varias instrucciones en la misma solicitud
+- varias instrucciones en las rutas principales `/v1/sql/query` y `/v1/sql/execute`
 - DDL como `CREATE`, `DROP` y `ALTER`
 - envoltorios de transacción como `BEGIN`, `COMMIT` y `ROLLBACK`
 - `set_config()`
@@ -122,17 +122,18 @@ El servidor también restringe qué relaciones se pueden consultar. Usa `/v1/sch
 Relaciones actualmente expuestas:
 
 - `ledger_entries`
-- `accounts`
 - `budget_lines`
-- `budget_comments`
 - `workspace_settings`
 - `account_metadata`
-- `exchange_rates`
+- `accounts` (solo lectura)
+- `fx_rates_raw` (solo lectura)
+- `fx_rates_daily` (solo lectura)
 
 ## Límites
 
-- 100 filas por respuesta
-- tiempo máximo de ejecución de 30 segundos por instrucción
+- 100 filas devueltas por solicitud
+- 100 filas afectadas como máximo por instrucción de mutación y por solicitud
+- tiempo máximo total de 25 segundos por solicitud SQL
 - 10 solicitudes por segundo y 10.000 solicitudes por día para cada clave
 
 ## Seguridad

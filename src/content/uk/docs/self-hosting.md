@@ -46,4 +46,13 @@ Docker Compose перебудує сервіси й повторно викон�
 
 ## Розгортання в AWS
 
-Для розгортання в AWS у продакшн-середовищі (ECS Fargate + RDS + ALB + Cognito) дивіться [посібник з AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).
+Продакшн-стек CDK використовує ECS Fargate, RDS, ALB, Cognito, API Gateway і Lambda. Він публікує такі домени застосунку:
+
+- `app.<domain>` — вебзастосунок в ECS Fargate за ALB
+- `auth.<domain>` — сервіс OTP і OAuth за ALB
+- `api.<domain>/v1/*` — REST API для машинного доступу до SQL через API Gateway і Lambda
+- `mcp.<domain>/mcp` — розміщений MCP-сервіс через окремі HTTP API в API Gateway і MCP Lambda
+
+Для власного домену MCP потрібен публічний сертифікат ACM на точне ім'я `mcp.<domain>`. Збережіть його CNAME-запис перевірки DNS для поновлення, передайте ARN сертифіката до розгортання CDK і CI та створіть DNS-запис `mcp.*` разом з іншими публічними доменами.
+
+Підтримувану послідовність і скрипти налаштування описано в [огляді розгортання](https://github.com/kirill-markin/expense-budget-tracker/blob/main/docs/deployment.md) і [посібнику з AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) у репозиторії.

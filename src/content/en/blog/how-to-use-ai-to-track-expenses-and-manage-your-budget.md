@@ -1,6 +1,6 @@
 ---
 title: "How to Use AI to Track Expenses and Manage Your Budget"
-description: "A practical guide to AI-powered personal finance. Give your AI agent an API key, and it will parse bank statements, categorize transactions, track expenses, and manage your budget — all through a SQL API."
+description: "A practical guide to AI-powered personal finance. Connect through hosted MCP or the Agent API to parse bank statements, categorize transactions, track expenses, and manage your budget."
 date: "2026-03-05"
 ---
 
@@ -16,33 +16,30 @@ Kirill Markin, the creator of [Expense Budget Tracker](https://expense-budget-tr
 
 His weekly routine looks like this: download bank statements (CSV or PDF), drop them into an AI agent, let the agent parse each transaction and record it. The agent already knows his expense categories from previous entries, so it matches most transactions correctly on its own. Kirill reviews what the AI did, fixes the few mistakes, and moves on. The whole process takes about 10 minutes, down from an hour when he was entering everything manually.
 
-The same approach works with [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenAI Codex](https://openai.com/index/codex/), custom GPTs, or any AI agent that can call HTTP endpoints. The key ingredient is direct database access — not a plugin, not a browser extension, but an API key that lets the AI read and write your financial data.
+The same approach works with many AI tools, including [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and [OpenAI Codex](https://openai.com/index/codex/). MCP-capable clients can use the hosted connector with browser OAuth; terminal agents, scripts, and other HTTP clients can use the direct Agent API with a long-lived `ApiKey`. Both paths reach the same constrained, workspace-scoped financial data surface.
 
 ## How to connect your AI agent to your finances
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/) is an open-source personal finance system built on Postgres. It has a SQL API endpoint at `POST /v1/sql` that accepts SQL queries over HTTP and returns JSON results.
+[Expense Budget Tracker](https://expense-budget-tracker.com/) is an open-source personal finance system built on Postgres. It supports two complementary connection paths:
 
-To connect any AI agent:
+1. **Hosted MCP connector.** In an MCP-capable client, add `https://mcp.expense-budget-tracker.com/mcp` and authorize access in your browser through OAuth. The client then uses scoped OAuth access tokens for read and approved-write tools. The server is hosted, so there is no local MCP process to install or keep running. See the [MCP connector guide](/docs/mcp-connector/).
+2. **Direct Agent API.** For terminal agents, scripts, and direct HTTP clients, start at `GET https://api.expense-budget-tracker.com/v1/`. The discovery response guides the agent through email OTP onboarding and returns a long-lived `ApiKey`, sent as `Authorization: ApiKey <key>`. Reads use `POST /v1/sql/query`; approved writes use `POST /v1/sql/execute`. Compatibility `POST /v1/sql` remains available only for atomic multi-statement scripts. See the [API reference](/docs/api/).
 
-1. Open the app and go to **Settings → API Keys → Create key**
-2. Copy the key (it starts with `ebt_` and you'll only see it once)
-3. Tell your AI agent two things: the API endpoint URL and the key
-
-That's it. The agent can now query and modify your expense data. No MCP server to run. No plugin to install. No custom integration to maintain. Any AI that can make an HTTP POST request — which is all of them — works out of the box.
+With either route, the agent can query your expense data and send approved changes through the dedicated write surface. The direct HTTP route looks like this for a read:
 
 ```bash
-curl -X POST https://api.expense-budget-tracker.com/v1/sql \
+curl -X POST https://api.expense-budget-tracker.com/v1/sql/query \
   -H "Authorization: ApiKey ebta_your_key_here" \
   -H "X-Workspace-Id: workspace-id" \
   -H "Content-Type: application/json" \
   -d '{"sql": "SELECT * FROM ledger_entries ORDER BY ts DESC LIMIT 10"}'
 ```
 
-The response comes back as a JSON array of rows. No pagination tokens, no nested objects, no SDK.
+The success response is a JSON envelope. `data.statements` contains one entry per executed statement; each includes `rows`, `rowCount`, `returnedRowCount`, `totalRowCount`, and `truncated`. `data` also exposes the selected `workspace` and current `limits` context.
 
 ## What your AI agent can do with this access
 
-With the API key, the AI agent operates on your actual expense and budget data — not a copy, not a summary, but the live database:
+Once connected, the AI agent operates on your actual expense and budget data — not a copy, not a summary, but the live database:
 
 **Parse and record expenses.** Drop a bank statement (CSV, PDF, or a screenshot of your banking app) into your AI agent. The agent reads each line, figures out the amount, date, counterparty, and category, then writes an INSERT statement to the `ledger_entries` table. Each expense goes directly into your database.
 
@@ -64,13 +61,13 @@ This is convenient for quick things: upload a screenshot of a receipt, ask the A
 
 For bigger tasks — batch processing multiple bank statements, building automated workflows, integrating with other systems — the external SQL API is more practical. You can use it from any agent or script outside the app.
 
-## Why direct SQL is better than MCP servers and plugins
+## Why hosted MCP and direct SQL are complementary
 
-MCP servers, custom GPT actions, and provider-specific plugins are popular right now for connecting AI to external tools. For personal finance, they introduce unnecessary moving parts.
+The hosted MCP server is the connector-friendly path for clients that speak the protocol. You add one HTTPS endpoint, authorize in the browser through OAuth, and use separate read and write tools. Expense Budget Tracker runs the remote service, so MCP does not require a process on your computer.
 
-An MCP server is an extra process you have to run and keep alive. If it crashes, the AI loses access to your expense data mid-conversation. Custom GPT plugins only work with ChatGPT — they won't help you if you switch to Claude or build your own agent. Provider-specific integrations break whenever the provider updates their API.
+The direct Agent API is the broad HTTP path for terminal agents, scripts, cron jobs, dashboards, and custom applications. Its discovery and OTP flow yields a long-lived `ApiKey`, while the split SQL endpoints make the read/write boundary explicit.
 
-A SQL API avoids all of this. The interface is an HTTP endpoint and the SQL language. Both have been around for decades and aren't going anywhere. Switch from one AI model to another — same API key, same endpoint, same SQL. The AI agent doesn't care whether it's running inside ChatGPT, Claude Code, or a Python script you wrote yourself.
+These are two transports over the same constrained, workspace-scoped data surface, not competing architectures. Choose MCP when your client supports remote connectors and browser OAuth; choose the Agent API when direct HTTP is the better fit.
 
 ## Is it safe to give AI direct database access?
 
@@ -78,11 +75,11 @@ Yes, within the right constraints. The SQL API in Expense Budget Tracker enforce
 
 Every query runs through Postgres Row Level Security. The API key is tied to your user and workspace — the AI can only see and modify your expense data, nobody else's.
 
-Only data operations are allowed: SELECT, INSERT, UPDATE, DELETE. The AI agent can't create tables, drop anything, or change permissions. Multiple statements in a single request are blocked. So is `set_config()`, which prevents privilege escalation.
+Only data operations are allowed: `SELECT`, `INSERT`, `UPDATE`, and `DELETE`. The AI agent can't create tables, drop anything, or change permissions. The primary query and execute endpoints accept one statement each; compatibility `/v1/sql` accepts only restricted atomic scripts. `set_config()` is blocked to prevent privilege escalation.
 
 API keys are stored as SHA-256 hashes — the plaintext never sits in the database. You can revoke a key instantly from Settings. If you remove a workspace member, all their keys get deleted automatically.
 
-Rate limits cap usage at 10 requests per second and 10,000 per day per key. Queries time out after 30 seconds. Responses return at most 100 rows. These numbers are more than enough for expense tracking and budgeting with AI, but they prevent any runaway behavior.
+Rate limits cap usage at 10 requests per second and 10,000 per day per key. Each SQL request has a 25-second total deadline, returns at most 100 rows, and can affect at most 100 rows. These numbers are more than enough for expense tracking and budgeting with AI, but they prevent any runaway behavior.
 
 ## Practical tips for AI-powered expense tracking
 
@@ -101,9 +98,9 @@ A few things that make the AI expense tracking workflow smoother, based on real 
 ## Getting started
 
 1. Sign up at [expense-budget-tracker.com](https://expense-budget-tracker.com/) (free, open source) or [self-host](https://github.com/kirill-markin/expense-budget-tracker) the app on your own server
-2. Go to **Settings → API Keys → Create key** and copy the key
-3. Give the key, the workspace ID, and the endpoint (`https://api.expense-budget-tracker.com/v1/sql`) to your AI agent
-4. Drop a bank statement into the agent and ask it to parse and record your expenses
+2. For MCP, add `https://mcp.expense-budget-tracker.com/mcp` in a compatible client and authorize through browser OAuth
+3. For direct HTTP, give your agent `GET https://api.expense-budget-tracker.com/v1/` and complete the email OTP flow when asked
+4. Drop a bank statement into the connected agent and ask it to parse and record your expenses
 
 The AI will discover your database schema, match your expense categories, and start writing transactions. Review what it recorded, fix anything off, and you've got an AI-managed budget running.
 

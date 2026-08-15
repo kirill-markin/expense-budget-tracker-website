@@ -11,6 +11,8 @@ description: 把同一个发现入口 URL 提供给 Claude Code、Codex 或 Open
 
 这个端点是面向 AI 智能体的标准公开发现文档。它会告诉智能体如何启动认证流程、接下来该调用哪些端点、后续应使用哪种认证方式，以及到哪里查看运行时 schema 和开源实现。
 
+本指南介绍终端智能体和 HTTP 客户端如何直接接入 Agent API。如果你的客户端支持 MCP，请改用托管的 [MCP 连接器](/zh/docs/mcp-connector/)；它连接到 `https://mcp.expense-budget-tracker.com/mcp`，并通过浏览器 OAuth 交互式授权，无需执行这里的 `ApiKey` 引导流程。
+
 ## 用户需要做什么
 
 1. 打开 Claude Code、Codex、OpenClaw，或任何能够发起 HTTP 请求的智能体。
@@ -39,9 +41,9 @@ description: 把同一个发现入口 URL 提供给 Claude Code、Codex 或 Open
 11. 如果需要，用 `POST /v1/workspaces` 创建工作区
 12. 用 `POST /v1/workspaces/{workspaceId}/select` 保存默认工作区
 13. 用 `GET https://api.expense-budget-tracker.com/v1/schema` 查看允许使用的关系
-14. 通过 `POST https://api.expense-budget-tracker.com/v1/sql` 执行 SQL
+14. 通过 `POST https://api.expense-budget-tracker.com/v1/sql/query` 读取数据，并通过 `POST https://api.expense-budget-tracker.com/v1/sql/execute` 提交已批准的写入
 
-工作区选择需要显式执行，但这一过程并不是完全无状态的。调用 `POST /v1/workspaces/{workspaceId}/select` 之后，所选工作区会绑定到该 `ApiKey`，因此后续调用 `/v1/sql` 时可以省略 `X-Workspace-Id`。如果你想只在某一次请求里临时覆盖已保存的工作区，仍然可以显式发送 `X-Workspace-Id`。
+工作区选择需要显式执行，但这一过程并不是完全无状态的。调用 `POST /v1/workspaces/{workspaceId}/select` 之后，所选工作区会绑定到该 `ApiKey`，因此后续调用 `/v1/sql/query` 和 `/v1/sql/execute` 时可以省略 `X-Workspace-Id`。如果你想只在某一次请求里临时覆盖已保存的工作区，仍然可以显式发送 `X-Workspace-Id`。兼容端点 `POST /v1/sql` 仅用于需要原子执行的多语句脚本，不是普通读写的首选端点。
 
 如果用户恰好只有一个工作区，并且这个 `ApiKey` 还没有保存过默认选择，后端会自动保存并使用该工作区。
 

@@ -46,4 +46,13 @@ make up
 
 ## פריסה ל-AWS
 
-לפריסה לפרודקשן ב-AWS ‏(ECS Fargate + RDS + ALB + Cognito), עיינו ב-[מדריך AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).
+מחסנית ה-CDK לפרודקשן משתמשת ב-ECS Fargate, ב-RDS, ב-ALB, ב-Cognito, ב-API Gateway וב-Lambda. היא חושפת את דומייני האפליקציה הציבוריים הבאים:
+
+- `app.<domain>` — אפליקציית הווב ב-ECS Fargate מאחורי ALB
+- `auth.<domain>` — שירות OTP ו-OAuth מאחורי ALB
+- `api.<domain>/v1/*` — SQL REST API ללקוחות תוכנה דרך API Gateway ו-Lambda
+- `mcp.<domain>/mcp` — שירות MCP מתארח דרך HTTP API ייעודי ב-API Gateway ופונקציית MCP Lambda
+
+הדומיין המותאם אישית של MCP דורש אישור ACM ציבורי עבור השם המדויק `mcp.<domain>`. שמרו את רשומת ה-CNAME לאימות DNS לצורך חידוש, ספקו את ARN האישור לפריסת ה-CDK ול-CI, וצרו את רשומת ה-DNS של `mcp.*` לצד שאר הדומיינים הציבוריים.
+
+לסדר הפעולות ולסקריפטים הנתמכים, עיינו ב-[סקירת הפריסה](https://github.com/kirill-markin/expense-budget-tracker/blob/main/docs/deployment.md) וב-[מדריך AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) שבמאגר.

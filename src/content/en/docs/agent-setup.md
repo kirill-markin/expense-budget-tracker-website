@@ -11,6 +11,8 @@ Share this exact URL:
 
 That endpoint is the canonical public discovery document for AI agents. It tells the agent how to bootstrap auth, which endpoints to call next, which auth scheme to use afterward, and where to find the runtime schema and open-source implementation.
 
+This guide covers direct Agent API onboarding for terminal agents and HTTP clients. If your client speaks MCP, use the hosted [MCP connector](/docs/mcp-connector/) instead; it connects to `https://mcp.expense-budget-tracker.com/mcp` and authorizes interactively through browser OAuth without this ApiKey bootstrap flow.
+
 ## What the user does
 
 1. Open Claude Code, Codex, OpenClaw, or another agent that can make HTTP requests.
@@ -39,9 +41,9 @@ The full sequence is:
 11. If needed, create a workspace with `POST /v1/workspaces`
 12. Save a default workspace with `POST /v1/workspaces/{workspaceId}/select`
 13. Inspect allowed relations with `GET https://api.expense-budget-tracker.com/v1/schema`
-14. Run SQL through `POST https://api.expense-budget-tracker.com/v1/sql`
+14. Read through `POST https://api.expense-budget-tracker.com/v1/sql/query` and send approved writes through `POST https://api.expense-budget-tracker.com/v1/sql/execute`
 
-Workspace selection is explicit, but it is not stateless. The selected workspace is saved for that API key after `POST /v1/workspaces/{workspaceId}/select`, so later `/v1/sql` calls can omit `X-Workspace-Id`. You can still send `X-Workspace-Id` to override the saved workspace for a specific request.
+Workspace selection is explicit, but it is not stateless. The selected workspace is saved for that API key after `POST /v1/workspaces/{workspaceId}/select`, so later `/v1/sql/query` and `/v1/sql/execute` calls can omit `X-Workspace-Id`. You can still send `X-Workspace-Id` to override the saved workspace for a specific request. Compatibility `POST /v1/sql` is reserved for atomic multi-statement scripts, not normal reads or writes.
 
 If the user has exactly one workspace and the key has no saved selection yet, the backend auto-saves and uses that workspace.
 

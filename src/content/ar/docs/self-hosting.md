@@ -46,4 +46,13 @@ make up
 
 ## النشر على AWS
 
-إذا كنت تنشر بيئة الإنتاج على AWS (`ECS Fargate` + `RDS` + `ALB` + `Cognito`)، فراجع [دليل AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).
+تستخدم حزمة CDK للإنتاج ECS Fargate وRDS وALB وCognito وAPI Gateway وLambda، وتعرض نطاقات التطبيق العامة التالية:
+
+- `app.<domain>` — تطبيق الويب على ECS Fargate خلف ALB
+- `auth.<domain>` — خدمة OTP وOAuth خلف ALB
+- `api.<domain>/v1/*` — واجهة REST ماشينية لـSQL عبر API Gateway وLambda
+- `mcp.<domain>/mcp` — خدمة MCP مستضافة عبر HTTP API مخصّصة في API Gateway ودالة MCP Lambda
+
+يتطلب نطاق MCP المخصّص شهادة ACM عامة للاسم المطابق `mcp.<domain>`. احتفظ بسجل CNAME الخاص بالتحقق من DNS للتجديد، وقدّم ARN الشهادة إلى نشر CDK وCI، وأنشئ سجل DNS لـ`mcp.*` إلى جانب النطاقات العامة الأخرى.
+
+للاطلاع على التسلسل والبرامج النصية المدعومة، راجع [نظرة عامة على النشر](https://github.com/kirill-markin/expense-budget-tracker/blob/main/docs/deployment.md) و[دليل AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) في المستودع.

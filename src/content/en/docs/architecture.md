@@ -6,25 +6,21 @@ description: System overview, data model, multi-currency design, and auth model.
 ## System Overview
 
 ```
-Browser UI  -->  Next.js web app  -->  Postgres (RLS)
-                        |                  ^
-                        v                  |
-                 Auth service -------------+
-                        ^
-                        |
-             Machine clients via API Gateway
-                        ^
-                        |
-                Worker (FX fetchers) ------
+Browser UI      --> Next.js web app --------------------> Postgres (RLS)
+Machine clients --> API Gateway (REST) --> SQL Lambda ------^
+MCP clients     --> API Gateway (HTTP) --> MCP Lambda ------^
+Auth service (OTP + OAuth) --------------------------------^
+Worker (FX fetchers) ---------------------------------------^
 ```
 
-Five components, one database:
+Six components, one database:
 
 1. **web** — Next.js app with UI dashboards and API routes
 2. **auth** — Email OTP login and agent bootstrap on the auth domain
 3. **sql-api** — AWS Lambda behind API Gateway for machine clients
-4. **worker** — Fetches daily exchange rates from ECB, CBR, and NBS
-5. **Postgres** — Single source of truth with row-level security
+4. **mcp** — Dedicated AWS Lambda and API Gateway HTTP API for the hosted MCP endpoint
+5. **worker** — Fetches daily exchange rates from ECB, CBR, and NBS
+6. **Postgres** — Single source of truth with row-level security
 
 ## Data Model
 
@@ -49,5 +45,7 @@ Two modes via `AUTH_MODE` env var:
 - `cognito` — Passwordless email OTP via AWS Cognito, open registration
 
 For machine clients, the public discovery entrypoint is `GET /v1/`. Agent onboarding uses email OTP on the auth domain, returns a long-lived ApiKey, and then runs SQL through the API Gateway machine API.
+
+MCP-capable clients connect separately to `https://mcp.expense-budget-tracker.com/mcp`. A dedicated API Gateway HTTP API and MCP Lambda handle that path, while interactive authorization uses browser OAuth on the auth domain.
 
 Each user gets an isolated workspace. RLS policies check membership on every query, including machine-facing SQL requests.
