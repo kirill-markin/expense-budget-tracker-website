@@ -4,7 +4,7 @@ description: Expense Budget Tracker 的隐私政策。
 slug: privacy
 sections:
   - type: legal_page
-    lastUpdated: 2026年3月
+    lastUpdated: 2026年8月
 ---
 ## 我们收集什么
 
@@ -14,9 +14,15 @@ sections:
 
 托管版 Expense Budget Tracker 服务的运营方为 SAMO DANNI EOOD（VAT: BG207395566）。Expense Budget Tracker 由 Kirill Markin 创建，[kirill-markin.com](https://kirill-markin.com/) 是与同一创建者及产品生态相关的个人网站。
 
+本政策适用于由我们运营的托管网站、应用、API 和远程 MCP 服务。自托管实例仍由其运营者控制。
+
 ## 我们如何使用你的数据
 
-你的财务数据仅用于提供服务。我们不会出售、共享你的数据，也不会将其用于广告。每个工作区都通过 Postgres 行级安全机制相互隔离。
+你的财务数据仅用于提供服务。我们不会出售你的数据，也不会将其用于广告。每个工作区都通过 Postgres 行级安全机制相互隔离。
+
+## 外部 AI 客户端
+
+当你通过 OAuth 将外部 AI 客户端连接到托管 MCP 服务时，由你选择该客户端并授权其访问权限。你要求该客户端检索或更改的财务数据也会由该客户端及其 AI 或模型提供商按照各自的条款和隐私政策处理。我们不控制这项独立处理。
 
 ## 数据存储
 

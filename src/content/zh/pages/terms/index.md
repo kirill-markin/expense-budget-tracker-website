@@ -4,11 +4,11 @@ description: Expense Budget Tracker 的服务条款。
 slug: terms
 sections:
   - type: legal_page
-    lastUpdated: 2026年3月
+    lastUpdated: 2026年8月
 ---
 ## 服务
 
-Expense Budget Tracker 是一款开源个人财务工具。测试阶段内，云端版本按“现状”免费提供。
+Expense Budget Tracker 是一款开源个人财务工具。托管网站、应用、API 和 MCP 服务在测试阶段内按“现状”免费提供。
 
 ## 服务提供方
 
@@ -17,6 +17,10 @@ Expense Budget Tracker 是一款开源个人财务工具。测试阶段内，云
 ## 你的数据
 
 你的数据归你所有。我们不会主张对你输入的财务信息享有任何权利。你可以随时导出或删除自己的数据。
+
+## 外部 AI 客户端
+
+当你通过 OAuth 授权外部 AI 客户端使用 MCP 服务时，你需要为所选客户端、授予的访问权限以及在依赖其输出或应用更改前对输出进行审核负责。该客户端及其模型提供商会按照各自条款处理你请求的数据。我们不控制外部客户端的运行或输出，也不对此负责。
 
 ## 使用规范
 
