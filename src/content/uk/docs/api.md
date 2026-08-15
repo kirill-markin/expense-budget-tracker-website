@@ -16,6 +16,8 @@ Expense Budget Tracker надає один публічний API для маш�
 
 Усі запити проходять через той самий механізм Postgres Row Level Security, що й вебзастосунок.
 
+Якщо ваш клієнт підтримує MCP, скористайтеся розміщеним [MCP-конектором](/uk/docs/mcp-connector/) за адресою `https://mcp.expense-budget-tracker.com/mcp` та авторизуйте його через OAuth у браузері. Ця сторінка описує окреме підключення через Agent API і прямий HTTP-контракт із довготривалим `ApiKey`.
+
 ## Точка входу, вихідний код і runtime-схема
 
 Починайте з цієї адреси:
@@ -27,7 +29,7 @@ Expense Budget Tracker надає один публічний API для маш�
 - `GET /v1/schema`
 - `GET /v1/openapi.json` і `GET /v1/swagger.json` як адреси сумісності, що повідомляють про відсутність OpenAPI та спрямовують клієнта до discovery і вихідного коду
 
-Використовуйте `schema`, коли потрібен точний перелік дозволених таблиць, подань і стовпців, доступних через `/v1/sql`.
+Використовуйте `schema`, коли потрібен точний перелік дозволених таблиць, подань і стовпців, доступних через `/v1/sql/query`, `/v1/sql/execute` і сумісний маршрут `/v1/sql`.
 
 ## Підключення AI-агента
 
@@ -48,7 +50,7 @@ Expense Budget Tracker надає один публічний API для маш�
 11. За потреби створіть робочий простір через `POST https://api.expense-budget-tracker.com/v1/workspaces`
 12. `POST https://api.expense-budget-tracker.com/v1/workspaces/{workspaceId}/select`
 13. `GET https://api.expense-budget-tracker.com/v1/schema`
-14. Виконуйте SQL через `POST https://api.expense-budget-tracker.com/v1/sql`
+14. Читайте дані через `POST https://api.expense-budget-tracker.com/v1/sql/query`, а схвалені зміни надсилайте через `POST https://api.expense-budget-tracker.com/v1/sql/execute`
 
 ### Заголовок автентифікації
 
@@ -57,7 +59,7 @@ Expense Budget Tracker надає один публічний API для маш�
 ### Вибір робочого простору
 
 - `POST /v1/workspaces/{workspaceId}/select` зберігає вибраний робочий простір за замовчуванням для цього API-ключа
-- після цього у викликах `/v1/sql` можна не передавати `X-Workspace-Id`
+- після цього у викликах `/v1/sql/query`, `/v1/sql/execute` і сумісного `/v1/sql` можна не передавати `X-Workspace-Id`
 - `X-Workspace-Id: <workspaceId>` усе одно підтримується, якщо потрібно тимчасово перевизначити збережений робочий простір для одного запиту
 - якщо в користувача є лише один робочий простір і для ключа ще не збережено вибір, API автоматично збереже й використає саме його
 
@@ -72,7 +74,7 @@ Expense Budget Tracker надає один публічний API для маш�
 Передавайте ключ у заголовку `Authorization` зі схемою `ApiKey`:
 
 ```bash
-curl -X POST https://api.expense-budget-tracker.com/v1/sql \
+curl -X POST https://api.expense-budget-tracker.com/v1/sql/query \
   -H "Authorization: ApiKey ebta_your_key_here" \
   -H "X-Workspace-Id: workspace-id" \
   -H "Content-Type: application/json" \
@@ -93,23 +95,21 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 - `POST /v1/workspaces` — створити робочий простір
 - `POST /v1/workspaces/{workspaceId}/select` — зберегти робочий простір за замовчуванням для цього ключа
 - `GET /v1/schema` — перевірити, які таблиці, подання й стовпці доступні для SQL
-- `POST /v1/sql` — виконати один обмежений SQL-оператор
+- `POST /v1/sql/query` — виконати один оператор `SELECT` або `WITH ... SELECT` лише для читання
+- `POST /v1/sql/execute` — виконати один схвалений оператор `INSERT`, `UPDATE` або `DELETE`
+- `POST /v1/sql` — сумісний маршрут для атомарних сценаріїв із кількох операторів
 
 ## Правила для SQL
 
-`POST /v1/sql` приймає рівно один SQL-оператор на запит.
+Основні маршрути навмисно розділяють читання і запис:
 
-Дозволені типи операторів:
-
-- `SELECT`
-- `WITH`
-- `INSERT`
-- `UPDATE`
-- `DELETE`
+- `POST /v1/sql/query` приймає рівно один оператор лише для читання: `SELECT` або `WITH ... SELECT`
+- `POST /v1/sql/execute` приймає рівно одну зміну `INSERT`, `UPDATE` або `DELETE`, включно з підтримуваними формами `WITH`
+- сумісний `POST /v1/sql` приймає обмежені сценарії з кількох операторів і застосовує їх атомарно; використовуйте його лише тоді, коли потрібна така атомарність
 
 Заблоковані або відхилені конструкції:
 
-- кілька операторів в одному запиті
+- кілька операторів на основних маршрутах `/v1/sql/query` і `/v1/sql/execute`
 - DDL-команди, як-от `CREATE`, `DROP` і `ALTER`
 - обгортки транзакцій, як-от `BEGIN`, `COMMIT` і `ROLLBACK`
 - `set_config()`
@@ -122,17 +122,18 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 Наразі доступні такі таблиці й подання:
 
 - `ledger_entries`
-- `accounts`
 - `budget_lines`
-- `budget_comments`
 - `workspace_settings`
 - `account_metadata`
-- `exchange_rates`
+- `accounts` (лише читання)
+- `fx_rates_raw` (лише читання)
+- `fx_rates_daily` (лише читання)
 
 ## Обмеження
 
-- не більше 100 рядків у відповіді
-- тайм-аут виконання оператора 30 секунд
+- не більше 100 повернутих рядків на запит
+- не більше 100 змінених рядків на оператор мутації та на запит
+- загальний ліміт часу SQL-запиту — 25 секунд
 - до 10 запитів за секунду і 10 000 запитів на день на один ключ
 
 ## Безпека

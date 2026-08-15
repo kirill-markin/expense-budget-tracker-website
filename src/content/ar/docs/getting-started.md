@@ -10,7 +10,8 @@ description: سجّل في النسخة السحابية أو هيّئ مثيل�
 1. افتح [app.expense-budget-tracker.com](https://app.expense-budget-tracker.com)
 2. سجّل باستخدام بريدك الإلكتروني عبر رمز تحقق يُرسَل إلى بريدك، من دون كلمة مرور
 3. ابدأ تتبّع مصروفاتك من داخل تطبيق الويب
-4. إذا أردت توصيل Claude Code أو Codex أو OpenClaw، فزوّد الوكيل بهذا الرابط: `https://api.expense-budget-tracker.com/v1/`
+4. للعميل الذي يدعم MCP، أضف `https://mcp.expense-budget-tracker.com/mcp` وصرّح بالوصول في المتصفح
+5. لوكيل طرفية أو عميل HTTP مباشر، ابدأ من `GET https://api.expense-budget-tracker.com/v1/`
 
 لا تحتاج إلى تثبيت أي شيء أو إعداد خادم. وتبقى بياناتك معزولة داخل Postgres بفضل سياسات الأمان على مستوى الصفوف الخاصة بكل مساحة عمل.
 
@@ -19,8 +20,8 @@ description: سجّل في النسخة السحابية أو هيّئ مثيل�
 يمكن استخدام الحساب المستضاف نفسه مع:
 
 - واجهة الويب على `https://app.expense-budget-tracker.com`
-- نقطة البدء المخصّصة للوكلاء عند `GET https://api.expense-budget-tracker.com/v1/`
-- عملاء HTTP المباشرين باستخدام `Authorization: ApiKey <key>`
+- [موصّل MCP](/ar/docs/mcp-connector/) المستضاف على `https://mcp.expense-budget-tracker.com/mcp` مع التصريح عبر OAuth في المتصفح
+- [إعداد Agent API](/docs/agent-setup/) بدءًا من `GET https://api.expense-budget-tracker.com/v1/`، ثم طلبات HTTP مباشرة باستخدام `Authorization: ApiKey <key>`
 
 ## الاستضافة الذاتية
 

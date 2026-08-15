@@ -16,6 +16,8 @@ You can use that same surface in two ways:
 
 All requests use the same Postgres Row Level Security enforcement as the web app.
 
+If your client speaks MCP, use the hosted [MCP connector](/docs/mcp-connector/) at `https://mcp.expense-budget-tracker.com/mcp` and authorize it through browser OAuth. This page covers the separate Agent API onboarding and direct HTTP contract that use a long-lived `ApiKey`.
+
 ## Discovery, source, and runtime schema
 
 Start here:
@@ -27,7 +29,7 @@ The discovery response tells agents how to bootstrap auth and what to call next.
 - `GET /v1/schema`
 - `GET /v1/openapi.json` and `GET /v1/swagger.json` as compatibility probes that report OpenAPI is unavailable and point clients back to discovery and source
 
-Use `schema` when you need the exact list of allowed relations and columns exposed by `/v1/sql`.
+Use `schema` when you need the exact list of allowed relations and columns exposed by `/v1/sql/query`, `/v1/sql/execute`, and compatibility `/v1/sql`.
 
 ## Agent-native onboarding
 
@@ -48,7 +50,7 @@ If you want Claude Code, Codex, OpenClaw, or another agent to connect itself, st
 11. Optionally `POST https://api.expense-budget-tracker.com/v1/workspaces` to create a workspace
 12. `POST https://api.expense-budget-tracker.com/v1/workspaces/{workspaceId}/select`
 13. `GET https://api.expense-budget-tracker.com/v1/schema`
-14. Execute SQL with `POST https://api.expense-budget-tracker.com/v1/sql`
+14. Read with `POST https://api.expense-budget-tracker.com/v1/sql/query` and send approved writes with `POST https://api.expense-budget-tracker.com/v1/sql/execute`
 
 ### Auth header
 
@@ -57,7 +59,7 @@ If you want Claude Code, Codex, OpenClaw, or another agent to connect itself, st
 ### Workspace handling
 
 - `POST /v1/workspaces/{workspaceId}/select` saves the default workspace for that API key
-- after a workspace is saved, `/v1/sql` can omit `X-Workspace-Id`
+- after a workspace is saved, `/v1/sql/query`, `/v1/sql/execute`, and compatibility `/v1/sql` can omit `X-Workspace-Id`
 - `X-Workspace-Id: <workspaceId>` is still supported when you want to override the saved workspace for one request
 - if the user has exactly one workspace and the key has no saved selection yet, the API auto-saves and uses that workspace
 
@@ -72,7 +74,7 @@ Scripts, cron jobs, dashboards, and custom apps can call the same API directly o
 Pass the key as an ApiKey auth header:
 
 ```bash
-curl -X POST https://api.expense-budget-tracker.com/v1/sql \
+curl -X POST https://api.expense-budget-tracker.com/v1/sql/query \
   -H "Authorization: ApiKey ebta_your_key_here" \
   -H "X-Workspace-Id: workspace-id" \
   -H "Content-Type: application/json" \
@@ -93,23 +95,21 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 - `POST /v1/workspaces` — create a workspace
 - `POST /v1/workspaces/{workspaceId}/select` — save the default workspace for this key
 - `GET /v1/schema` — inspect allowed relations and columns for SQL
-- `POST /v1/sql` — run one restricted SQL statement
+- `POST /v1/sql/query` — run one read-only `SELECT` or `WITH ... SELECT` statement
+- `POST /v1/sql/execute` — run one approved `INSERT`, `UPDATE`, or `DELETE` statement
+- `POST /v1/sql` — compatibility endpoint for atomic multi-statement scripts
 
 ## SQL policy
 
-`POST /v1/sql` accepts exactly one SQL statement per request.
+The primary endpoints deliberately separate reads from writes:
 
-Allowed statement types:
-
-- `SELECT`
-- `WITH`
-- `INSERT`
-- `UPDATE`
-- `DELETE`
+- `POST /v1/sql/query` accepts exactly one read-only `SELECT` or `WITH ... SELECT` statement
+- `POST /v1/sql/execute` accepts exactly one `INSERT`, `UPDATE`, or `DELETE` mutation, including supported `WITH` forms
+- compatibility `POST /v1/sql` accepts restricted multi-statement scripts and applies them atomically; use it only when that atomic script behavior is required
 
 Blocked or rejected patterns:
 
-- multiple statements
+- multiple statements on the primary `/v1/sql/query` and `/v1/sql/execute` endpoints
 - DDL such as `CREATE`, `DROP`, and `ALTER`
 - transaction wrappers such as `BEGIN`, `COMMIT`, and `ROLLBACK`
 - `set_config()`
@@ -122,17 +122,18 @@ The server also restricts which relations can be queried. Use `/v1/schema` to in
 Currently exposed relations:
 
 - `ledger_entries`
-- `accounts`
 - `budget_lines`
-- `budget_comments`
 - `workspace_settings`
 - `account_metadata`
-- `exchange_rates`
+- `accounts` (read-only)
+- `fx_rates_raw` (read-only)
+- `fx_rates_daily` (read-only)
 
 ## Limits
 
-- 100 rows per response
-- 30-second statement timeout
+- 100 returned rows per request
+- 100 affected rows per mutation statement and request
+- 25-second total SQL request deadline
 - 10 requests/second, 10,000 requests/day per key
 
 ## Security

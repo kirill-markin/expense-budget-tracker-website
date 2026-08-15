@@ -10,7 +10,8 @@ La forma más rápida de empezar es usar la versión alojada en la nube:
 1. Ve a [app.expense-budget-tracker.com](https://app.expense-budget-tracker.com)
 2. Regístrate con tu correo electrónico (OTP sin contraseña)
 3. Empieza a registrar tus gastos en la aplicación web
-4. Si quieres conectar Claude Code, Codex u OpenClaw, indícale al agente `https://api.expense-budget-tracker.com/v1/`
+4. Para un cliente compatible con MCP, añade `https://mcp.expense-budget-tracker.com/mcp` y autoriza el acceso en el navegador
+5. Para un agente de terminal o un cliente HTTP directo, empieza por `GET https://api.expense-budget-tracker.com/v1/`
 
 No necesitas instalar nada ni configurar servidores. Tus datos quedan aislados por espacio de trabajo mediante la seguridad a nivel de fila de Postgres.
 
@@ -19,8 +20,8 @@ No necesitas instalar nada ni configurar servidores. Tus datos quedan aislados p
 Con la misma cuenta de la versión alojada puedes usar:
 
 - la interfaz web en `https://app.expense-budget-tracker.com`
-- el acceso desde agentes mediante `GET https://api.expense-budget-tracker.com/v1/`
-- clientes HTTP directos mediante `Authorization: ApiKey <key>`
+- el [conector MCP](/es/docs/mcp-connector/) alojado en `https://mcp.expense-budget-tracker.com/mcp`, autorizado mediante OAuth en el navegador
+- la [configuración de la API para agentes](/es/docs/agent-setup/) desde `GET https://api.expense-budget-tracker.com/v1/`, seguida de solicitudes HTTP directas con `Authorization: ApiKey <key>`
 
 ## Autoalojamiento
 
