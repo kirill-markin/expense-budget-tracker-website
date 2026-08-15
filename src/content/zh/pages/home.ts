@@ -4,7 +4,7 @@ export const HOME_PAGE_CONTENT_ZH: PageContent = {
   locale: "zh",
   title: "Expense Budget Tracker - 开源个人财务与预算工具",
   description:
-    "开源的个人财务与预算工具，支持多币种、预算规划、财务看板，并为 Claude Code、Codex 和 OpenClaw 提供面向智能体的接入体验。",
+    "开源的个人财务与预算工具，支持多币种、预算规划、财务看板、托管 MCP 服务器和 Agent API。",
   slug: "home",
   sections: [
     {
@@ -24,10 +24,10 @@ export const HOME_PAGE_CONTENT_ZH: PageContent = {
         label: "查看 GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "先对这个发现入口发起 GET 请求：",
+      hintText: "连接支持 OAuth 的远程 MCP 客户端：",
       hintLink: {
-        label: "https://api.expense-budget-tracker.com/v1/",
-        href: "https://api.expense-budget-tracker.com/v1/",
+        label: "https://mcp.expense-budget-tracker.com/mcp",
+        href: "https://mcp.expense-budget-tracker.com/mcp",
       },
     },
     {
@@ -56,9 +56,9 @@ export const HOME_PAGE_CONTENT_ZH: PageContent = {
             "基于 Docker Compose 和 Postgres 即可部署，数据留在你自己的服务器上，不依赖第三方托管服务。",
         },
         {
-          title: "面向智能体的 API",
+          title: "MCP 与 Agent API",
           description:
-            "把同一个发现入口交给 Claude Code、Codex 或 OpenClaw 后，智能体会询问你的邮箱、校验 8 位验证码、为自己创建 ApiKey、加载账户上下文、选定工作区，然后开始处理任务。",
+            "连接支持 OAuth 的远程 MCP 客户端，即可使用必需的 expenses:read 权限查询财务数据。客户端还可请求可选的 expenses:write 权限；该权限会显示在 OAuth 同意屏幕上，修改数据时必须具备。对于命令行或直接使用 HTTP 的智能体，请先 GET https://api.expense-budget-tracker.com/v1/，再通过 ApiKey 使用 Agent API。",
         },
         {
           title: "工作区隔离",
