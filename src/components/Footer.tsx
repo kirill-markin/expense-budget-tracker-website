@@ -64,6 +64,9 @@ export const Footer = ({
           </div>
           <div className={styles.column}>
             <h3>{messages.footer.legalTitle}</h3>
+            <Link href={getLocalizedPath(locale, "/support/")}>
+              {messages.footer.support}
+            </Link>
             <Link href={getLocalizedPath(locale, "/privacy/")}>
               {messages.footer.privacyPolicy}
             </Link>
