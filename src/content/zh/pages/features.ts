@@ -4,7 +4,7 @@ export const FEATURES_PAGE_CONTENT_ZH: PageContent = {
   locale: "zh",
   title: "功能",
   description:
-    "支持多币种记账、预算规划、财务看板、智能体接入、API 访问、自托管与工作区隔离。",
+    "支持多币种记账、预算规划、财务看板、托管 MCP 访问、Agent API、自托管与工作区隔离。",
   slug: "features",
   sections: [
     {
@@ -33,14 +33,14 @@ export const FEATURES_PAGE_CONTENT_ZH: PageContent = {
             "内置支出结构、余额走势和汇率影响分析等可视化内容，无需再接入第三方 BI 工具。",
         },
         {
-          title: "SQL API",
+          title: "Agent API",
           description:
-            "通过 API Gateway 暴露 SQL API，并使用 `ApiKey` 完成鉴权。你可以执行受限 SQL，同时继续受完整的 RLS 约束保护；默认沿用已保存的工作区，也可通过 `X-Workspace-Id` 临时覆盖，并保留速率限制与完整审计记录。",
+            "这是面向命令行或直接使用 HTTP 的智能体的独立接入方式。先 GET https://api.expense-budget-tracker.com/v1/，再通过 ApiKey 认证的 Agent API 执行受限 SQL，并继续获得 RLS、工作区选择、速率限制和审计保护。",
         },
         {
-          title: "智能体接入",
+          title: "托管 MCP 服务器",
           description:
-            "把 https://api.expense-budget-tracker.com/v1/ 交给 Claude Code、Codex 或 OpenClaw 即可开始。智能体会读取发现文档，向你确认邮箱和 8 位验证码，为自己建立连接、保存返回的 API 密钥、选定默认工作区，然后继续通过该 API 自主完成后续操作。",
+            "支持 OAuth 的远程 MCP 客户端可连接 https://mcp.expense-budget-tracker.com/mcp，并凭必需的 expenses:read 权限查询财务数据。客户端还可请求可选的 expenses:write 权限；该权限会显示在 OAuth 同意屏幕上，修改数据时必须具备。",
         },
         {
           title: "AI 聊天",

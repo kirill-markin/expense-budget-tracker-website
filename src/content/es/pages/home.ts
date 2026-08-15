@@ -4,7 +4,7 @@ export const HOME_PAGE_CONTENT_ES: PageContent = {
   locale: "es",
   title: "Expense Budget Tracker - Finanzas personales de código abierto",
   description:
-    "Gestor de gastos y presupuestos de código abierto con soporte multidivisa, paneles financieros e integración nativa con agentes como Claude Code, Codex y OpenClaw.",
+    "Gestor de gastos y presupuestos de código abierto con soporte multidivisa, paneles financieros, un servidor MCP alojado y una API para agentes.",
   slug: "home",
   sections: [
     {
@@ -24,10 +24,10 @@ export const HOME_PAGE_CONTENT_ES: PageContent = {
         label: "Ver en GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "Empieza con una petición GET a esta URL de descubrimiento:",
+      hintText: "Conecta tu cliente MCP remoto compatible con OAuth:",
       hintLink: {
-        label: "https://api.expense-budget-tracker.com/v1/",
-        href: "https://api.expense-budget-tracker.com/v1/",
+        label: "https://mcp.expense-budget-tracker.com/mcp",
+        href: "https://mcp.expense-budget-tracker.com/mcp",
       },
     },
     {
@@ -57,9 +57,9 @@ export const HOME_PAGE_CONTENT_ES: PageContent = {
             "Despliegue con Docker Compose y Postgres. Tus datos permanecen en tu servidor, sin dependencias de terceros.",
         },
         {
-          title: "API nativa para agentes",
+          title: "MCP y API para agentes",
           description:
-            "Comparte una única URL de descubrimiento con Claude Code, Codex u OpenClaw. El agente te pedirá el correo, verificará el código de 8 dígitos, generará su propia ApiKey, cargará el contexto de tus cuentas, seleccionará un espacio de trabajo y se pondrá a trabajar.",
+            "Conecta un cliente MCP remoto compatible con OAuth para consultar tus datos financieros con el permiso obligatorio expenses:read. El cliente también puede solicitar el permiso opcional expenses:write, que aparece en la pantalla de consentimiento OAuth y es necesario para modificar datos. Para agentes de CLI o HTTP directo, empieza con GET https://api.expense-budget-tracker.com/v1/ y usa la API para agentes con una ApiKey.",
         },
         {
           title: "Aislamiento por espacio de trabajo",
