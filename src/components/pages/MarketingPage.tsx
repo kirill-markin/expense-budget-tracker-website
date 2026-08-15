@@ -282,6 +282,24 @@ async function renderLegalPage(
   );
 }
 
+async function renderSimpleMarkdownPage(
+  slug: Extract<MarketingPageSlug, "support">,
+  locale: AppLocale
+): Promise<React.JSX.Element> {
+  const pageContent = readPageContent(slug, locale);
+  const contentHtml = await renderMarkdownToHtml(pageContent.body);
+
+  return (
+    <div className={legalStyles.container}>
+      <h1 className={legalStyles.title}>{pageContent.title}</h1>
+      <div
+        className={legalStyles.content}
+        dangerouslySetInnerHTML={{ __html: contentHtml }}
+      />
+    </div>
+  );
+}
+
 export function getMarketingPageMetadata(
   locale: AppLocale,
   slug: MarketingPageSlug
@@ -315,6 +333,9 @@ export async function MarketingPage(
       break;
     case "pricing":
       pagePromise = Promise.resolve(renderPricingPage(props.locale));
+      break;
+    case "support":
+      pagePromise = renderSimpleMarkdownPage(props.slug, props.locale);
       break;
     case "privacy":
     case "terms":
