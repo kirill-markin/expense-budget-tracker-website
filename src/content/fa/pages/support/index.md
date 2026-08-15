@@ -31,4 +31,4 @@ sections:
 
 ## پیش از گزارش مشکل MCP
 
-مطمئن شوید کلاینت شما MCP راه‌دور روی Streamable HTTP، جریان Authorization Code در OAuth 2.1 همراه با PKCE و Dynamic Client Registration را پشتیبانی می‌کند. endpoint واحد را دقیقاً مطابق [راهنمای MCP](/fa/docs/mcp/) وارد کنید و پس از اتصال دوباره فقط یک بار دیگر تلاش کنید. اگر مشکل باقی ماند، اطلاعات پاک‌سازی‌شدهٔ بالا را ارسال کنید.
+مطمئن شوید کلاینت شما MCP راه‌دور روی Streamable HTTP، جریان Authorization Code در OAuth 2.1 همراه با PKCE و Dynamic Client Registration را پشتیبانی می‌کند. endpoint واحد را دقیقاً مطابق [راهنمای MCP](/fa/docs/mcp-connector/) وارد کنید و پس از اتصال دوباره فقط یک بار دیگر تلاش کنید. اگر مشکل باقی ماند، اطلاعات پاک‌سازی‌شدهٔ بالا را ارسال کنید.

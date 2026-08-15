@@ -31,4 +31,4 @@ Use the [GitHub issue tracker](https://github.com/kirill-markin/expense-budget-t
 
 ## Before Reporting An MCP Problem
 
-Confirm that your client supports remote MCP over Streamable HTTP, OAuth 2.1 authorization code with PKCE, and Dynamic Client Registration. Use the universal endpoint exactly as shown in the [MCP guide](/docs/mcp/), then retry once after reconnecting. If the problem remains, send the sanitized details listed above.
+Confirm that your client supports remote MCP over Streamable HTTP, OAuth 2.1 authorization code with PKCE, and Dynamic Client Registration. Use the universal endpoint exactly as shown in the [MCP guide](/docs/mcp-connector/), then retry once after reconnecting. If the problem remains, send the sanitized details listed above.

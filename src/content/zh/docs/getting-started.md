@@ -10,7 +10,8 @@ description: 几分钟内即可注册云端版本，或自行部署一个实例�
 1. 打开 [app.expense-budget-tracker.com](https://app.expense-budget-tracker.com)
 2. 使用你的邮箱注册（通过免密码的一次性验证码，即 OTP）
 3. 在网页版应用中开始记录支出
-4. 如果你想连接 Claude Code、Codex 或 OpenClaw，请将 `https://api.expense-budget-tracker.com/v1/` 作为 API 地址提供给智能体
+4. 对于支持 MCP 的客户端，请添加 `https://mcp.expense-budget-tracker.com/mcp`，并在浏览器中授权访问
+5. 对于终端智能体或直接 HTTP 客户端，请从 `GET https://api.expense-budget-tracker.com/v1/` 开始
 
 无需安装，也不用配置服务器。你的数据会通过 Postgres 中基于工作区的行级安全策略相互隔离。
 
@@ -19,8 +20,8 @@ description: 几分钟内即可注册云端版本，或自行部署一个实例�
 同一个托管账户可同时用于以下入口：
 
 - 网页界面：`https://app.expense-budget-tracker.com`
-- 面向智能体的原生接入入口：`GET https://api.expense-budget-tracker.com/v1/`
-- 使用 `Authorization: ApiKey <key>` 的直接 HTTP 客户端
+- 托管在 `https://mcp.expense-budget-tracker.com/mcp` 的 [MCP 连接器](/zh/docs/mcp-connector/)，通过浏览器 OAuth 授权
+- 从 `GET https://api.expense-budget-tracker.com/v1/` 开始的 [Agent API 设置](/docs/agent-setup/)，随后使用 `Authorization: ApiKey <key>` 发起直接 HTTP 请求
 
 ## 自托管
 

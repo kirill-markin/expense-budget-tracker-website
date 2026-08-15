@@ -46,4 +46,13 @@ Docker Compose 会重新构建各个服务，并通过 `migrate` 容器再次执
 
 ## AWS 部署
 
-如果你计划在 AWS 上进行生产环境部署（ECS Fargate + RDS + ALB + Cognito），请参阅 [AWS CDK 指南](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws)。
+生产 CDK 栈使用 ECS Fargate、RDS、ALB、Cognito、API Gateway 和 Lambda，并公开以下应用域名：
+
+- `app.<domain>` — ALB 后方运行在 ECS Fargate 上的 Web 应用
+- `auth.<domain>` — ALB 后方的 OTP 与 OAuth 服务
+- `api.<domain>/v1/*` — 通过 API Gateway 和 Lambda 提供的机器 SQL REST API
+- `mcp.<domain>/mcp` — 通过专用 API Gateway HTTP API 和 MCP Lambda 提供的托管 MCP 服务
+
+MCP 自定义域名需要一张覆盖准确域名 `mcp.<domain>` 的公共 ACM 证书。请保留用于续期的 DNS 验证 CNAME，将证书 ARN 提供给 CDK 部署和 CI，并与其他公共域名一起创建 `mcp.*` DNS 记录。
+
+有关受支持的部署顺序和设置脚本，请参阅仓库中的[部署概览](https://github.com/kirill-markin/expense-budget-tracker/blob/main/docs/deployment.md)和 [AWS CDK 指南](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md)。

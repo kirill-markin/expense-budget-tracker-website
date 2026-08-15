@@ -16,6 +16,8 @@ Expense Budget Tracker חושפת ממשק API ציבורי אחד לגישה ת
 
 כל הבקשות נאכפות באמצעות אותה אבטחה ברמת שורה (RLS) של Postgres שבה משתמשת גם אפליקציית הווב.
 
+אם הלקוח שלכם תומך ב-MCP, השתמשו ב-[מחבר ה-MCP](/he/docs/mcp-connector/) המתארח ב-`https://mcp.expense-budget-tracker.com/mcp` ואשרו אותו דרך OAuth בדפדפן. דף זה מתעד את מסלול ה-Agent API הנפרד ואת חוזה ה-HTTP הישיר, המשתמשים ב-`ApiKey` ארוך-טווח.
+
 ## גילוי, קוד מקור וסכמת זמן ריצה
 
 התחילו כאן:
@@ -27,7 +29,7 @@ Expense Budget Tracker חושפת ממשק API ציבורי אחד לגישה ת
 - `GET /v1/schema`
 - `GET /v1/openapi.json` ו-`GET /v1/swagger.json` כנקודות בדיקת תאימות שמסבירות ש-OpenAPI אינו זמין ומפנות את הלקוח חזרה לגילוי ולקוד המקור
 
-השתמשו ב-`schema` כשאתם צריכים את הרשימה המדויקת של הטבלאות והעמודות שמותר לגשת אליהן דרך `/v1/sql`.
+השתמשו ב-`schema` כשאתם צריכים את הרשימה המדויקת של הטבלאות והעמודות שמותר לגשת אליהן דרך `/v1/sql/query`, דרך `/v1/sql/execute` ודרך נקודת התאימות `/v1/sql`.
 
 ## חיבור עצמי של סוכנים
 
@@ -48,7 +50,7 @@ Expense Budget Tracker חושפת ממשק API ציבורי אחד לגישה ת
 11. לפי הצורך, `POST https://api.expense-budget-tracker.com/v1/workspaces` כדי ליצור סביבת עבודה
 12. `POST https://api.expense-budget-tracker.com/v1/workspaces/{workspaceId}/select`
 13. `GET https://api.expense-budget-tracker.com/v1/schema`
-14. הריצו SQL עם `POST https://api.expense-budget-tracker.com/v1/sql`
+14. קראו נתונים עם `POST https://api.expense-budget-tracker.com/v1/sql/query` ושלחו כתיבות שאושרו עם `POST https://api.expense-budget-tracker.com/v1/sql/execute`
 
 ### כותרת האימות
 
@@ -57,7 +59,7 @@ Expense Budget Tracker חושפת ממשק API ציבורי אחד לגישה ת
 ### עבודה עם סביבות עבודה
 
 - `POST /v1/workspaces/{workspaceId}/select` שומר את סביבת העבודה שמוגדרת כברירת מחדל עבור אותו מפתח API
-- אחרי שסביבת העבודה נשמרת, אפשר להשמיט את `X-Workspace-Id` ב-`/v1/sql`
+- אחרי שסביבת העבודה נשמרת, אפשר להשמיט את `X-Workspace-Id` ב-`/v1/sql/query`, ב-`/v1/sql/execute` ובנקודת התאימות `/v1/sql`
 - `X-Workspace-Id: <workspaceId>` עדיין נתמך אם תרצו לעקוף את סביבת העבודה השמורה בבקשה אחת
 - אם למשתמש יש בדיוק סביבת עבודה אחת, ועדיין לא נשמרה בחירה עבור המפתח, ה-API ישמור את הבחירה הזו אוטומטית וישתמש בה
 
@@ -72,7 +74,7 @@ Expense Budget Tracker חושפת ממשק API ציבורי אחד לגישה ת
 שלחו את המפתח בכותרת אימות מסוג `ApiKey`:
 
 ```bash
-curl -X POST https://api.expense-budget-tracker.com/v1/sql \
+curl -X POST https://api.expense-budget-tracker.com/v1/sql/query \
   -H "Authorization: ApiKey ebta_your_key_here" \
   -H "X-Workspace-Id: workspace-id" \
   -H "Content-Type: application/json" \
@@ -93,23 +95,21 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 - `POST /v1/workspaces` — יצירת סביבת עבודה
 - `POST /v1/workspaces/{workspaceId}/select` — שמירת סביבת העבודה שמוגדרת כברירת מחדל עבור המפתח הזה
 - `GET /v1/schema` — בדיקת הטבלאות והעמודות המותרות עבור SQL
-- `POST /v1/sql` — הרצת משפט SQL מוגבל אחד
+- `POST /v1/sql/query` — הרצת משפט `SELECT` או `WITH ... SELECT` אחד לקריאה בלבד
+- `POST /v1/sql/execute` — הרצת משפט `INSERT`, `UPDATE` או `DELETE` מאושר אחד
+- `POST /v1/sql` — נקודת תאימות לסקריפטים אטומיים מרובי משפטים
 
 ## מדיניות SQL
 
-נקודת הקצה `POST /v1/sql` מקבלת משפט SQL אחד בלבד בכל בקשה.
+נקודות הקצה הראשיות מפרידות בכוונה בין קריאה לכתיבה:
 
-סוגי המשפטים המותרים:
-
-- `SELECT`
-- `WITH`
-- `INSERT`
-- `UPDATE`
-- `DELETE`
+- `POST /v1/sql/query` מקבלת משפט `SELECT` או `WITH ... SELECT` אחד לקריאה בלבד
+- `POST /v1/sql/execute` מקבלת פעולת שינוי אחת מסוג `INSERT`, `UPDATE` או `DELETE`, כולל צורות `WITH` נתמכות
+- נקודת התאימות `POST /v1/sql` מקבלת סקריפטים מוגבלים מרובי משפטים ומיישמת אותם באופן אטומי; השתמשו בה רק כשנדרשת ההתנהגות האטומית הזו
 
 דפוסים חסומים או דפוסים שיידחו:
 
-- כמה משפטים באותה בקשה
+- כמה משפטים בנקודות הקצה הראשיות `/v1/sql/query` ו-`/v1/sql/execute`
 - פקודות הגדרת מבנה (DDL) כמו `CREATE`, `DROP` ו-`ALTER`
 - עטיפות טרנזקציה כמו `BEGIN`, `COMMIT` ו-`ROLLBACK`
 - `set_config()`
@@ -122,17 +122,18 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 הטבלאות שנחשפות כרגע:
 
 - `ledger_entries`
-- `accounts`
 - `budget_lines`
-- `budget_comments`
 - `workspace_settings`
 - `account_metadata`
-- `exchange_rates`
+- `accounts` (קריאה בלבד)
+- `fx_rates_raw` (קריאה בלבד)
+- `fx_rates_daily` (קריאה בלבד)
 
 ## מגבלות
 
-- 100 שורות לכל תגובה
-- מגבלת זמן של 30 שניות לכל משפט
+- עד 100 שורות מוחזרות בכל בקשה
+- עד 100 שורות מושפעות בכל משפט שינוי ובכל בקשה
+- מגבלת זמן כוללת של 25 שניות לכל בקשת SQL
 - 10 בקשות לשנייה, 10,000 בקשות ליום לכל מפתח
 
 ## אבטחה

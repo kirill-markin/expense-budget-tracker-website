@@ -31,4 +31,4 @@ sections:
 
 ## 报告 MCP 问题前
 
-请确认客户端支持通过 Streamable HTTP 连接远程 MCP、带 PKCE 的 OAuth 2.1 授权码流程，以及动态客户端注册。严格按照 [MCP 指南](/zh/docs/mcp/)填写统一端点，重新连接后只重试一次。如果问题仍然存在，请发送上面列出的脱敏信息。
+请确认客户端支持通过 Streamable HTTP 连接远程 MCP、带 PKCE 的 OAuth 2.1 授权码流程，以及动态客户端注册。严格按照 [MCP 指南](/zh/docs/mcp-connector/)填写统一端点，重新连接后只重试一次。如果问题仍然存在，请发送上面列出的脱敏信息。

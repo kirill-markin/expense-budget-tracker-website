@@ -4,7 +4,7 @@ export const HOME_PAGE_CONTENT_FA: PageContent = {
   locale: "fa",
   title: "Expense Budget Tracker - نرم‌افزار متن‌باز مدیریت مالی شخصی",
   description:
-    "نرم‌افزار متن‌باز ثبت هزینه و مدیریت بودجه با پشتیبانی از چند ارز، داشبوردهای مالی و اتصال مستقیم به ایجنت‌ها در Claude Code، Codex و OpenClaw.",
+    "نرم‌افزار متن‌باز ثبت هزینه و مدیریت بودجه با پشتیبانی از چند ارز، داشبوردهای مالی، سرور میزبانی‌شده MCP و Agent API.",
   slug: "home",
   sections: [
     {
@@ -24,10 +24,10 @@ export const HOME_PAGE_CONTENT_FA: PageContent = {
         label: "مشاهده در GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "برای شروع، یک درخواست GET به این آدرس شناسایی API بفرستید:",
+      hintText: "کلاینت راه‌دور MCP سازگار با OAuth را متصل کنید:",
       hintLink: {
-        label: "https://api.expense-budget-tracker.com/v1/",
-        href: "https://api.expense-budget-tracker.com/v1/",
+        label: "https://mcp.expense-budget-tracker.com/mcp",
+        href: "https://mcp.expense-budget-tracker.com/mcp",
       },
     },
     {
@@ -57,9 +57,9 @@ export const HOME_PAGE_CONTENT_FA: PageContent = {
             "روی سرور خودتان با Docker Compose و Postgres اجرا می‌شود. داده‌ها نزد خودتان می‌ماند و به سرویس‌های شخص ثالث وابسته نمی‌شوید.",
         },
         {
-          title: "API بومی برای ایجنت‌ها",
+          title: "MCP و Agent API",
           description:
-            "فقط کافی است آدرس شناسایی API را به Claude Code، Codex یا OpenClaw بدهید. ایجنت ایمیل شما را می‌گیرد، کد ۸ رقمی را تایید می‌کند، ApiKey خودش را می‌سازد، حساب‌ها را بارگذاری می‌کند، فضای کاری مناسب را انتخاب می‌کند و کار را ادامه می‌دهد.",
+            "یک کلاینت راه‌دور MCP سازگار با OAuth را برای خواندن داده‌های مالی با مجوز الزامی expenses:read متصل کنید. کلاینت همچنین می‌تواند مجوز اختیاری expenses:write را درخواست کند؛ این مجوز در صفحه رضایت OAuth نمایش داده می‌شود و برای تغییر داده‌ها لازم است. برای ایجنت‌های خط فرمان یا HTTP مستقیم، با GET https://api.expense-budget-tracker.com/v1/ شروع کنید و از Agent API با ApiKey استفاده کنید.",
         },
         {
           title: "جداسازی فضای کاری",
