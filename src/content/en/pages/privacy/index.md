@@ -4,7 +4,7 @@ description: Privacy policy for Expense Budget Tracker.
 slug: privacy
 sections:
   - type: legal_page
-    lastUpdated: March 2026
+    lastUpdated: August 2026
 ---
 ## What We Collect
 
@@ -14,9 +14,15 @@ When you use the cloud version, we store the financial data you enter (transacti
 
 The hosted Expense Budget Tracker service is operated by SAMO DANNI EOOD (VAT: BG207395566). Expense Budget Tracker was created by Kirill Markin, and [kirill-markin.com](https://kirill-markin.com/) is the related personal website for the same creator and product ecosystem.
 
+This policy applies to the hosted website, app, API, and remote MCP service operated by us. Self-hosted instances remain under their operator's control.
+
 ## How We Use Your Data
 
-Your financial data is used solely to provide the service. We do not sell, share, or use your data for advertising. Each workspace is isolated via Postgres row-level security.
+Your financial data is used solely to provide the service. We do not sell your data or use it for advertising. Each workspace is isolated via Postgres row-level security.
+
+## External AI Clients
+
+When you connect an external AI client to the hosted MCP service using OAuth, you choose the client and authorize the access it receives. The financial data you ask that client to retrieve or change is also processed by the client and its AI or model provider under their own terms and privacy policies. We do not control that separate processing.
 
 ## Data Storage
 
