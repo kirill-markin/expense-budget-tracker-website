@@ -1,6 +1,7 @@
 export const DOC_SLUGS = [
   "getting-started",
   "agent-setup",
+  "mcp",
   "self-hosting",
   "api",
   "architecture",
