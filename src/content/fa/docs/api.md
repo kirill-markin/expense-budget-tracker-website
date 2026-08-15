@@ -16,6 +16,8 @@ Expense Budget Tracker برای دسترسی ماشینی یک API عمومی د
 
 همهٔ درخواست‌ها زیر همان قواعد Row Level Security در Postgres اجرا می‌شوند که برنامهٔ وب هم از آن‌ها پیروی می‌کند.
 
+اگر کلاینت شما از MCP پشتیبانی می‌کند، از [اتصال‌دهندهٔ MCP](/fa/docs/mcp-connector/) میزبانی‌شده در `https://mcp.expense-budget-tracker.com/mcp` استفاده کنید و آن را با OAuth در مرورگر مجاز کنید. این صفحه اتصال جداگانه از طریق Agent API و قرارداد HTTP مستقیم با `ApiKey` بلندمدت را توضیح می‌دهد.
+
 ## کشف، کد منبع و شِمای زمان اجرا
 
 نقطه شروع اینجاست:
@@ -27,7 +29,7 @@ Expense Budget Tracker برای دسترسی ماشینی یک API عمومی د
 - `GET /v1/schema`
 - `GET /v1/openapi.json` و `GET /v1/swagger.json` به‌عنوان مسیرهای بررسی سازگاری که اعلام می‌کنند OpenAPI در دسترس نیست و کلاینت را به سند کشف و کد منبع هدایت می‌کنند
 
-هر زمان به فهرست دقیق رابطه‌ها و ستون‌هایی نیاز داشتید که از طریق `/v1/sql` در دسترس‌اند، `schema` را بررسی کنید.
+هر زمان به فهرست دقیق رابطه‌ها و ستون‌هایی نیاز داشتید که از طریق `/v1/sql/query`، `/v1/sql/execute` و مسیر سازگاری `/v1/sql` در دسترس‌اند، `schema` را بررسی کنید.
 
 ## راه‌اندازی بومیِ عامل
 
@@ -48,7 +50,7 @@ Expense Budget Tracker برای دسترسی ماشینی یک API عمومی د
 11. در صورت نیاز با `POST https://api.expense-budget-tracker.com/v1/workspaces` یک فضای کاری بسازید
 12. `POST https://api.expense-budget-tracker.com/v1/workspaces/{workspaceId}/select`
 13. `GET https://api.expense-budget-tracker.com/v1/schema`
-14. SQL را با `POST https://api.expense-budget-tracker.com/v1/sql` اجرا کنید
+14. داده‌ها را با `POST https://api.expense-budget-tracker.com/v1/sql/query` بخوانید و نوشتن‌های تأییدشده را با `POST https://api.expense-budget-tracker.com/v1/sql/execute` ارسال کنید
 
 ### هدر احراز هویت
 
@@ -57,7 +59,7 @@ Expense Budget Tracker برای دسترسی ماشینی یک API عمومی د
 ### مدیریت فضای کاری
 
 - `POST /v1/workspaces/{workspaceId}/select` فضای کاریِ پیش‌فرض را برای همان کلید API ذخیره می‌کند
-- وقتی فضای کاری ذخیره شد، دیگر لازم نیست در فراخوانی‌های `/v1/sql` هدر `X-Workspace-Id` را بفرستید
+- وقتی فضای کاری ذخیره شد، دیگر لازم نیست در فراخوانی‌های `/v1/sql/query`، `/v1/sql/execute` و مسیر سازگاری `/v1/sql` هدر `X-Workspace-Id` را بفرستید
 - اگر بخواهید فقط برای یک درخواست، فضای کاریِ ذخیره‌شده را نادیده بگیرید، همچنان می‌توانید از `X-Workspace-Id: <workspaceId>` استفاده کنید
 - اگر کاربر دقیقاً یک فضای کاری داشته باشد و این کلید هنوز انتخاب ذخیره‌شده‌ای نداشته باشد، API همان فضای کاری را به‌طور خودکار ذخیره و استفاده می‌کند
 
@@ -72,7 +74,7 @@ Expense Budget Tracker برای دسترسی ماشینی یک API عمومی د
 کلید را در هدر احراز هویت `ApiKey` بفرستید:
 
 ```bash
-curl -X POST https://api.expense-budget-tracker.com/v1/sql \
+curl -X POST https://api.expense-budget-tracker.com/v1/sql/query \
   -H "Authorization: ApiKey ebta_your_key_here" \
   -H "X-Workspace-Id: workspace-id" \
   -H "Content-Type: application/json" \
@@ -93,23 +95,21 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 - `POST /v1/workspaces` — ایجاد یک فضای کاری
 - `POST /v1/workspaces/{workspaceId}/select` — ذخیرهٔ فضای کاریِ پیش‌فرض برای این کلید
 - `GET /v1/schema` — بررسی رابطه‌ها و ستون‌های مجاز برای اجرای SQL
-- `POST /v1/sql` — اجرای یک دستور محدودِ SQL
+- `POST /v1/sql/query` — اجرای یک دستور فقط‌خواندنی `SELECT` یا `WITH ... SELECT`
+- `POST /v1/sql/execute` — اجرای یک دستور تأییدشدهٔ `INSERT`، `UPDATE` یا `DELETE`
+- `POST /v1/sql` — مسیر سازگاری برای اسکریپت‌های اتمیک چنددستوری
 
 ## سیاست SQL
 
-`POST /v1/sql` در هر درخواست دقیقاً یک دستور SQL را می‌پذیرد.
+مسیرهای اصلی، خواندن و نوشتن را عمداً از هم جدا می‌کنند:
 
-دستورهای مجاز:
-
-- `SELECT`
-- `WITH`
-- `INSERT`
-- `UPDATE`
-- `DELETE`
+- `POST /v1/sql/query` دقیقاً یک دستور فقط‌خواندنی `SELECT` یا `WITH ... SELECT` را می‌پذیرد
+- `POST /v1/sql/execute` دقیقاً یک تغییر `INSERT`، `UPDATE` یا `DELETE`، از جمله شکل‌های پشتیبانی‌شدهٔ `WITH` را می‌پذیرد
+- مسیر سازگاری `POST /v1/sql` اسکریپت‌های محدود چنددستوری را می‌پذیرد و به‌صورت اتمیک اعمال می‌کند؛ فقط زمانی از آن استفاده کنید که به این رفتار اتمیک نیاز دارید
 
 الگوهای مسدود یا ردشده:
 
-- چند دستور در یک درخواست
+- چند دستور در مسیرهای اصلی `/v1/sql/query` و `/v1/sql/execute`
 - DDLهایی مثل `CREATE`، `DROP` و `ALTER`
 - دستورهای تراکنشی مثل `BEGIN`، `COMMIT` و `ROLLBACK`
 - `set_config()`
@@ -122,17 +122,18 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 رابطه‌های در دسترس در حال حاضر:
 
 - `ledger_entries`
-- `accounts`
 - `budget_lines`
-- `budget_comments`
 - `workspace_settings`
 - `account_metadata`
-- `exchange_rates`
+- `accounts` (فقط‌خواندنی)
+- `fx_rates_raw` (فقط‌خواندنی)
+- `fx_rates_daily` (فقط‌خواندنی)
 
 ## محدودیت‌ها
 
-- ۱۰۰ ردیف در هر پاسخ
-- مهلت اجرای هر دستور ۳۰ ثانیه است
+- حداکثر ۱۰۰ ردیف بازگردانده‌شده در هر درخواست
+- حداکثر ۱۰۰ ردیف تحت تأثیر در هر دستور تغییر و هر درخواست
+- مهلت کل هر درخواست SQL برابر با ۲۵ ثانیه است
 - ۱۰ درخواست در ثانیه و ۱۰٬۰۰۰ درخواست در روز برای هر کلید
 
 ## امنیت

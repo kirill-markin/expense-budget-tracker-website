@@ -46,4 +46,13 @@ Docker Compose rebuilds the services and reruns migrations through the `migrate`
 
 ## AWS Deployment
 
-For production deployment on AWS (ECS Fargate + RDS + ALB + Cognito), see the [AWS CDK guide](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).
+The production CDK stack uses ECS Fargate, RDS, ALB, Cognito, API Gateway, and Lambda. Its public application domains are:
+
+- `app.<domain>` — web app on ECS Fargate behind the ALB
+- `auth.<domain>` — OTP and OAuth service behind the ALB
+- `api.<domain>/v1/*` — machine SQL REST API through API Gateway and Lambda
+- `mcp.<domain>/mcp` — hosted MCP service through a dedicated API Gateway HTTP API and MCP Lambda
+
+The MCP custom domain requires a public ACM certificate for the exact `mcp.<domain>` name. Keep its DNS validation CNAME for renewal, provide the certificate ARN to the CDK deployment and CI, and create the `mcp.*` DNS record alongside the other public domains.
+
+For the supported sequence and setup scripts, see the repository [deployment overview](https://github.com/kirill-markin/expense-budget-tracker/blob/main/docs/deployment.md) and [AWS CDK guide](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md).

@@ -16,6 +16,8 @@ description: مرجع تهيئة الوكلاء وواجهة SQL للوصول ا
 
 وتخضع جميع الطلبات لسياسات Postgres نفسها الخاصة بالأمان على مستوى الصفوف (`Row Level Security`) تمامًا كما في تطبيق الويب.
 
+إذا كان عميلك يدعم MCP، فاستخدم [موصّل MCP](/ar/docs/mcp-connector/) المستضاف على `https://mcp.expense-budget-tracker.com/mcp` وصرّح له بالوصول عبر OAuth في المتصفح. توثّق هذه الصفحة مسار Agent API المنفصل وعقد HTTP المباشر اللذين يستخدمان `ApiKey` طويل الأمد.
+
 ## الاكتشاف والمصدر ومخطط وقت التشغيل
 
 ابدأ من هنا:
@@ -27,7 +29,7 @@ description: مرجع تهيئة الوكلاء وواجهة SQL للوصول ا
 - `GET /v1/schema`
 - `GET /v1/openapi.json` و`GET /v1/swagger.json` كنقطتَي فحص للتوافق توضّحان أن OpenAPI غير متاح وتعيدان العميل إلى الاكتشاف والمصدر
 
-استخدم `schema` عندما تحتاج إلى القائمة الدقيقة للعلاقات والأعمدة التي يتيحها `/v1/sql`.
+استخدم `schema` عندما تحتاج إلى القائمة الدقيقة للعلاقات والأعمدة التي تتيحها `/v1/sql/query` و`/v1/sql/execute` ونقطة التوافق `/v1/sql`.
 
 ## التهيئة المخصّصة للوكلاء
 
@@ -48,7 +50,7 @@ description: مرجع تهيئة الوكلاء وواجهة SQL للوصول ا
 11. اختياريًا: `POST https://api.expense-budget-tracker.com/v1/workspaces` لإنشاء مساحة عمل
 12. `POST https://api.expense-budget-tracker.com/v1/workspaces/{workspaceId}/select`
 13. `GET https://api.expense-budget-tracker.com/v1/schema`
-14. نفّذ SQL عبر `POST https://api.expense-budget-tracker.com/v1/sql`
+14. اقرأ البيانات عبر `POST https://api.expense-budget-tracker.com/v1/sql/query` وأرسل عمليات الكتابة الموافق عليها عبر `POST https://api.expense-budget-tracker.com/v1/sql/execute`
 
 ### ترويسة المصادقة
 
@@ -57,7 +59,7 @@ description: مرجع تهيئة الوكلاء وواجهة SQL للوصول ا
 ### التعامل مع مساحة العمل
 
 - يحفظ `POST /v1/workspaces/{workspaceId}/select` مساحة العمل الافتراضية لهذا المفتاح
-- بعد حفظ مساحة العمل، يمكن استدعاء `/v1/sql` من دون `X-Workspace-Id`
+- بعد حفظ مساحة العمل، يمكن استدعاء `/v1/sql/query` و`/v1/sql/execute` ونقطة التوافق `/v1/sql` من دون `X-Workspace-Id`
 - يظل `X-Workspace-Id: <workspaceId>` مدعومًا إذا أردت تجاوز مساحة العمل المحفوظة لطلب واحد
 - إذا لم يكن للمفتاح اختيار محفوظ بعد وكان لدى المستخدم مساحة عمل واحدة فقط، فستحفظ الواجهة تلك المساحة تلقائيًا وتستخدمها
 
@@ -72,7 +74,7 @@ description: مرجع تهيئة الوكلاء وواجهة SQL للوصول ا
 أرسل المفتاح ضمن ترويسة مصادقة من نوع `ApiKey`:
 
 ```bash
-curl -X POST https://api.expense-budget-tracker.com/v1/sql \
+curl -X POST https://api.expense-budget-tracker.com/v1/sql/query \
   -H "Authorization: ApiKey ebta_your_key_here" \
   -H "X-Workspace-Id: workspace-id" \
   -H "Content-Type: application/json" \
@@ -93,23 +95,21 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 - `POST /v1/workspaces` — إنشاء مساحة عمل
 - `POST /v1/workspaces/{workspaceId}/select` — حفظ مساحة العمل الافتراضية لهذا المفتاح
 - `GET /v1/schema` — فحص العلاقات والأعمدة المتاحة لاستخدامها في SQL
-- `POST /v1/sql` — تنفيذ عبارة SQL واحدة ضمن القيود المسموح بها
+- `POST /v1/sql/query` — تنفيذ عبارة `SELECT` أو `WITH ... SELECT` واحدة للقراءة فقط
+- `POST /v1/sql/execute` — تنفيذ عبارة `INSERT` أو `UPDATE` أو `DELETE` واحدة موافق عليها
+- `POST /v1/sql` — نقطة توافق للبرامج النصية الذرية متعددة العبارات
 
 ## سياسة SQL
 
-يقبل `POST /v1/sql` عبارة SQL واحدة فقط في كل طلب.
+تفصل نقاط النهاية الأساسية بين القراءة والكتابة عمدًا:
 
-أنواع العبارات المسموح بها:
-
-- `SELECT`
-- `WITH`
-- `INSERT`
-- `UPDATE`
-- `DELETE`
+- يقبل `POST /v1/sql/query` عبارة `SELECT` أو `WITH ... SELECT` واحدة للقراءة فقط
+- يقبل `POST /v1/sql/execute` عملية تغيير واحدة من نوع `INSERT` أو `UPDATE` أو `DELETE`، بما في ذلك صيغ `WITH` المدعومة
+- تقبل نقطة التوافق `POST /v1/sql` البرامج النصية المقيّدة متعددة العبارات وتطبّقها ذريًا؛ استخدمها فقط عندما تحتاج إلى هذا السلوك الذري
 
 الأنماط المحظورة أو المرفوضة:
 
-- عبارات متعددة
+- عبارات متعددة في نقطتَي النهاية الأساسيتين `/v1/sql/query` و`/v1/sql/execute`
 - أوامر DDL مثل `CREATE` و`DROP` و`ALTER`
 - أوامر المعاملات مثل `BEGIN` و`COMMIT` و`ROLLBACK`
 - `set_config()`
@@ -122,17 +122,18 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 العلاقات المتاحة حاليًا:
 
 - `ledger_entries`
-- `accounts`
 - `budget_lines`
-- `budget_comments`
 - `workspace_settings`
 - `account_metadata`
-- `exchange_rates`
+- `accounts` (للقراءة فقط)
+- `fx_rates_raw` (للقراءة فقط)
+- `fx_rates_daily` (للقراءة فقط)
 
 ## الحدود
 
-- 100 صف لكل استجابة
-- مهلة تنفيذ قدرها 30 ثانية لكل عبارة
+- 100 صف مُعاد كحد أقصى لكل طلب
+- 100 صف متأثر كحد أقصى لكل عبارة تغيير ولكل طلب
+- مهلة إجمالية قدرها 25 ثانية لكل طلب SQL
 - 10 طلبات في الثانية، و10,000 طلب في اليوم لكل مفتاح
 
 ## الأمان

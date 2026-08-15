@@ -16,6 +16,8 @@ Expense Budget Tracker 对外公开提供一个面向程序和智能体的 API�
 
 所有请求都使用与 Web 应用相同的 Postgres 行级安全（Row Level Security，RLS）机制。
 
+如果你的客户端支持 MCP，请使用托管在 `https://mcp.expense-budget-tracker.com/mcp` 的 [MCP 连接器](/zh/docs/mcp-connector/)，并通过浏览器 OAuth 授权。本页介绍的是另一条 Agent API 接入路径及其直接 HTTP 合约，它们使用长期有效的 `ApiKey`。
+
 ## 运行时发现、源码与 schema
 
 从这里开始：
@@ -27,7 +29,7 @@ Expense Budget Tracker 对外公开提供一个面向程序和智能体的 API�
 - `GET /v1/schema`
 - `GET /v1/openapi.json` 和 `GET /v1/swagger.json` 作为兼容探测端点；它们会说明 OpenAPI 不可用，并把客户端引导回发现文档与源码
 
-如果你需要确认 `/v1/sql` 实际开放了哪些关系和列，请使用 `schema`。
+如果你需要确认 `/v1/sql/query`、`/v1/sql/execute` 和兼容端点 `/v1/sql` 实际开放了哪些关系和列，请使用 `schema`。
 
 ## 智能体原生接入
 
@@ -48,7 +50,7 @@ Expense Budget Tracker 对外公开提供一个面向程序和智能体的 API�
 11. 如有需要，`POST https://api.expense-budget-tracker.com/v1/workspaces` 创建工作区
 12. `POST https://api.expense-budget-tracker.com/v1/workspaces/{workspaceId}/select`
 13. `GET https://api.expense-budget-tracker.com/v1/schema`
-14. 使用 `POST https://api.expense-budget-tracker.com/v1/sql` 执行 SQL
+14. 使用 `POST https://api.expense-budget-tracker.com/v1/sql/query` 读取数据，并使用 `POST https://api.expense-budget-tracker.com/v1/sql/execute` 提交已批准的写入
 
 ### 认证头
 
@@ -57,7 +59,7 @@ Expense Budget Tracker 对外公开提供一个面向程序和智能体的 API�
 ### 工作区选择
 
 - `POST /v1/workspaces/{workspaceId}/select` 会把默认工作区保存到这个 API 密钥上
-- 保存默认工作区后，调用 `/v1/sql` 时可以省略 `X-Workspace-Id`
+- 保存默认工作区后，调用 `/v1/sql/query`、`/v1/sql/execute` 和兼容端点 `/v1/sql` 时可以省略 `X-Workspace-Id`
 - 如果你只想在某一次请求中覆盖已保存的工作区，仍然可以传 `X-Workspace-Id: <workspaceId>`
 - 如果用户恰好只有一个工作区，而这个密钥还没有保存过默认选择，API 会自动保存并使用该工作区
 
@@ -72,7 +74,7 @@ Expense Budget Tracker 对外公开提供一个面向程序和智能体的 API�
 把密钥放在 `ApiKey` 认证头里：
 
 ```bash
-curl -X POST https://api.expense-budget-tracker.com/v1/sql \
+curl -X POST https://api.expense-budget-tracker.com/v1/sql/query \
   -H "Authorization: ApiKey ebta_your_key_here" \
   -H "X-Workspace-Id: workspace-id" \
   -H "Content-Type: application/json" \
@@ -93,23 +95,21 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 - `POST /v1/workspaces` — 创建工作区
 - `POST /v1/workspaces/{workspaceId}/select` — 为这个 API 密钥保存默认工作区
 - `GET /v1/schema` — 查看 SQL 可访问的关系和列
-- `POST /v1/sql` — 执行一条受限的 SQL 语句
+- `POST /v1/sql/query` — 执行一条只读的 `SELECT` 或 `WITH ... SELECT` 语句
+- `POST /v1/sql/execute` — 执行一条已批准的 `INSERT`、`UPDATE` 或 `DELETE` 语句
+- `POST /v1/sql` — 用于原子执行多语句脚本的兼容端点
 
 ## SQL 规则
 
-`POST /v1/sql` 每次请求严格只接受一条 SQL 语句。
+主端点有意将读取和写入分开：
 
-允许的语句类型：
-
-- `SELECT`
-- `WITH`
-- `INSERT`
-- `UPDATE`
-- `DELETE`
+- `POST /v1/sql/query` 只接受一条只读的 `SELECT` 或 `WITH ... SELECT` 语句
+- `POST /v1/sql/execute` 只接受一条 `INSERT`、`UPDATE` 或 `DELETE` 变更语句，包括受支持的 `WITH` 形式
+- 兼容端点 `POST /v1/sql` 接受受限的多语句脚本并以原子方式应用；仅在确实需要这种原子脚本行为时使用
 
 会被阻止或拒绝的模式：
 
-- 多条语句
+- 在主端点 `/v1/sql/query` 和 `/v1/sql/execute` 中使用多条语句
 - `CREATE`、`DROP`、`ALTER` 等 DDL 语句
 - `BEGIN`、`COMMIT`、`ROLLBACK` 等事务控制语句
 - `set_config()`
@@ -122,17 +122,18 @@ curl -X POST https://api.expense-budget-tracker.com/v1/sql \
 当前已开放的关系：
 
 - `ledger_entries`
-- `accounts`
 - `budget_lines`
-- `budget_comments`
 - `workspace_settings`
 - `account_metadata`
-- `exchange_rates`
+- `accounts`（只读）
+- `fx_rates_raw`（只读）
+- `fx_rates_daily`（只读）
 
 ## 限制
 
-- 每次响应最多 100 行
-- 语句超时时间为 30 秒
+- 每次请求最多返回 100 行
+- 每条变更语句及每次请求最多影响 100 行
+- 每次 SQL 请求的总时限为 25 秒
 - 每个 API 密钥最多每秒 10 次请求、每天 10,000 次请求
 
 ## 安全性

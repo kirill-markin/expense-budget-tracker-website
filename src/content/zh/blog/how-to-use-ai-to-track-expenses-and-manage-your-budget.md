@@ -1,6 +1,6 @@
 ---
 title: "如何用 AI 记录支出并管理预算"
-description: "一份实用的 AI 个人财务指南。把 API 密钥交给 AI，它就能解析银行账单、为交易分类、记录支出并维护预算，整个流程都能通过 SQL API 完成。"
+description: "一份实用的 AI 个人财务指南。通过托管 MCP 或 Agent API 连接，让 AI 解析银行账单、为交易分类、记录支出并维护预算。"
 date: "2026-03-05"
 keywords:
   - "AI 记账"
@@ -25,35 +25,30 @@ keywords:
 
 他每周的流程大致是这样：先下载银行账单（CSV 或 PDF），再把文件交给 AI，让它逐笔解析并写入系统。因为 AI 已经能从历史记录里看出他的分类习惯，所以大多数交易都能自动归类。Kirill 只需要快速检查一遍，修正少量错误就可以结束。整个过程大约 10 分钟，而过去手工录入通常要花一个小时。
 
-这套方法同样适用于 [Claude Code](https://docs.anthropic.com/en/docs/claude-code)、[OpenAI Codex](https://openai.com/index/codex/)、自定义 GPT，或者任何能调用 HTTP 接口的 AI 工具。关键不在插件，也不在浏览器扩展，而在于你是否给了 AI 一个真正能读写财务数据的入口。
+这套方法同样适用于很多 AI 工具，包括 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 和 [OpenAI Codex](https://openai.com/index/codex/)。支持 MCP 的客户端可以使用托管连接器并通过浏览器 OAuth 授权；终端智能体、脚本和其他 HTTP 客户端可以使用直接 Agent API 和长期有效的 `ApiKey`。两条路径都会访问同一套受限、按工作区隔离的财务数据接口。
 
 ## 怎么把 AI 接到你的财务数据上
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/zh/) 是一个基于 Postgres 的开源个人财务系统。它提供了一个 `POST /v1/sql` 的 SQL 接口：你通过 HTTP 提交 SQL 查询，它返回 JSON 结果。
+[Expense Budget Tracker](https://expense-budget-tracker.com/zh/) 是一个基于 Postgres 的开源个人财务系统。它支持两种互补的连接方式：
 
-要把任何 AI 接进来，你只需要三步：
+1. **托管 MCP 连接器。** 在支持 MCP 的客户端中添加 `https://mcp.expense-budget-tracker.com/mcp`，并通过浏览器 OAuth 授权。随后，客户端使用带有权限范围的 OAuth 访问令牌调用读取工具和已批准的写入工具。服务器由 Expense Budget Tracker 托管，因此无需安装或持续运行本地 MCP 进程。请参阅 [MCP 连接器指南](/zh/docs/mcp-connector/)。
+2. **直接 Agent API。** 对于终端智能体、脚本和直接 HTTP 客户端，请从 `GET https://api.expense-budget-tracker.com/v1/` 开始。发现响应会引导智能体完成邮箱 OTP 接入，并返回长期有效的 `ApiKey`。该密钥以 `Authorization: ApiKey <key>` 形式发送。读取使用 `POST /v1/sql/query`，已批准的写入使用 `POST /v1/sql/execute`。兼容端点 `POST /v1/sql` 仅保留给需要原子执行的多语句脚本。请参阅 [API 参考](/docs/api/)。
 
-1. 打开应用，进入 **Settings → API Keys → Create key**
-2. 复制这把密钥（以 `ebt_` 开头，而且只会显示一次）
-3. 把两项信息交给你的 AI：接口地址和这把密钥
-
-这样就可以了。
-
-做到这一步，AI 就已经能查询和修改你的支出数据了。你不用自己跑 MCP 服务，不用安装插件，也不用维护额外的集成。只要 AI 能发 HTTP POST 请求，就可以直接接入。
+无论选择哪条路径，AI 都可以查询数据，并通过专用写入接口提交已批准的变更。直接 HTTP 读取请求如下：
 
 ```bash
-curl -X POST https://api.expense-budget-tracker.com/v1/sql \
+curl -X POST https://api.expense-budget-tracker.com/v1/sql/query \
   -H "Authorization: ApiKey ebta_your_key_here" \
   -H "X-Workspace-Id: workspace-id" \
   -H "Content-Type: application/json" \
   -d '{"sql": "SELECT * FROM ledger_entries ORDER BY ts DESC LIMIT 10"}'
 ```
 
-返回结果就是一个 JSON 数组。没有分页令牌，没有层层嵌套的对象，也不需要额外的 SDK。
+成功响应是一个 JSON 封装对象。`data.statements` 为每条已执行语句提供一项记录；每项都包含 `rows`、`rowCount`、`returnedRowCount`、`totalRowCount` 和 `truncated`。`data` 还会提供已选择的 `workspace` 和当前 `limits` 上下文。
 
 ## 有了这个权限，AI 能帮你做什么
 
-有了 API 密钥之后，AI 操作的就是你的真实支出和预算数据，不是副本，不是摘要，而是正在使用的数据库本身：
+连接后，AI 操作的就是你的真实支出和预算数据，不是副本，不是摘要，而是正在使用的数据库本身：
 
 **解析并记下支出。** 把银行账单（CSV、PDF，或者手机银行 App 的截图）交给 AI。它会读取每一行内容，识别金额、日期、交易对象和分类，然后向 `ledger_entries` 表写入 INSERT 语句。每一笔支出都会直接进入数据库。
 
@@ -75,13 +70,13 @@ Expense Budget Tracker 的网页界面里也内置了 AI 助手。你在 Setting
 
 如果你要处理更大的任务，比如批量导入多份银行账单、搭自动化流程，或者接入其他系统，那么外部 SQL API 会更实用。你可以在应用外用任何 AI 工具或脚本来调用它。
 
-## 为什么直接用 SQL，比 MCP 服务和插件更省事
+## 为什么托管 MCP 与直接 SQL 是互补方案
 
-现在很多人喜欢用 MCP 服务、自定义 GPT 动作，或者某个模型厂商专属的插件，把 AI 接到外部工具上。但对个人财务来说，这些往往只是额外增加复杂度。
+托管 MCP 服务器适合支持该协议的客户端。你只需添加一个 HTTPS 端点，通过浏览器 OAuth 授权，然后使用分开的读写工具。远程服务由 Expense Budget Tracker 运行，因此 MCP 不需要你在电脑上启动任何进程。
 
-MCP 服务本质上是一个你得额外启动、还要一直保持可用的进程。它一旦崩掉，AI 在对话中途就会失去对财务数据的访问。自定义 GPT 插件只对 ChatGPT 有用；如果你改用 Claude，或者自己搭一个 AI 工具，这套东西就派不上用场了。至于厂商专属集成，也常常会随着平台 API 的调整而失效。
+直接 Agent API 则是面向终端智能体、脚本、定时任务、仪表盘和自定义应用的通用 HTTP 路径。它通过发现和 OTP 流程签发长期有效的 `ApiKey`，分开的 SQL 端点明确区分读取与写入。
 
-SQL API 则绕开了这些问题。接口无非就是一个 HTTP 地址，再加上一门叫 SQL 的语言。这两样东西都已经存在几十年了，也不会轻易消失。哪怕你把 AI 模型从一个提供商换到另一个提供商，还是同一把 API 密钥、同一个接口地址、同一套 SQL。AI 根本不在乎自己跑在 ChatGPT、Claude Code，还是你自己写的 Python 脚本里。
+它们不是互相竞争的架构，而是同一套受限、按工作区隔离的数据接口上的两种传输方式。客户端支持远程连接器和浏览器 OAuth 时选择 MCP；直接 HTTP 更合适时选择 Agent API。
 
 ## 直接把数据库权限交给 AI，安全吗？
 
@@ -89,11 +84,11 @@ SQL API 则绕开了这些问题。接口无非就是一个 HTTP 地址，再加
 
 每一条查询都会经过 Postgres Row Level Security。API 密钥绑定的是你的用户和工作区，所以 AI 只能看到并修改你的数据，碰不到别人的内容。
 
-接口只允许数据操作，也就是 `SELECT`、`INSERT`、`UPDATE`、`DELETE`。AI 不能建表、删表、改权限，也不能在一个请求里执行多条语句。像 `set_config()` 这种可能带来权限提升风险的调用，也被明确禁止。
+接口只允许数据操作，也就是 `SELECT`、`INSERT`、`UPDATE`、`DELETE`。AI 不能建表、删表或改权限。主查询和执行端点每次只接受一条语句；兼容端点 `/v1/sql` 只接受受限的原子脚本。像 `set_config()` 这种可能带来权限提升风险的调用，也被明确禁止。
 
 API 密钥在数据库里只保存 SHA-256 哈希，明文不会落库。你也可以随时在 Settings 里撤销密钥。如果你把某个工作区成员移除，对方的所有密钥也会自动删除。
 
-接口还有速率限制：每个密钥每秒最多 10 次请求、每天最多 10,000 次。查询超时为 30 秒，每次最多返回 100 行。这些限制对 AI 记账和预算管理来说绰绰有余，同时也能防止请求失控。
+接口还有速率限制：每个密钥每秒最多 10 次请求、每天最多 10,000 次。每次 SQL 请求的总时限为 25 秒，最多返回 100 行，也最多影响 100 行。这些限制对 AI 记账和预算管理来说绰绰有余，同时也能防止请求失控。
 
 ## 让 AI 记账更顺手的几个实用建议
 
@@ -112,9 +107,9 @@ API 密钥在数据库里只保存 SHA-256 哈希，明文不会落库。你也�
 ## 如何开始
 
 1. 在 [expense-budget-tracker.com](https://expense-budget-tracker.com/zh/) 注册使用（免费、开源），或者[自行部署](https://github.com/kirill-markin/expense-budget-tracker)
-2. 进入 **Settings → API Keys → Create key**，复制 API 密钥
-3. 把密钥、工作区 ID 和接口地址（`https://api.expense-budget-tracker.com/v1/sql`）交给你的 AI
-4. 把一份银行账单交给它，让它帮你解析并记录支出
+2. 对于 MCP，在兼容客户端中添加 `https://mcp.expense-budget-tracker.com/mcp`，并通过浏览器 OAuth 授权
+3. 对于直接 HTTP，把 `GET https://api.expense-budget-tracker.com/v1/` 交给智能体，并在它询问时完成邮箱 OTP 流程
+4. 把一份银行账单交给已连接的智能体，让它帮你解析并记录支出
 
 AI 会先识别你的数据库结构，匹配你已有的分类，然后开始写入交易。你只需要检查结果，修正少数不对的地方，很快就能跑起一套真正由 AI 协助维护的预算系统。
 
