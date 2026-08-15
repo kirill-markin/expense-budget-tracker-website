@@ -31,4 +31,4 @@ sections:
 
 ## قبل الإبلاغ عن مشكلة MCP
 
-تأكد من أن عميلك يدعم MCP البعيد عبر Streamable HTTP ومسار Authorization Code في OAuth 2.1 مع PKCE وDynamic Client Registration. استخدم endpoint الموحد كما هو موضح تمامًا في [دليل MCP](/ar/docs/mcp/)، ثم أعد المحاولة مرة واحدة بعد إعادة الاتصال. وإذا استمرت المشكلة، فأرسل التفاصيل المنقحة المذكورة أعلاه.
+تأكد من أن عميلك يدعم MCP البعيد عبر Streamable HTTP ومسار Authorization Code في OAuth 2.1 مع PKCE وDynamic Client Registration. استخدم endpoint الموحد كما هو موضح تمامًا في [دليل MCP](/ar/docs/mcp-connector/)، ثم أعد المحاولة مرة واحدة بعد إعادة الاتصال. وإذا استمرت المشكلة، فأرسل التفاصيل المنقحة المذكورة أعلاه.

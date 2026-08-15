@@ -6,25 +6,21 @@ description: Panorámica del sistema, modelo de datos, diseño multidivisa y mod
 ## Visión general del sistema
 
 ```
-Interfaz del navegador  -->  Aplicación web Next.js  -->  Postgres (RLS)
-                                 |                             ^
-                                 v                             |
-                  Servicio de autenticación -------------------+
-                                 ^
-                                 |
-          Clientes automatizados a través de API Gateway
-                                 ^
-                                 |
-             Worker (recopiladores de tipos de cambio) -------
+Interfaz del navegador --> Aplicación web Next.js -----------------> Postgres (RLS)
+Clientes automatizados --> API Gateway (REST) --> Lambda SQL ----------^
+Clientes MCP            --> API Gateway (HTTP) --> Lambda MCP ---------^
+Servicio de autenticación (OTP + OAuth) -------------------------------^
+Worker (recopiladores de tipos de cambio) -----------------------------^
 ```
 
-Cinco componentes y una sola base de datos:
+Seis componentes y una sola base de datos:
 
 1. **web** — aplicación web Next.js con paneles y rutas de API
 2. **auth** — inicio de sesión con OTP por correo electrónico y alta inicial de agentes en el dominio de autenticación
 3. **sql-api** — AWS Lambda detrás de API Gateway para clientes automatizados
-4. **worker** — obtiene a diario tipos de cambio del BCE, el CBR y el NBS
-5. **Postgres** — fuente única de verdad con seguridad a nivel de fila
+4. **mcp** — AWS Lambda y HTTP API de API Gateway dedicadas al endpoint MCP alojado
+5. **worker** — obtiene a diario tipos de cambio del BCE, el CBR y el NBS
+6. **Postgres** — fuente única de verdad con seguridad a nivel de fila
 
 ## Modelo de datos
 
@@ -49,5 +45,7 @@ Hay dos modos controlados por la variable de entorno `AUTH_MODE`:
 - `cognito` — acceso sin contraseña con OTP por correo electrónico mediante AWS Cognito y registro abierto
 
 Para los clientes automatizados, el punto de entrada público de descubrimiento es `GET /v1/`. La incorporación de agentes usa OTP por correo electrónico en el dominio de autenticación, devuelve una `ApiKey` de larga duración y, a partir de ahí, ejecuta SQL mediante la API para máquinas expuesta a través de API Gateway.
+
+Los clientes compatibles con MCP se conectan por separado a `https://mcp.expense-budget-tracker.com/mcp`. Una HTTP API de API Gateway y una Lambda MCP dedicadas gestionan esa ruta, mientras que la autorización interactiva usa OAuth en el navegador a través del dominio de autenticación.
 
 Cada usuario recibe un espacio de trabajo aislado. Las políticas de RLS comprueban la pertenencia en cada consulta, incluidas las solicitudes SQL que llegan desde clientes automatizados.

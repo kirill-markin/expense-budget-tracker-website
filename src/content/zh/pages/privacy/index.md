@@ -14,6 +14,8 @@ sections:
 
 托管版 Expense Budget Tracker 服务的运营方为 SAMO DANNI EOOD（VAT: BG207395566）。Expense Budget Tracker 由 Kirill Markin 创建，[kirill-markin.com](https://kirill-markin.com/) 是与同一创建者及产品生态相关的个人网站。
 
+本政策适用于由我们运营的托管网站、应用、API 和远程 MCP 服务。自托管实例仍由其运营者控制。
+
 ## 我们如何使用你的数据
 
 你的财务数据仅用于提供服务。我们不会出售这些数据，也不会将其用于广告。只有在你指示服务这样做时，例如你授权 MCP 连接后，我们才会向第三方客户端披露相应数据。每个工作区都通过 Postgres 行级安全机制相互隔离。

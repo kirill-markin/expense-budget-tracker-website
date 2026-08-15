@@ -31,4 +31,4 @@ Usa el [gestor de issues de GitHub](https://github.com/kirill-markin/expense-bud
 
 ## Antes de informar de un problema MCP
 
-Confirma que tu cliente admite MCP remoto mediante Streamable HTTP, OAuth 2.1 con código de autorización y PKCE, y Registro Dinámico de Clientes. Usa exactamente el endpoint universal de la [guía de MCP](/es/docs/mcp/) y vuelve a intentarlo una vez después de reconectar. Si el problema continúa, envía los datos depurados indicados arriba.
+Confirma que tu cliente admite MCP remoto mediante Streamable HTTP, OAuth 2.1 con código de autorización y PKCE, y Registro Dinámico de Clientes. Usa exactamente el endpoint universal de la [guía de MCP](/es/docs/mcp-connector/) y vuelve a intentarlo una vez después de reconectar. Si el problema continúa, envía los datos depurados indicados arriba.

@@ -14,6 +14,8 @@ Cuando usas la versión en la nube, almacenamos los datos financieros que introd
 
 El servicio alojado de Expense Budget Tracker está operado por SAMO DANNI EOOD (VAT: BG207395566). Expense Budget Tracker fue creado por Kirill Markin y [kirill-markin.com](https://kirill-markin.com/) es el sitio personal relacionado dentro del mismo ecosistema de creador y producto.
 
+Esta política se aplica al sitio web, la aplicación, la API y el servicio MCP remoto alojados que operamos. Las instancias autoalojadas permanecen bajo el control de sus operadores.
+
 ## Cómo usamos tus datos
 
 Tus datos financieros se utilizan únicamente para prestar el servicio. No los vendemos ni los usamos con fines publicitarios. Solo los comunicamos a un cliente de terceros cuando indicas al servicio que lo haga, por ejemplo al autorizar una conexión MCP. Cada espacio de trabajo queda aislado mediante la seguridad a nivel de fila de Postgres.

@@ -31,4 +31,4 @@ sections:
 
 ## לפני דיווח על בעיית MCP
 
-ודאו שהלקוח תומך ב-MCP מרוחק באמצעות Streamable HTTP, בתהליך Authorization Code של OAuth 2.1 עם PKCE וב-Dynamic Client Registration. השתמשו בנקודת הקצה האחידה בדיוק כפי שהיא מופיעה ב[מדריך ה-MCP](/he/docs/mcp/), ולאחר חיבור מחדש נסו פעם אחת נוספת. אם הבעיה נמשכת, שלחו את הפרטים המפורטים למעלה לאחר הסרת מידע רגיש.
+ודאו שהלקוח תומך ב-MCP מרוחק באמצעות Streamable HTTP, בתהליך Authorization Code של OAuth 2.1 עם PKCE וב-Dynamic Client Registration. השתמשו בנקודת הקצה האחידה בדיוק כפי שהיא מופיעה ב[מדריך ה-MCP](/he/docs/mcp-connector/), ולאחר חיבור מחדש נסו פעם אחת נוספת. אם הבעיה נמשכת, שלחו את הפרטים המפורטים למעלה לאחר הסרת מידע רגיש.
