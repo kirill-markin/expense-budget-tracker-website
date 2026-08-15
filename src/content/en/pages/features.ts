@@ -4,7 +4,7 @@ export const FEATURES_PAGE_CONTENT_EN: PageContent = {
   locale: "en",
   title: "Features",
   description:
-    "Multi-currency tracking, budget planning, dashboards, agent onboarding, API access, self-hosting, and workspace isolation.",
+    "Multi-currency tracking, budget planning, dashboards, hosted MCP access, an Agent API, self-hosting, and workspace isolation.",
   slug: "features",
   sections: [
     {
@@ -34,14 +34,14 @@ export const FEATURES_PAGE_CONTENT_EN: PageContent = {
             "Visual spending breakdowns, balance charts over time, and FX impact analysis. Built into the app with no external BI tool needed.",
         },
         {
-          title: "SQL API",
+          title: "Agent API",
           description:
-            "Programmatic access via API Gateway with ApiKey auth. Run restricted SQL with full RLS enforcement, saved workspace selection with optional X-Workspace-Id override, rate limits, and auditability.",
+            "A separate path for CLI and direct HTTP agents. Start with GET https://api.expense-budget-tracker.com/v1/, then use the ApiKey-authenticated Agent API to run restricted SQL with full RLS enforcement, workspace selection, rate limits, and auditability.",
         },
         {
-          title: "Agent Onboarding",
+          title: "Hosted MCP Server",
           description:
-            "Share https://api.expense-budget-tracker.com/v1/ with Claude Code, Codex, or OpenClaw. The agent follows the discovery document, asks for your email and 8-digit code, creates its own connection, saves the returned key, selects a default workspace, and keeps working through the machine API.",
+            "OAuth-capable remote MCP clients can connect at https://mcp.expense-budget-tracker.com/mcp and query your financial data with the required expenses:read scope. A client can also request the optional expenses:write scope, which appears on the OAuth consent screen and is required for mutations.",
         },
         {
           title: "AI Chat",

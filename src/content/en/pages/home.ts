@@ -4,7 +4,7 @@ export const HOME_PAGE_CONTENT_EN: PageContent = {
   locale: "en",
   title: "Expense Budget Tracker - Open Source Personal Finance",
   description:
-    "Open-source expense and budget tracker with multi-currency support, financial dashboards, and agent-native onboarding for Claude Code, Codex, and OpenClaw.",
+    "Open-source expense and budget tracker with multi-currency support, financial dashboards, a hosted MCP server, and an Agent API.",
   slug: "home",
   sections: [
     {
@@ -24,10 +24,10 @@ export const HOME_PAGE_CONTENT_EN: PageContent = {
         label: "View on GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "Start with GET on this discovery URL:",
+      hintText: "Connect your OAuth-capable remote MCP client:",
       hintLink: {
-        label: "https://api.expense-budget-tracker.com/v1/",
-        href: "https://api.expense-budget-tracker.com/v1/",
+        label: "https://mcp.expense-budget-tracker.com/mcp",
+        href: "https://mcp.expense-budget-tracker.com/mcp",
       },
     },
     {
@@ -57,9 +57,9 @@ export const HOME_PAGE_CONTENT_EN: PageContent = {
             "Docker Compose with Postgres. Your data stays on your server. No third-party dependencies.",
         },
         {
-          title: "Agent-Native API",
+          title: "MCP and Agent API",
           description:
-            "Share one discovery URL with Claude Code, Codex, or OpenClaw. The agent asks for your email, verifies the 8-digit code, provisions its own ApiKey, loads account context, selects a workspace, and starts working.",
+            "Connect an OAuth-capable remote MCP client to query your financial data with the required expenses:read scope. The client can also request the optional expenses:write scope, which appears on the OAuth consent screen and is required for mutations. For CLI or direct HTTP agents, start with GET https://api.expense-budget-tracker.com/v1/ and use the Agent API with an ApiKey.",
         },
         {
           title: "Workspace Isolation",

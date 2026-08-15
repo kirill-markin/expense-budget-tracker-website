@@ -4,7 +4,7 @@ export const FEATURES_PAGE_CONTENT_HE: PageContent = {
   locale: "he",
   title: "יכולות",
   description:
-    "מעקב במטבעות שונים, תכנון תקציב, לוחות מחוונים, חיבור סוכנים, גישה ל-API, אירוח עצמי ובידוד בין מרחבי עבודה.",
+    "מעקב במטבעות שונים, תכנון תקציב, לוחות מחוונים, שרת MCP מתארח, Agent API, אירוח עצמי ובידוד בין מרחבי עבודה.",
   slug: "features",
   sections: [
     {
@@ -34,14 +34,14 @@ export const FEATURES_PAGE_CONTENT_HE: PageContent = {
             "פירוט חזותי של הוצאות, גרפי יתרות לאורך זמן וניתוח של השפעת שערי חליפין. הכול מובנה באפליקציה, בלי להזדקק לכלי BI חיצוני.",
         },
         {
-          title: "SQL API",
+          title: "Agent API",
           description:
-            "גישה תכנותית דרך API Gateway עם אימות מבוסס ApiKey. אפשר להריץ שאילתות SQL מוגבלות תחת אכיפת RLS מלאה, עם מרחב עבודה ברירת מחדל שנשמר לחיבור, אפשרות לעקוף אותו באמצעות X-Workspace-Id, מגבלות קצב ותיעוד ביקורת מלא.",
+            "נתיב נפרד לסוכני שורת פקודה או HTTP ישיר. התחילו עם GET https://api.expense-budget-tracker.com/v1/, ולאחר מכן השתמשו ב-Agent API עם אימות ApiKey להרצת שאילתות SQL מוגבלות עם RLS, בחירת מרחב עבודה, מגבלות קצב וביקורת.",
         },
         {
-          title: "חיבור סוכנים",
+          title: "שרת MCP מתארח",
           description:
-            "שתפו את https://api.expense-budget-tracker.com/v1/ עם Claude Code, Codex או OpenClaw. הסוכן קורא את מסמך הגילוי, מבקש את כתובת האימייל שלכם ואת הקוד בן 8 הספרות, יוצר לעצמו חיבור, שומר את המפתח שהוחזר, בוחר מרחב עבודה כברירת מחדל וממשיך לפעול דרך ה-machine API.",
+            "לקוחות MCP מרוחקים שתומכים ב-OAuth יכולים להתחבר אל https://mcp.expense-budget-tracker.com/mcp ולשאול את הנתונים הפיננסיים שלכם עם ההרשאה הנדרשת expenses:read. הלקוח יכול לבקש גם את ההרשאה האופציונלית expenses:write; היא מוצגת במסך ההסכמה של OAuth ונדרשת לביצוע שינויים.",
         },
         {
           title: "צ'אט AI",

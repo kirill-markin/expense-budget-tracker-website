@@ -4,7 +4,7 @@ export const FEATURES_PAGE_CONTENT_ES: PageContent = {
   locale: "es",
   title: "Funciones",
   description:
-    "Seguimiento multidivisa, presupuestos, paneles, integración con agentes, acceso a la API, autoalojamiento y aislamiento por espacio de trabajo.",
+    "Seguimiento multidivisa, presupuestos, paneles, acceso mediante MCP alojado, API para agentes, autoalojamiento y aislamiento por espacio de trabajo.",
   slug: "features",
   sections: [
     {
@@ -34,14 +34,14 @@ export const FEATURES_PAGE_CONTENT_ES: PageContent = {
             "Desgloses visuales del gasto, gráficos de saldos a lo largo del tiempo y análisis del impacto del tipo de cambio. Todo dentro de la aplicación, sin depender de una herramienta de BI externa.",
         },
         {
-          title: "API SQL",
+          title: "API para agentes",
           description:
-            "Acceso programático a través de API Gateway con autenticación mediante `ApiKey`. Ejecuta SQL restringido con RLS aplicado de forma estricta, espacio de trabajo predeterminado guardado con sustitución opcional mediante `X-Workspace-Id`, límites de uso y trazabilidad completa.",
+            "Una vía independiente para agentes de CLI y HTTP directo. Empieza con GET https://api.expense-budget-tracker.com/v1/ y usa la API para agentes autenticada mediante ApiKey para ejecutar SQL restringido con RLS, selección de espacio de trabajo, límites de uso y trazabilidad.",
         },
         {
-          title: "Integración con agentes",
+          title: "Servidor MCP alojado",
           description:
-            "Comparte https://api.expense-budget-tracker.com/v1/ con Claude Code, Codex u OpenClaw. El agente sigue el documento de descubrimiento, te pide tu correo y el código de 8 dígitos, crea su propia conexión, guarda la clave recibida, selecciona un espacio de trabajo predeterminado y sigue trabajando a través de la API orientada a automatizaciones.",
+            "Los clientes MCP remotos compatibles con OAuth pueden conectarse a https://mcp.expense-budget-tracker.com/mcp y consultar tus datos financieros con el permiso obligatorio expenses:read. El cliente también puede solicitar el permiso opcional expenses:write, que aparece en la pantalla de consentimiento OAuth y es necesario para modificar datos.",
         },
         {
           title: "Chat con IA",

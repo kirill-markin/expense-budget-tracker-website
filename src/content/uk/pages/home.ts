@@ -4,7 +4,7 @@ export const HOME_PAGE_CONTENT_UK: PageContent = {
   locale: "uk",
   title: "Expense Budget Tracker - особисті фінанси з відкритим кодом",
   description:
-    "Трекер витрат і бюджету з відкритим кодом, підтримкою кількох валют, фінансовими дашбордами та зручним підключенням для Claude Code, Codex і OpenClaw.",
+    "Трекер витрат і бюджету з відкритим кодом, підтримкою кількох валют, фінансовими дашбордами, розміщеним MCP-сервером і Agent API.",
   slug: "home",
   sections: [
     {
@@ -24,10 +24,10 @@ export const HOME_PAGE_CONTENT_UK: PageContent = {
         label: "Переглянути на GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "Почніть із GET-запиту до цієї URL-адреси API:",
+      hintText: "Підключіть віддалений MCP-клієнт із підтримкою OAuth:",
       hintLink: {
-        label: "https://api.expense-budget-tracker.com/v1/",
-        href: "https://api.expense-budget-tracker.com/v1/",
+        label: "https://mcp.expense-budget-tracker.com/mcp",
+        href: "https://mcp.expense-budget-tracker.com/mcp",
       },
     },
     {
@@ -57,9 +57,9 @@ export const HOME_PAGE_CONTENT_UK: PageContent = {
             "Docker Compose із Postgres. Дані залишаються на вашому сервері без залежності від сторонніх сервісів.",
         },
         {
-          title: "API, готове до роботи з агентами",
+          title: "MCP та Agent API",
           description:
-            "Передайте Claude Code, Codex або OpenClaw один URL для підключення до API. Агент попросить вашу електронну пошту, перевірить 8-значний код, створить власний API-ключ, завантажить контекст рахунків, вибере потрібний робочий простір і одразу почне роботу.",
+            "Підключіть віддалений MCP-клієнт із підтримкою OAuth, щоб запитувати фінансові дані з обов’язковим дозволом expenses:read. Клієнт також може запитати необов’язковий дозвіл expenses:write: він відображається на екрані згоди OAuth і потрібен для зміни даних. Для агентів командного рядка та прямих HTTP-запитів почніть із GET https://api.expense-budget-tracker.com/v1/ і використовуйте Agent API з ApiKey.",
         },
         {
           title: "Ізоляція робочих просторів",

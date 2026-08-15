@@ -147,9 +147,8 @@ function renderHomePage(locale: AppLocale): React.JSX.Element {
               </h2>
               <p className={homeStyles.agentDescription}>{agentFeature.description}</p>
               <div className={homeStyles.hint}>
-                <CopyCodeField
-                  value={`${heroSection.hintText}\n${heroSection.hintLink.href}`}
-                />
+                <p className={homeStyles.hintText}>{heroSection.hintText}</p>
+                <CopyCodeField value={heroSection.hintLink.href} />
               </div>
             </section>
           </aside>

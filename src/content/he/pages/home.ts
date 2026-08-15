@@ -4,7 +4,7 @@ export const HOME_PAGE_CONTENT_HE: PageContent = {
   locale: "he",
   title: "Expense Budget Tracker - מעקב הוצאות ותכנון תקציב בקוד פתוח",
   description:
-    "כלי קוד פתוח לניהול כספים אישיים עם תמיכה בריבוי מטבעות, לוחות מחוונים פיננסיים וחיבור מובנה לסוכנים כמו Claude Code, Codex ו-OpenClaw.",
+    "כלי קוד פתוח לניהול כספים אישיים עם תמיכה בריבוי מטבעות, לוחות מחוונים פיננסיים, שרת MCP מתארח ו-Agent API.",
   slug: "home",
   sections: [
     {
@@ -24,10 +24,10 @@ export const HOME_PAGE_CONTENT_HE: PageContent = {
         label: "צפו בפרויקט ב-GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "התחילו בבקשת GET לכתובת הגילוי הבאה:",
+      hintText: "חברו לקוח MCP מרוחק שתומך ב-OAuth:",
       hintLink: {
-        label: "https://api.expense-budget-tracker.com/v1/",
-        href: "https://api.expense-budget-tracker.com/v1/",
+        label: "https://mcp.expense-budget-tracker.com/mcp",
+        href: "https://mcp.expense-budget-tracker.com/mcp",
       },
     },
     {
@@ -57,9 +57,9 @@ export const HOME_PAGE_CONTENT_HE: PageContent = {
             "Docker Compose עם Postgres, להתקנה מקומית או על שרת משלכם. הנתונים נשארים אצלכם, בלי תלות בשירותי צד שלישי.",
         },
         {
-          title: "API מותאם לסוכנים",
+          title: "MCP ו-Agent API",
           description:
-            "שתפו כתובת גילוי אחת עם Claude Code, Codex או OpenClaw. הסוכן יבקש את כתובת האימייל שלכם, יאמת את הקוד בן 8 הספרות, ינפיק לעצמו ApiKey, יטען את נתוני החשבונות, יבחר מרחב עבודה ויתחיל לעבוד.",
+            "חברו לקוח MCP מרוחק שתומך ב-OAuth כדי לשאול את הנתונים הפיננסיים שלכם עם ההרשאה הנדרשת expenses:read. הלקוח יכול לבקש גם את ההרשאה האופציונלית expenses:write; היא מוצגת במסך ההסכמה של OAuth ונדרשת לביצוע שינויים. לסוכני שורת פקודה או HTTP ישיר, התחילו עם GET https://api.expense-budget-tracker.com/v1/ והשתמשו ב-Agent API עם ApiKey.",
         },
         {
           title: "הפרדת מרחבי עבודה",

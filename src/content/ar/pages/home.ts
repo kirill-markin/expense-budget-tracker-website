@@ -4,7 +4,7 @@ export const HOME_PAGE_CONTENT_AR: PageContent = {
   locale: "ar",
   title: "Expense Budget Tracker - تتبّع النفقات والميزانية مفتوح المصدر",
   description:
-    "متتبع مفتوح المصدر للنفقات والميزانية الشخصية يدعم العملات المتعددة، ويوفّر لوحات معلومات مالية وإعدادًا مهيأً للعمل مع Claude Code وCodex وOpenClaw.",
+    "متتبع مفتوح المصدر للنفقات والميزانية الشخصية يدعم العملات المتعددة، ويوفّر لوحات معلومات مالية وخادم MCP مستضافًا وAgent API.",
   slug: "home",
   sections: [
     {
@@ -24,10 +24,10 @@ export const HOME_PAGE_CONTENT_AR: PageContent = {
         label: "شاهده على GitHub",
         href: "https://github.com/kirill-markin/expense-budget-tracker",
       },
-      hintText: "ابدأ بإرسال طلب GET إلى رابط الاكتشاف هذا:",
+      hintText: "صِل عميل MCP بعيدًا يدعم OAuth:",
       hintLink: {
-        label: "https://api.expense-budget-tracker.com/v1/",
-        href: "https://api.expense-budget-tracker.com/v1/",
+        label: "https://mcp.expense-budget-tracker.com/mcp",
+        href: "https://mcp.expense-budget-tracker.com/mcp",
       },
     },
     {
@@ -57,9 +57,9 @@ export const HOME_PAGE_CONTENT_AR: PageContent = {
             "Docker Compose مع Postgres. تبقى بياناتك على خادمك أنت، من دون اعتماد على خدمات طرف ثالث.",
         },
         {
-          title: "واجهة API مهيأة للوكلاء",
+          title: "MCP وAgent API",
           description:
-            "شارك رابط اكتشاف واحدًا مع Claude Code أو Codex أو OpenClaw. سيطلب الوكيل بريدك الإلكتروني، ويتحقق من الرمز ذي 8 أرقام، وينشئ ApiKey خاصًا به، ويحمّل سياق الحساب، ويختار مساحة العمل، ثم يبدأ العمل.",
+            "صِل عميل MCP بعيدًا يدعم OAuth للاستعلام عن بياناتك المالية باستخدام النطاق الإلزامي expenses:read. ويمكن للعميل أيضًا طلب النطاق الاختياري expenses:write؛ ويظهر في شاشة موافقة OAuth ويلزم لإجراء التعديلات. للوكلاء عبر سطر الأوامر أو HTTP المباشر، ابدأ بطلب GET إلى https://api.expense-budget-tracker.com/v1/ واستخدم Agent API مع ApiKey.",
         },
         {
           title: "عزل مساحات العمل",
