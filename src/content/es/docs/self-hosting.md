@@ -46,4 +46,13 @@ Al hacerlo, Docker Compose reconstruye los servicios y vuelve a ejecutar las mig
 
 ## Despliegue en AWS
 
-Para desplegar en producción en AWS (ECS Fargate + RDS + ALB + Cognito), consulta la [guía de AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws).
+La pila CDK de producción usa ECS Fargate, RDS, ALB, Cognito, API Gateway y Lambda. Sus dominios públicos de aplicación son:
+
+- `app.<domain>` — aplicación web en ECS Fargate detrás del ALB
+- `auth.<domain>` — servicio de OTP y OAuth detrás del ALB
+- `api.<domain>/v1/*` — API REST SQL para clientes automatizados mediante API Gateway y Lambda
+- `mcp.<domain>/mcp` — servicio MCP alojado mediante una HTTP API dedicada de API Gateway y una Lambda MCP
+
+El dominio personalizado de MCP requiere un certificado ACM público para el nombre exacto `mcp.<domain>`. Conserva su CNAME de validación DNS para las renovaciones, proporciona el ARN del certificado al despliegue CDK y a CI, y crea el registro DNS `mcp.*` junto con los demás dominios públicos.
+
+Consulta la [descripción general del despliegue](https://github.com/kirill-markin/expense-budget-tracker/blob/main/docs/deployment.md) y la [guía de AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) del repositorio para seguir la secuencia y los scripts compatibles.

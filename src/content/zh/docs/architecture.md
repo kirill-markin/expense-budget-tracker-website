@@ -6,25 +6,21 @@ description: 系统总览、数据模型、多币种设计与认证方式。
 ## 系统概览
 
 ```
-浏览器界面  -->  Next.js Web 应用  -->  Postgres（RLS）
-                         |                   ^
-                         v                   |
-                      认证服务 ----------------+
-                         ^
-                         |
-               通过 API Gateway 接入的程序化客户端
-                         ^
-                         |
-                 Worker（汇率抓取器） ----------
+浏览器界面   --> Next.js Web 应用 --------------------> Postgres（RLS）
+程序化客户端 --> API Gateway（REST）--> SQL Lambda -------^
+MCP 客户端   --> API Gateway（HTTP）--> MCP Lambda -------^
+认证服务（OTP + OAuth）-----------------------------------^
+Worker（汇率抓取器）--------------------------------------^
 ```
 
-五个组件，共用同一个数据库：
+六个组件，共用同一个数据库：
 
 1. **web**：包含仪表盘界面和 API 路由的 Next.js 应用
 2. **auth**：运行在认证域名上的邮箱 OTP 登录与智能体接入引导服务
 3. **sql-api**：部署在 API Gateway 后方、供程序化客户端调用的 AWS Lambda
-4. **worker**：负责从 ECB、CBR 和 NBS 抓取每日汇率
-5. **Postgres**：启用行级安全（RLS）的唯一事实来源
+4. **mcp**：专门为托管 MCP 端点部署的 AWS Lambda 和 API Gateway HTTP API
+5. **worker**：负责从 ECB、CBR 和 NBS 抓取每日汇率
+6. **Postgres**：启用行级安全（RLS）的唯一事实来源
 
 ## 数据模型
 
@@ -49,5 +45,7 @@ description: 系统总览、数据模型、多币种设计与认证方式。
 - `cognito`：通过 AWS Cognito 提供基于邮箱 OTP 的无密码登录，并开放注册
 
 对于程序化客户端，公开的发现入口为 `GET /v1/`。面向智能体的接入流程会在认证域名上完成邮箱 OTP 验证，返回长期有效的 `ApiKey`，之后再通过 API Gateway 后方的机器 API 执行 SQL。
+
+MCP 客户端通过另一条路径连接到 `https://mcp.expense-budget-tracker.com/mcp`。专用的 API Gateway HTTP API 和 MCP Lambda 负责处理该路径，交互式授权则在认证域名上通过浏览器 OAuth 完成。
 
 每个用户都会得到隔离的工作区。RLS 策略会在每次查询时检查成员身份，包括面向程序化客户端发出的 SQL 请求。

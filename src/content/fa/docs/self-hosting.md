@@ -46,4 +46,13 @@ Docker Compose سرویس‌ها را دوباره می‌سازد و مهاجر
 
 ## استقرار روی AWS
 
-برای استقرار نسخهٔ عملیاتی روی AWS (شامل ECS Fargate + RDS + ALB + Cognito)، به [راهنمای AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/tree/main/infra/aws) مراجعه کنید.
+پشتهٔ CDK عملیاتی از ECS Fargate، RDS، ALB، Cognito، API Gateway و Lambda استفاده می‌کند. دامنه‌های عمومی برنامه عبارت‌اند از:
+
+- `app.<domain>` — برنامهٔ وب در ECS Fargate پشت ALB
+- `auth.<domain>` — سرویس OTP و OAuth پشت ALB
+- `api.<domain>/v1/*` — REST API ماشینی SQL از طریق API Gateway و Lambda
+- `mcp.<domain>/mcp` — سرویس MCP میزبانی‌شده از طریق HTTP API اختصاصی در API Gateway و MCP Lambda
+
+دامنهٔ سفارشی MCP به یک گواهی عمومی ACM برای نام دقیق `mcp.<domain>` نیاز دارد. رکورد CNAME اعتبارسنجی DNS را برای تمدید نگه دارید، ARN گواهی را در اختیار استقرار CDK و CI بگذارید و رکورد DNS مربوط به `mcp.*` را همراه با دیگر دامنه‌های عمومی ایجاد کنید.
+
+برای ترتیب و اسکریپت‌های پشتیبانی‌شده، [نمای کلی استقرار](https://github.com/kirill-markin/expense-budget-tracker/blob/main/docs/deployment.md) و [راهنمای AWS CDK](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) در مخزن را ببینید.

@@ -10,7 +10,8 @@ description: Зареєструйтеся в хмарній версії або 
 1. Відкрийте [app.expense-budget-tracker.com](https://app.expense-budget-tracker.com)
 2. Зареєструйтеся за допомогою електронної пошти (вхід за одноразовим кодом без пароля)
 3. Почніть відстежувати витрати у вебзастосунку
-4. Якщо хочете підключити Claude Code, Codex або OpenClaw, вкажіть агенту адресу API `https://api.expense-budget-tracker.com/v1/`
+4. Для клієнта з підтримкою MCP додайте `https://mcp.expense-budget-tracker.com/mcp` і надайте доступ у браузері
+5. Для термінального агента або прямого HTTP-клієнта почніть із `GET https://api.expense-budget-tracker.com/v1/`
 
 Нічого не потрібно встановлювати чи налаштовувати на сервері. Дані ізольовано на рівні робочого простору за допомогою політик обмеження доступу до рядків (`row-level security`) у Postgres.
 
@@ -19,8 +20,8 @@ description: Зареєструйтеся в хмарній версії або 
 Один і той самий хмарний обліковий запис можна використовувати для:
 
 - вебінтерфейсу за адресою `https://app.expense-budget-tracker.com`
-- підключення агентів через `GET https://api.expense-budget-tracker.com/v1/`
-- прямих HTTP-клієнтів, які використовують `Authorization: ApiKey <key>`
+- розміщеного [MCP-конектора](/uk/docs/mcp-connector/) за адресою `https://mcp.expense-budget-tracker.com/mcp` з авторизацією через OAuth у браузері
+- [налаштування Agent API](/uk/docs/agent-setup/) з `GET https://api.expense-budget-tracker.com/v1/` і подальших прямих HTTP-запитів з `Authorization: ApiKey <key>`
 
 ## Самостійне розгортання
 
