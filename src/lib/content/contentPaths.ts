@@ -13,7 +13,7 @@ export type StructuredMarketingPageSlug = Extract<
 >;
 export type MarkdownBackedPageSlug = Extract<
   MarketingPageSlug,
-  "privacy" | "terms"
+  "privacy" | "support" | "terms"
 >;
 
 const CONTENT_ROOT_DIR = join(process.cwd(), "src", "content");
