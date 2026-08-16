@@ -38,6 +38,7 @@ interface HomePageMessages {
   readonly humanTitle: string;
   readonly humanWebApp: string;
   readonly agentTitle: string;
+  readonly agentDescription: string;
   readonly showcaseEyebrow: string;
   readonly showcaseTitle: string;
   readonly showcaseImageAlt: string;
@@ -118,6 +119,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       humanTitle: "For human",
       humanWebApp: "Web App",
       agentTitle: "For AI agent",
+      agentDescription:
+        "Connect your AI agent over MCP: add the Expense Budget Tracker server to any compatible MCP client and it can read and update your financial data.",
       showcaseEyebrow: "Real interface",
       showcaseTitle: "See the budget workspace before you read the feature list",
       showcaseImageAlt:
@@ -181,6 +184,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       humanTitle: "Para personas",
       humanWebApp: "Aplicación web",
       agentTitle: "Para agentes de IA",
+      agentDescription:
+        "Conecta tu agente de IA mediante MCP: añade el servidor de Expense Budget Tracker a cualquier cliente MCP compatible y podrá leer y actualizar tus datos financieros.",
       showcaseEyebrow: "Interfaz real",
       showcaseTitle:
         "Mira el espacio de trabajo del presupuesto antes de leer la lista de funciones",
@@ -245,6 +250,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       humanTitle: "Для человека",
       humanWebApp: "Веб-приложение",
       agentTitle: "Для ИИ-агента",
+      agentDescription:
+        "Подключите своего ИИ-агента по MCP: добавьте сервер Expense Budget Tracker в любой совместимый MCP-клиент, и он сможет читать и обновлять ваши финансовые данные.",
       showcaseEyebrow: "Настоящий интерфейс",
       showcaseTitle:
         "Посмотрите на рабочее пространство бюджета до чтения списка возможностей",
@@ -309,6 +316,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       humanTitle: "Для людини",
       humanWebApp: "Вебзастосунок",
       agentTitle: "Для AI-агента",
+      agentDescription:
+        "Підключіть свого AI-агента через MCP: додайте сервер Expense Budget Tracker до будь-якого сумісного MCP-клієнта, і він зможе читати й оновлювати ваші фінансові дані.",
       showcaseEyebrow: "Реальний інтерфейс",
       showcaseTitle:
         "Подивіться на робочий простір бюджету ще до списку можливостей",
@@ -373,6 +382,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       humanTitle: "برای انسان",
       humanWebApp: "اپلیکیشن وب",
       agentTitle: "برای عامل هوش مصنوعی",
+      agentDescription:
+        "عامل هوش مصنوعی خود را از طریق MCP متصل کنید: سرور Expense Budget Tracker را به هر کلاینت سازگار با MCP اضافه کنید تا بتواند داده‌های مالی شما را بخواند و به‌روزرسانی کند.",
       showcaseEyebrow: "رابط واقعی",
       showcaseTitle: "قبل از خواندن فهرست امکانات، فضای کاری بودجه را ببینید",
       showcaseImageAlt:
@@ -436,6 +447,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       humanTitle: "面向个人用户",
       humanWebApp: "Web 应用",
       agentTitle: "面向 AI 智能体",
+      agentDescription:
+        "通过 MCP 连接你的 AI 智能体：将 Expense Budget Tracker 服务器添加到任意兼容的 MCP 客户端，它就能读取和更新你的财务数据。",
       showcaseEyebrow: "真实界面",
       showcaseTitle: "先看看预算工作区，再读功能列表",
       showcaseImageAlt:
@@ -498,6 +511,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       humanTitle: "للبشر",
       humanWebApp: "تطبيق الويب",
       agentTitle: "لوكلاء الذكاء الاصطناعي",
+      agentDescription:
+        "اربط وكيل الذكاء الاصطناعي عبر MCP: أضف خادم Expense Budget Tracker إلى أي عميل MCP متوافق، وسيتمكن من قراءة بياناتك المالية وتحديثها.",
       showcaseEyebrow: "واجهة حقيقية",
       showcaseTitle: "شاهد مساحة عمل الميزانية قبل قراءة قائمة الميزات",
       showcaseImageAlt:
@@ -561,6 +576,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       humanTitle: "לבני אדם",
       humanWebApp: "אפליקציית ווב",
       agentTitle: "לסוכני AI",
+      agentDescription:
+        "חברו את סוכן ה-AI שלכם דרך MCP: הוסיפו את שרת Expense Budget Tracker לכל לקוח MCP תואם, והוא יוכל לקרוא ולעדכן את הנתונים הפיננסיים שלכם.",
       showcaseEyebrow: "ממשק אמיתי",
       showcaseTitle: "ראו את סביבת העבודה של התקציב לפני רשימת היכולות",
       showcaseImageAlt:
