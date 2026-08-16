@@ -25,8 +25,6 @@ import featuresStyles from "@/app/(default)/features/page.module.css";
 import pricingStyles from "@/app/(default)/pricing/page.module.css";
 import legalStyles from "@/app/(default)/privacy/page.module.css";
 
-const AGENT_FEATURE_INDEX = 4;
-
 interface MarketingPageProps {
   readonly locale: AppLocale;
   readonly slug: MarketingPageSlug;
@@ -94,13 +92,8 @@ function renderHomePage(locale: AppLocale): React.JSX.Element {
   const pageContent = readPageContent("home", locale);
   const heroSection = getHeroSection(locale);
   const featureSection = getHomeFeatureSection(locale);
-  const agentFeature = featureSection.items[AGENT_FEATURE_INDEX];
   const messages = getSiteMessages(locale);
   const appUrl = getAppUrl();
-
-  if (agentFeature === undefined) {
-    throw new Error(`Missing agent feature description for locale: ${locale}`);
-  }
 
   return (
     <div className={homeStyles.hero}>
@@ -145,7 +138,9 @@ function renderHomePage(locale: AppLocale): React.JSX.Element {
               <h2 id="for-agent-title" className={homeStyles.asideTitle}>
                 {messages.home.agentTitle}
               </h2>
-              <p className={homeStyles.agentDescription}>{agentFeature.description}</p>
+              <p className={homeStyles.agentDescription}>
+                {messages.home.agentDescription}
+              </p>
               <div className={homeStyles.hint}>
                 <p className={homeStyles.hintText}>{heroSection.hintText}</p>
                 <CopyCodeField value={heroSection.hintLink.href} />
