@@ -1,158 +1,243 @@
 ---
-title: "Mint Alternative in 2026: Open-Source Budget Tracker You Can Self-Host"
-description: "Looking for a Mint alternative in 2026? Here is the practical tradeoff: most apps optimize for convenience, while an open-source budget tracker gives you self-hosting, AI workflows, SQL access, and full control over your data."
+title: "Self-Hosted Mint Alternative in 2026: Own Your Budget Data"
+description: "Looking for a self-hosted Mint replacement? Compare the tradeoffs, map old transactions safely, and build a budget system you can inspect and move."
 date: "2026-03-09"
+updated: "2026-08-18"
+image: "/blog/mint-alternative-open-source-budget-tracker-you-can-self-host.png"
 keywords:
-  - "mint alternative"
+  - "self hosted Mint alternative"
+  - "open source Mint alternative"
+  - "Mint.com local alternative"
+  - "Mint alternative 2026"
   - "open source budget tracker"
   - "self hosted expense tracker"
-  - "ynab alternative"
-  - "multi currency budget app"
-  - "personal finance app with sql api"
 ---
 
-Mint is gone, and most "Mint alternatives" still ask you to move the same financial data into somebody else's cloud. Different logo, same deal.
+Intuit's [current Mint page](https://mint.intuit.com/how-mint-works) points people looking for familiar Mint features to Credit Karma. That covers one managed path. It does not answer the question many technical former Mint users are asking: where should years of budget data live next, and how do you move it without quietly changing the balances?
 
-That is fine if all you want is a quick spending dashboard and automatic bank sync. But a lot of people searching for a Mint alternative in 2026 want something a bit more serious: better budgeting, more control, cleaner exports, support for multiple currencies, or a setup that does not disappear when another company changes direction.
+[Expense Budget Tracker](https://expense-budget-tracker.com/) is a credible **self hosted Mint alternative** when ownership, an inspectable ledger, and deliberate imports matter more than automatic bank linking. It is not a drop-in Mint clone. There is no passive bank connection or Mint sync. You record transactions explicitly, or import data you already retained and review the result.
 
-If that is you, the real choice is not just Mint replacement A vs Mint replacement B. It is whether you want convenience first or ownership first.
+That tradeoff is the whole decision. If you want accounts to update without your involvement, choose a product built around bank aggregation. If you want a finance system you can run on your own Postgres database, inspect row by row, and automate on your terms, this route makes more sense.
 
-## What people actually want from a Mint alternative
+![A man sorts colored wooden record tiles into a modular archive cabinet beside a balance scale](/blog/mint-alternative-open-source-budget-tracker-you-can-self-host.png)
 
-Mint was easy to recommend because the pitch was simple: connect accounts, let the app pull transactions, check a few charts, move on with your day.
+## The short answer: choose control or passive convenience
 
-The problem is that once you rely on a closed personal finance product long enough, your money history starts living inside somebody else's product decisions:
+| What matters most | Better direction | Why |
+|---|---|---|
+| Automatic bank linking with little routine input | A managed aggregator | Expense Budget Tracker does not passively sync banks |
+| A local or self-hosted database | Expense Budget Tracker | The Docker Compose setup runs the web app and Postgres on infrastructure you control |
+| A managed app without operating a server | Hosted Expense Budget Tracker | The hosted app provides managed access to the ledger and budgeting features without local setup |
+| Inspectable balances and transfers | Expense Budget Tracker | Account balances are sums of ledger entries, and transfers remain explicit ledger movements |
+| A one-click recreation of every old Mint feature | Neither assumption is safe | Test the workflows you actually used before moving all your history |
 
-- pricing changes
-- feature changes
-- import/export limits
-- shutdown risk
-- privacy tradeoffs you do not control
+This is why an **open source Mint alternative** is not automatically the best Mint alternative for everyone. Self-hosting gives you control, but it also gives you upgrades, backups, security, and recovery to manage. The [self-hosting guide](/docs/self-hosting/) starts with Docker Compose and also documents the production AWS path.
 
-That is why "Mint alternative" has split into a few different searches:
+## What you are moving into
 
-- people who want a better budgeting method than Mint had
-- people who want a YNAB alternative without another subscription
-- people who want a self-hosted expense tracker
-- people who want a multi-currency budget app that does not break the moment life spans two countries
+The safest migration begins with the destination model, not the CSV columns.
 
-Those are not exactly the same problem, and most products only solve one of them well.
+Expense Budget Tracker stores finance data in Postgres. Its `accounts` view is derived from ledger entries rather than maintained as a separate list of balances. Each ledger entry has an account, signed amount, native currency, and one of three kinds: `income`, `spend`, or `transfer`.
 
-## YNAB, Copilot, Lunch Money, and the usual Mint alternatives
+That has a useful consequence: the current balance is not a number you type over whenever the dashboard looks wrong. It is the sum of what happened in the ledger. A bad import therefore remains visible and fixable, but it also means a missing opening balance will stay missing.
 
-The mainstream replacements are not bad products. They just optimize for a different kind of user.
+The budget is a separate layer. Base plan rows hold the planned amount for each month and category. Later adjustments are stored separately and summed into the effective plan. Actual income and spending still come from the ledger. Migrating transactions first and rebuilding the future budget afterward keeps those two jobs from contaminating each other.
 
-**YNAB** is strong if you want a strict budgeting method and you are happy living inside that system. A lot of people love it for exactly that reason.
+For multiple currencies, each entry keeps its original currency. The workspace has one reporting currency, and daily FX rates are applied when reports are read. Reconcile every account in its native currency first. A converted dashboard total is a report, not the source balance from the bank.
 
-**Copilot** is polished and friendly. If your priority is a nice mobile experience and you do not care much about ownership, it makes sense.
+## Map the old data before you import a row
 
-**Lunch Money** is flexible and more developer-friendly than most consumer finance tools. For a lot of technical users, it is one of the more reasonable hosted options.
+If you retained a Mint export, work from a copy and keep the original unchanged. If you did not retain one, use bank and card statements for the periods you can prove. Do not assume that a Mint export is still available now, and do not combine a retained export with statements for the same dates as two import sources.
 
-But all of them still share the same basic limitation: your personal finance workflow depends on their product, their UI, their API decisions, and their roadmap.
+Write down the mapping before an agent or script receives write access:
 
-That is where the open-source budget tracker path starts looking different.
+| Source concept | Expense Budget Tracker destination | Decision to make |
+|---|---|---|
+| Mint account | Stable `account_id` used by ledger entries | Choose one ID and native currency per real account; do not rename it halfway through the import |
+| Transaction | One `ledger_entries` row | Normalize the date, signed amount, currency, and `income` or `spend` kind |
+| Merchant or payee | `counterparty` | Preserve the source text before applying any cleanup rules |
+| Memo | `note` | Keep useful context; do not turn notes into categories |
+| Category and subcategory | `category` | Preserve the old structure or define one explicit mapping table |
+| Transfer between your accounts | Two ledger rows sharing one `event_id` | Use `kind = transfer`, a negative amount in the source account, and a positive amount in the destination account |
+| Source transaction ID | `external_id` or an import manifest | Retain a stable identifier so a second run can find the same source row |
+| Old budget target | Base budget plan, recreated after reconciliation | Move only the plan you still use; do not infer old budgets from transaction totals |
+| Later plan change | Budget adjustment | Keep the original base and record the change separately |
 
-## When an open-source budget tracker makes more sense
+A category cleanup is tempting during migration. It is also how a controlled move turns into several projects at once. Preserve the old categories for the pilot. Merge or rename them only after balances match.
 
-If you are comfortable with Docker, Postgres, or even just the idea that your data should stay portable, the best Mint alternative might not be another SaaS app at all.
+## Decide what “opening balance” means
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/) is built around a very different assumption: your finance data should live in a database you control, not in a black box you hope keeps behaving.
+You need this decision before choosing an import range because accounts and balances come from the ledger.
 
-That changes a few things immediately.
+### Import complete history
 
-First, it is a real **self-hosted expense tracker**. You can run it locally with Docker Compose or deploy it to your own infrastructure. No proprietary lock-in, no mystery export story later.
+If your retained data covers the account from its true beginning and the history is complete, import the full ledger. The resulting balance should emerge from those entries without a synthetic starting row.
 
-Second, it is an **open-source budget tracker** on top of Postgres. If you want to inspect the schema, run your own queries, or build your own reports, you can.
+This is the cleanest option and usually the slowest one. A long export can contain duplicates, renamed accounts, deleted categories, and transfer pairs that no longer look paired.
 
-Third, it handles the stuff that usually gets messy in personal finance:
+### Start at a clean cutover date
 
-- rolling monthly budget planning
-- account balances across multiple accounts
-- transfers between your own accounts
-- multi-currency reporting with daily FX rates
-- AI-assisted imports and automation through a SQL API
+For most migrations, one closed statement period is a better pilot. Choose the statement's opening date and record the source balance at that boundary.
 
-That last part matters more than it sounds.
+Expense Budget Tracker has no separate opening-balance field or ledger kind. If you need the tracker to show the real balance from day one, one option is a clearly labeled synthetic ledger entry immediately before the first imported transaction. A positive asset balance can be a positive `income` entry; a negative card or liability balance can be a negative `spend` entry.
 
-## Most budget apps still treat automation like a side feature
+That row still counts as income or spending in reports that include its date. Put it immediately before the cutover, use a category such as `Opening balance`, add a note with the source statement and date, and begin normal income and spending analysis after it. The label makes the bridge auditable; it does not automatically exclude the entry from reports. If you need clean reporting across the earlier date too, importing complete history is the safer model.
 
-One thing that feels weird in 2026: a lot of personal finance apps still expect you to click through everything manually even though AI agents can already do real work.
+### Track only new activity
 
-With Expense Budget Tracker, the app exposes a **SQL API**. That means an AI agent can do more than summarize your transactions in a chat window. It can actually read your current categories, insert new transactions, check balances, and help update the budget forecast.
+You can skip historical balances and begin recording new transactions. In that case, accept that account balances in the tracker will be incomplete. This option works for category tracking from a chosen date, but it is not a valid choice if you expect the Accounts view to match today's bank balance.
 
-My own workflow is simpler than people expect. I drop bank statements into an AI agent once a week. It parses the transactions, categorizes them based on what is already in the database, records them, and checks whether balances match. I review what changed. Done.
+## A staged Mint migration that protects balances
 
-That is a very different model from "wait for the app to support my bank" or "manually fix CSV imports forever."
+The useful migration unit is one account and one closed statement period. It is small enough to inspect and large enough to expose refunds, duplicates, and sign errors. If that account has transfers to another account you also track, bring the matching statement period for the paired account or choose a simpler pilot. You cannot fully verify an internal transfer from one side alone.
 
-If you are searching for a **personal finance app with SQL API**, this is the part most hosted products still do not offer.
+### 1. Preserve the source and make an inventory
 
-## Self-hosted does not have to mean painful
+Keep the retained Mint file, statement files, and any category mapping outside the import working copy. List every account with:
 
-People hear "self-hosted budget tracker" and imagine a weekend disappearing into YAML files.
+- a stable destination ID
+- its native currency
+- the first and last available transaction dates
+- the opening and closing balances for the pilot period
+- whether it contains a transfer to another account in scope
 
-The local setup is four commands:
+Archived or closed accounts still need stable IDs if their history is part of the move.
 
-```bash
-git clone https://github.com/kirill-markin/expense-budget-tracker.git
-cd expense-budget-tracker
-cp .env.example .env
-make up
-```
+### 2. Create a clean workspace and choose the reporting currency
 
-That gives you Postgres, migrations, the web app, and the exchange-rate worker.
+Use a disposable local Docker deployment or a separate hosted workspace for the migration test. Set the reporting currency, but keep the reconciliation sheet in each account's native currency.
 
-If you want a production setup, there is also an AWS deployment path with ECS, RDS, ALB, Cognito, and the rest of the infrastructure spelled out. Or keep it simple and run it on whatever box you already trust.
+Because the Accounts view is derived from ledger entries, an account appears when its first entry exists. That first row may be the documented opening balance or the first real transaction, depending on the choice above.
 
-And if you do not want to self-host yet, you can still use the hosted version first and move later. That is the nice thing about open source backed by a normal database. You are not painting yourself into a corner on day one.
+### 3. Define one duplicate rule
 
-## A Mint alternative for people with more than one currency
+Use a retained source transaction ID as `external_id` when one exists. The database does not enforce uniqueness on that field, so a second run must still query the target for the same account and source ID before writing. When the source has no ID, create a deterministic import key from stable fields such as account ID, posted date, signed amount, currency, and the untouched source description. Keep that key in an import manifest and compare candidate rows with the target before every batch.
 
-This is where a lot of personal finance apps quietly become annoying.
+Do not use `event_id` alone as the duplicate key for transfers. Both sides of one transfer intentionally share the same event ID.
 
-If you live in one country, earn in another, travel often, freelance internationally, or just keep money across USD and EUR accounts, most tools start pushing you toward workarounds.
+If a retained Mint export and a bank statement overlap, choose one as the write source. Use the other only to verify counts and balances.
 
-Expense Budget Tracker stores each transaction in its original currency and converts at read time using daily exchange rates. That sounds like a backend detail, but it is the difference between:
+### 4. Prepare a dry run without writes
 
-- preserving the original truth of the transaction
-- fighting weird pre-converted numbers later
+Parse the first batch into a review table before inserting anything. Include:
 
-If you have ever tried to force multi-country life into a single-currency budgeting app, you know how quickly the small inaccuracies pile up.
+- source row identifier
+- destination account ID
+- posted timestamp
+- signed native amount and currency
+- proposed kind
+- proposed category
+- counterparty and note
+- transfer partner and both signed amounts, when applicable
 
-## Who should choose this instead of a typical Mint replacement
+Ten ordinary rows and a few difficult ones are more useful than a thousand-row first attempt. Include a refund, a transfer, and a repeated merchant if the period has them.
 
-This is probably a better fit if:
+Stop here if an amount sign or account mapping is ambiguous. A guess at this stage becomes a balance correction later.
 
-- you want an alternative to Mint that you can inspect and control
-- you want a **YNAB alternative** without being locked into another subscription product
-- you care about self-hosting or at least the option to self-host later
-- you want AI workflows that can actually write to your finance system
-- you need a **multi-currency budget app**
-- you are comfortable with simple technical setup, or at least not scared of it
+### 5. Insert one small batch
 
-This is probably not your best fit if your only requirement is instant bank sync with the least possible involvement. In that case, a more traditional hosted app may still feel easier.
+Write only the reviewed rows for the pilot account, plus confirmed matching sides for its internal transfers. Check them in the transaction view immediately. Look for reversed signs, dates shifted by timezone, lost cents, wrong currencies, and descriptions that were cleaned so aggressively that they can no longer be traced to the source.
 
-That is not a weakness to hide. It is the tradeoff.
+For a transfer between two accounts you own, create two entries with the same event ID. A 500 USD move from checking to savings is a negative 500 USD transfer in checking and a positive 500 USD transfer in savings. It is not spending in one account and income in the other. For a cross-currency transfer, use the actual posted amount and native currency from each side rather than calculating one side from the other.
 
-## So what is the best Mint alternative in 2026?
+A credit-card payment follows the same rule. The original card purchases are spending. The later payment is a transfer from checking to the card account, so counting it as another expense doubles the month.
 
-If you want the easiest possible consumer app, there are polished hosted options.
+### 6. Reconcile before importing another batch
 
-If you want ownership, self-hosting, AI automation, raw SQL access, and budgeting that is built more like a real finance system than a lifestyle app, an open-source budget tracker is the more interesting direction.
+For every account touched by the batch, prove this equation in its native currency:
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/) is not trying to be Mint with a nicer coat of paint. It is for people who want their finances in a system they can actually control.
+`opening balance + signed posted movements = closing balance`
 
-That group is smaller than the mass-market finance app audience.
+Compare the result with the closed statement, not an available balance that includes pending activity. Then check:
 
-But I suspect it is larger than most product teams think.
+- source-row and imported-row counts
+- every duplicate candidate
+- every transfer pair and its two account sides
+- refunds and reversals
+- the exact closing balance
 
-## Try the open-source budget tracker
+If the balance is wrong, stop. Find the missing, duplicated, or mis-signed row. Do not add an unexplained correction simply to make the total green. The [budget reconciliation guide](/blog/how-to-reconcile-your-budget-with-your-bank-balance/) has a fuller account-by-account checklist.
 
-If you are looking for a **Mint alternative**, start here:
+### 7. Expand one boundary at a time
 
-- [Open the hosted app](https://expense-budget-tracker.com/)
-- [Read the self-hosting guide](https://expense-budget-tracker.com/docs/self-hosting/)
-- [View the source on GitHub](https://github.com/kirill-markin/expense-budget-tracker)
+After one period matches, add the next period for the same account. Complete and reconcile both sides of every internal transfer before moving past that period. Only then move to another account.
 
-Mint is gone. That part is settled.
+This sounds slower than one large upload. It is much faster than finding one duplicate transfer inside several years of mixed accounts.
 
-The more useful question now is whether you want your next budget app to be another subscription you rent, or a finance system you actually own.
+The practical statement workflow is covered in [How to Import Bank Statements Into an Expense Tracker](/blog/how-to-import-bank-statements-into-an-expense-tracker/). The same process applies whether the input is a retained Mint CSV or a bank export: parse, map, review, write, and reconcile.
+
+### 8. Rebuild the budget after the ledger is trusted
+
+Do not create a polished budget on top of unreconciled transactions.
+
+Once actuals match, recreate the base plan for the current and future months. Use budget adjustments for later changes rather than rewriting the reason the original plan existed. Then compare actual income and spend against the plan and review the reporting-currency view.
+
+For a multi-currency household, a native account can reconcile perfectly while its reporting-currency value changes with daily FX. That movement is expected. The source amount should not be rewritten to make the converted total stay still.
+
+## MCP or Agent API for the import?
+
+The hosted product now has two separate machine interfaces. They solve similar jobs but use different authentication and credentials.
+
+### Use the hosted MCP connector when your client supports it
+
+Connect an OAuth-capable remote MCP client to `https://mcp.expense-budget-tracker.com/mcp`. The required `expenses:read` scope covers workspace discovery, schema inspection, and queries. Request the optional `expenses:write` scope only when the client must change data.
+
+This is a useful safety boundary for a migration: inspect the schema and existing rows with read access first, then approve write access for the reviewed batch. The [MCP connector guide](/docs/mcp-connector/) documents the connection and tool flow.
+
+### Use the Agent API for terminal agents or direct HTTP
+
+Start at `GET https://api.expense-budget-tracker.com/v1/`. The discovery response guides the agent through email verification, workspace selection, schema inspection, and the restricted SQL endpoints. Authenticated requests use a long-lived `ApiKey`.
+
+The [Agent API setup guide](/docs/agent-setup/) is the shortest onboarding route, while the [API reference](/docs/api/) covers the read and write endpoints. Ask the agent to show the proposed mapping and exact batch before it writes, then query the inserted rows and balances afterward.
+
+MCP OAuth tokens and Agent API keys are separate credentials. They are not interchangeable, and neither should be pasted into article notes, prompts, or source files.
+
+The basic local Docker Compose setup starts Postgres, migrations, the web app, the auth service, and the FX worker. It does not start local MCP or Agent API services. The managed URLs above belong to the hosted service. The documented production AWS deployment includes the corresponding API and MCP infrastructure if you want to operate the full stack yourself.
+
+## Where this open-source Mint alternative fits
+
+Expense Budget Tracker is a good fit when you want:
+
+- Postgres as the source of truth
+- a hosted option or your own deployment
+- balances derived from inspectable ledger movements
+- explicit income, spending, and transfers
+- native-currency entries with daily FX reporting
+- a budget with base plans and traceable adjustments
+- controlled access for scripts and AI agents
+
+It is a poor fit when automatic bank linking is the main requirement, when you want migration to be a single unattended upload, or when operating and backing up a self-hosted service sounds like work you do not want.
+
+Self-hosting also does not make every connected tool private by magic. If you give an external AI client a statement or authorize it to read financial data, that client and its model provider become part of the data path. Review their policies and grant the smallest access the job needs.
+
+If you are still comparing models rather than products, [Budget App Without Bank Linking](/blog/budget-app-without-bank-linking/) explains the deliberate-import tradeoff. Developers can also read the broader [self-hosted open-source budget tracker guide](/blog/self-hosted-open-source-budget-tracker-for-developers/). If your old system was closer to desktop accounting software, the [Quicken alternative guide](/blog/quicken-alternative/) uses the same one-account migration test.
+
+## Frequently asked questions
+
+### Is Expense Budget Tracker a direct Mint replacement?
+
+No. It covers accounts, ledger entries, budgets, transfers, multi-currency reporting, a hosted app, and self-hosting. It does not reproduce Mint's passive bank aggregation or provide a live Mint connection.
+
+### Can it import a Mint export?
+
+There is no one-click Mint importer. If you retained an export, a script or connected agent can map its rows into the ledger. Review a small batch and reconcile it before expanding. If you have no retained export, use bank and card statements for the history you can independently verify.
+
+### Can I run it only on my own machine?
+
+Yes. The [Docker Compose self-hosting setup](/docs/self-hosting/) runs the core application with Postgres locally. You are then responsible for backups, updates, access control, and recovery.
+
+### Should I migrate every year of data?
+
+Only when the history is complete and still useful. A clean cutover with documented opening balances can be safer than importing years of partial data. Choose the boundary deliberately and keep the old source archive unchanged.
+
+### What is the safest first test?
+
+Use one account, one closed statement period, and one primary source file. If the period contains an internal transfer, include the paired account's statement too or choose an account without such transfers. Import a small reviewed batch and prove every affected closing balance. If that passes, expand gradually.
+
+## Own the migration, not just the server
+
+A **Mint.com local alternative** is useful only when the ledger remains trustworthy after the move. Running Postgres on your own server solves the ownership question. It does not solve duplicate rows, broken transfer pairs, missing opening balances, or an agent writing to the wrong workspace.
+
+Those problems are manageable when the migration has clear boundaries: preserve the source, map the model, import one account, reconcile in native currency, and stop whenever the numbers disagree.
+
+If that workflow matches what you want from a **Mint alternative in 2026**, [open the hosted app](https://app.expense-budget-tracker.com/) for a managed test or follow the [self-hosting guide](/docs/self-hosting/) to run the system yourself. The [source code](https://github.com/kirill-markin/expense-budget-tracker) is available to inspect before you trust it with any data.

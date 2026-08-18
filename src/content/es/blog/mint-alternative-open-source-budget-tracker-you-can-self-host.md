@@ -1,158 +1,243 @@
 ---
-title: "Alternativa a Mint en 2026: un gestor de presupuesto de código abierto que puedes alojar tú mismo"
-description: "¿Buscas una alternativa a Mint en 2026? La diferencia real es esta: la mayoría de las apps priorizan la comodidad, mientras que un gestor de presupuesto de código abierto te da autoalojamiento, flujos de trabajo con IA, acceso vía SQL y control total sobre tus datos."
+title: "Alternativa autoalojada a Mint en 2026: mantén el control de tus datos"
+description: "¿Buscas una alternativa a Mint que puedas autoalojar? Compara las opciones, migra tus transacciones antiguas sin alterar los saldos y crea un sistema presupuestario auditable y portátil."
 date: "2026-03-09"
+updated: "2026-08-18"
+image: "/blog/mint-alternative-open-source-budget-tracker-you-can-self-host.png"
 keywords:
-  - "alternativa a mint"
+  - "alternativa autoalojada a Mint"
+  - "alternativa de código abierto a Mint"
+  - "alternativa local a Mint.com"
+  - "alternativa a Mint en 2026"
   - "gestor de presupuesto de código abierto"
-  - "rastreador de gastos autoalojado"
-  - "alternativa a ynab"
-  - "app de presupuesto multidivisa"
-  - "app de finanzas personales con api sql"
+  - "gestor de gastos autoalojado"
 ---
 
-Mint ya no existe, y la mayoría de las "alternativas a Mint" siguen pidiéndote que subas los mismos datos financieros a la nube de otra empresa. Cambia el logo, pero el trato es el mismo.
+En su [página actual de Mint](https://mint.intuit.com/how-mint-works), Intuit remite a Credit Karma a quienes buscan las funciones conocidas de Mint. Es una opción gestionada, pero no responde a la pregunta que se hacen muchos usuarios de perfil técnico que dejaron Mint: ¿dónde deberían guardar ahora sus años de datos presupuestarios y cómo pueden migrarlos sin alterar los saldos sin darse cuenta?
 
-Eso encaja si solo quieres un panel rápido de gastos y sincronización bancaria automática. Pero mucha gente que busca una alternativa a Mint en 2026 quiere algo más serio: mejores presupuestos, más control, exportaciones limpias, soporte para varias divisas o una configuración que no desaparezca cuando otra empresa cambie de rumbo.
+[Expense Budget Tracker](https://expense-budget-tracker.com/) es una **alternativa autoalojada a Mint** sólida si valoras más la propiedad de los datos, un libro mayor auditable y las importaciones bajo tu control que la conexión bancaria automática. No es un clon de Mint que puedas usar como sustituto directo sin cambiar nada. No se conecta automáticamente al banco ni se sincroniza con Mint. Debes registrar las transacciones de forma explícita o importar los datos que ya conserves y revisar el resultado.
 
-Si eso es lo que buscas, la decisión real no es comparar el reemplazo A de Mint con el reemplazo B. La cuestión es si prefieres comodidad o control.
+Esa diferencia define toda la decisión. Si quieres que las cuentas se actualicen sin tu intervención, elige un producto basado en la agregación bancaria. Si buscas un sistema financiero que funcione sobre tu propia base de datos Postgres y que puedas inspeccionar fila por fila y automatizar a tu manera, esta opción tiene más sentido.
 
-## Lo que la gente realmente busca en una alternativa a Mint
+![Un hombre ordena fichas de madera de colores en un archivador modular junto a una balanza](/blog/mint-alternative-open-source-budget-tracker-you-can-self-host.png)
 
-Mint era fácil de recomendar porque la propuesta era simple: conectas tus cuentas, la app importa los movimientos, miras un par de gráficos y sigues con tu día.
+## Respuesta breve: elige entre control y comodidad automática
 
-El problema es que, cuando dependes demasiado tiempo de un producto cerrado de finanzas personales, tu historial financiero acaba condicionado por decisiones ajenas:
+| Lo que más te importa | Mejor opción | Motivo |
+|---|---|---|
+| Conexión bancaria automática con poco mantenimiento | Un agregador gestionado | Expense Budget Tracker no sincroniza automáticamente las cuentas bancarias |
+| Una base de datos local o autoalojada | Expense Budget Tracker | La configuración con Docker Compose ejecuta la aplicación web y Postgres en una infraestructura que controlas |
+| Una aplicación gestionada sin tener que operar un servidor | La versión alojada de Expense Budget Tracker | La aplicación alojada ofrece acceso gestionado al libro mayor y a las funciones presupuestarias sin configuración local |
+| Saldos y transferencias que se puedan inspeccionar | Expense Budget Tracker | Los saldos de las cuentas son la suma de los asientos del libro mayor y las transferencias se mantienen como movimientos explícitos en él |
+| Recrear con un clic todas las funciones antiguas de Mint | No lo des por hecho con ninguna opción | Prueba los flujos de trabajo que utilizabas de verdad antes de migrar todo tu historial |
 
-- cambios de precio
-- cambios de funciones
-- límites de importación y exportación
-- riesgo de cierre
-- decisiones sobre privacidad que no controlas
+Por eso una **alternativa de código abierto a Mint** no es automáticamente la mejor alternativa para todo el mundo. El autoalojamiento te da control, pero también te obliga a gestionar las actualizaciones, las copias de seguridad, la seguridad y la recuperación. La [guía de autoalojamiento](/docs/self-hosting/) comienza con Docker Compose y también documenta el despliegue de producción en AWS.
 
-Por eso la búsqueda de una "alternativa a Mint" se ha ido dividiendo en varias necesidades distintas:
+## El modelo al que vas a migrar tus datos
 
-- personas que quieren un método para presupuestar mejor que el de Mint
-- personas que buscan una alternativa a YNAB sin otra suscripción
-- personas que quieren un rastreador de gastos autoalojado
-- personas que necesitan una app de presupuesto multidivisa que no se rompa en cuanto su vida transcurre entre dos países
+La migración más segura empieza por el modelo de destino, no por las columnas del archivo CSV.
 
-No todas buscan lo mismo, y la mayoría de los productos solo resuelve bien una de esas necesidades.
+Expense Budget Tracker almacena los datos financieros en Postgres. Su vista `accounts` se deriva de los asientos del libro mayor, en lugar de mantenerse como una lista independiente de saldos. Cada asiento tiene una cuenta, un importe con signo, una moneda original y uno de estos tres tipos: `income`, `spend` o `transfer`.
 
-## YNAB, Copilot, Lunch Money y las alternativas habituales a Mint
+Esto tiene una consecuencia útil: el saldo actual no es una cifra que se sobrescriba cada vez que el panel parece incorrecto. Es la suma de lo que ha ocurrido en el libro mayor. Por tanto, una importación incorrecta sigue siendo visible y se puede corregir, pero un saldo inicial que falte seguirá faltando.
 
-Las alternativas más conocidas no son malos productos. Simplemente están optimizadas para otro tipo de usuario.
+El presupuesto es una capa independiente. Las filas del plan base contienen el importe previsto para cada mes y categoría. Los ajustes posteriores se almacenan por separado y se suman para formar el plan resultante. Los ingresos y gastos reales siguen procediendo del libro mayor. Migrar primero las transacciones y reconstruir después el presupuesto futuro evita mezclar ambas tareas.
 
-**YNAB** funciona bien si quieres un método de presupuestación estricto y te encaja vivir dentro de ese sistema. Precisamente por eso mucha gente lo valora.
+Si trabajas con varias monedas, cada asiento conserva su moneda original. El espacio de trabajo define una moneda de referencia para los informes, a los que se aplican tipos de cambio diarios en el momento de consultarlos. Concilia primero cada cuenta en su propia moneda. El total convertido que muestra un panel es un dato de informe, no el saldo de origen del banco.
 
-**Copilot** está muy pulido y resulta agradable de usar. Si tu prioridad es una buena experiencia móvil y no te preocupa demasiado la propiedad de los datos, tiene sentido.
+## Define el mapeo de los datos antiguos antes de importar una sola fila
 
-**Lunch Money** es flexible y más amigable para perfiles técnicos que la mayoría de herramientas de finanzas personales para consumo. Para muchos usuarios técnicos, es una de las opciones alojadas más razonables.
+Si conservas una exportación de Mint, trabaja con una copia y mantén el original sin cambios. Si no conservas ninguna, utiliza extractos bancarios y de tarjetas para los periodos que puedas verificar. No des por hecho que todavía puedes obtener una exportación de Mint ni combines una exportación conservada con extractos de las mismas fechas como dos fuentes de importación.
 
-Pero todas comparten la misma limitación de fondo: tu flujo de trabajo financiero depende de su producto, su interfaz, sus decisiones de API y su hoja de ruta.
+Documenta el mapeo antes de que un agente o script reciba acceso de escritura:
 
-Ahí es donde una alternativa de código abierto empieza a jugar en otra liga.
+| Concepto de origen | Destino en Expense Budget Tracker | Decisión que debes tomar |
+|---|---|---|
+| Cuenta de Mint | `account_id` estable utilizado por los asientos del libro mayor | Elige un ID y una moneda propia para cada cuenta real; no cambies ese ID a mitad de la importación |
+| Transacción | Una fila de `ledger_entries` | Normaliza la fecha, el importe con signo, la moneda y el tipo `income` o `spend` |
+| Comercio o destinatario del pago | `counterparty` | Conserva el texto de origen antes de aplicar cualquier regla de limpieza |
+| Nota descriptiva | `note` | Conserva el contexto útil; no conviertas las notas en categorías |
+| Categoría y subcategoría | `category` | Conserva la estructura antigua o define una tabla de mapeo explícita |
+| Transferencia entre tus cuentas | Dos asientos del libro mayor que comparten un `event_id` | Utiliza `kind = transfer`, un importe negativo en la cuenta de origen y uno positivo en la cuenta de destino |
+| ID de transacción de origen | `external_id` o un manifiesto de importación | Conserva un identificador estable para que una segunda ejecución pueda encontrar la misma fila de origen |
+| Objetivo del presupuesto antiguo | Plan presupuestario base, recreado después de la conciliación | Traslada solo el plan que sigues utilizando; no deduzcas los presupuestos antiguos a partir de los totales de las transacciones |
+| Cambio posterior del plan | Ajuste presupuestario | Conserva la base original y registra el cambio por separado |
 
-## Cuándo tiene más sentido un gestor de presupuesto de código abierto
+Durante una migración, resulta tentador reorganizar las categorías. También es la forma de convertir una migración controlada en varios proyectos a la vez. Conserva las categorías antiguas durante la prueba piloto. Combínalas o cámbiales el nombre solo después de que los saldos coincidan.
 
-Si te manejas bien con Docker, Postgres o simplemente con la idea de que tus datos deben seguir siendo portables, puede que la mejor alternativa a Mint no sea otra app SaaS.
+## Decide qué significa «saldo inicial»
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/es/) parte de una idea muy distinta: tus datos financieros deberían vivir en una base de datos que controlas tú, no en una caja negra que confías en que siga funcionando.
+Debes tomar esta decisión antes de elegir el intervalo que vas a importar porque las cuentas y los saldos proceden del libro mayor.
 
-Eso cambia varias cosas desde el principio.
+### Importar todo el historial
 
-Primero, es un auténtico **rastreador de gastos autoalojado**. Puedes ejecutarlo en local con Docker Compose o desplegarlo en tu propia infraestructura. Sin dependencia de un proveedor y sin sorpresas cuando toque exportar los datos.
+Si los datos que conservas abarcan la cuenta desde su apertura real y el historial está completo, importa todo el libro mayor. El saldo resultante debería surgir de esos asientos sin una fila inicial sintética.
 
-Segundo, es un **gestor de presupuesto de código abierto** construido sobre Postgres. Si quieres inspeccionar el esquema, lanzar tus propias consultas o montar tus propios informes, puedes hacerlo.
+Es la opción más limpia y, por lo general, la más lenta. Una exportación extensa puede contener duplicados, cuentas renombradas, categorías eliminadas y pares de transferencias que ya no parecen estar vinculados.
 
-Tercero, resuelve cosas que suelen volverse engorrosas en las finanzas personales:
+### Empezar en una fecha de transición clara
 
-- planificación presupuestaria mensual continua
-- saldos repartidos entre varias cuentas
-- transferencias entre tus propias cuentas
-- informes multidivisa con tipos de cambio diarios
-- importaciones y automatizaciones asistidas por IA a través de una API SQL
+Para la mayoría de las migraciones, un periodo de extracto ya cerrado sirve mejor como prueba piloto. Elige la fecha inicial del extracto y registra el saldo de origen en ese punto de corte.
 
-Ese último punto importa más de lo que parece.
+Expense Budget Tracker no tiene un campo de saldo inicial ni un tipo de asiento específico para ello. Si necesitas que el gestor muestre el saldo real desde el primer día, una opción es crear un asiento sintético claramente etiquetado justo antes de la primera transacción importada. El saldo positivo de un activo puede ser un asiento `income` positivo; el saldo negativo de una tarjeta o un pasivo puede ser un asiento `spend` negativo.
 
-## La mayoría de las apps de presupuesto siguen tratando la automatización como algo secundario
+Esa fila seguirá contando como ingreso o gasto en los informes que incluyan su fecha. Colócala justo antes de la transición, usa una categoría como `Opening balance`, añade una nota con el extracto y la fecha de origen y comienza después el análisis normal de ingresos y gastos. La etiqueta permite auditar ese ajuste, pero no excluye automáticamente el asiento de los informes. Si también necesitas informes limpios que abarquen la fecha anterior, importar el historial completo es el modelo más seguro.
 
-Hay algo que resulta extraño en 2026: muchas apps de finanzas personales todavía esperan que hagas todo a mano, aunque los agentes de IA ya pueden encargarse de trabajo real.
+### Registrar solo la actividad nueva
 
-Con Expense Budget Tracker, la aplicación expone una **API SQL**. Eso significa que un agente de IA puede hacer más que resumir tus movimientos en una ventana de chat. Puede leer tus categorías actuales, insertar nuevas transacciones, comprobar saldos y ayudarte a actualizar la previsión presupuestaria.
+Puedes omitir los saldos históricos y empezar a registrar transacciones nuevas. En ese caso, acepta que los saldos de las cuentas del gestor estarán incompletos. Esta opción sirve para registrar categorías a partir de una fecha elegida, pero no es válida si esperas que la vista de cuentas coincida con el saldo bancario actual.
 
-Mi flujo de trabajo es más simple de lo que mucha gente imagina. Una vez por semana, le paso extractos bancarios a un agente de IA. Interpreta los movimientos, los clasifica según lo que ya existe en la base de datos, los registra y comprueba si los saldos cuadran. Yo reviso los cambios y listo.
+## Una migración de Mint por etapas que protege los saldos
 
-Es un modelo muy distinto de "esperar a que la app sea compatible con mi banco" o "seguir corrigiendo importaciones CSV a mano para siempre".
+La unidad práctica de migración es una cuenta y un periodo de extracto ya cerrado. Es lo bastante pequeña como para inspeccionarla y lo bastante amplia como para detectar reembolsos, duplicados y errores de signo. Si esa cuenta tiene transferencias con otra cuenta que también registras, incluye el periodo correspondiente del extracto de la otra cuenta o elige una prueba piloto más sencilla. No puedes verificar por completo una transferencia interna viendo un solo lado.
 
-Si estás buscando una **app de finanzas personales con API SQL**, aquí es donde muchos productos alojados siguen quedándose cortos.
+### 1. Conserva la fuente y prepara un inventario
 
-## Que sea autoalojado no significa que tenga que ser un dolor
+Guarda el archivo de Mint que hayas conservado, los extractos y cualquier mapeo de categorías fuera de la copia de trabajo de la importación. Enumera cada cuenta con:
 
-Cuando la gente oye "rastreador de presupuesto autoalojado", se imagina un fin de semana entero perdido entre archivos YAML.
+- un ID de destino estable
+- su propia moneda
+- las fechas de la primera y la última transacción disponibles
+- los saldos inicial y final del periodo piloto
+- si contiene alguna transferencia a otra cuenta incluida en el proceso
 
-La configuración local son cuatro comandos:
+Las cuentas archivadas o cerradas también necesitan ID estables si su historial forma parte de la migración.
 
-```bash
-git clone https://github.com/kirill-markin/expense-budget-tracker.git
-cd expense-budget-tracker
-cp .env.example .env
-make up
-```
+### 2. Crea un espacio de trabajo limpio y elige la moneda de los informes
 
-Con eso tienes Postgres, las migraciones, la app web y el servicio que actualiza los tipos de cambio.
+Utiliza un despliegue local temporal con Docker o un espacio de trabajo alojado independiente para probar la migración. Configura la moneda de referencia para los informes, pero mantén la hoja de conciliación en la moneda propia de cada cuenta.
 
-Si quieres montarlo en producción, también existe una ruta de despliegue en AWS con ECS, RDS, ALB, Cognito y el resto de la infraestructura documentada. Y si prefieres algo más sencillo, puedes ejecutarlo en cualquier servidor de confianza que ya tengas.
+Como la vista de cuentas se deriva de los asientos del libro mayor, una cuenta aparece cuando existe su primer asiento. Esa primera fila puede ser el saldo inicial documentado o la primera transacción real, según la elección anterior.
 
-Y si todavía no quieres autoalojarlo, también puedes empezar con la versión alojada y migrar más adelante. Esa es una de las ventajas del código abierto respaldado por una base de datos normal: no te encierra desde el primer día.
+### 3. Define una única regla para los duplicados
 
-## Una alternativa a Mint para quien maneja más de una divisa
+Cuando exista, utiliza el ID de la transacción de origen como `external_id`. La base de datos no aplica ninguna restricción de unicidad a ese campo, así que, antes de escribir, una segunda ejecución debe consultar el destino para buscar la misma cuenta y el mismo ID de origen. Cuando la fuente no tenga ID, crea una clave de importación determinista a partir de campos estables, como el ID de la cuenta, la fecha de contabilización, el importe con signo, la moneda y la descripción de origen sin modificar. Guarda esa clave en un manifiesto de importación y compara las filas candidatas con el destino antes de cada lote.
 
-Aquí es donde muchas apps de finanzas personales empiezan a hacerse incómodas.
+No utilices solo `event_id` como clave de duplicados para las transferencias. Ambos lados de una transferencia comparten intencionadamente el mismo ID de evento.
 
-Si vives en un país, cobras en otro, viajas con frecuencia, trabajas para clientes internacionales o simplemente mantienes dinero en cuentas en USD y EUR, la mayoría de las herramientas empieza a empujarte hacia apaños.
+Si una exportación de Mint conservada y un extracto bancario se solapan, elige una sola fuente para escribir. Utiliza la otra únicamente para verificar los recuentos y los saldos.
 
-Expense Budget Tracker guarda cada transacción en su divisa original y convierte en el momento de la lectura usando tipos de cambio diarios. Puede sonar a detalle interno, pero marca la diferencia entre:
+### 4. Prepara una prueba en seco, sin escribir datos
 
-- conservar la realidad original de la transacción
-- pelearte después con cifras raras ya convertidas
+Analiza el primer lote y preséntalo en una tabla de revisión antes de insertar nada. Incluye:
 
-Si alguna vez has intentado encajar una vida entre varios países en una app de presupuesto monodivisa, ya sabes lo rápido que se acumulan las pequeñas imprecisiones.
+- el identificador de la fila de origen
+- el ID de la cuenta de destino
+- la fecha y hora de contabilización
+- el importe con signo en la moneda original
+- el tipo propuesto
+- la categoría propuesta
+- la contraparte y la nota
+- la otra cuenta de la transferencia y ambos importes con signo, cuando corresponda
 
-## Quién debería elegir esto en lugar de una alternativa típica a Mint
+Diez filas corrientes y unas pocas difíciles son más útiles que un primer intento con mil filas. Incluye un reembolso, una transferencia y un comercio que aparezca más de una vez, si los hay en el periodo.
 
-Probablemente encaja mejor contigo si:
+Detente aquí si el signo de un importe o el mapeo de una cuenta son ambiguos. Una conjetura en esta etapa se convierte después en una corrección del saldo.
 
-- quieres una alternativa a Mint que puedas inspeccionar y controlar
-- buscas una **alternativa a YNAB** sin quedar atado a otro producto por suscripción
-- te importa el autoalojamiento, o al menos mantener abierta esa posibilidad
-- quieres flujos de trabajo con IA que realmente puedan escribir en tu sistema financiero
-- necesitas una **app de presupuesto multidivisa**
-- te sientes cómodo con una configuración técnica sencilla, o al menos no te asusta
+### 5. Inserta un lote pequeño
 
-Probablemente no sea tu mejor opción si lo único que buscas es sincronización bancaria inmediata con la mínima implicación posible. En ese caso, una app alojada más tradicional puede seguir resultando más cómoda.
+Escribe solo las filas revisadas de la cuenta piloto, junto con las dos partes confirmadas de sus transferencias internas. Compruébalas de inmediato en la vista de transacciones. Busca signos invertidos, fechas alteradas por la zona horaria, céntimos perdidos, monedas incorrectas y descripciones que se hayan limpiado de forma tan agresiva que ya no se puedan vincular a la fuente.
 
-No hace falta disfrazarlo. Ese es el equilibrio.
+Para una transferencia entre dos cuentas tuyas, crea dos asientos con el mismo ID de evento. Un movimiento de 500 USD de una cuenta corriente a una cuenta de ahorro es una transferencia negativa de 500 USD en la cuenta corriente y una transferencia positiva de 500 USD en la cuenta de ahorro. No es un gasto en una cuenta ni un ingreso en la otra. Para una transferencia entre monedas distintas, utiliza el importe real contabilizado y la moneda de cada lado, en lugar de calcular un lado a partir del otro.
 
-## Entonces, ¿cuál es la mejor alternativa a Mint en 2026?
+El pago de una tarjeta de crédito sigue la misma regla. Las compras originales con la tarjeta son gastos. El pago posterior es una transferencia de la cuenta corriente a la cuenta de la tarjeta, por lo que contabilizarlo como otro gasto duplica el gasto del mes.
 
-Si quieres la app de consumo más simple posible, hay opciones alojadas muy pulidas.
+### 6. Concilia antes de importar otro lote
 
-Si quieres control, autoalojamiento, automatización con IA, acceso directo por SQL y un sistema de presupuesto concebido más como un sistema financiero real que como una app de estilo de vida, un gestor de presupuesto de código abierto apunta en una dirección más interesante.
+Para cada cuenta afectada por el lote, comprueba que esta ecuación se cumple en su propia moneda:
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/es/) no intenta ser Mint con una capa de pintura nueva. Está pensado para quien quiere llevar sus finanzas en un sistema que de verdad puede controlar.
+`saldo inicial + movimientos contabilizados con signo = saldo final`
 
-Ese grupo es más pequeño que el público masivo de las apps financieras.
+Compara el resultado con el extracto cerrado, no con un saldo disponible que incluya actividad pendiente. Después, comprueba:
 
-Pero sospecho que es bastante más grande de lo que muchos equipos de producto imaginan.
+- el número de filas de origen y de filas importadas
+- cada posible duplicado
+- cada par de transferencias y los asientos de ambas cuentas
+- los reembolsos y las reversiones
+- el saldo final exacto
 
-## Prueba el gestor de presupuesto de código abierto
+Si el saldo es incorrecto, detente. Encuentra la fila ausente, duplicada o con el signo equivocado. No añadas una corrección sin explicar solo para que el total aparezca en verde. La [guía de conciliación presupuestaria](/blog/how-to-reconcile-your-budget-with-your-bank-balance/) ofrece una lista de comprobación más completa, cuenta por cuenta.
 
-Si estás buscando una **alternativa a Mint**, empieza aquí:
+### 7. Avanza un periodo cada vez
 
-- [Abrir la app alojada](https://expense-budget-tracker.com/es/)
-- [Leer la guía de autoalojamiento](https://expense-budget-tracker.com/es/docs/self-hosting/)
-- [Ver el código en GitHub](https://github.com/kirill-markin/expense-budget-tracker)
+Cuando un periodo cuadre, añade el siguiente periodo de la misma cuenta. Completa y concilia ambos lados de cada transferencia interna antes de avanzar más allá de ese periodo. Solo entonces debes pasar a otra cuenta.
 
-Mint ha desaparecido. Eso ya está claro.
+Parece más lento que una única carga masiva. Es mucho más rápido que buscar una transferencia duplicada entre varios años de movimientos de distintas cuentas.
 
-La pregunta útil ahora es si quieres que tu próxima app de presupuesto sea otra suscripción que alquilas o un sistema financiero que realmente controlas.
+El flujo de trabajo práctico con extractos se explica en [Cómo importar extractos bancarios a un gestor de gastos](/blog/how-to-import-bank-statements-into-an-expense-tracker/). El mismo proceso sirve tanto para un archivo CSV de Mint que hayas conservado como para una exportación del banco: analizar, mapear, revisar, escribir y conciliar.
+
+### 8. Reconstruye el presupuesto cuando el libro mayor sea fiable
+
+No crees un presupuesto impecable sobre transacciones sin conciliar.
+
+Cuando los movimientos reales cuadren, vuelve a crear el plan base para el mes actual y los meses futuros. Utiliza ajustes presupuestarios para los cambios posteriores, en lugar de modificar después el plan base y perder el contexto de la decisión original. A continuación, compara los ingresos y gastos reales con el plan y revisa la vista en la moneda de referencia.
+
+En un hogar que utiliza varias monedas, una cuenta puede conciliar perfectamente en su propia moneda mientras su valor en la moneda de referencia cambia con los tipos de cambio diarios. Esa variación es normal. No debes reescribir el importe de origen para mantener inmóvil el total convertido.
+
+## ¿MCP o Agent API para la importación?
+
+El producto alojado dispone ahora de dos interfaces independientes para el acceso automatizado. Sirven para tareas parecidas, pero utilizan métodos de autenticación y credenciales diferentes.
+
+### Utiliza el conector MCP alojado si tu cliente lo admite
+
+Conecta un cliente MCP remoto compatible con OAuth a `https://mcp.expense-budget-tracker.com/mcp`. El ámbito obligatorio `expenses:read` permite identificar los espacios de trabajo disponibles, inspeccionar el esquema y hacer consultas. Solicita el ámbito opcional `expenses:write` solo cuando el cliente deba modificar datos.
+
+Es un límite de seguridad útil para una migración: primero inspecciona el esquema y las filas existentes con acceso de lectura y después aprueba el acceso de escritura para el lote revisado. La [guía del conector MCP](/docs/mcp-connector/) explica la conexión y el flujo de uso de las herramientas.
+
+### Utiliza la Agent API para agentes de terminal o HTTP directo
+
+Empieza en `GET https://api.expense-budget-tracker.com/v1/`. La respuesta de descubrimiento guía al agente por la verificación del correo electrónico, la selección del espacio de trabajo, la inspección del esquema y los endpoints SQL restringidos. Las solicitudes autenticadas utilizan una `ApiKey` de larga duración.
+
+La [guía de configuración de la Agent API](/docs/agent-setup/) es la vía más corta para empezar, mientras que la [referencia de la API](/docs/api/) explica los endpoints de lectura y escritura. Pide al agente que muestre el mapeo propuesto y el lote exacto antes de escribir; después, consulta las filas insertadas y los saldos.
+
+Los tokens OAuth de MCP y las claves de la Agent API son credenciales independientes. No son intercambiables y ninguna de ellas debería pegarse en notas de artículos, prompts ni archivos de código fuente.
+
+La configuración local básica con Docker Compose inicia Postgres, las migraciones, la aplicación web, el servicio de autenticación y el worker de tipos de cambio. No inicia servicios MCP ni Agent API locales. Las URL gestionadas anteriores pertenecen al servicio alojado. El despliegue de producción documentado en AWS incluye la infraestructura de API y MCP correspondiente si quieres operar por tu cuenta la pila completa.
+
+## Para quién encaja esta alternativa de código abierto a Mint
+
+Expense Budget Tracker encaja bien si quieres:
+
+- Postgres como fuente de verdad
+- una opción alojada o tu propio despliegue
+- saldos derivados de movimientos del libro mayor que puedas inspeccionar
+- ingresos, gastos y transferencias explícitos
+- asientos en la moneda original de cada cuenta e informes basados en tipos de cambio diarios
+- un presupuesto con planes base y ajustes que se puedan rastrear
+- acceso controlado para scripts y agentes de IA
+
+No encaja bien si la conexión bancaria automática es el requisito principal, si quieres que la migración sea una única carga sin supervisión o si no quieres encargarte de operar un servicio autoalojado y hacer sus copias de seguridad.
+
+El autoalojamiento tampoco hace que todas las herramientas conectadas sean privadas por arte de magia. Si proporcionas un extracto a un cliente de IA externo o le autorizas a leer datos financieros, ese cliente y su proveedor de modelos pasan a formar parte del recorrido de los datos. Revisa sus políticas y concede el mínimo acceso necesario para la tarea.
+
+Si aún estás comparando modelos en lugar de productos, [Aplicación de presupuesto sin conexión bancaria](/blog/budget-app-without-bank-linking/) explica las ventajas y desventajas de una importación controlada. Los desarrolladores también pueden consultar la [guía general del gestor de presupuesto de código abierto y autoalojado](/blog/self-hosted-open-source-budget-tracker-for-developers/). Si tu sistema anterior se parecía más a un programa de contabilidad de escritorio, la [guía de alternativas a Quicken](/blog/quicken-alternative/) utiliza la misma prueba de migración con una sola cuenta.
+
+## Preguntas frecuentes
+
+### ¿Expense Budget Tracker es un sustituto directo de Mint?
+
+No. Incluye cuentas, asientos del libro mayor, presupuestos, transferencias, informes multidivisa, una aplicación alojada y autoalojamiento. No reproduce la agregación bancaria pasiva de Mint ni ofrece una conexión en tiempo real con Mint.
+
+### ¿Puede importar una exportación de Mint?
+
+No existe un importador de Mint con un solo clic. Si conservas una exportación, un script o un agente conectado puede mapear sus filas en el libro mayor. Revisa un lote pequeño y concílialo antes de ampliar la importación. Si no conservas ninguna exportación, utiliza extractos bancarios y de tarjetas para el historial que puedas verificar de forma independiente.
+
+### ¿Puedo ejecutarlo solo en mi propio equipo?
+
+Sí. La [configuración de autoalojamiento con Docker Compose](/docs/self-hosting/) ejecuta la aplicación principal con Postgres en local. A partir de ahí, eres responsable de las copias de seguridad, las actualizaciones, el control de acceso y la recuperación.
+
+### ¿Debería migrar todo el historial?
+
+Solo si el historial está completo y sigue siendo útil. Una transición limpia con saldos iniciales documentados puede ser más segura que importar años de datos parciales. Elige conscientemente el punto de corte y conserva sin cambios el archivo de la fuente antigua.
+
+### ¿Cuál es la primera prueba más segura?
+
+Utiliza una cuenta, un periodo de extracto ya cerrado y un único archivo de origen principal. Si el periodo contiene una transferencia interna, incluye también el extracto de la otra cuenta o elige una cuenta sin ese tipo de transferencias. Importa un pequeño lote revisado y verifica con exactitud el saldo final de cada cuenta afectada. Si funciona, amplía el proceso poco a poco.
+
+## Controla la migración, no solo el servidor
+
+Una **alternativa local a Mint.com** solo es útil si el libro mayor sigue siendo fiable después de la migración. Ejecutar Postgres en tu propio servidor resuelve quién controla los datos. No resuelve las filas duplicadas, los pares de transferencias rotos, los saldos iniciales ausentes ni el riesgo de que un agente escriba en el espacio de trabajo equivocado.
+
+Estos problemas se pueden gestionar cuando la migración tiene límites claros: conserva la fuente, mapea el modelo, importa una cuenta, concilia en su propia moneda y detente cada vez que las cifras no coincidan.
+
+Si ese flujo de trabajo encaja con lo que buscas en una **alternativa a Mint en 2026**, [abre la aplicación alojada](https://app.expense-budget-tracker.com/) para hacer una prueba gestionada o sigue la [guía de autoalojamiento](/docs/self-hosting/) para ejecutar el sistema por tu cuenta. Puedes inspeccionar el [código fuente](https://github.com/kirill-markin/expense-budget-tracker) antes de confiarle cualquier dato.
