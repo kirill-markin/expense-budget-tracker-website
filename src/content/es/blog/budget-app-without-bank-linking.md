@@ -1,188 +1,219 @@
 ---
-title: "App de presupuesto sin vincular tu banco en 2026: privacidad, importación CSV y categorías reales"
-description: "¿Buscas una app de presupuesto sin conectar tu banco ni dar acceso a Plaid? En 2026 la alternativa práctica es clara: no compartas credenciales, importa extractos cuando te convenga y mantén tu presupuesto fiel a la realidad con categorías, transferencias y saldos correctos."
+title: "App de presupuesto sin vincular el banco en 2026: guía práctica para el registro manual y la importación de CSV"
+description: "Usa una app de presupuesto sin vincular tu banco: compara el registro manual con la importación revisada de extractos, concilia los saldos y comprueba dónde terminan tus datos."
 date: "2026-03-30"
+updated: "2026-08-19"
+image: "/blog/budget-app-without-bank-linking.png"
 keywords:
-  - "app de presupuesto sin vincular el banco"
-  - "presupuesto sin conectar cuenta bancaria"
+  - "app de presupuesto sin conectar la cuenta bancaria"
+  - "control de gastos sin cuenta bancaria"
+  - "app de presupuesto sin vincular la cuenta bancaria"
   - "app de presupuesto sin Plaid"
+  - "app para llevar el presupuesto manualmente"
+  - "app de presupuesto para importar CSV"
   - "control de gastos sin sincronización bancaria"
-  - "app de presupuesto sin conectar el banco"
-  - "app de presupuesto centrada en la privacidad"
-  - "gestor de gastos manual"
-  - "app de presupuesto con CSV"
 ---
 
-El martes pasado, una app de presupuesto me pidió acceso al banco antes incluso de enseñarme una pantalla de presupuesto. No deja de ser una forma bastante rara de empezar la relación con una herramienta que se supone que debería hacer que tus finanzas resulten más tranquilas.
+Puedes exportar un extracto bancario de un mes ya cerrado sin crear una conexión para el siguiente. Tú decides cuándo sale el archivo del banco, qué periodo incluye y qué filas se incorporan a tu libro contable.
 
-Ahí es justo cuando mucha gente empieza a buscar una **app de presupuesto sin vincular el banco**.
+Ese es el atractivo práctico de una **app de presupuesto sin vincular el banco**. Renuncias a las actualizaciones automáticas, pero ganas un punto de revisión claro. El proceso es sencillo: registra las transacciones a mano o importa un extracto de forma deliberada y, después, comprueba que el saldo de cada cuenta coincida.
 
-No porque la automatización sea mala. Sino porque mucha gente quiere un sistema que funcione antes de dar acceso a su banco, y quizá incluso sin darlo nunca.
+![Una persona encargada de la esclusa abre una compuerta cuando el nivel del agua coincide para dejar pasar una sola embarcación](/blog/budget-app-without-bank-linking.png)
 
-## No es solo una cuestión de privacidad
+## La respuesta breve: toma dos decisiones distintas
 
-La privacidad importa, claro.
+Cómo entran las transacciones en tu libro contable y dónde se almacenan tus datos son decisiones diferentes.
 
-Hay personas que no quieren una app de presupuesto conectada mediante Plaid u otro agregador. A otras no les convence compartir su historial de transacciones más de lo estrictamente necesario. Y otras simplemente están cansadas de los avisos para volver a conectar la cuenta y de la lotería de compatibilidad con bancos según el país.
+Primero, elige un método de registro:
 
-Pero el problema no es solo filosófico. También es práctico.
+| Método de registro | Cuándo encaja mejor | Recorrido de los datos | Principal inconveniente |
+|---|---|---|---|
+| Registro manual en la web | Pocas transacciones, pagos en efectivo, compras repartidas entre categorías o personas que no quieran usar IA | Introduces cada transacción directamente en la app | Es el método más deliberado, pero también el que exige más tecleo |
+| Importación de extractos con revisión | Exportaciones periódicas en CSV, PDF u otros formatos que estés dispuesto a comprobar | Un agente de IA que se ejecuta desde la terminal lee el archivo local, propone cambios y envía los registros aprobados mediante la Agent API | Es más rápido, pero el cliente o proveedor de IA puede recibir datos del extracto |
 
-Buena parte de las finanzas reales siguen encajando mal en un feed bancario:
+Después, elige dónde se ejecutan la app y la base de datos:
 
-- reembolsos de amigos o compañeros de trabajo
-- una compra en el supermercado que también incluía comida para mascotas y cosas para casa
-- gastos en efectivo
-- compras compartidas que se reparten más tarde
-- gastos de viaje en otra divisa
-- pagos BNPL que siguen apareciendo mes a mes después de la decisión original
+| Almacenamiento | Qué significa | Qué no significa |
+|---|---|---|
+| Servicio alojado | Expense Budget Tracker almacena en AWS RDS (Postgres) los datos financieros que introduces | Aunque no vincules un banco, los datos introducidos manualmente siguen alojados en el servicio |
+| Autoalojamiento | Tú gestionas la app y la base de datos Postgres en una infraestructura bajo tu control | Un cliente o proveedor de IA independiente no pasa a ejecutarse de forma local por ello |
 
-Ahí es donde una sincronización bancaria puede parecer muy pulida y, aun así, contar mal lo que realmente pasó.
+También puedes combinar el autoalojamiento con el registro manual. Del mismo modo, utilizar un agente de IA externo es una decisión independiente de dónde se encuentre la base de datos de la aplicación. Esta distinción dice más que una afirmación genérica de que una configuración es simplemente «privada».
 
-## Una app de presupuesto sin vinculación bancaria no tiene por qué ser un castigo tipo hoja de cálculo
+## La vinculación bancaria merece una explicación justa
 
-Esta es la parte que mucha gente pasa por alto.
+La vinculación bancaria moderna no siempre consiste en que una app de presupuesto recopile la contraseña de tu banco. En muchos flujos OAuth, te identificas en el sitio web o la app del propio banco y autorizas un acceso específico a tus datos antes de regresar al producto. Plaid describe este modelo en su [guía oficial de OAuth](https://plaid.com/docs/link/oauth/). Los datos a los que Plaid puede acceder dependen del producto conectado y de los permisos concedidos, como explica en su [descripción del acceso a los datos de los consumidores](https://support-my.plaid.com/hc/en-us/articles/4410324477847-What-data-does-Plaid-access-from-my-financial-institution).
 
-Cuando oyen **presupuesto sin conectar cuenta bancaria**, suelen imaginar uno de estos dos extremos:
+Esa comodidad resulta útil si necesitas actualizaciones automáticas. Una **app de presupuesto sin Plaid** plantea otro equilibrio: no existe una conexión permanente con un agregador financiero, así que eres tú quien incorpora las transacciones y las verifica.
 
-- una app conectada al banco que lo hace todo automáticamente
-- una hoja de cálculo que, sin darte cuenta, se convierte en un segundo trabajo
+No vincular el banco solo responde a una pregunta: cómo no llegan los datos. No explica qué ocurre después con los registros manuales, los archivos de extractos, los mensajes enviados a la IA, los resultados de la API, los registros de la base de datos o las copias de seguridad. Sigue el recorrido de cada elemento por separado.
 
-Hay un punto intermedio, y es mucho más razonable de lo que parece.
+## Empieza con una cuenta y un periodo cerrado
 
-Puedes mantener una estructura financiera clara, categorías coherentes y transferencias bien registradas sin conceder acceso bancario permanente. La clave es que las importaciones sean opcionales y deliberadas, en lugar de convertir la sincronización bancaria en el centro de todo el producto.
+No migres años de historial la primera tarde. Una cuenta pequeña que cuadre es más útil que un libro contable extenso que solo parezca completo.
 
-## Sí quiero importaciones, pero en mis términos
+1. Elige una cuenta con un periodo de extracto bien definido.
+2. Crea la cuenta correspondiente en la app, con la moneda correcta y un nombre fácil de reconocer.
+3. Fija un límite exacto: una fecha de inicio y el saldo que muestra el extracto en ese momento.
+4. Añade las categorías que ya conozcas. Si no identificas algún comercio, déjalo pendiente de revisión en vez de adivinar.
+5. Registra o importa únicamente las transacciones contabilizadas dentro de ese periodo.
+6. Compara el saldo de cierre de la app con el del extracto antes de añadir otro periodo u otra cuenta.
 
-No creo que la solución sea apuntar cada café a mano para siempre, salvo que de verdad disfrutes haciéndolo.
+Si en tu hogar se utilizan varias monedas, conserva cada cuenta y cada transacción en su moneda original. Convierte los importes más adelante, al preparar los informes, en lugar de homogeneizar las cantidades originales durante el registro. La [guía para presupuestar con varias monedas](/blog/multi-currency-budgeting-for-expats/) explica esta configuración con más detalle.
 
-La versión útil es esta:
+## El registro manual funciona cuando importa más el contexto que el volumen
 
-1. mantén tus propias cuentas y categorías
-2. registra manualmente lo que sea más rápido anotar a mano
-3. importa extractos en CSV o PDF cuando eso te ahorre tiempo
-4. revisa lo ocurrido antes de incorporarlo a tu registro
-5. asegúrate de que transferencias, reembolsos y saldos reflejen la realidad
+Una **app para llevar el presupuesto manualmente** encaja bien cuando el número de transacciones relevantes es manejable o cuando las descripciones sin procesar del banco necesitan contexto humano de todos modos.
 
-Eso promete algo muy distinto a "conéctalo todo y espera que la sincronización siga diciendo la verdad".
+Para cada movimiento contabilizado, registra:
 
-Si lo que más te interesa es la importación de extractos, este artículo entra más a fondo:
+- fecha e importe
+- cuenta y moneda
+- tipo de transacción, por ejemplo, gasto, ingreso o transferencia
+- categoría
+- contraparte o una nota breve si la descripción del banco no es clara
 
-- [Cómo importar extractos bancarios a un rastreador de gastos en 2026](https://expense-budget-tracker.com/es/blog/how-to-import-bank-statements-into-an-expense-tracker/)
+Registra las compras en efectivo, las facturas compartidas, los reembolsos de gastos y las compras repartidas entre varias categorías mientras todavía recuerdes qué ocurrió. La actividad habitual de la tarjeta puede esperar hasta la revisión periódica.
 
-## El mayor problema del presupuesto conectado al banco suele ser la falsa sensación de control
+Tener que introducir cada movimiento también forma parte del control. Puedes reconocer que el pago de una tarjeta de crédito es una transferencia, no un gasto nuevo, o que el dinero recibido de un amigo salda un gasto compartido en vez de crear un ingreso. El coste también está claro: la app no puede detectar una transacción que nunca registras. Para que un libro contable manual sea fiable, debes cotejarlo periódicamente con el extracto bancario.
 
-Aquí es donde mucha gente cae.
+## La importación de un extracto debe empezar como borrador
 
-Si una hoja de cálculo está desordenada, al menos se nota que está desordenada.
+Expense Budget Tracker no ofrece sincronización bancaria automática ni permite subir extractos desde el navegador. Las importaciones desde archivos utilizan un agente de IA que se ejecuta desde la terminal, con acceso explícito al archivo local del extracto y, por separado, la Agent API directa.
 
-Si una app conectada al banco te enseña un gráfico bonito construido sobre supuestos ligeramente incorrectos, el sistema se vuelve más peligroso precisamente porque parece terminado. Un reembolso se registra como ingreso. Una transferencia cuenta como gasto. Una compra compartida acaba entera en una sola categoría porque en el extracto solo aparece un comercio y el software no sabe qué había dentro de la cesta.
+Una importación cuidadosa sigue estos pasos:
 
-El panel queda limpio, pero el presupuesto deja de ser del todo real.
+1. Exporta del banco un archivo CSV, PDF u otro tipo de extracto y guárdalo en tu equipo.
+2. Conecta el agente de terminal empezando por `GET https://api.expense-budget-tracker.com/v1/` y sigue la guía de [Configuración del agente de IA](/docs/agent-setup/).
+3. Completa el proceso de OTP por correo electrónico. Guarda la `ApiKey` de larga duración que recibas en un lugar seguro, fuera de la memoria del chat.
+4. Pide al agente que inspeccione `/v1/schema`, seleccione el espacio de trabajo previsto y consulte los movimientos de esa misma cuenta en ese mismo intervalo de fechas antes de preparar los cambios.
+5. Solicita un borrador que indique la cuenta de destino, la moneda, el periodo, el número de filas, las categorías y los posibles duplicados. Todavía no insertes nada.
+6. Revisa el borrador, sobre todo las transferencias, devoluciones, reembolsos de gastos, comisiones, retiradas de efectivo y filas en moneda extranjera.
+7. Aprueba solo las escrituras previstas mediante el endpoint restringido `/v1/sql/execute`.
+8. Consulta el periodo guardado mediante `/v1/sql/query` y concilia el saldo de cierre.
 
-Por eso creo que **control de gastos sin sincronización bancaria** suele ser una búsqueda más honesta. El usuario no está pidiendo menos software. Está pidiendo menos ilusión.
+La API separa las lecturas SQL restringidas de las escrituras aprobadas. Este límite reduce las consecuencias de un error, pero no garantiza que la interpretación del agente sea correcta. La revisión humana sigue siendo el paso que convierte un archivo procesado en una contabilidad fiable.
 
-## Los gastos compartidos se complican muy rápido
+Un CSV suele ser más fácil de revisar que un PDF porque las filas ya están estructuradas. Aun así, aunque el formato esté ordenado, una **app de presupuesto para importar CSV** no puede saber por sí sola si un intervalo de fechas se solapa con una importación anterior, un cargo sigue pendiente o una transferencia está mal clasificada. La [guía para importar extractos](/blog/how-to-import-bank-statements-into-an-expense-tracker/) explica este proceso con más detalle.
 
-Esto pasa constantemente.
+### Comprueba cuatro aspectos antes de aprobar una escritura
 
-Tú pagas una cena, tu amigo te devuelve la mitad dos días después y la app ahora interpreta que ocurrió una cosa el martes y otra completamente distinta el viernes. Lo mismo pasa con pisos compartidos, parejas, gastos de trabajo y viajes.
+1. **Origen:** confirma la cuenta, la moneda y las fechas del extracto, y comprueba que el archivo contenga transacciones contabilizadas del periodo previsto.
+2. **Solapamiento:** consulta primero esa cuenta y ese intervalo de fechas. Los identificadores, importes, fechas y contrapartes coincidentes son señales de posibles duplicados; no bastan para decidir automáticamente.
+3. **Clasificación:** revisa todos los comercios que no reconozcas, además de cada transferencia, devolución, reembolso de gastos, comisión, retirada de efectivo y fila en moneda extranjera.
+4. **Resultado:** confirma el espacio de trabajo, el cambio exacto propuesto y el número de filas esperado. Tras la escritura, consulta el periodo afectado en vez de confiar en un mensaje de éxito.
 
-Una **app de presupuesto sin conectar el banco** puede hacerlo mejor aquí porque describes el hecho con intención, en vez de heredar una línea bancaria y fingir que eso cuenta toda la historia.
+### MCP utiliza una vía de conexión diferente
 
-Tú decides:
+El [conector MCP](/docs/mcp-connector/) alojado utiliza OAuth en el navegador. Requiere `expenses:read`; `expenses:write` es opcional y se necesita para las modificaciones aprobadas. Estas credenciales OAuth son distintas de la `ApiKey` de la Agent API y no pueden sustituirla.
 
-- qué parte fue gasto real
-- qué parte fue un reembolso
-- en qué categoría debe quedar ese gasto
-- si el dinero se movió entre tus propias cuentas o entre personas
+MCP ofrece herramientas para seleccionar espacios de trabajo, consultar el esquema, realizar consultas restringidas y ejecutar escrituras aprobadas. Por sí solo, no permite que un servicio remoto lea cualquier archivo de tu ordenador. Un cliente MCP concreto también puede acceder a archivos adjuntos o locales, pero tanto esa capacidad como el recorrido de esos datos dependen del cliente. Para el proceso desde archivos descrito antes, utiliza la vía documentada de la Agent API y concede acceso al archivo de manera explícita.
 
-Eso es más lento que la sincronización pasiva durante el primer minuto, pero muchísimo más rápido que reparar un historial mal clasificado meses después.
+## Resuelve los movimientos que pueden hacer que una importación parezca correcta
 
-## La multidivisa es otro caso en el que ayuda tener control manual
+Una cuenta puede cuadrar aunque las categorías del presupuesto estén equivocadas. Define una regla clara para estos casos:
 
-Si vives entre países, viajas a menudo o manejas dinero en más de una divisa, el presupuesto conectado al banco se vuelve molesto de una forma bastante silenciosa.
+| Fila del extracto | Tratamiento | Error habitual |
+|---|---|---|
+| Duplicado | Conserva una sola entrada en el libro contable para el movimiento real; utiliza un identificador bancario cuando esté disponible | Importar dos veces periodos que se solapan |
+| Transferencia entre tus cuentas | Vincula los dos movimientos de las cuentas como una única transferencia | Contar la salida como gasto y la entrada como ingreso |
+| Devolución de un comercio | Registra la devolución contabilizada en la categoría del gasto original | Eliminar la compra o clasificar la devolución como salario |
+| Reembolso de gastos | Conserva el desembolso original y compensa después únicamente el importe que realmente te hayan reembolsado | Ocultar el periodo en el que adelantaste el dinero o contabilizar cada reembolso como ingreso |
 
-Algunos productos simplifican demasiado pronto la transacción. Otros muestran solo una cifra convertida y luego cuesta recuperar la verdad original. Y hay conexiones bancarias que funcionan bien en un país y apenas sirven en otro.
+Las transferencias exigen especial atención cuando importas las cuentas por separado. El movimiento de salida puede aparecer ahora aunque la cuenta receptora todavía no esté en la app. Marca que falta el movimiento correspondiente en vez de clasificar sin más como gasto el único lado visible.
 
-Aquí es donde una **app de presupuesto centrada en la privacidad** deja de parecer una rareza y empieza a parecer una decisión de arquitectura bastante sensata. Conserva la transacción original. Conserva la divisa original. Convierte después, cuando toque informar o analizar.
+Las devoluciones y los reembolsos de gastos deben incorporarse al libro contable cuando se contabilizan. Hasta entonces, el dinero sigue fuera de la cuenta. Si solo te reembolsan parte de una compra, compensa el importe recibido y deja el resto en la categoría de gasto correspondiente.
 
-Si ese es tu principal problema, este artículo complementario encaja mejor:
+## Concilia el saldo y revisa después las categorías
 
-- [Presupuesto multidivisa para expatriados en 2026](https://expense-budget-tracker.com/es/blog/multi-currency-budgeting-for-expats/)
+Concilia las cuentas de una en una y utiliza la moneda de cada cuenta. No empieces comparando el total de todas las cuentas del hogar: varios errores independientes pueden compensarse entre sí y producir una cifra convincente.
 
-## Qué debería incluir de verdad un buen flujo de trabajo sin vinculación bancaria
+Para una cuenta corriente o de ahorro que siga la convención habitual de entradas y salidas:
 
-Yo le pediría a una **app de presupuesto sin Plaid** ni sincronización bancaria permanente que hiciera bien unas cuantas cosas bastante básicas:
+**saldo de cierre esperado = saldo inicial + entradas contabilizadas − salidas contabilizadas**
 
-- cuentas que reflejen dónde está realmente el dinero
-- categorías que puedas reutilizar de forma consistente
-- transferencias que no se disfracen de gasto
-- importación de extractos cuando tú la quieras
-- saldos que puedas comprobar
-- una vista de planificación mensual, no solo gráficos históricos
+Si la app almacena movimientos con signo, la comprobación equivalente es:
 
-Esa última parte importa más de lo que mucha gente admite.
+**saldo de cierre esperado = saldo inicial + suma de los movimientos contabilizados con signo**
 
-Hay muchas herramientas financieras que sirven para ver movimientos. Son bastante peores como sistemas de presupuesto de verdad. Si evitas vincular el banco pero sigues sin poder planificar el mes siguiente, solo has resuelto una parte del problema.
+Las tarjetas de crédito y otras cuentas de pasivo pueden mostrar los saldos y los signos de otra manera. Antes de calcular la diferencia, normaliza el extracto y la app con la misma convención específica para esa cuenta; no reutilices a ciegas la fórmula de una cuenta corriente o de ahorro.
+
+Después, calcula:
+
+**diferencia = saldo de cierre de la app − saldo de cierre del extracto**
+
+El objetivo es que la diferencia sea cero una vez que ambos saldos utilicen la misma convención. Compara transacciones contabilizadas con transacciones contabilizadas. Una retención pendiente de la tarjeta que solo aparece en un lado provoca un desfase temporal, no un resultado útil para la conciliación.
+
+Si la diferencia no es cero, comprueba:
+
+1. el saldo inicial y la fecha que delimita el periodo
+2. las filas ausentes o duplicadas
+3. las transacciones pendientes incluidas solo en un lado
+4. las transferencias incompletas
+5. los errores de importe, cuenta, moneda o signo
+
+Una diferencia de cero demuestra que los movimientos de la cuenta suman correctamente. No demuestra que las compras de supermercado, los viajes, las devoluciones y los reembolsos de gastos hayan terminado en las categorías adecuadas. Revisa los totales por categoría como un paso independiente. La [guía de conciliación del presupuesto](/blog/how-to-reconcile-your-budget-with-your-bank-balance/) explica cómo investigar una discrepancia cuenta por cuenta.
+
+## Comprueba dónde terminan tus datos
+
+Un **control de gastos sin conexión a una cuenta bancaria** puede seguir utilizando varios servicios. El recorrido exacto depende de tu configuración:
+
+| Configuración | Almacenamiento de la aplicación | Otro procesamiento |
+|---|---|---|
+| App alojada con registro manual | Los datos financieros que introduces se almacenan en AWS RDS (Postgres) | No hace falta ningún cliente de IA para introducirlos |
+| App alojada con importación directa mediante la Agent API | Los datos aprobados del libro contable se almacenan en AWS RDS (Postgres) | El cliente de terminal o su proveedor de IA puede procesar el extracto, los mensajes enviados a la IA y los resultados de la API |
+| App alojada con MCP remoto | Los datos que se consultan o escriben permanecen en la base de datos alojada | El cliente MCP autorizado recibe los resultados solicitados; las escrituras requieren `expenses:write` |
+| App autoalojada con registro manual | La app y la base de datos se ejecutan en una infraestructura bajo tu control | No hace falta ningún cliente de IA para introducir los datos |
+| App autoalojada con un cliente de IA externo | La app y la base de datos se ejecutan en una infraestructura bajo tu control | El proveedor externo puede seguir procesando archivos, mensajes enviados a la IA o registros financieros devueltos |
+
+La [Política de privacidad](/privacy/) del servicio alojado explica quién lo gestiona, cómo funcionan el almacenamiento en AWS y las copias de seguridad, el procesamiento mediante MCP y los límites relacionados con clientes de terceros. La [Guía de autoalojamiento](/docs/self-hosting/) explica cómo ejecutar la app y Postgres por tu cuenta. El autoalojamiento te da el control de la aplicación y la base de datos, pero no cambia la política de privacidad de otros servicios que decidas conectar.
+
+## Mantén una rutina sencilla
+
+Llevar un presupuesto sin vincular el banco funciona mejor como un cierre periódico que como una limpieza anual. Durante el mes, registra el efectivo, las compras inusuales y las transacciones cuyo contexto será difícil reconstruir más adelante. Al final de cada periodo del extracto:
+
+1. exporta el extracto definitivo con las transacciones contabilizadas
+2. registra a mano las filas que falten o prepara una importación revisada mediante un agente
+3. resuelve los duplicados, las transferencias, las devoluciones y los reembolsos de gastos
+4. concilia cada cuenta por separado
+5. revisa las categorías y conserva el saldo de cierre y la fecha como el siguiente punto de referencia fiable
+
+Esta rutina permite que un **control de gastos sin sincronización bancaria** sea fiable sin presentarlo como un proceso automático.
 
 ## Dónde encaja Expense Budget Tracker
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/es/) encaja muy bien en este tipo de flujo porque está planteado primero como un sistema financiero serio y solo después añade automatización encima.
+Expense Budget Tracker está diseñado en torno a un libro contable estructurado sin sincronización bancaria automática. La app web permite registrar transacciones a mano y gestionar saldos, categorías, transferencias, presupuestos y varias monedas. Los usuarios técnicos pueden conectar un agente de terminal mediante la Agent API directa, inspeccionar el esquema disponible y revisar las lecturas restringidas y las escrituras aprobadas antes de importar un extracto.
 
-Lo útil aquí no es especialmente llamativo:
+Las limitaciones forman parte de la elección:
 
-- cuentas, saldos, categorías y transferencias en un único registro
-- flujos de importación compatibles con CSV y PDF mediante chat con IA y herramientas para agentes
-- soporte multidivisa sin simplificar demasiado pronto los datos de origen
-- espacios de trabajo compartidos cuando las finanzas las llevan varias personas
-- autoalojamiento opcional si quieres más control sobre la infraestructura
+- no hay importación automática de movimientos bancarios
+- no hay un proceso para importar extractos desde el navegador
+- las importaciones desde archivos requieren un agente de IA con las capacidades necesarias que se ejecute desde la terminal, además de una revisión deliberada
+- la clave de larga duración de la Agent API debe guardarse en un lugar seguro, fuera de la memoria del chat
+- MCP utiliza credenciales OAuth independientes y no lee archivos locales automáticamente
+- los datos financieros del servicio alojado se almacenan en el servicio gestionado AWS RDS (Postgres)
+- con el autoalojamiento, tú asumes la responsabilidad del despliegue, las actualizaciones, la base de datos y las copias de seguridad
 
-Esa combinación importa porque un **gestor de gastos manual** no tiene por qué ser frágil.
+Si este equilibrio encaja contigo, abre la [app alojada](https://app.expense-budget-tracker.com/) o sigue la guía de [Primeros pasos](/docs/getting-started/). Empieza con una cuenta y un periodo cerrado. Haz que el saldo cuadre, revisa las categorías por separado y amplía el sistema solo cuando ese primer periodo sea fiable.
 
-Puedes controlar cómo entran los datos en el sistema y, al mismo tiempo, evitar el caos típico de las hojas de cálculo.
+## Preguntas frecuentes
 
-Si te interesa la parte de código abierto y autoalojamiento, empieza por aquí:
+### ¿Puedo usar Expense Budget Tracker sin conectar una cuenta bancaria?
 
-- [Rastreador de presupuesto de código abierto autoalojado para desarrolladores en 2026](https://expense-budget-tracker.com/es/blog/self-hosted-open-source-budget-tracker-for-developers/)
+Sí. La app web permite registrar transacciones manualmente y no tiene sincronización bancaria automática. También puedes utilizar un agente de IA con las capacidades necesarias que se ejecute desde la terminal para leer un extracto y enviar los registros aprobados mediante la Agent API directa.
 
-## El flujo de trabajo que yo recomendaría de verdad
+### ¿Puedo subir un CSV desde el navegador?
 
-Esta es la versión que sí me parece sostenible:
+No. No existe un proceso para subir o importar extractos desde el navegador. Introduce las filas manualmente o concede a un agente de terminal acceso explícito al archivo y revisa las escrituras que proponga mediante la Agent API.
 
-1. configura tus cuentas reales y tu divisa de referencia
-2. crea las categorías que ya utilizas mentalmente
-3. registra manualmente las transacciones simples o fuera de lo normal
-4. importa extractos en CSV o PDF cuando sea más rápido que teclear
-5. revisa con cuidado transferencias, reembolsos y comercios nuevos
-6. comprueba los saldos antes de dar por bueno el mes
-7. usa la cuadrícula de presupuesto para planificar lo que viene, no solo para mirar lo que ya pasó
+### ¿Una app de presupuesto sin vincular una cuenta bancaria mantiene todos los datos en privado?
 
-Es un sistema tranquilo. Se puede revisar. Y además aguanta bien esas compras raras que hacen tambalearse a muchas apps conectadas al banco.
+No vincular el banco elimina la conexión permanente con un agregador financiero, pero no excluye a todos los terceros. La app alojada guarda los datos financieros que introduces en AWS RDS (Postgres). Un cliente o proveedor de IA puede procesar un extracto, un mensaje enviado a la IA o un registro financiero devuelto. El autoalojamiento pone la app y la base de datos bajo tu control, pero cualquier proveedor de IA externo sigue siendo externo.
 
-## Una forma rápida de comparar las opciones
+### ¿El conector MCP es lo mismo que la Agent API?
 
-| Configuración | Mejor para | Principal ventaja | Principal inconveniente |
-|---|---|---|---|
-| App conectada al banco | Quien prioriza por encima de todo la importación pasiva | Automatización inicial rápida | Fallos de sincronización y menos control en casos raros |
-| Hoja de cálculo | Quien quiere control manual total | Flexibilidad y transparencia | Fácil de romper y pesada de usar en móvil |
-| App de presupuesto sin vinculación bancaria | Quien quiere control sin renunciar a una estructura real de presupuesto | Categorías fiables, importaciones a demanda y mejor tratamiento de transferencias y reembolsos | Requiere revisar con intención en vez de delegarlo todo en la sincronización |
+No. MCP utiliza OAuth con el permiso obligatorio `expenses:read` y el permiso opcional `expenses:write`. La Agent API utiliza una `ApiKey` de larga duración obtenida mediante un OTP por correo electrónico. Las credenciales no son intercambiables y MCP no lee automáticamente los archivos de extractos locales.
 
-Ese es el intercambio real.
+### ¿Cuál es la forma más sencilla de empezar?
 
-No hay una opción ganadora para todo el mundo. Pero sí hay mucha gente que se fuerza a usar sincronización bancaria porque el mercado sigue vendiéndola como si fuera la única opción moderna.
-
-No tiene por qué ser así.
-
-## Entonces, ¿qué deberías buscar en una app de presupuesto sin vincular el banco?
-
-Yo mantendría la lista muy simple:
-
-- debe funcionar antes de conectar nada
-- debe permitir importaciones sin obligarte a mantener una sincronización permanente
-- debe tratar transferencias y reembolsos como eventos financieros de primera clase
-- debe ayudarte a planificar, no solo a clasificar el pasado
-- debe seguir siendo creíble cuando el dinero se mueve entre divisas, personas y cuentas
-
-Esa es la versión de **presupuesto sin conectar cuenta bancaria** en la que yo confiaría.
-
-Si eso es exactamente lo que buscas, [Expense Budget Tracker](https://expense-budget-tracker.com/es/) encaja muy bien: mantienes el control sobre cómo introduces los datos, importas extractos cuando te resulta útil y sigues gestionando tus finanzas dentro de un sistema de presupuesto de verdad, no de un sustituto amable de una hoja de cálculo.
+Utiliza una cuenta, una moneda y un periodo cerrado. Registra o importa los movimientos contabilizados, resuelve los casos especiales, concilia el saldo de cierre y revisa las categorías por separado. Esta pequeña prueba te dará una respuesta sincera sobre si una **app de presupuesto sin vincular tu cuenta bancaria** encaja en tu rutina.

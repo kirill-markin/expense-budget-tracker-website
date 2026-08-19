@@ -1,188 +1,219 @@
 ---
-title: "Budget App Without Bank Linking in 2026: Privacy-First Tracking With CSV Imports and Real Categories"
-description: "Looking for a budget app without bank linking or Plaid access? Here is the practical 2026 tradeoff: skip credential sharing, import statements when you need them, and keep your budget honest with real categories, transfers, and balances."
+title: "Budget App Without Bank Linking in 2026: A Practical Manual and CSV Workflow"
+description: "Use a budget app without linking your bank: compare manual entry with reviewed statement imports, reconcile balances, and understand where your data still goes."
 date: "2026-03-30"
+updated: "2026-08-19"
+image: "/blog/budget-app-without-bank-linking.png"
 keywords:
   - "budget app without bank linking"
-  - "budget without linking bank account"
-  - "budget app without plaid"
+  - "expense tracker without bank account"
+  - "budget app without linking bank account"
+  - "budget app without Plaid"
+  - "manual budget app"
+  - "CSV budget app"
   - "expense tracker without bank sync"
-  - "budget app without connecting bank account"
-  - "privacy first budget app"
-  - "manual expense tracker"
-  - "csv budget app"
 ---
 
-Last Tuesday a budgeting app asked me for bank access before it had even shown me a budget screen. Which is a slightly strange way to begin a relationship with a tool that is supposed to make money feel calmer.
+A bank statement export can cover one closed month without creating a connection for the next one. You choose when the file leaves the bank, which period it covers, and which rows enter your ledger.
 
-That is usually when people start searching for a **budget app without bank linking**.
+That is the practical appeal of a **budget app without bank linking**. You give up passive updates, but you gain a clear review point. The workflow is simple: enter transactions manually or import a statement deliberately, then prove that each account balance matches.
 
-Not because automation is evil. Because a lot of people want a finance system that works before they hand over bank access, and maybe without handing it over at all.
+![A canal lock keeper opens one gate after the water levels match for a single narrowboat](/blog/budget-app-without-bank-linking.png)
 
-## This is not only a privacy question
+## The short answer: make two separate choices
 
-Privacy is part of it, obviously.
+The way transactions enter your ledger and the place where your data is stored are different decisions.
 
-Some people do not want a budgeting app connected through Plaid or another aggregator. Some do not like the idea of sharing transaction history more broadly than necessary. Some just get tired of reconnect prompts and regional bank-support roulette.
+First, choose an entry method:
 
-But the problem is not only philosophical. It is practical.
+| Entry method | Best fit | Data path | Main tradeoff |
+|---|---|---|---|
+| Manual web entry | Lower transaction volume, cash, split purchases, or anyone who wants no AI involved | You enter each transaction directly in the app | Most deliberate, most typing |
+| Reviewed statement import | Regular CSV, PDF, or other statement exports that you are willing to check | A terminal AI agent reads the local file, proposes changes, and sends approved records through the Agent API | Faster, but the AI client or provider may receive statement data |
 
-A lot of real-life finance still looks awkward in bank feeds:
+Then choose where the app and database run:
 
-- reimbursements from friends or coworkers
-- one grocery trip that also included pet food and household items
-- cash spending
-- shared purchases that get split later
-- travel spending in another currency
-- BNPL payments that keep showing up month by month after the original decision
+| Storage | What it means | What it does not mean |
+|---|---|---|
+| Hosted | Entered financial data is stored by Expense Budget Tracker in AWS RDS (Postgres) | Manual entry is still hosted, even without a bank link |
+| Self-hosted | You operate the app and Postgres database on infrastructure you control | It does not make a separate AI client or provider local |
 
-That is where a synced feed can look polished while still describing the situation badly.
+Self-hosting can still use manual entry. Likewise, using an external AI agent is a separate choice from where the application database lives. This distinction matters more than any broad claim that one setup is simply “private.”
 
-## A budget app without bank linking does not have to mean spreadsheet punishment
+## Bank linking deserves a fair description
 
-This is the part many people miss.
+Modern bank linking is not always a budgeting app collecting your bank password. In many OAuth flows, you authenticate on the bank's own site or app and authorize specific data access before returning to the product. Plaid describes that model in its [official OAuth guide](https://plaid.com/docs/link/oauth/). The data available to Plaid depends on the connected product and the permission granted, as its [consumer data-access explanation](https://support-my.plaid.com/hc/en-us/articles/4410324477847-What-data-does-Plaid-access-from-my-financial-institution) explains.
 
-When they hear **budget without linking bank account**, they picture one of two extremes:
+That convenience is useful when passive updates matter. A **budget app without Plaid** makes a different trade: there is no persistent aggregation connection, so you bring in the transactions and verify them yourself.
 
-- a bank-connected app that does everything automatically
-- a spreadsheet that quietly becomes a second job
+No bank link answers only one question: how the data does not arrive. It does not tell you where manual entries, statement files, AI prompts, API results, database records, or backups go afterward. Trace those parts separately.
 
-There is a middle path, and it is much more reasonable than people expect.
+## Start with one account and one closed period
 
-You can keep the finance model structured, keep categories and transfers honest, and still avoid permanent bank access. The trick is to make imports optional and deliberate instead of making bank sync the whole product.
+Do not migrate years of history on the first evening. A small account that reconciles is more useful than a large ledger that merely looks complete.
 
-## I still want imports. I just want them on my terms.
+1. Pick one account with a clear statement period.
+2. Create the matching tracker account with the correct currency and a recognizable name.
+3. Choose an exact boundary: an opening date and the corresponding statement balance.
+4. Add the categories you already understand. Leave uncertain merchants for review instead of guessing.
+5. Enter or import only posted transactions inside that period.
+6. Compare the tracker and statement closing balances before adding another period or account.
 
-I do not think the answer is typing every coffee by hand forever unless you genuinely enjoy that.
+For a multi-currency household, keep each account and transaction in its original currency. Convert for reporting later instead of flattening source amounts during entry. The [multi-currency budgeting guide](/blog/multi-currency-budgeting-for-expats/) goes deeper into that setup.
 
-The useful version is:
+## Manual entry works when context matters more than volume
 
-1. keep your own accounts and categories
-2. record things manually when that is fastest
-3. import CSV or PDF statements when that saves time
-4. review what happened before it lands in your ledger
-5. keep transfers, reimbursements, and balances grounded in reality
+A **manual budget app** is a good fit when the number of meaningful transactions is manageable or the bank's raw descriptions need human context anyway.
 
-That is a very different promise from "connect everything and hope the sync keeps telling the truth."
+For each posted movement, record:
 
-If statement imports are the main part you care about, this article goes deeper:
+- date and amount
+- account and currency
+- transaction type, such as spending, income, or transfer
+- category
+- counterparty or a short note when the bank description is unclear
 
-- [How to Import Bank Statements Into an Expense Tracker in 2026](https://expense-budget-tracker.com/blog/how-to-import-bank-statements-into-an-expense-tracker/)
+Enter cash purchases, shared bills, reimbursements, and mixed-category purchases while you still remember what happened. Routine card activity can wait for a regular review.
 
-## The biggest issue with bank-linked budgeting is often false confidence
+The typing is also the control. You can recognize that a credit card payment is a transfer rather than new spending, or that money from a friend closes a shared expense rather than creating income. The cost is equally plain: the tracker cannot catch a transaction you never enter. A dependable manual ledger needs a recurring comparison with the bank statement.
 
-This is the part that gets people.
+## A statement import should begin as a draft
 
-If a spreadsheet is messy, you can at least see that it is messy.
+Expense Budget Tracker has no automatic bank sync and no browser statement-upload flow. File-assisted imports use a capable terminal AI agent with explicit access to the local statement file, plus the separate direct Agent API.
 
-If a bank-connected app puts a nice chart on top of slightly wrong assumptions, the system becomes more dangerous because it looks finished. A reimbursement gets treated like income. A transfer gets counted as spending. One shared purchase lands in one category because the bank statement had one merchant line and the software had no idea what happened inside the basket.
+A careful import looks like this:
 
-Now the dashboard is clean and the budget is slightly fake.
+1. Export a CSV, PDF, or other statement file from the bank and save it locally.
+2. Connect the terminal agent starting at `GET https://api.expense-budget-tracker.com/v1/`, following [AI Agent Setup](/docs/agent-setup/).
+3. Complete the email OTP flow. The returned long-lived `ApiKey` should be stored securely outside chat memory.
+4. Have the agent inspect `/v1/schema`, select the intended workspace, and query the same account and date range before preparing changes.
+5. Ask for a draft with the target account, currency, period, row count, categories, and possible duplicates. Do not insert yet.
+6. Review the draft, especially transfers, refunds, reimbursements, fees, cash withdrawals, and foreign-currency rows.
+7. Approve only the intended writes through the restricted `/v1/sql/execute` endpoint.
+8. Query the saved period through `/v1/sql/query` and reconcile the closing balance.
 
-That is why I think **expense tracker without bank sync** is often the more honest search. The user is not asking for less software. The user is asking for less illusion.
+The API separates restricted SQL reads from approved writes. That boundary reduces the blast radius of a mistake; it does not make the agent's interpretation correct. Human review is still the part that turns a parsed file into dependable bookkeeping.
 
-## Shared expenses get weird fast
+A CSV is usually easier to inspect than a PDF because the rows are already structured. Still, a **CSV budget app** cannot tell from clean formatting alone that a date range overlaps an earlier import, a charge is pending, or a transfer was misclassified. The [statement import guide](/blog/how-to-import-bank-statements-into-an-expense-tracker/) covers the workflow in more detail.
 
-This comes up constantly.
+### Check four things before approving a write
 
-You pay for dinner, your friend sends half back later, and the app now thinks one thing happened on Tuesday and a totally different thing happened on Friday. Same story with roommates, partners, work expenses, and trips.
+1. **Source:** Confirm the account, currency, statement dates, and that the file contains posted transactions for the intended period.
+2. **Overlap:** Query that account and date range first. Matching identifiers, amounts, dates, and counterparties are duplicate signals, not permission to guess.
+3. **Classification:** Review every unfamiliar merchant and each transfer, refund, reimbursement, fee, cash withdrawal, and foreign-currency row.
+4. **Result:** Confirm the workspace, exact proposed change, and expected row count. After the write, query the affected period instead of trusting a success message.
 
-A **budget app without connecting bank account** can actually do better here because you describe the event on purpose instead of inheriting one bank line and pretending it told the whole story.
+### MCP is a different connection path
 
-You decide:
+The hosted [MCP connector](/docs/mcp-connector/) uses browser OAuth. It requires `expenses:read`; `expenses:write` is optional and needed for approved mutations. Those OAuth credentials are separate from the Agent API's `ApiKey` and cannot be used in its place.
 
-- which part was real spending
-- which part was reimbursement
-- which category should hold the expense
-- whether the money moved between your own accounts or between people
+MCP exposes workspace, schema, restricted query, and approved write tools. It does not, by itself, let a remote service read an arbitrary file on your computer. A particular MCP client may also have access to attachments or local files, but that is a capability and data boundary of the client. For the file-assisted workflow above, use the documented Agent API path and grant file access explicitly.
 
-That is slower than passive sync in the first second and much faster than repairing bad history later.
+## Handle the rows that make clean imports misleading
 
-## Multi-currency is another place where manual control helps
+An account can balance while its budget categories are wrong. Use an explicit rule for these cases:
 
-If you live across countries, travel often, or hold money in more than one currency, bank-linked budgeting gets annoying in a very quiet way.
+| Statement row | Treatment | Common mistake |
+|---|---|---|
+| Duplicate | Keep one ledger entry for the real event; use a bank identifier when one is available | Importing an overlapping period twice |
+| Transfer between your accounts | Represent both account movements as one transfer relationship | Counting the outgoing side as spending and the incoming side as income |
+| Merchant refund | Record the posted refund against the original spending category | Deleting the purchase or classifying the refund as salary |
+| Reimbursement | Keep the original outlay, then offset only the amount actually repaid | Erasing the cash-flow gap or treating every repayment as income |
 
-Some products flatten the transaction too early. Some show one converted number and make the original truth harder to inspect later. Some bank connections are solid in one country and barely usable in another.
+Transfers need extra care when accounts are imported separately. The outgoing movement may appear now while the receiving account is not in the tracker yet. Flag the missing counterpart rather than quietly categorizing the visible side as spending.
 
-This is where a **privacy first budget app** starts looking less like a niche preference and more like a practical architecture choice. Keep the original transaction. Keep the original currency. Convert for reporting afterward.
+Refunds and reimbursements belong in the ledger when they post. Until then, the money is still outside the account. If a reimbursement covers only part of a purchase, offset the amount received and leave the remainder in the appropriate spending category.
 
-If that is your main pain point, this companion piece is the better fit:
+## Reconcile the balance, then check the categories
 
-- [Multi-Currency Budgeting for Expats in 2026](https://expense-budget-tracker.com/blog/multi-currency-budgeting-for-expats/)
+Reconcile one account at a time and use that account's own currency. Do not compare a household total first: unrelated errors can cancel each other and produce a convincing number.
 
-## What a good no-bank-linking workflow should actually include
+For a checking or savings account represented in the usual inflow/outflow convention:
 
-I would want a **budget app without Plaid** or permanent bank sync to do a few very boring things well:
+**expected closing balance = opening balance + posted inflows − posted outflows**
 
-- accounts that match where the money actually lives
-- categories you can reuse consistently
-- transfers that do not impersonate spending
-- statement imports when you want them
-- balances you can verify
-- a monthly planning surface, not only historical charts
+If the tracker stores signed movements, the equivalent check is:
 
-That last part matters more than people admit.
+**expected closing balance = opening balance + sum of signed posted movements**
 
-A lot of finance tools are decent transaction viewers. They are much weaker as actual budgeting systems. If you skip bank linking but still cannot plan next month, you only solved one problem.
+Credit cards and other liability accounts may present balances and signs differently. Normalize the statement and tracker to the same account-specific convention before calculating a difference; do not reuse a deposit-account formula blindly.
+
+Then calculate:
+
+**difference = tracker closing balance − statement closing balance**
+
+The target is zero after both balances use the same convention. Compare posted activity with posted activity. A pending card hold on only one side creates a timing mismatch, not a useful reconciliation result.
+
+When the difference is not zero, check:
+
+1. opening balance and boundary date
+2. missing or duplicated rows
+3. pending activity included on only one side
+4. incomplete transfers
+5. amount, account, currency, or sign errors
+
+A zero difference proves that the account movements add up. It does not prove that groceries, travel, refunds, and reimbursements landed in the right categories. Review category totals as a separate step. The [budget reconciliation guide](/blog/how-to-reconcile-your-budget-with-your-bank-balance/) explains how to investigate a mismatch account by account.
+
+## Know where the data goes
+
+An **expense tracker without a bank account connection** can still involve several services. The exact path depends on your setup:
+
+| Setup | Application storage | Other processing |
+|---|---|---|
+| Hosted app with manual entry | Financial data you enter is stored in AWS RDS (Postgres) | No AI client is required for entry |
+| Hosted app with direct Agent API import | Approved ledger data is stored in AWS RDS (Postgres) | The terminal client or its AI provider may process the statement, prompts, and API results |
+| Hosted app with remote MCP | Queried or written data remains in the hosted database | The authorized MCP client receives requested results; writes require `expenses:write` |
+| Self-hosted app with manual entry | The app and database run on infrastructure you control | No AI client is required for entry |
+| Self-hosted app with an external AI client | The app and database run on infrastructure you control | The external provider may still process files, prompts, or returned financial records |
+
+The hosted [Privacy Policy](/privacy/) explains the operator, AWS storage, backups, MCP processing, and third-party client boundary. The [Self-Hosting Guide](/docs/self-hosting/) covers running the app and Postgres yourself. Self-hosting controls the application and database; it does not rewrite the privacy policy of another service you choose to connect.
+
+## Keep the routine small
+
+No-bank-link budgeting works better as a regular close than as a yearly cleanup. During the month, record cash, unusual purchases, and transactions whose context will be hard to reconstruct later. At the end of each statement period:
+
+1. export the final posted statement
+2. enter missing rows manually or prepare a reviewed agent import
+3. resolve duplicates, transfers, refunds, and reimbursements
+4. reconcile every account separately
+5. review categories and keep the closing balance and date as the next known-good boundary
+
+This cadence makes an **expense tracker without bank sync** dependable without pretending it is automatic.
 
 ## Where Expense Budget Tracker fits
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/) is a strong fit for this kind of workflow because the product is structured like a real finance system first and only then adds automation on top.
+Expense Budget Tracker is built around a structured ledger without automatic bank sync. The web app supports manual entry, balances, categories, transfers, budgets, and multiple currencies. Technical users can connect a terminal agent through the direct Agent API, inspect the exposed schema, and review restricted reads and writes before importing a statement.
 
-The useful parts here are not flashy:
+The limitations are part of the choice:
 
-- accounts, balances, categories, and transfers in one ledger
-- CSV and PDF-friendly import workflows through AI chat and agent tooling
-- multi-currency support without flattening the source data too early
-- shared workspaces when more than one person touches the finances
-- optional self-hosting if you want more control over the stack
+- no automatic bank feed
+- no browser statement-import flow
+- file-assisted imports require a capable terminal AI agent and deliberate review
+- the long-lived Agent API key needs secure storage outside chat memory
+- MCP uses separate OAuth credentials and does not automatically read local files
+- hosted financial data is stored in the managed AWS RDS (Postgres) service
+- self-hosting adds responsibility for deployment, updates, the database, and backups
 
-That combination matters because **manual expense tracker** does not have to mean fragile.
+If that tradeoff fits, open the [hosted app](https://app.expense-budget-tracker.com/) or follow [Getting Started](/docs/getting-started/). Begin with one account and one closed period. Make the balance match, check the categories separately, and expand only after that first period is trustworthy.
 
-You can keep control over how data enters the system and still avoid spreadsheet chaos.
+## Frequently asked questions
 
-If you want the open-source and self-hosting angle, start here:
+### Can I use Expense Budget Tracker without connecting a bank account?
 
-- [Self-Hosted Open-Source Budget Tracker for Developers in 2026](https://expense-budget-tracker.com/blog/self-hosted-open-source-budget-tracker-for-developers/)
+Yes. The web app supports manual transaction entry and has no automatic bank sync. You can also use a capable terminal AI agent to read a statement and send approved records through the direct Agent API.
 
-## The workflow I would actually recommend
+### Can I upload a CSV in the browser?
 
-This is the version that feels sustainable:
+No. There is no browser statement-upload or import flow. Enter the rows manually, or give a terminal agent explicit access to the file and review its proposed Agent API writes.
 
-1. set up your real accounts and reporting currency
-2. create the categories you already use in your head
-3. enter manual transactions when they are simple or unusual
-4. import CSV or PDF statements when that is faster than typing
-5. review transfers, reimbursements, and new merchants carefully
-6. check balances before you trust the month
-7. use the budget grid to plan what happens next, not only to admire what already happened
+### Does a budget app without linking a bank account keep everything private?
 
-That is calm. It is inspectable. It also survives the weird purchases that make bank-linked apps wobble.
+No bank link removes the persistent aggregation connection, not every third party. The hosted app stores entered financial data in AWS RDS (Postgres). An AI client or provider may process a statement, prompt, or returned financial record. Self-hosting puts the app and database under your control, but any external AI provider remains external.
 
-## A quick way to compare the options
+### Is the MCP connector the same as the Agent API?
 
-| Setup | Best for | Main strength | Main tradeoff |
-|---|---|---|---|
-| Bank-linked app | People who want passive import above all else | Fast initial automation | Sync gaps, weaker control over weird cases |
-| Spreadsheet | People who want full manual control | Flexible and transparent | Easy to break, annoying on mobile |
-| Budget app without bank linking | People who want control plus real budgeting structure | Honest categories, imports on demand, clearer handling of transfers and reimbursements | Requires deliberate review instead of passive sync |
+No. MCP uses OAuth with required `expenses:read` and optional `expenses:write`. The Agent API uses a long-lived `ApiKey` obtained through email OTP. The credentials are not interchangeable, and MCP does not automatically read local statement files.
 
-That is the real tradeoff.
+### What is the simplest way to start?
 
-There is no universal winner. But there are a lot of people forcing themselves into bank sync because the market keeps pretending that is the modern default.
-
-It does not have to be.
-
-## So what should you look for in a budget app without bank linking?
-
-I would keep the checklist simple:
-
-- it should work before you connect anything
-- it should support imports without forcing permanent sync
-- it should treat transfers and reimbursements like first-class finance events
-- it should help you plan, not only categorize history
-- it should stay believable when money moves across currencies, people, and accounts
-
-That is the version of **budget without linking bank account** I trust.
-
-If that is what you want, [Expense Budget Tracker](https://expense-budget-tracker.com/) is a strong fit: keep control over your data entry, import statements when useful, and still run your finances inside a proper budgeting system instead of a polite spreadsheet replacement.
+Use one account, one currency, and one closed period. Enter or import the posted movements, resolve the edge cases, reconcile the closing balance, and review categories separately. That small test gives you an honest answer about whether a **budget app without linking your bank account** fits your routine.
