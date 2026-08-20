@@ -1,305 +1,336 @@
 ---
-title: "如何用 Claude Code 追踪支出并管理预算"
-description: "把 Claude Code 配置成你的个人财务助手。只需给它一个发现地址，完成邮箱验证码流程并保存返回的 ApiKey，它就能在终端里解析账单、核对余额并维护预算。"
+title: "2026 年 Claude Code 支出追踪器：导入、核对与预算管理"
+description: "把 Claude Code 接入 Expense Budget Tracker，审核银行对账单导入、核对余额，并通过当前的 Agent API 管理预算。"
 date: "2026-03-05"
+updated: "2026-08-20"
+image: "/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code.png"
 keywords:
-  - "Claude Code 记账"
+  - "Claude Code 支出追踪器"
+  - "Claude 支出追踪工具"
+  - "Claude 个人财务管理"
   - "Claude Code 预算管理"
-  - "AI 支出追踪"
-  - "终端记账助手"
-  - "Expense Budget Tracker API"
-  - "Claude Code 财务助手"
+  - "AI 支出追踪器"
+  - "用 Claude Code 导入银行对账单"
 ---
 
-Claude Code 是 Anthropic 的终端 AI 代理。它能读取文件、编写代码、执行命令，也能直接发起 HTTP 请求。大多数人把 Claude Code 用在软件开发上，但只要把它接到一个设计清晰、面向机器的记账 API 上，它同样很适合处理个人财务。
+好用的 Claude Code 支出追踪器，第一步应该是读取，而不是写入。在向账本写入第一笔银行交易之前，Claude Code 可以先确认工作区、查看实时 schema、核对目标账户和日期范围，再把计划做出的更改展示给你。
 
-这套思路很直接：让 Claude Code 通过机器 API 连接到一个开源支出追踪系统，它就会变成一个住在你终端里的个人财务助手。你把银行账单交给它，它可以帮你录入交易、核对余额、更新预算，整个过程都通过自然语言完成。不用反复点网页，也不用手工录入一堆数据。
+这个人工审核节点，正是值得用终端智能体处理这项工作的原因。Claude Code 负责文件和 HTTP 操作，而财务判断仍由你掌握：目标账户是否正确、某一行是不是转账、该归入哪个分类，以及这次写入到底要不要执行。
 
-## 为什么 Claude Code 特别适合记账
+这样得到的是一款审批边界清楚的 AI 支出追踪器，而不是一个被笼统授权处理财务的聊天机器人。
 
-Claude Code 和 ChatGPT 或 Claude 网页版相比，有几个对个人财务尤其重要的差异：
-
-**它在本地运行，能直接读取你的文件。** 你下载的银行账单无论是 CSV 还是 PDF，Claude Code 都可以直接从本地文件系统读取。不需要上传，不需要复制粘贴，也不需要先截屏。你只要说“解析 `~/Downloads/chase-march-2026.csv` 这份银行账单”，Claude Code 就会自己去读。
-
-**它不仅会建议命令，还能真的执行。** Claude Code 不会只给你一条 `curl` 命令让你自己跑；它会自己写 SQL、发 HTTP 请求、检查返回结果。如果它要向你的支出数据库写入 50 条交易，整个过程都能在同一段对话里完成。
-
-**它能在不同会话之间复用你的配置。** 只要返回的 ApiKey 没有只留在聊天记录里，而是保存在更持久的位置，Claude Code 后续会话就能继续使用同一条连接，不必每次都重新走邮箱验证码流程。
-
-**它处理本地文件时可以先离线完成准备工作。** 如果你想先清洗 CSV、预处理银行导出的怪格式，或者写一个导入脚本，Claude Code 都可以先在本地把这些步骤做完，再决定何时调用 API。
-
-## 如何把 Claude Code 配置成个人财务助手
-
-你需要两样东西：一个提供机器 API 的记账系统，以及一个能持久保存 Claude Code 登录后拿到的长期密钥的位置。
-
-[Expense Budget Tracker](https://expense-budget-tracker.com/zh/) 是一个基于 Postgres 的开源个人财务系统。它的标准发现端点是 `GET https://api.expense-budget-tracker.com/v1/`。你可以直接注册托管版，也可以[自行托管](https://github.com/kirill-markin/expense-budget-tracker)。
-
-### 第一步：把发现地址交给 Claude Code
-
-告诉 Claude Code 用这个地址连接：
+Expense Budget Tracker 通过直连 Agent API 支持这套流程。入口只有一个公开的发现 URL：
 
 ```text
 https://api.expense-budget-tracker.com/v1/
 ```
 
-Claude Code 应该先读取发现响应，然后向你询问：
+从这里开始，Claude Code 可以通过电子邮件 OTP 完成接入，把返回的长期有效 `ApiKey` 存到聊天记忆之外，查看允许访问的 schema，再通过不同端点分别执行读取和你批准的写入。
 
-- 你的账户邮箱
-- 发到收件箱里的 8 位验证码
+![裁缝和客户在裁剪整卷布料前核对纸样和一块试剪布料](/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code.png)
 
-验证码校验成功后，服务会返回一个长期可用的密钥，实际格式类似 `ebta_...`。
+## 这套方案能做什么，数据又会去哪里
 
-### 第二步：把返回的密钥保存在聊天记录之外
+Claude Code 在终端中运行，可以处理你在电脑上提供的对账单文件。但这不代表整套流程可以离线运行，也不代表所有处理都只发生在本地。
 
-登录流程虽然方便，但这个密钥仍然需要放到一个更持久的位置。后端会明确提醒代理：不要只依赖聊天历史来记住它。
+[Anthropic 当前的 Claude Code 要求](https://docs.anthropic.com/en/docs/claude-code/getting-started)明确要求连接互联网。身份验证和 AI 处理会使用 Anthropic，或你的 Claude Code 安装中配置的模型提供商。因此，对账单中的相关内容、提示词和 API 返回结果，可能会按照该提供商的条款在你的电脑之外处理。
 
-一种简单做法是：
+其余的数据路径彼此独立：
 
-```bash
-export EXPENSE_BUDGET_TRACKER_API_KEY="ebta_your_key_here"
+| 边界 | 在这里发生什么 |
+|---|---|
+| 你的电脑 | 对账单源文件最初存放在本地。Claude Code 只能获得你明确允许的文件访问权限。 |
+| Claude Code 及其模型提供商 | Claude Code 解读文件、准备查询并解释结果。身份验证和 AI 处理需要互联网连接。 |
+| 直连 Agent API | Claude Code 发送完成任务所需的、经过身份验证的读取请求和你批准的写入请求。该 API 无法随意浏览你电脑上的文件。 |
+| Expense Budget Tracker 存储 | 你批准写入的财务记录会存进托管数据库；如果你自行托管应用，则会存进你控制的基础设施。 |
+
+这条路径也不同于 Claude 和 Claude Desktop 使用的远程 MCP 连接器。本文介绍的直连 API 使用长期有效的 `ApiKey`。MCP 则通过另一个 URL 使用浏览器 OAuth；仅仅接入 MCP，并不会让它自动获得本地文件访问权限。
+
+如果你最在意的是不维持长期的银行连接，[无需连接银行账户的预算应用](/blog/budget-app-without-bank-linking/)会更详细地说明这些数据边界。
+
+## 通过发现 URL 连接 Claude Code
+
+按照 Anthropic 的[官方设置指南](https://docs.anthropic.com/en/docs/claude-code/getting-started)安装 Claude Code 并完成身份验证。[CLI 参考文档](https://docs.anthropic.com/en/docs/claude-code/cli-usage)介绍了交互式和非交互式命令的用法。
+
+确认 `claude` 能在终端中正常运行后，进入存放财务文件的目录并启动它，然后发送下面这段提示词：
+
+```text
+通过 https://api.expense-budget-tracker.com/v1/ 连接 Expense Budget Tracker。
+按照发现响应中的说明操作，不要自行猜测端点细节。先向我询问账户邮箱，
+再向我索取收件箱里的 8 位验证码。只有在我批准存储位置后，
+才能把返回的 ApiKey 存到聊天记忆之外。
+
+登录后，调用 /me，列出我的工作区，请我确认目标工作区，将它保存为该密钥的
+默认工作区，并检查 /schema。暂时不要写入任何财务数据。
 ```
 
-如果你希望 Claude Code 把它写入本地 `.env` 文件，最好明确授权。否则就先把它放在当前 shell 会话里，再由你自己保存到长期位置。
+当前的接入流程如下：
 
-### 第三步：把默认工作区保存一次
+1. `GET https://api.expense-budget-tracker.com/v1/`，然后按照发现响应中的操作说明继续。
+2. Claude Code 询问时，提供账户电子邮件地址。
+3. 提供电子邮件中的 8 位验证码。验证成功后会返回一个长期有效的 `ApiKey`。
+4. 将密钥存到聊天记忆之外，最好在你批准的位置把它设置为 `EXPENSE_BUDGET_TRACKER_API_KEY`。不要将密钥提交到代码仓库。
+5. 使用 `Authorization: ApiKey <key>` 调用 `/v1/me` 和 `/v1/workspaces`。
+6. 使用 `POST /v1/workspaces/{workspaceId}/select` 选择目标工作区。
+7. 在生成 SQL 之前调用 `/v1/schema`。
 
-Claude Code 验证完验证码后，应该先读取你的账户信息和工作区列表：
+选定的工作区会保存为该密钥的默认工作区。后续 SQL 请求可以省略 `X-Workspace-Id`；如果你只想在某一次请求中覆盖默认工作区，Claude Code 仍可发送这个请求头。如果账户恰好只有一个工作区，而密钥还没有保存默认选择，API 可以自动保存并使用该工作区。即便如此，每次写入前的审核摘要仍应明确列出工作区名称。
 
-```bash
-curl https://api.expense-budget-tracker.com/v1/me \
-  -H "Authorization: ApiKey $EXPENSE_BUDGET_TRACKER_API_KEY"
-```
+详细的身份验证流程和存储指南见 [AI 智能体设置](/docs/agent-setup/)。
 
-```bash
-curl https://api.expense-budget-tracker.com/v1/workspaces \
-  -H "Authorization: ApiKey $EXPENSE_BUDGET_TRACKER_API_KEY"
-```
+## 第一次导入前，先为 Claude Code 设定审核规则
 
-然后为这个 key 保存一次默认工作区：
-
-```bash
-curl -X POST https://api.expense-budget-tracker.com/v1/workspaces/workspace-id/select \
-  -H "Authorization: ApiKey $EXPENSE_BUDGET_TRACKER_API_KEY"
-```
-
-这样一来，之后调用 `/v1/sql` 时就不需要再传 `X-Workspace-Id`。如果你的账户里恰好只有一个工作区，API 第一次使用时也会自动帮这个 key 保存并选中它。
-
-### 第四步：补一份本地说明文件，告诉 Claude Code 你的习惯
-
-只要提前告诉 Claude Code 你的分类、账户和操作规则，它的表现会稳定得多。本地放一份 `CLAUDE.md` 很适合做这件事。
-
-下面这段 `CLAUDE.md` 示例刻意保留英文，方便你直接复制到本地使用：
+你可以用本地 `CLAUDE.md` 保存这个财务目录的操作规则，但不要把密钥本身写进去。指令应当简短、具体：
 
 ```markdown
-# Personal Finance
+# Expense Budget Tracker 工作流
 
-## Expense Tracker API
-
-- Endpoint: https://api.expense-budget-tracker.com/v1/sql
-- Auth: ApiKey in Authorization header
-- API key is in the EXPENSE_BUDGET_TRACKER_API_KEY environment variable
-- Default workspace is already saved for this key
-- Request: POST with JSON body {"sql": "your query"}
-- Response: {"rows": [...], "rowCount": N}
-
-## My expense categories
-
-Income: salary, freelance, side-projects
-Fixed: rent, utilities, insurance, subscriptions
-Daily: groceries, dining-out, transport, coffee
-Lifestyle: clothing, entertainment, healthcare, travel
-Planning: taxes, big-purchases, savings, emergency-fund
-
-## My accounts
-
-- chase-checking (USD) — main checking account
-- wise-eur (EUR) — European account
-- cash-usd (USD) — cash
-
-## Rules
-
-- Always check existing categories before inserting transactions
-- After importing, verify account balances match the bank
-- Use the exact category names listed above
-- Store transactions in their original currency
+- 从 https://api.expense-budget-tracker.com/v1/ 开始，并检查 /schema。
+- 所有读取操作都使用 POST /v1/sql/query。
+- 写入前，展示目标工作区、完整 SQL、预计受影响行数、
+  源数据合计值和潜在重复项。等待我的明确批准。
+- 仅使用 POST /v1/sql/execute 执行我明确批准的 INSERT、UPDATE 或 DELETE。
+- 每次写入后，都发起新的 /v1/sql/query 请求进行核对。
+- 绝不虚构余额调整交易，也不擅自修改尚未确定的分类。
+- 将 ApiKey 保存在此文件和聊天记忆之外。
 ```
 
-### 第五步：打开 Claude Code，开始处理财务
+如果实际账户名称、分类规则、转账规则和报表货币长期不变，也可以把它们写进去。不要仅仅因为文章中出现了示例分类，就照搬到自己的账本里。Claude Code 应该查询你的现有数据，并以实时 schema 为准。
 
-```bash
-cd ~/finances
-claude
-```
+## 使用 Claude Code 导入一份银行对账单
 
-Claude Code 会读取你的本地说明，复用已经保存好的 ApiKey，然后立刻就能开始工作。
+最安全的第一次导入，范围应该有意控制得很小：一个账户、一种货币、一个已经结束的对账周期，以及一份你能逐行审核的文件。CSV 很适合作为起点，因为它的结构一目了然。对于其他格式，必须先针对具体文件检查提取结果，才能信任生成的记录。
 
-## 用 Claude Code 解析银行账单
+### 1. 明确源数据边界
 
-这正是 Claude Code 最有优势的场景。下载好银行账单后，直接让它处理：
+在 Claude Code 解析任何内容之前，先明确：
+
+- 银行账户，以及记账工具中与它对应的账户
+- 账户货币
+- 对账单中第一笔和最后一笔已入账交易的日期
+- 期初余额或上一次确认无误的余额
+- 对账单期末余额
+- 文件中是否包含待处理交易
+
+导入和对账只使用已入账交易。待处理交易正式入账之前，不要把它们纳入批准写入的批次。
+
+### 2. 生成待写入记录前，先检查目标账户
+
+要求 Claude Code 先使用读取端点：
 
 ```text
-我把 Chase 的账单下载到了 ~/Downloads/chase-march-2026.csv。
-请解析它，并把所有交易记录到我的 chase-checking 账户里。
+我要导入 ~/finances/checking-2026-07.csv。
+
+只使用 /v1/sql/query。确认当前选定的工作区，检查 /v1/schema，列出可用账户，
+并找出与这份对账单唯一对应的账户。在 ledger_entries 中查询对账单覆盖的日期范围，
+检查是否已有重叠记录。向我展示账户、货币、日期边界、现有记录数和所有潜在重复项。
+不要写入任何数据。
 ```
 
-Claude Code 会：
-
-1. 从你的文件系统读取这份 CSV
-2. 解析每一行里的日期、金额和描述
-3. 按照 `CLAUDE.md` 里的分类规则给交易归类
-4. 为 `ledger_entries` 表生成 `INSERT` 语句
-5. 通过 SQL API 把这些记录写进去
-6. 告诉你它实际录入了哪些内容
-
-你只需要审核结果，把分错类的交易指出来让它改掉，就完成了。原本要花不少时间手工录入的一个月交易，几分钟就能处理完。
-
-如果你拿到的是 PDF 账单，或者只是银行 App 的截图，方法也一样。Claude Code 可以读取图片和 PDF，抽取其中的交易数据，再按同样的方式写入系统。
-
-## 核对余额，尽快抓出错误
-
-导入交易之后，始终都应该检查数字是否对得上：
+主要读取端点是：
 
 ```text
-检查一下我的账户余额，并和银行里看到的数字对比：
-chase-checking 应该是 $4,230.15
-wise-eur 应该是 €1,847.50
+POST https://api.expense-budget-tracker.com/v1/sql/query
 ```
 
-Claude Code 会通过 SQL API 查询 `accounts` 视图，把系统里的余额和你给出的银行数字逐项比较，并标出任何差异。假设 `chase-checking` 显示的是 $4,180.15，而不是 $4,230.15，Claude Code 还可以继续帮你追那缺少的 50 美元，看看是不是有一笔交易漏记了，或者被重复计算了。
+它接受一条只读的 `SELECT` 或 `WITH ... SELECT`。请求体中要放入依据当前 `/schema` 生成的 SQL：
 
-这种每周一次的余额核对，是个人财务里最重要的习惯之一。Expense Budget Tracker 的作者 Kirill Markin 已经持续给自己的每一笔个人交易分类超过五年，而这项核对他每周都做。正因为如此，数据才能在长期里保持可信。
+```json
+{
+  "sql": "SELECT * FROM accounts LIMIT 100"
+}
+```
 
-## 直接向 Claude Code 提问你的支出情况
+Claude Code 应直接在 SQL 中计算合计值和分组结果，不要把整个账本拉进对话。每次查询最多返回 100 行。
 
-只要支出数据已经进了数据库，Claude Code 就能通过生成 SQL 回答各种财务问题：
+### 3. 审核实际预览，而不是接受口头承诺
+
+在生成 `INSERT` 之前，先让 Claude Code 把对账单解析成预览表。预览至少要包含源文件行、日期、金额、货币、目标账户、拟用交易类型、拟用分类和重复状态。
+
+请仔细审查以下各行：
+
+- 自有账户之间的转账
+- 退款和报销
+- 现金取款和银行手续费
+- 不熟悉的交易对方
+- 外币交易
+- 日期接近对账周期起点或终点的记录
+- 任何与现有账本记录相似的候选项
+
+日期和金额相同可能意味着重复，但还不足以定论。两笔真实交易也可能恰好发生在同一天、金额也相同。如果源文件包含稳定的银行交易标识符，而实时 schema 中有合适的字段，可以把它作为判断依据；否则就保留在预览中，不要硬塞进数据库。
+
+接下来，要求 Claude Code 给出一份简洁的审批摘要：
 
 ```text
-我过去 3 个月在外食上花了多少钱？
+准备导入预览，但不要写入。展示：
+
+1. 已确认的工作区和目标账户
+2. 源数据的日期范围和货币
+3. 源数据记录数和带符号的合计金额
+4. 每一条拟写入的账本记录
+5. 潜在重复项和不确定的分类
+6. 你准备发送的完整 INSERT 语句（单条或多条）
+7. 预计受影响的行数
+
+停止并等待我的批准。
 ```
+
+### 4. 只提交已经批准的更改集
+
+主要写入端点是：
 
 ```text
-这个月支出最高的 5 个分类是什么？
+POST https://api.expense-budget-tracker.com/v1/sql/execute
 ```
+
+它每次接受一条已经批准的 `INSERT`、`UPDATE` 或 `DELETE`，也支持允许的 `WITH` 形式。读写端点是有意分开的。
+
+每条变更语句、每次请求最多影响 100 行。导入内容较多时，应在执行前一次性审核并批准完整的拟议更改集。Claude Code 先用相同的 SQL 结构试写 1–3 条代表性记录；如果试写成功，就应立即继续按顺序提交剩余的获批记录，每批不超过 100 行。它需要跟踪并核对每个批次，但不能仅仅为了询问是否继续或要求再次确认而中途停下。只有范围发生变化、出现新的不确定性或执行失败时，才需要进入新的审核节点。
+
+SQL 功能不支持 `ON CONFLICT`，所以重复项必须显式处理，不能藏在 upsert 逻辑里。
+
+`POST /v1/sql` 仍然保留，用于兼容旧用法和执行受限的原子多语句脚本。它不是读取对账单或执行日常写入的常规端点。
+
+### 5. 写入后重新读取记录
+
+API 返回成功，并不代表导入已经完成。让 Claude Code 再通过 `/v1/sql/query` 查询受影响的账户和周期，并把实际入库结果与批准过的预览逐项比较：
+
+- 受影响的行数
+- 日期和金额
+- 原币种
+- 账户归属
+- 交易类型和分类
+- 重复项数量
+
+不要让 Claude Code“把所有看起来不对的地方都修好”。如果核对结果存在差异，应先退回只读诊断，准备一项具体的修正，再单独批准这项修正。
+
+更完整的[银行对账单导入指南](/blog/how-to-import-bank-statements-into-an-expense-tracker/)还介绍了转账、退款、周期重叠，以及其他可能让导入结果看似整齐、实际却有误的数据行。
+
+## 先把一个账户对清楚，再导入下一个
+
+对账是为了确认账本中的资金变动能与银行对账单吻合。每次只比较一个银行账户和记账工具中的对应账户，并确保两边使用相同币种和相同的已入账日期区间。
+
+对于普通存款类账户，基本核对公式是：
+
+**预期期末余额 = 期初余额 + 已入账流入 − 已入账流出**
+
+如果记账工具使用带符号的资金变动，等价公式是：
+
+**预期期末余额 = 期初余额 + 已入账变动的带符号总和**
+
+信用卡等负债账户可能采用不同的正负号规则。比较数字之前，先让 Claude Code 说明它在数据中发现了哪种规则。
+
+使用下面这段提示词，让整个诊断过程保持只读：
 
 ```text
-把上周所有超过 100 美元的交易列出来。
+只使用 /v1/sql/query。把已导入的活期账户与对账单期末余额
+[金额和货币] 进行核对。说明期初边界和采用的正负号规则。
+如果余额不一致，给出准确差额，并列出可能遗漏、重复或符号错误的记录。
+不要插入余额调整记录，也不要修改现有数据。
 ```
+
+如果差额不为零，就检查期初余额、遗漏或重复的交易、转账、待处理项目、正负号、日期和币种。人为补一笔余额调整记录，只会让表面数字对上，却把真正原因藏起来。
+
+差额为零只能证明账户资金变动在数字上对得上，不能证明分类正确。开始处理下一个账户前，还要单独审核各分类的合计值。[预算与银行余额对账指南](/blog/how-to-reconcile-your-budget-with-your-bank-balance/)会更深入地解释两者的区别。
+
+## 通过只读端点分析支出
+
+确认导入结果无误后，Claude Code 可以使用 `ledger_entries` 做只读的支出分析。问题要问得具体，同时要求它展示 SQL，这样你才能看清答案背后的统计口径。
 
 ```text
-过去 6 个月里，我每月在杂货上的平均支出是多少？
+检查 /v1/schema，然后使用 /v1/sql/query，按分类比较最近三个完整自然月的支出。
+编写 SQL 前，先确定明确的开始日期和结束日期。根据已保存的交易类型排除转账。
+直接在 SQL 中聚合，展示查询语句，并解释所有被排除或存在疑问的记录。不要修改数据。
 ```
 
-Claude Code 会写出 SQL，通过 API 执行，再用自然语言把结果解释给你。你并不需要自己会写 SQL，但你随时都可以要求它展示查询语句，确认逻辑是否正确，或者让它调整条件。
+这很重要，因为数据库里未必有一个可以直接等同于“支出”的通用字段。答案是否有用，取决于当前 schema、交易类型、账户币种、退款处理方式和准确的日期边界。Claude Code 可以编写查询，但你仍然需要看得见它到底统计了哪些数据。
 
-## 用 Claude Code 管理预算预测
+临时排查问题时，适合问一些范围更窄的问题，例如：
 
-记账是在记录已经发生的事，预算是在规划接下来会发生什么。这两件事可以放在同一个数据库里完成。
+- 两个完整月份之间，哪些分类变化最大？
+- 某个分类的合计金额主要来自哪些交易对方？
+- 最近导入的周期中是否存在潜在重复项？
+- 哪些实际支出分类没有对应的预算行？
 
-`budget_lines` 表存的是你的月度预算预测，也就是每个月、每个分类的预期收入和计划支出。你可以直接让 Claude Code 来维护它：
+只要 Claude Code 直接在数据库中完成分组和筛选，100 行的结果上限通常就够用。
+
+## 更新 Claude Code 预算，但把决定留给自己
+
+修改预算时，沿用与导入对账单相同的审核流程。Claude Code 可以读取 `budget_lines`，比较预算计划与账本中的实际收支，再准备拟执行的 `INSERT`、`UPDATE` 或 `DELETE`。但新金额是否符合你的打算，仍由你决定。
 
 ```text
-帮我设置 2026 年 4 月的预算：
-- groceries: $400
-- dining-out: $200
-- rent: $2,100
-- salary income: $8,500
-其他内容都沿用 3 月的预算。
+使用 /v1/sql/query 将本月的实际收入和支出与 budget_lines 进行比较。
+然后按照现有分类和当前 schema 起草下个月的预算。
+
+展示每个待修改预算行的当前金额、拟议金额、差额和修改理由。
+展示完整 SQL 和预计受影响行数。在我批准具体预算行之前，不要调用 /v1/sql/execute。
+完成批准的写入后，再次查询这些预算行进行核对。
 ```
 
-Claude Code 会先读取 3 月的预算项，再创建 4 月的记录，并把你的调整写进去。这样你就得到了一份可以在网页界面里滚动查看的 12 个月预测。
+不要因为某个月花得多，就悄悄把高支出变成新的预算标准。大额支出可能只是一次例外，缺少分类可能是数据问题，转账也可能被错误归类。Claude Code 可以把这些差异摆出来，但下一步应该怎样安排预算，仍需要你来判断。
 
-一个很好用的月度习惯是：每个月结束时，打开 Claude Code，然后这样说：
+## 了解当前 Agent API 的边界
 
-```text
-比较一下我这个月的实际支出和预算。
-凡是超出预算 20% 以上的分类，
-都把下个月的预测调得更贴近现实一点。
-```
+该 API 只开放一小组关系。始终以 `/v1/schema` 为当前事实来源；目前的读写权限如下：
 
-Claude Code 会从 `ledger_entries` 里读取实际支出，把它和 `budget_lines` 里的计划逐项对比，再更新下个月的预测。手工做这种分析通常要花 30 分钟，而用 Claude Code 往往 2 分钟就够了。
-
-## 处理多币种也很自然
-
-如果你有多个币种的账户，Claude Code 也能很自然地处理。Expense Budget Tracker 会把每笔交易保留在原始币种里，并且每天从 ECB、CBR 和 NBS 获取汇率。
-
-```text
-我昨天收到了 €2,500 的自由职业收入，打进了 wise-eur。
-把它记为 income，分类是 freelance。
-```
-
-Claude Code 会写出包含 `currency: 'EUR'` 和正确金额的 `INSERT` 语句。之后如果你问“我这个月的总收入折合 USD 是多少？”，数据库会在查询时完成汇率换算，Claude Code 只需要把结果告诉你。
-
-## 这是网页界面很难替代的能力
-
-Claude Code 在个人财务上的真正优势，是把文件访问、HTTP 请求和自然对话放进了同一个工具里：
-
-**批量处理。** 把五份来自不同账户的银行账单扔进同一个文件夹，然后让 Claude Code 一次性处理。它会逐个读取文件，把交易写到正确的账户里，并在最后统一核对余额。换成普通网页界面，这通常意味着一小时以上的重复点击。
-
-**自定义分析。** “过去一年里哪个月份的娱乐支出最高？其中金额最大的几笔交易是什么？” 很少有预算 App 会为这种问题专门做一个按钮，但 Claude Code 可以自己写 SQL、执行查询，再把结果解释给你听。
-
-**格式转换。** 你的银行导出的 CSV 列很怪，日期还是欧洲格式？可以先让 Claude Code 在本地清洗文件，再导入干净版本。
-
-**写脚本。** 你甚至可以让 Claude Code 顺手给你写一个以后能重复使用的脚本：“写一个脚本，把 Chase CSV 导入并记录所有交易，保存为 `~/finances/import-chase.py`。” 下次你就可以直接运行脚本，无论是否还需要 Claude Code 参与。
-
-## Claude Code 实际操作的数据库结构
-
-Expense Budget Tracker 的机器 API 暴露了一组很适合 AI 代理使用的关系，允许访问的范围由 `GET /v1/schema` 公布。
-
-| 表 | 用途 |
+| 关系 | 访问权限 |
 |---|---|
-| `ledger_entries` | 每一笔收入和支出交易 |
-| `budget_lines` | 预算计划：每月、每个分类的金额 |
-| `budget_comments` | 针对特定预算单元格的备注 |
-| `exchange_rates` | 每日汇率（自动抓取） |
-| `workspace_settings` | 报表币种偏好 |
-| `account_metadata` | 账户流动性分类 |
-| `accounts` | 视图：各账户的滚动余额 |
+| `ledger_entries` | 可读；经批准后可写 |
+| `budget_lines` | 可读；经批准后可写 |
+| `workspace_settings` | 可读；经批准后可写 |
+| `account_metadata` | 可读；经批准后可写 |
+| `accounts` | 只读 |
+| `fx_rates_raw` | 只读 |
+| `fx_rates_daily` | 只读 |
 
-`ledger_entries` 这张表的列也很直观：`event_id`、`ts`、`account_id`、`amount`、`currency`、`kind`、`category`、`counterparty`、`note`。列名本身已经把含义表达得很清楚，所以 Claude Code 往往第一次就能写出正确的 `INSERT` 语句。
+当前 Agent API 的限制如下：
 
-## 安全性和访问控制
+- 每次查询最多返回 100 行
+- 每条变更语句以及每次请求最多影响 100 行
+- 每个 SQL 请求的总时限为 25 秒
+- 每个密钥每秒最多发送 10 个请求，每天最多发送 10,000 个请求
 
-在 SQL API 的这些约束下，把 Claude Code 接到你的支出数据库上是安全的：
+SQL 策略禁止 `CREATE`、`DROP` 和 `ALTER` 等 DDL、事务包装语句、SQL 注释、带引号的标识符、美元引号字符串、`set_config()` 和受限函数。目前允许使用的函数只有 `SUM`、`COUNT`、`MIN`、`MAX`、`AVG` 和 `COALESCE`。不区分大小写的文本搜索应使用 `ILIKE`，而不是 `LOWER(...)`；日期筛选应使用明确的范围，而不是 `NOW()` 或 `DATE_TRUNC()`。主要端点每次请求只接受一条语句，也不支持 `ON CONFLICT`。
 
-每一条查询都会经过 Postgres Row Level Security。API key 既绑定到你的用户身份，也绑定到当前选中的工作区，所以即使数据库是共享部署的，Claude Code 也只能看到你的数据。
+这些限制缩小了可用的 SQL 范围，却无法替你判断分类是否正确，也无法判断对账单中的某一行究竟是不是转账。行级安全性（Row Level Security）会在数据库层面隔离不同工作区。ApiKey 以 SHA-256 哈希形式存储，并可在产品中撤销。你仍然需要保护电脑上的明文密钥，并审核每一次财务数据变更。
 
-每个请求只允许一条语句。支持的类型只有 `SELECT`、`WITH`、`INSERT`、`UPDATE` 和 `DELETE`。Claude Code 不能建表、不能删表、不能套事务、不能调用 `set_config()`，也不能发送 SQL 注释或带引号的标识符。这些限制都由 SQL API 在服务端强制执行，不取决于 Claude Code 想发什么。
+当前的端点契约和限制请参阅 [API 参考文档](/docs/api/)。
 
-API key 以 SHA-256 哈希形式保存，明文不会进入数据库。你之后也可以在产品里撤销这个密钥。接口还有限流：每秒 10 个请求、每天 10,000 个请求、超时 30 秒，而且每次响应最多返回 100 行。
+## Claude Code Agent API 与 Claude MCP 是两套独立接入方式
 
-密钥始终保存在你的本地环境变量里。Claude Code 发请求时从 `$EXPENSE_BUDGET_TRACKER_API_KEY` 读取它，不需要把它提交到项目代码里。
+搜索 Claude 支出追踪工具时，人们常常会把终端工作流与 Claude 或 Claude Desktop 的连接器混为一谈。Expense Budget Tracker 同时支持这两种方式，但它们的设置流程和凭据不能互换。
 
-## 进阶方案：跳过代理原生登录，直接发 HTTP 请求
+| | Claude Code 与 Agent API | Claude 或 Claude Desktop 与 MCP |
+|---|---|---|
+| 适合场景 | 本地文件、终端工作流、脚本和直接 HTTP | 在支持 MCP 的 Claude 客户端中对话 |
+| 从这里开始 | `https://api.expense-budget-tracker.com/v1/` | `https://mcp.expense-budget-tracker.com/mcp` |
+| 身份验证 | 电子邮件 OTP，之后使用长期有效的 `ApiKey` | 浏览器 OAuth |
+| 读写接口 | `/v1/sql/query` 和 `/v1/sql/execute` | `sql_query` 和可选的 `sql_execute` 工具 |
+| 本地文件访问 | 取决于 Claude Code 能访问哪些文件、获得了哪些权限 | 远程连接器本身不提供本地文件访问权限 |
 
-如果你已经有一个长期可用的 Expense Budget Tracker ApiKey，Claude Code 也可以跳过邮箱验证码流程，直接使用现成密钥。此时调用的仍然是同一组端点：
+如果你要接入 Claude 或 Claude Desktop，请查看 [MCP 连接器文档](/docs/mcp-connector/)或完整的 [Claude 支出追踪器 MCP 指南](/blog/claude-expense-tracker-mcp-connector/)。如果任务从本地对账单和终端开始，就继续使用本文介绍的 Agent API 工作流。
 
-- `GET /v1/`：获取当前运行时发现信息和实现源码链接
-- `GET /v1/schema`：查看允许访问的关系
-- `POST /v1/sql`：执行实际查询
+## 可复用的完整工作流提示词
 
-这更适合稳定运行的脚本或已经预配置好的环境，但对大多数人来说，发现地址加邮箱验证码流程仍然是最省事的接入方式。
+下面这段提示词把发现、预览、审批和核对串成了一套完整流程：
 
-## 一个真实工作流：每周 10 分钟完成记账
+```text
+通过 https://api.expense-budget-tracker.com/v1/ 连接 Expense Budget Tracker，
+并按照发现响应中的说明操作。使用存放在聊天记忆之外的 ApiKey。调用 /me，
+列出工作区，与我确认目标工作区，选择该工作区，并检查 /schema。
 
-Kirill Markin 多年来一直按这套流程运行，大致就是这样一段每周例行操作：
+我要把 [本地 CSV 路径] 导入 [账户]，覆盖 [已经结束的日期范围]，币种为 [币种]。
+先使用 /v1/sql/query 检查账户、现有分类和时间重叠的账本记录。解析文件并准备完整预览。
+标记潜在重复项、转账、退款、报销、手续费、异常交易对方和无法确定的分类。
 
-1. 从所有账户下载银行账单（2 分钟）
-2. 打开 Claude Code，让它处理这些文件（3 分钟，主要是 Claude Code 在执行）
-3. 审核录入结果，修正少数分类错误（3 分钟）
-4. 让 Claude Code 核对所有账户余额是否和银行一致（1 分钟）
-5. 如果刚好到月底，再让 Claude Code 比较实际支出和预算，并更新预测（2 分钟）
+展示源数据合计值、拟写入记录、完整 SQL 和预计受影响行数。在我批准完整更改集之前，
+不要写入。仅使用 /v1/sql/execute 执行这次获批写入。导入记录较多时，先试写 1–3 条
+代表性记录。如果试写成功，立即按顺序继续处理其余获批记录，每批不超过 100 行。
+通过 /v1/sql/query 核对每个批次；除非范围发生变化、出现新的不确定性或执行失败，
+否则不要要求我再次确认。
 
-差不多 10 分钟，你就能得到一份完整的财务视图：每一笔交易都已分类，每个余额都已核对，预算也已经更新。这个系统之所以有效，是因为那些枯燥但耗时的部分，例如解析、分类、写入和计算，正好都是 Claude Code 擅长的；而真正需要判断的部分，例如审核分类、决定预算如何调整，仍然由你来拍板。
+最后，把这一个账户与对账单期末余额进行核对。如果两边不一致，解释差额，
+但不要创建余额调整交易，也不要更改数据。
+```
 
-## 开始使用 Claude Code 和 Expense Budget Tracker
-
-1. 如果你还没安装，先[安装 Claude Code](https://docs.anthropic.com/en/docs/claude-code)
-2. 在 [expense-budget-tracker.com](https://expense-budget-tracker.com/zh/) 注册，或者[自行托管](https://github.com/kirill-markin/expense-budget-tracker)这个应用
-3. 把 `https://api.expense-budget-tracker.com/v1/` 交给 Claude Code
-4. 完成邮箱验证码流程，并把返回的 key 保存为 `EXPENSE_BUDGET_TRACKER_API_KEY`
-5. 为这个 key 保存一个默认工作区
-6. 写一份本地 `CLAUDE.md`，记录你的分类、账户和工作规则
-7. 在你的财务目录里打开 Claude Code，导入第一份银行账单
-
-Claude Code 会先检查 schema、匹配你的分类，然后开始记录交易。你只需要审核结果，修正不对劲的地方，就能很快搭起一套运行在终端里的 AI 记账流程。
-
-Expense Budget Tracker 采用 MIT 许可证，并以完全开源的形式发布在 [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker)。Claude Code 的产品说明见 [docs.anthropic.com/en/docs/claude-code](https://docs.anthropic.com/en/docs/claude-code)。这两款工具都可以低成本开始使用。
+先从一个账户和一个已经结束的周期开始。如果预览清晰易懂、批准写入的记录能够正确回读，而且期末余额核对无误，你就有了一套可以逐步审核的 Claude 个人财务工作流，而不是一个得到含糊授权、可以随意改账的聊天机器人。
