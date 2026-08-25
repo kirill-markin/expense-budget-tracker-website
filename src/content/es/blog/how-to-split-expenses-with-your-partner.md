@@ -1,237 +1,222 @@
 ---
-title: "Cómo dividir los gastos con su pareja en 2026: cuentas separadas, ingresos desiguales y un presupuesto que todavía parece justo"
-description: "¿Estás tratando de descubrir cómo dividir los gastos con tu pareja en 2026? Aquí hay un sistema práctico para cuentas separadas, ingresos desiguales, alquiler, comestibles, reembolsos y planificación mensual sin desviaciones en las hojas de cálculo."
+title: "Cómo dividir los gastos en pareja: 50/50 o reparto proporcional"
+description: "Compara el reparto 50/50 y el proporcional con un ejemplo completo de presupuesto mensual, y salda los gastos compartidos sin duplicar los reembolsos como ingresos o gastos."
 date: "2026-04-04"
+updated: "2026-08-25"
+image: "/blog/how-to-split-expenses-with-your-partner.png"
 keywords:
-  - "cómo dividir gastos con tu pareja"
-  - "cómo dividir facturas con pareja"
-  - "gastos divididos cuentas separadas"
-  - "gastos divididos ingresos desiguales"
+  - "cómo dividir gastos en pareja"
+  - "cómo repartir gastos con tu pareja"
+  - "dividir gastos según ingresos"
+  - "reparto proporcional de gastos"
   - "presupuesto en pareja con cuentas separadas"
-  - "Manera justa de dividir los gastos en pareja."
-  - "billetes divididos proporcionalmente"
-  - "pareja de finanzas híbridas"
+  - "forma justa de repartir gastos"
+  - "liquidación mensual de gastos en pareja"
 ---
 
-El lunes pasado, una persona pagó el alquiler, la otra cubrió la compra y el miércoles ambos estaban levemente irritados por un presupuesto que técnicamente compartían pero en el que no confiaban plenamente. No pasó nada dramático. Simplemente el habitual truco de magia de las finanzas domésticas en el que la vida normal se convierte en diez pequeñas preguntas que nadie quiere responder después de cenar.
+![Una pareja compara qué parte le corresponde de un mismo presupuesto doméstico](/blog/how-to-split-expenses-with-your-partner.png)
 
-Suele ser entonces cuando la gente empieza a buscar **cómo dividir los gastos con tu pareja**.
+La persona A recibe $5,000 netos al mes. La persona B recibe $3,000. Sus gastos mensuales compartidos suman $4,000. Con un reparto 50/50, cada persona aporta $2,000, que equivalen al 40% de los ingresos de la persona A y al 66.7% de los de la persona B. Con un reparto proporcional, las aportaciones pasan a ser de $2,500 y $1,500. Así, ambas destinan el 50% de sus ingresos al hogar.
 
-No porque las matemáticas sean difíciles. La parte difícil es construir un sistema que todavía parezca justo cuando los ingresos difieren, las cuentas permanecen separadas y la vida real se niega a alinearse en transacciones ordenadas 50/50.
+Este ejemplo hipotético muestra por qué **cómo dividir los gastos en pareja** no tiene una respuesta única. Aportar la misma cantidad y dedicar el mismo porcentaje de los ingresos son dos formas distintas de entender lo justo. Lo importante es elegir una, dejarla por escrito y hacer que la liquidación mensual la respete.
 
-## Las cuentas separadas no son un fracaso presupuestario
+Esta guía se centra en la equidad de las aportaciones y en los cálculos para saldar las diferencias. Si estás decidiendo dónde ingresar los salarios o si conviene abrir una cuenta conjunta, empieza por [cuentas bancarias conjuntas o separadas para parejas](/blog/joint-vs-separate-bank-accounts-for-couples/). La estructura de las cuentas es una decisión distinta de cuánto debe aportar cada persona.
 
-Esta parte importa más de lo que a Internet le gusta admitir.
+## Define qué gastos son compartidos antes de elegir un porcentaje
 
-Una pareja puede compartir objetivos sin fusionar cada euro o dólar en una sola cuenta. Mucha gente prefiere una configuración híbrida:
+Aplicar un porcentaje exacto a una lista imprecisa de gastos sigue dando como resultado un acuerdo impreciso.
 
-- uno o dos billetes compartidos
-- principalmente gastos personales separados
-- un socio que cubre algunas categorías con más frecuencia
-- ahorros en diferentes bancos
+Empieza por definir qué considerará compartido el hogar. La [hoja de presupuesto](https://consumer.gov/your-money/budget-worksheet) de Consumer.gov parte de la relación básica entre los ingresos y los gastos mensuales. En una pareja, falta decidir qué gastos entran en el cálculo del hogar y cuáles siguen siendo personales.
 
-Eso no está roto. Simplemente significa que el presupuesto necesita reglas.
-
-La mala versión no son las "cuentas separadas".
-
-La mala versión es "lo descubrimos sobre la marcha".
-
-## Justo no siempre significa 50/50
-
-Aquí es donde muchos consejos sobre finanzas domésticas se vuelven sentimentales e inútiles.
-
-Si ambas personas ganan cantidades similares y usan el dinero de manera similar, 50/50 puede funcionar bien.
-
-Si una persona gana mucho más, tiene obligaciones fijas más altas o soporta temporalmente una mayor carga doméstica, la igualdad rígida puede parecer injusta con bastante rapidez.
-
-Por eso la pregunta práctica no es:
-
-"¿Estamos dividiendo todo exactamente en partes iguales?"
-
-Es:
-
-"¿Este sistema nos parece sostenible y creíble a ambos mes tras mes?"
-
-Esos no son lo mismo.
-
-## En realidad, solo hay cuatro sistemas comunes
-
-Mantendría la decisión aburrida.
-
-|Sistema|Lo mejor para|que funciona|que sale mal|
-|---|---|---|---|
-|división 50/50|Ingresos similares, configuración sencilla|Fácil de explicar|Empieza a sentirse duro cuando los ingresos o el efectivo libre difieren|
-|División proporcional por ingresos|Ingresos desiguales|Generalmente se siente más justo con el tiempo.|Necesita una fórmula acordada|
-|Propiedad de la categoría|Una persona paga el alquiler, otra paga la comida y los servicios públicos.|Rápido en la vida diaria|Se vuelve extraño si los tamaños de las categorías varían|
-|Sistema híbrido|Gastos domésticos conjuntos más dinero personal separado|Generalmente el más realista.|Requiere un check-in mensual para que no se convierta en folklore.|
-
-Para la mayoría de las parejas con **cuentas separadas**, creo que gana el sistema híbrido.
-
-Los costos domésticos compartidos reciben una regla acordada. El gasto personal sigue siendo personal. Las grandes excepciones temporales se manejan explícitamente en lugar de emocionalmente.
-
-Eso mantiene el sistema simple sin pretender que ambas personas usen el dinero de manera idéntica.
-
-## La división proporcional suele ser la respuesta más clara para los ingresos desiguales
-
-Si una persona gana 3.000 euros al mes y la otra 2.000 euros, una división 50/50 puede ser técnicamente igual y aun así sentirse mal.
-
-Una división proporcional suele ser más tranquila.
-
-En ese ejemplo, una persona cubre el 60% de los costos compartidos y la otra cubre el 40%. El mismo hogar. Mismas facturas. Resentimiento menos oculto.
-
-Esto funciona especialmente bien para:
-
-- alquiler
-- utilidades
-- comestibles
-- cuidado de niños
-- suscripciones compartidas recurrentes
-
-También funciona mejor que la renegociación constante.
-
-Nadie quiere que cada recibo de cena se convierta en una minicumbre política.
-
-## No mezcles costos compartidos y gastos personales en el mismo cubo mental
-
-Aquí es donde los números empiezan a mentir.
-
-Si uno de los socios paga el alquiler, su tarjeta no debe parecer que personalmente "gastó más" de una manera que distorsione todo el mes. Si el otro socio devuelve dinero, eso tampoco debería parecer un nuevo ingreso.
-
-Es por eso que un buen flujo de trabajo con un presupuesto de pareja debe separar:
-
-- gasto familiar compartido
-- gasto personal discrecional
-- transferencias entre socios
-- reembolsos y costos temporales anticipados
-
-Si esas cuatro ideas se confunden, el presupuesto se vuelve emocionalmente ruidoso muy rápidamente.
-
-Todavía se puede hablar de justicia. Simplemente ya no puedes verlo con claridad.
-
-## El alquiler, los comestibles y los viajes no deben utilizar la misma regla de forma predeterminada
-
-Esta es una de las razones por las que las parejas sienten que son "malas haciendo presupuestos" cuando el verdadero problema es el mal diseño del sistema.
-
-Los diferentes tipos de gasto se comportan de manera diferente:
-
-- el alquiler es predecible y generalmente vale la pena dividirlo según una regla acordada
-- las compras son frecuentes y molestas, por lo que una cuenta compartida o una regla de reembolso recurrente ayuda
-- los viajes son caóticos y a menudo necesitan una reconciliación explícita después
-- Las grandes compras únicas merecen una conversación antes del cargo, no después.
-
-Tratar de aplicar todo eso a través de una regla universal generalmente crea un drama innecesario.
-
-Preferiría tener una regla doméstica para los costos recurrentes normales y una regla separada para el gasto compartido irregular.
-
-## Los presupuestos para parejas más sencillos suelen utilizar un punto de liquidación mensual
-
-Esta es la parte que hace que todo parezca más ligero.
-
-En lugar de resolver cada pequeña transacción, elija un ritmo:
-
-1. decidir qué categorías cuentan como compartidas
-2. elige la regla de división para esas categorías
-3. deja que el mes pase
-4. liquidar una vez en un día fijo
-5. Revisar si la regla todavía parece justa
-
-Eso elimina una sorprendente cantidad de fricción.
-
-Dejas de preguntar:
-
-- quién debe qué por los ingredientes del almuerzo del martes
-- si esta factura de servicios públicos debería contarse de manera diferente
-- por qué un socio parece estar pagando más esta semana
-
-El sistema ya sabe qué pertenece al depósito compartido.
-
-## Los reembolsos necesitan su propio carril
-
-Las parejas enfrentan el mismo problema de reembolso que los compañeros de trabajo y los grupos de viaje.
-
-Una persona reserva vuelos.
-Se paga la factura anual del seguro.
-Uno toma el pedido grande de comestibles antes de que el otro envíe su parte.
-
-Si esas transacciones se ubican dentro de categorías ordinarias sin un flujo de trabajo de reembolso claro, el mes se distorsiona.
-
-Es por eso que trataría los reembolsos de los socios como saldos temporales que liquidar, no como gastos normales y definitivamente no como ingresos.
-
-Si este es su principal problema, este artículo complementario es más profundo:
-
-- [Cómo realizar un seguimiento de los gastos reembolsables en 2026](https://expense-budget-tracker.com/es/blog/how-to-track-reimbursable-expenses/)
-
-Y si en los viajes compartidos es donde todo el sistema se desmorona:
-
-- [Cómo realizar un seguimiento de los gastos de viaje compartidos en 2026](https://expense-budget-tracker.com/es/blog/how-to-track-shared-travel-expenses/)
-
-## El sistema equivocado suele fallar de formas conocidas
-
-Sigo viendo los mismos cuatro errores:
-
-|Error|Por qué se siente razonable|lo que se rompe|
+| Habitualmente compartidos | Habitualmente personales | Deben acordarse expresamente |
 |---|---|---|
-|Realice un seguimiento de todo manualmente en el chat o la memoria|Baja fricción de configuración|Nadie confía en la historia después.|
-|Usa 50/50 para todo|Se siente "objetivo"|Deja de sentirse justo cuando los ingresos difieren|
-|Trate los reembolsos de los socios como ingresos|Hace que los paneles se vean ordenados|Distorsiona los totales de ingresos y categorías.|
-|Renegocie cada gasto extraño en vivo|se siente flexible|Convierte el gasto ordinario en fatiga por tomar decisiones|
+| Alquiler, suministros, internet y productos para el hogar | Aficiones, comidas por separado, ropa y suscripciones personales | Traslados al trabajo, vehículos y comidas en pareja |
+| Compra de supermercado para ambas personas | Regalos y gastos discrecionales | Gastos médicos y seguros |
+| Transporte y suscripciones que se haya acordado compartir | Pagos de deudas personales | Ayuda a familiares y gastos anteriores a la convivencia |
+| Seguro del hogar y gastos de cuidados que se haya acordado compartir | Gastos vinculados únicamente al trabajo de una persona | Muebles, viajes y grandes compras puntuales |
 
-Es por eso que la mejor respuesta a **cómo dividir cuentas con tu pareja** rara vez es una fórmula inteligente.
+Estos son puntos de partida, no reglas universales. Lo importante es fijar un criterio que ambas personas puedan aplicar sin renegociar todo el presupuesto con cada compra. Una nota sencilla como «la compra de supermercado y los productos para el hogar son compartidos; los almuerzos por separado son personales» resulta más útil que un principio extenso que nadie pueda aplicar al momento de pagar.
 
-Suele ser un sistema aburrido que sobrevive a la vida ordinaria.
+El ahorro compartido también debe formar parte del acuerdo, pero no es consumo del hogar. Una aportación prevista al fondo de emergencia puede incluirse en el dinero que cada persona debe proporcionar, aunque el libro mayor registre el movimiento de la cuenta corriente a la cuenta de ahorro como una transferencia. La [guía sobre presupuestos domésticos compartidos](/blog/how-to-manage-a-shared-household-budget/) explica con más detalle cómo crear ese plan por categorías.
 
-## Dónde encaja mejor Expense Budget Tracker
+Usa el total compartido previsto para reunir el dinero del mes antes de que lleguen las facturas. Al cierre, usa el total compartido real para calcular el objetivo definitivo y saldar la diferencia. En el ejemplo desarrollado más adelante, ambos totales son de $4,000 para que los cálculos de las aportaciones sean fáciles de seguir.
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/es/) es una buena opción para **presupuesto como pareja con cuentas separadas** porque el producto ya maneja las piezas financieras con las que las parejas suelen tropezar:
+## Cuándo funciona el reparto 50/50
 
-- espacios de trabajo compartidos e invitaciones
-- categorías que separan el gasto doméstico y personal
-- transferencias que no pretenden ser gastos
-- saldos vinculados a cuentas reales
-- soporte multidivisa cuando la vida del hogar abarca más de un país o banco
+La fórmula 50/50 es deliberadamente sencilla:
 
-Eso es importante porque el presupuesto en pareja no se trata sólo de dividir números.
+`each partner's target = actual shared costs ÷ 2`
 
-Se trata de mantener el libro de contabilidad lo suficientemente creíble como para que ambas personas puedan mirar el mismo sistema y no empezar a discutir con los gráficos.
+Funciona bien cuando ambas personas tienen ingresos netos similares, prefieren aportar la misma cantidad y el resultado les deja margen suficiente para sus obligaciones personales. Es fácil de calcular y verificar, y no obliga a recalcular el porcentaje tras un pequeño cambio salarial.
 
-Si varias monedas son parte del lío, este artículo combina bien:
+Su limitación queda clara en el ejemplo inicial. La misma aportación de $2,000 representa el 40% de unos ingresos y el 66.7% de los otros. Aportar el mismo importe no supone el mismo esfuerzo cuando los ingresos son muy distintos.
 
-- [Presupuesto multidivisa para expatriados en 2026](https://expense-budget-tracker.com/es/blog/multi-currency-budgeting-for-expats/)
+Eso no significa que el reparto 50/50 sea incorrecto. Significa que la pareja debe elegirlo porque el resultado encaja en su presupuesto, no porque el 50/50 parezca neutral por definición.
 
-Si todavía está evaluando las herramientas de manera más amplia, esta es la comparación más cercana:
+## Cómo dividir los gastos según los ingresos
 
-- [Mejor aplicación de presupuesto para parejas en 2026](https://expense-budget-tracker.com/es/blog/best-budget-app-for-couples/)
+Un reparto proporcional asigna los gastos compartidos según el porcentaje que representan los ingresos de cada persona dentro de los ingresos conjuntos.
 
-## La configuración que realmente recomendaría
+`income share = partner's net income ÷ combined net income`
 
-Lo dejaría claro:
+`contribution target = actual shared costs × income share`
 
-1. definir qué categorías son realmente compartidas
-2. elija una regla para esas categorías: 50/50, proporcional o propiedad de categoría
-3. mantener separados los gastos personales discrecionales
-4. tratar las transferencias y reembolsos como algo propio
-5. revisar una vez al mes en lugar de reabrir el debate cada tres días
+Usa la misma definición de ingresos y el mismo periodo para ambas personas. Los ingresos netos mensuales —la cantidad que suele recibir cada persona después de los impuestos sobre la nómina y las deducciones obligatorias— suelen ser el dato más claro. No uses los ingresos brutos para una persona y los netos para la otra. Tampoco restes discretamente los gastos opcionales o las deudas personales de una de ellas antes de calcular los porcentajes; incorpora esas limitaciones al propio acuerdo.
 
-Eso es suficiente para la mayoría de las parejas.
+Las bonificaciones, las comisiones, los ingresos por trabajo autónomo y las horas extra necesitan una regla por escrito. La pareja puede usar un importe base conservador, un promedio móvil o aportaciones fijas con una regularización posterior. Cualquiera de estas opciones puede funcionar. Lo que no funciona es cambiar el dato en silencio cada mes.
 
-No necesitas una filosofía teórica del dinero.
+## El ejemplo completo de $4,000
 
-Necesita un sistema que todavía parezca justo cuando vence el alquiler, las compras están desordenadas y uno de ustedes reserva los boletos de tren nuevamente.
+Esta es la lista de gastos mensuales compartidos en la que se basa el cálculo inicial:
 
-## Entonces, ¿cómo deberías dividir los gastos con tu pareja en 2026?
+| Gasto compartido | Importe |
+|---|---:|
+| Alquiler | $2,200 |
+| Suministros e internet | $300 |
+| Supermercado y productos para el hogar | $800 |
+| Transporte compartido | $350 |
+| Seguro del hogar | $250 |
+| Suscripciones compartidas | $100 |
+| **Total** | **$4,000** |
 
-No buscaría una respuesta matemáticamente pura.
+Los $5,000 de la persona A más los $3,000 de la persona B suman $8,000 de ingresos netos conjuntos para el hogar.
 
-Yo buscaría uno que mantenga la calma en el hogar.
+### Opción 1: repartir los $4,000 a partes iguales
 
-Para muchas parejas, eso significa:
+`$4,000 ÷ 2 = $2,000 each`
 
-- cuentas separadas están bien
-- las categorías compartidas necesitan reglas explícitas
-- los ingresos desiguales suelen requerir una división proporcional
-- los reembolsos no deben hacerse pasar por ingresos
-- un acuerdo mensual supera las pequeñas negociaciones constantes
+| Persona | Ingresos netos | Aportación | Aportación como porcentaje de sus ingresos |
+|---|---:|---:|---:|
+| A | $5,000 | $2,000 | 40% |
+| B | $3,000 | $2,000 | 66.7% |
+| **Total conjunto** | **$8,000** | **$4,000** | **50%** |
 
-Esa es la versión de **cómo dividir los gastos con tu pareja** en la que confío.
+Se cubren todos los gastos compartidos, pero a la persona B le quedan $1,000 antes de sus gastos personales, mientras que a la persona A le quedan $3,000.
 
-Si desea un software que respalde ese flujo de trabajo sin convertir las transferencias normales en gastos extraños y falsos, [Expense Budget Tracker](https://expense-budget-tracker.com/es/) es una buena opción. Le brinda las piezas aburridas que hacen que un par de presupuestos sean creíbles: visibilidad compartida, saldos reales, categorías, transferencias y una estructura suficiente para que la equidad no dependa de la memoria.
+### Opción 2: aplicar un reparto proporcional
+
+Los ingresos de la persona A representan el 62.5% de los ingresos netos conjuntos:
+
+`$5,000 ÷ $8,000 = 62.5%`
+
+Los ingresos de la persona B representan el 37.5% restante:
+
+`$3,000 ÷ $8,000 = 37.5%`
+
+Aplica esos porcentajes al mismo total de gastos de $4,000:
+
+| Persona | Porcentaje de los ingresos | Aportación | Aportación como porcentaje de sus ingresos |
+|---|---:|---:|---:|
+| A | 62.5% | $2,500 | 50% |
+| B | 37.5% | $1,500 | 50% |
+| **Total conjunto** | **100%** | **$4,000** | **50%** |
+
+Este método no iguala las aportaciones. Iguala el esfuerzo: cada persona destina la mitad de sus ingresos netos a los gastos compartidos.
+
+Cuando la proporción entre los ingresos produzca decimales periódicos, conserva el porcentaje completo durante el cálculo y redondea solo las aportaciones finales a la unidad mínima que realmente se pague. Calcula una aportación redondeada y después fija la otra como `shared total − first contribution`. Redondear ambos objetivos por separado puede dejar un centavo de diferencia.
+
+Si los dos ingresos se reciben en monedas distintas, convierte ambos con el mismo tipo de cambio y la misma fecha acordados antes de calcular los porcentajes. Mezclar importes sin convertir hace que el porcentaje pierda todo sentido.
+
+## Salda el mes con un solo pago
+
+Los objetivos de aportación indican cuánto debe asumir cada persona. El libro mayor muestra cuánto pagó realmente cada una. Esos importes rara vez coinciden durante el mes, sobre todo en un **presupuesto en pareja con cuentas separadas**.
+
+Supongamos que los mismos $4,000 de gastos compartidos se pagaron así:
+
+| Gasto compartido pagado | Pagó la persona A | Pagó la persona B |
+|---|---:|---:|
+| Alquiler | $2,200 | — |
+| Suministros e internet | $300 | — |
+| Supermercado y productos para el hogar | — | $800 |
+| Transporte compartido | — | $350 |
+| Seguro del hogar | $250 | — |
+| Suscripciones compartidas | $100 | — |
+| **Total pagado** | **$2,850** | **$1,150** |
+
+Según el acuerdo 62.5/37.5, a la persona A le corresponde aportar $2,500 y a la persona B, $1,500.
+
+`settlement balance = actual paid − contribution target`
+
+- Persona A: `$2,850 − $2,500 = $350 over target`
+- Persona B: `$1,150 − $1,500 = −$350 under target`
+
+La persona B hace un único pago de $350 a la persona A. Después de la liquidación, la aportación neta de la persona A es de `$2,850 − $350 = $2,500` y la de la persona B, de `$1,150 + $350 = $1,500`. Las dos aportaciones netas siguen sumando $4,000.
+
+Entre dos personas, los saldos de liquidación deben ser iguales y de signo contrario. Si no lo son, los pagos reales no suman el total compartido o uno de los objetivos se redondeó mal. Corrige la diferencia antes de mover dinero.
+
+Usa el gasto compartido real para este cálculo, no el plan original. Si el mes cierra en $4,137, aplica los porcentajes acordados a $4,137, salvo que la pareja haya optado expresamente por aportaciones fijas y absorba la diferencia con un colchón compartido. Si también corresponde aportar a los ahorros comunes, suma ese importe acordado a los objetivos de aportación sin añadirlo al total de gastos.
+
+Una fecha de liquidación suele ser suficiente. Fíjala después de que se hayan contabilizado las últimas facturas recurrentes del mes y, hasta entonces, mantén visible el calendario de pagos. La [guía de la CFPB sobre el calendario de facturas](https://www.consumerfinance.gov/archive/blog/budget-help-manage-your-monthly-expenses-bill-calendar/) es una forma útil de organizar los importes y las fechas de vencimiento para que quien adelante una factura grande no se lleve una sorpresa de liquidez.
+
+## Registra la liquidación sin crear otro gasto
+
+Los $4,000 de alquiler, suministros, supermercado, transporte, seguro y suscripciones se contabilizan una sola vez como gasto del hogar. El pago posterior de $350 de la persona B solo ajusta qué parte de ese gasto asumió cada persona. Contarlo como un ingreso nuevo para la persona A inflaría sus ingresos. Contarlo como otro gasto para la persona B inflaría el gasto del hogar.
+
+Expense Budget Tracker tiene exactamente tres tipos de movimientos en el libro mayor: `income`, `spend` y `transfer`.
+
+Cuando las cuentas de ambas personas se registran en el mismo espacio de trabajo:
+
+- registra una sola vez cada compra del hogar como `spend` en la cuenta desde la que se pagó
+- registra la liquidación de $350 como `transfer` desde la cuenta de la persona B a la de la persona A
+- no crees un movimiento `income` para la persona A ni otro movimiento `spend` para la persona B
+
+El informe de gastos compartidos se mantiene en $4,000 y la transferencia modifica los saldos de las dos cuentas sin inventar otra compra.
+
+Cuando solo se registra la cuenta de quien adelantó el dinero, no hay una segunda cuenta registrada que permita representar una transferencia completa. Usa siempre el mismo método de compensación por categoría: registra la compra original como `spend` y, después, el reembolso recibido como un movimiento `spend` con signo contrario en una categoría específica de reembolsos de pareja. Así, el gasto total refleja el gasto neto para la persona cuya cuenta se registra sin considerar el reembolso como ingreso; la categoría de la compra original sigue mostrando el cargo compartido bruto.
+
+Este método de una sola cuenta tiene una limitación real. No puede representar los saldos de ambas personas ni todo el movimiento de dinero del hogar. El total general de gastos refleja el importe neto después de la compensación, aunque la categoría de la compra mantenga el importe bruto. Es una convención para una sola parte registrada, no un libro mayor completo del hogar. [Cómo llevar el control de los gastos reembolsables](/blog/how-to-track-reimbursable-expenses/) explica este límite con más detalle.
+
+## Los ahorros y los gastos irregulares necesitan su propia regla
+
+Un hogar suele necesitar financiar más que las facturas contabilizadas durante el mes. Los seguros anuales, las reparaciones, las vacaciones y un fondo de emergencia generan necesidades de dinero sin convertirse por ello en gastos corrientes todos los meses.
+
+Mantén dos cifras separadas:
+
+`shared spending target = expected household purchases this month`
+
+`shared cash-funding target = shared spending target + planned shared savings + agreed buffer top-up`
+
+La pareja puede aplicar la misma regla, ya sea 50/50 o proporcional, a ambas cifras, o elegir otra regla explícita para los ahorros. Usa el objetivo de financiación para decidir cuánto debe proporcionar cada persona, pero el objetivo de gasto para revisar los gastos. Mover dinero de una cuenta corriente registrada a una cuenta de ahorro registrada es `transfer`, no `spend`. Registra la renovación del seguro o la reparación como `spend` cuando se produzca la compra; no cuentes como gasto tanto la transferencia previa a la reserva como la factura posterior.
+
+Para los gastos irregulares, estima el próximo importe y la fecha de vencimiento conocidos, y reparte la financiación entre los meses que falten. Revisa la estimación cuando llegue el presupuesto o la factura reales, en lugar de tratar la cifra del año pasado como permanente.
+
+## Decide cuándo debe cambiar la fórmula
+
+La fórmula necesita criterios para revisarla, además de porcentajes.
+
+- **Ingresos variables:** elige una base estable o un promedio móvil, conserva suficiente dinero compartido para cubrir las fechas de vencimiento y regulariza las diferencias con la frecuencia acordada.
+- **Un cambio duradero en los ingresos:** recalcula ambos porcentajes a partir del mismo periodo de ingresos cuando haya un nuevo salario, una reducción de jornada, un permiso sin sueldo o un cambio importante en los ingresos por trabajo autónomo.
+- **Deuda personal:** mantén la deuda fuera de los gastos compartidos, salvo que ambas personas acuerden expresamente clasificarla de otro modo. Si el pago afecta de manera importante a la capacidad de una de ellas, modifica abiertamente el acuerdo de aportaciones en lugar de ocultar la deuda en las categorías del hogar.
+- **Un cambio en qué gastos son compartidos:** recalcula cuando el cuidado infantil, la vivienda, el transporte, la ayuda a familiares u otro gasto importante pase a formar parte de los gastos compartidos o deje de hacerlo.
+- **Ahorros compartidos:** revisa el objetivo cuando cambien la meta, el plazo o el saldo actual. No dejes que una transferencia automática antigua determine por accidente el reparto actual.
+
+Una revisión mensual puede comprobar si cambiaron los datos sin modificarlos automáticamente. La actualización puede hacerse cada trimestre o cuando se cumpla una condición acordada de antemano. Esa condición debe formar parte de las reglas de la pareja; no existe un porcentaje universal que funcione para todos los hogares.
+
+Esta es una guía sobre presupuestos, no asesoramiento legal. Calificar un gasto o una cuenta como «compartido» en una herramienta de seguimiento no determina la propiedad, la responsabilidad ni los derechos sobre el dinero. Esas cuestiones dependen del contrato de la cuenta y de la legislación local.
+
+## Cierra el mes en siete pasos
+
+1. Confirma qué gastos contabilizados pertenecen a los gastos compartidos.
+2. Suma una sola vez el gasto compartido real y excluye las transferencias.
+3. Comprueba las cifras de ingresos y el reparto acordado, ya sea 50/50 o proporcional.
+4. Calcula la parte de cada persona sobre el gasto real y añade cualquier aportación acordada a ahorros o reservas que corresponda ese mes.
+5. Suma lo que cada persona pagó por compras y fondos compartidos, sin tratar las transferencias a los ahorros como gasto.
+6. Compara esos importes con los objetivos, haz un solo pago de ajuste y regístralo sin crear ingresos ni duplicar gastos.
+7. Concilia los saldos calculados a partir del libro mayor y anota cualquier dato que exija revisar la fórmula.
+
+La [lista de comprobación para la revisión mensual del presupuesto](/blog/how-to-do-a-monthly-budget-review/) amplía este proceso cuando necesitas conciliar varias cuentas o planificar al mismo tiempo el mes siguiente.
+
+## Qué puede y qué no puede hacer Expense Budget Tracker
+
+Las [funciones de Expense Budget Tracker](/features/) facilitan el registro una vez que la pareja ha elegido sus reglas:
+
+- los espacios de trabajo compartidos y las invitaciones ofrecen a ambas personas un único lugar donde consultar el presupuesto acordado
+- las cuentas múltiples permiten ver por separado dónde está realmente el dinero
+- la cuadrícula del presupuesto mensual compara los importes previstos con los datos reales del libro mayor
+- los saldos calculados a partir del libro mayor muestran el resultado de los ingresos, los gastos y las transferencias
+- registrar las transferencias como movimientos independientes mantiene las liquidaciones y los movimientos entre cuentas separados de los gastos
+- el seguimiento multidivisa permite incluir cuentas que no usan la misma moneda
+
+El producto no se conecta ni sincroniza con cuentas bancarias. No decide qué es justo, no obliga a la pareja a pagar ni convierte una cuenta en compartida a efectos legales. Una invitación comparte el acceso a un espacio de trabajo, no la propiedad de la cuenta bancaria de nadie. La pareja sigue decidiendo qué gastos son compartidos, cómo se definen los ingresos, qué método de aportación se aplica y en qué fecha se hace la liquidación.
+
+Un cierre mensual ordenado está pensado para no dar sorpresas: cada compra aparece una sola vez, los ahorros se mueven mediante una transferencia y una única liquidación lleva a ambas personas hasta su objetivo. Anota junto al presupuesto la definición de ingresos, qué gastos son compartidos, el reparto, la regla de redondeo y la fecha de liquidación del mes siguiente. Así, el pago final se basará en reglas ya acordadas, no en un nuevo debate sobre cada recibo.
