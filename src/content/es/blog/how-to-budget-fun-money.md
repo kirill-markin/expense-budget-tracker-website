@@ -1,240 +1,154 @@
 ---
-title: "Cómo presupuestar dinero para ocio en 2026: fija una cifra para gastar sin culpa y sin tocar tus ahorros"
-description: "¿Quieres presupuestar dinero para ocio en 2026 sin poner en riesgo facturas, fondos para gastos previstos ni ahorros? Usa un sistema práctico para hobbies, salir a comer, entretenimiento y gasto personal que mantenga el mes bajo control."
-date: "2026-06-04"
+title: "Cuánto gastar en ocio al mes: una fórmula realista"
+description: "Calcula cuánto gastar en ocio al mes después de cubrir facturas, ahorro y gastos irregulares, y convierte esa cantidad en un ritmo semanal realista."
+date: "2026-08-26"
 keywords:
-  - "cómo presupuestar dinero para ocio"
-  - "presupuesto para caprichos"
-  - "presupuesto para gastar sin culpa"
+  - "cuánto gastar en ocio al mes"
+  - "presupuesto mensual para ocio"
+  - "dinero para ocio"
   - "presupuesto de gastos discrecionales"
-  - "cuánto dinero para ocio debería tener"
-  - "presupuesto de gastos personales"
-  - "presupuesto para hobbies y entretenimiento"
-  - "asignación mensual para caprichos"
+  - "presupuesto para entretenimiento"
+  - "gastos sin culpa"
 image: "/blog/how-to-budget-fun-money.png"
 ---
 
-El alquiler tiene una cifra. La factura del teléfono tiene una cifra. El ocio no encaja tan fácil. Puede ser una cena fuera un viernes, un libro que te llamó la atención, material para un hobby o un café con un amigo después de una semana larga.
+Si quieres saber **cuánto gastar en ocio al mes**, destina a ello la parte del saldo flexible que encaje con tus prioridades y tus gastos recientes. Ese saldo solo existe después de cubrir las facturas obligatorias, los gastos esenciales, los pagos mínimos de las deudas, el mínimo de ahorro que hayas elegido, las aportaciones para gastos irregulares y un colchón en la cuenta corriente. Ningún porcentaje universal puede hacer ese cálculo por ti.
 
-Si ese dinero nunca tiene su propia línea, cualquier compra no esencial empieza a parecer sospechosa. O gastas de "lo que quede" y cruzas los dedos para que el mes aguante, o te vuelves tan rígido que el presupuesto empieza a sentirse como un castigo. Ahí es cuando mucha gente termina buscando **cómo presupuestar dinero para ocio**.
+Usa esta fórmula:
 
-Esa presión encaja bastante bien con 2026. [YouGov informó](https://yougov.com/en-us/articles/54197-us-consumer-spending-and-budgeting-trends-in-2026) en marzo de que el 53 % de los adultos en EE. UU. tiene un presupuesto para 2026, frente al 46 % en 2025, y que el 38 % presupuestaba para frenar el gasto excesivo. La [encuesta de verano de 2026 de KPMG](https://kpmg.com/us/en/articles/2026/kpmg-consumer-pulse-survey-summer-2026.html) señaló que el 52 % está siguiendo sus gastos con más cuidado mientras el coste diario sigue apretando. La gente no solo intenta gastar menos. También intenta volver a gastar con intención.
+`saldo flexible = ingresos netos mensuales - gastos esenciales y facturas obligatorias - pagos mínimos de deudas - mínimo de ahorro elegido - aportaciones mensuales para gastos irregulares - colchón en la cuenta corriente`
 
-Si quieres un **presupuesto para caprichos** que de verdad se sostenga, el objetivo es simple: elegir una cifra que encaje una vez cubierto lo importante, decidir con exactitud para qué sirve esa cifra y hacerla lo bastante visible como para que no empiece a coger dinero prestado de los ahorros, de los fondos para gastos previstos o de la semana siguiente.
+Después, decide qué partidas opcionales cubrirá ese saldo:
 
-![Una mesa acogedora con un cuaderno para el presupuesto de ocio, té, un libro, una calculadora y materiales de hobby](/blog/how-to-budget-fun-money.png)
+`importe destinado al ocio = saldo flexible - otras prioridades opcionales`
 
-## El dinero para ocio no es "lo que sobra en la cuenta corriente"
+Esas otras prioridades pueden ser un pago adicional de deuda, un gasto opcional mayor previsto para una fecha concreta o compras opcionales para el hogar. Si el saldo es cero o negativo, la cantidad que puedes financiar ahora para ocio es $0, a menos que decidas reducir otra partida. Si es positivo, compara el importe elegido con tus gastos reales recientes. Debe encajar tanto con tus prioridades como con tu forma de vivir.
 
-Aquí es donde el gasto discrecional suele descuadrarse.
+Esta es información general sobre presupuestos, no asesoramiento financiero personalizado.
 
-La cuenta corriente suele estar cumpliendo varias funciones a la vez:
+![Unas manos dividen entradas de colores en cuatro grupos semanales junto a una pulsera para un evento mayor planificado](/blog/how-to-budget-fun-money.png)
 
-- facturas que todavía no se han cargado
-- pagos de tarjeta de crédito que ya debes
-- dinero reservado para la compra, gasolina o básicos del hogar
-- aportaciones a fondos para gastos previstos
-- dinero realmente libre para gastar
+## Primero, define qué incluye el dinero para ocio
 
-Si todo eso vive dentro del mismo saldo visible, la cuenta puede parecer generosa hasta que empiezan a llegar los vencimientos. Entonces un café, un pedido de comida o una compra impulsiva para un hobby termina cargando con la culpa de un problema que el presupuesto venía preparando desde antes.
+Un presupuesto para ocio funciona mejor cuando cubre pequeños gastos opcionales y recurrentes:
 
-Por eso una **asignación mensual para caprichos** tiene que ser una categoría planificada, no algo que decides según cómo venga el día.
+- cafés y comidas informales fuera de casa
+- libros, juegos y materiales para aficiones
+- alquiler de contenido en streaming o entretenimiento local
+- pequeñas compras personales que no sean esenciales
 
-Si ya usas un sistema de presupuesto base cero, esto encaja de forma bastante natural. [Cómo hacer un presupuesto base cero en 2026](/es/blog/how-to-do-zero-based-budgeting/) desarrolla la misma idea a mayor escala. Cada dólar tiene un trabajo. El dinero para ocio es simplemente uno de esos trabajos, no una vía de escape.
+No incluyas aquí los gastos obligatorios. La compra del supermercado, el transporte al trabajo, los medicamentos, los pagos mínimos de deudas y la ropa necesaria deben ir en otras categorías, aunque separar estos gastos del ocio resulte menos atractivo que la compra en sí.
 
-## Decide qué debería entrar en el dinero para ocio
+Separa también el ocio cotidiano de los gastos opcionales mayores ligados a una fecha. Una cena de $35 puede salir de la asignación de este mes. Un fin de semana para asistir a un concierto que costará $600 dentro de cuatro meses necesita su propia aportación mensual: `$600 ÷ 4 = $150`. Eso es un [fondo para gastos previstos](/es/blog/how-to-track-sinking-funds/), financiado como una prioridad opcional a partir del saldo flexible. No es un motivo para inflar la categoría de ocio cotidiano de un solo mes.
 
-La definición de la categoría suele dar más problemas que la cantidad.
+Las suscripciones necesitan una regla explícita. Incluye una suscripción recurrente de entretenimiento en el dinero para ocio solo si quieres que compita cada mes con las salidas a comer y las aficiones. Si no, trátala como una factura recurrente independiente. La forma exacta de delimitar la categoría importa menos que aplicar el mismo criterio al planificar y al registrar las compras.
 
-Si "dinero para ocio" tiene que cubrir restaurantes, hobbies, ropa, cumpleaños, escapadas de fin de semana, suscripciones anuales y un concierto caro en septiembre, la categoría está intentando hacer demasiado. Luego ya no sabes si la cifra está mal o si la categoría está mal planteada.
+## Calcula el saldo flexible antes de decidir cuánto destinar al ocio
 
-Yo la mantendría bastante acotada.
+Empieza con los ingresos netos disponibles para el plan de este mes. Resta estas partidas en orden:
 
-El dinero para ocio suele funcionar mejor para:
+1. **Facturas y gastos esenciales:** vivienda, suministros, alimentación básica, seguros, transporte necesario y otros costes obligatorios.
+2. **Pagos mínimos de deudas:** los pagos obligatorios, no las amortizaciones adicionales opcionales.
+3. **Mínimo de ahorro:** la cantidad mínima que has decidido proteger este mes.
+4. **Aportaciones mensuales para gastos irregulares:** importes mensuales destinados a costes previsibles obligatorios o ya comprometidos, como seguros anuales, reparaciones rutinarias y cuotas programadas. Si siguen tomándote por sorpresa, calcula primero tus [gastos mensuales reales](/es/blog/how-to-calculate-your-true-monthly-expenses/). Mantén los gastos opcionales con fecha, como un viaje para asistir a un concierto, en la parte flexible del plan.
+5. **Colchón en la cuenta corriente:** dinero que dejas sin asignar para que un desfase entre fechas o una factura esencial algo más alta no te obliguen a transferir dinero de los ahorros de inmediato.
 
-- comidas o cenas fuera sin demasiada planificación
-- café, snacks y pequeños caprichos
-- libros, juegos y material para hobbies
-- pequeños gastos de entretenimiento
-- compras personales pequeñas que no son esenciales
+Lo que queda es el saldo flexible. Es el límite máximo para todas las partidas opcionales en conjunto, no una asignación automática para ocio.
 
-Yo normalmente separaría estas cosas en otra categoría o en un fondo para gastos previstos:
+`importe destinado al ocio = saldo flexible × porcentaje elegido para ocio`
 
-- viajes
-- regalos
-- membresías anuales
-- entradas caras para conciertos o eventos
-- suscripciones recurrentes
-- ropa necesaria o reposiciones
+Elige un porcentaje entre el 0% y el 100%. Puedes usarlo para repetir la decisión cada mes o restar prioridades opcionales concretas, como en la primera fórmula. En cualquier caso, el porcentaje es una decisión, no un valor de referencia.
 
-Esa separación importa porque un **presupuesto de gastos discrecionales** debería responder a una pregunta muy práctica: "¿Qué puedo gastar en cosas normales y agradables sin desordenar el resto del mes?"
+## Un ejemplo completo en el que todas las cifras cuadran
 
-Si el gasto es grande, previsible o está ligado a una fecha, casi siempre necesita más estructura de la que esta categoría le puede dar. Ahí es donde [Cómo llevar el control de tus fondos para gastos previstos en 2026](/es/blog/how-to-track-sinking-funds/) se vuelve la herramienta adecuada.
+Supongamos que una persona tiene unos ingresos netos mensuales de $5,200:
 
-## Fija la cifra a partir del mes real
-
-La mayoría de la gente elige la cifra de ocio de una de estas dos formas malas:
-
-- demasiado alta porque quiere que el presupuesto se sienta generoso
-- demasiado baja porque quiere demostrarse que esta vez va en serio
-
-Ninguna de las dos suele durar mucho.
-
-Construye la cifra a partir del mes que de verdad tienes delante:
-
-1. empieza por los ingresos netos del mes
-2. resta los gastos esenciales y las obligaciones fijas
-3. resta los pagos mínimos de deuda
-4. resta el ahorro base y las aportaciones a fondos para gastos previstos
-5. mira qué queda de verdad
-6. asigna una parte de ese margen al ocio
-
-Ese orden importa. Si eliges la cifra de ocio antes de cubrir ahorros, futuras facturas o mínimos de deuda, la categoría en realidad no está libre de culpa. Solo está cogiendo prestado de algo más silencioso dentro del presupuesto.
-
-Aquí tienes un ejemplo sencillo:
-
-| Categoría | Importe |
+| Partida mensual | Importe |
 | --- | ---: |
-| Ingresos netos | $4,600 |
-| Vivienda y suministros | $1,750 |
-| Compra y básicos | $700 |
-| Transporte y seguros | $540 |
-| Pagos mínimos de deuda | $300 |
-| Ahorros y fondos para gastos previstos | $750 |
-| Margen flexible restante | $560 |
+| Ingresos netos | $5,200 |
+| Facturas y gastos esenciales | -$2,950 |
+| Pagos mínimos de deudas | -$250 |
+| Mínimo de ahorro elegido | -$700 |
+| Aportaciones mensuales para gastos irregulares | -$350 |
+| Colchón en la cuenta corriente | -$250 |
+| **Saldo flexible** | **$700** |
 
-Esos $560 no se convierten automáticamente en dinero para ocio. Puede que todavía tengan que cubrir restaurantes, ropa, imprevistos del hogar o un poco de margen para respirar. Pero si decides que $180 de ahí van a tu **presupuesto de gastos personales**, esa cifra ya se apoya en dinero real y no en optimismo.
+El cálculo es `$5,200 - $2,950 - $250 - $700 - $350 - $250 = $700`.
 
-Si no tienes ni idea de cuánto debería ser esa cifra, revisa primero los últimos 60 a 90 días de pequeños gastos discrecionales. La respuesta suele estar ahí mismo, entre cafés, comida para llevar, compras en apps, pedidos para hobbies y transacciones de "solo una cosa rápida".
+Ahora distribuye los $700 completos entre las partidas opcionales:
 
-## Separa el ocio cotidiano del ocio planificado
+| Partida flexible | Importe |
+| --- | ---: |
+| Importe destinado al ocio cotidiano | $280 |
+| Fondo para un gasto opcional mayor ya planificado | $180 |
+| Pago adicional de deuda | $150 |
+| Compras opcionales de ropa y artículos para el hogar | $90 |
+| **Saldo flexible total asignado** | **$700** |
 
-Esta es una de las mejoras más útiles que puedes hacer en un **presupuesto para caprichos**.
+En este ejemplo, el 40% del saldo flexible se destina al ocio cotidiano: `$700 × 0.40 = $280`. Ese 40% no es una recomendación. Solo refleja la elección de esta persona una vez financiadas las partes protegidas del mes.
 
-No obligues a una sola categoría a manejar a la vez:
+El presupuesto también cuadra partiendo del total: `$2,950 + $250 + $700 + $350 + $250 + $280 + $180 + $150 + $90 = $5,200`.
 
-- cafés al paso y comidas fuera
-- compras agradables más grandes que ya sabes que vienen
+## Compara el objetivo con lo que gastas de verdad
 
-Son trabajos distintos.
+Antes de fijar los $280, revisa dos o tres meses recientes que sean razonablemente normales. Cuenta solo las compras que encajen con tu definición de dinero para ocio. No incluyas transferencias, gastos obligatorios ni los gastos opcionales mayores que hayas trasladado a fondos para gastos previstos.
 
-Yo lo separaría así:
+Supongamos que los totales de los últimos tres meses fueron $240, $315 y $275. La media es `$830 ÷ 3 = $276.67`, así que un objetivo de $280 se aproxima a tu comportamiento actual y cabe dentro de los $700 disponibles.
 
-| Categoría | Objetivo mensual | Qué cubre |
-| --- | ---: | --- |
-| Ocio cotidiano | $120 | Café, comidas fuera, libros, pequeñas compras para hobbies |
-| Fondo para ocio grande | $80 | Conciertos, eventos locales, material de hobby algo mejor |
-| Gasto total de ocio planificado | $200 | Visible e intencional |
+Si tus gastos recientes rondan los $300 y fijas una asignación de $75, quizá la hoja de cálculo cuadre, pero tu vida diaria no. Puedes reducir el objetivo por etapas, cambiar lo que cubre la categoría o definir qué prioridad justifica el recorte. Si tus gastos recientes son de $120 y la fórmula deja margen para $280, no hace falta gastar más solo para agotar la categoría.
 
-Así el gasto se lee mucho mejor.
+Revisa el resultado después de uno o dos meses. Sobrepasar la cantidad de forma recurrente puede indicar que la asignación no es realista, que los límites de la categoría no están claros o que otro coste ha quedado oculto dentro de ella. Si sobra dinero de forma recurrente, quizá puedas destinar parte de la cantidad a una meta más importante.
 
-Si el ocio cotidiano se vacía el día 18, eso te dice algo útil sobre el ritmo. Si el fondo para ocio grande va creciendo para un concierto en agosto, eso no es exceso de gasto. Eso es planificación.
+## Convierte la cifra mensual en un ritmo semanal realista
 
-Mucha gente dice que quiere gastar sin culpa cuando en realidad lo que necesita es dejar de meter en una sola categoría borrosa tanto los caprichos del día a día como el ocio planificado.
+Dividir entre cuatro da una cifra redonda, pero los meses no duran cuatro semanas. Primero reserva cualquier compra ya prevista y después usa el dinero y el tiempo que realmente queden:
 
-## Añade un ritmo semanal si el dinero desaparece demasiado rápido
+`ritmo semanal = dinero para ocio restante ÷ semanas de gasto restantes`
 
-Hay meses que fallan porque la cifra total estaba mal.
+Supongamos que quedan $250, pero ya hay $60 reservados para una cena planificada. El saldo sin comprometer es `$250 - $60 = $190`. Si quedan 19 días —dos semanas completas más un tramo de cinco días—, hay `2 + 5 ÷ 7 = 2.71` semanas de gasto. El ritmo actual es de unos `$190 ÷ 2.71 = $70` por semana.
 
-Otros fallan porque el ritmo era demasiado suelto.
+Es una guía, no una obligación de gastar $10 cada día. Un evento de $45 puede encajar junto a varios días sin gastos. Recalcula el ritmo después del evento en lugar de asumir que el ritmo original sigue siendo válido.
 
-Si te das $200 para el mes y gastas $140 en la primera semana, puede que el problema no sea la categoría en sí. Puede que el problema sea que la categoría no tenía ninguna regla de ritmo.
+Para calcular el flujo de caja semanal de forma más amplia, incluidos el supermercado, los gastos del hogar y las próximas facturas, consulta la [guía de gasto semanal](/es/blog/how-much-can-i-spend-this-week/).
 
-Aquí ayuda mucho una referencia semanal. No porque presupuestar por semanas sea mejor en abstracto. Simplemente le da al dinero una cadencia.
+## Decide si el dinero no utilizado se acumula o se reinicia
 
-Ejemplo:
+Elige la regla antes de que termine el mes para que un saldo sin usar no se cuente dos veces sin darte cuenta.
 
-- objetivo mensual de ocio cotidiano: $160
-- semanas de este mes en las que de verdad vas a gastar: 4
-- ritmo semanal aproximado: $40
+- **Reinicio:** Devuelve el importe no utilizado al saldo flexible al final del mes y fija una nueva asignación para el mes siguiente. Así resulta fácil interpretar el ocio recurrente.
+- **Acumulación:** Pasa el importe no utilizado a la categoría de ocio del mes siguiente. Esto funciona para aficiones con gastos desiguales, pero fija un límite para el saldo o podría convertirse por accidente en un segundo fondo de ahorro.
 
-Eso no significa que cada semana tenga que cerrar exactamente en $40. Significa que tienes un punto de referencia antes de que la categoría empiece a fingir que el mes es más largo de lo que es.
+Si estás ahorrando para una compra concreta con una fecha determinada, usa un fondo para gastos previstos en lugar de una acumulación ilimitada. Así el objetivo y el saldo disponible quedan más claros.
 
-Si necesitas esa parte del sistema, [Cuánto puedo gastar esta semana en 2026](/es/blog/how-much-can-i-spend-this-week/) es el artículo compañero natural.
+Elijas la regla que elijas, el plan del mes siguiente debe reflejarla. Una acumulación de $40 deja $40 más disponibles el mes siguiente; no son ingresos nuevos. Un reinicio asigna esos $40 a otra partida.
 
-## Los presupuestos compartidos necesitan reglas claras para el gasto personal
+## Los ingresos variables necesitan una cantidad ya financiada
 
-Los presupuestos compartidos se enredan rápido cuando el gasto personal sigue siendo algo difuso.
+Si tus ingresos son irregulares, calcula el dinero para ocio a partir del efectivo que ya hayas recibido y que esté disponible para el plan de este mes. Un nivel de ingresos prudente puede orientar el borrador del presupuesto, pero no puede financiar la asignación antes de que llegue el dinero. No gastes contando con una factura pendiente de cobro solo porque esperas recibirla pronto.
 
-Una persona piensa que gastar en su hobby está bien porque las facturas están cubiertas. La otra ve la misma compra y piensa que salió de unos ahorros que tenían otro trabajo. Las dos personas pueden estar actuando con lógica y aun así generar fricción.
+Una regla práctica consiste en financiar la asignación base solo después de cubrir las partidas protegidas del mes. Cuando lleguen ingresos adicionales, vuelve a aplicar la fórmula y decide a qué destinar el nuevo importe flexible. Así evitas que el gasto en ocio compita con el alquiler durante un mes de bajos ingresos. La configuración completa del flujo de caja está en [cómo hacer un presupuesto con ingresos irregulares](/es/blog/how-to-budget-with-irregular-income/).
 
-Si compartes las finanzas, yo dejaría una regla explícita:
+## Los presupuestos compartidos requieren dos decisiones
 
-- la misma cantidad para cada persona, o
-- cantidades distintas por una razón que ambas personas hayan aceptado de verdad
+Las parejas y los hogares deben acordar:
 
-Lo importante no es la simetría perfecta. Lo importante es que ambas sepan qué gasto personal queda fuera de las categorías compartidas del hogar.
+1. cuánto dinero flexible tiene el hogar después de cubrir las obligaciones compartidas
+2. cómo se reparten las cantidades personales para ocio
 
-Eso vuelve las conversaciones bastante más tranquilas. Una compra que entra dentro de la cifra acordada para gasto personal no tiene por qué convertirse en una revisión sorpresa.
+Asignar la misma cantidad a cada persona es sencillo. También pueden funcionar cantidades diferentes cuando ambas personas están de acuerdo con el motivo. Lo importante es que cada una sepa qué es personal, qué es compartido y si el dinero no utilizado se acumula.
 
-Si ese es tu caso, [Cómo dividir los gastos con tu pareja en 2026](/es/blog/how-to-split-expenses-with-your-partner/) ayuda con la estructura general del dinero compartido.
+No evalúes el acuerdo basándote en el saldo visible de la cuenta de una sola persona. Las compras compartidas, los reembolsos y las transferencias pueden hacer que ese saldo resulte engañoso. Si la regla de aportación aún no está resuelta, empieza por [cómo repartir los gastos con tu pareja](/es/blog/how-to-split-expenses-with-your-partner/).
 
-## No uses el dinero para ocio para tapar compras por estrés
+## Mantén claros los gastos, las transferencias y los saldos
 
-Esta parte importa.
+Un presupuesto por categorías solo sirve si los registros que lo sustentan reflejan la realidad.
 
-El dinero para ocio debería hacer que la vida normal sea más llevadera. No debería convertirse en una etiqueta amable para cualquier compra de un día difícil cuando el mes ya viene apretado.
+- Registra una compra de $30 en un restaurante una sola vez como gasto en la categoría de ocio.
+- Mover $150 de la cuenta corriente a la de ahorro para un concierto es una transferencia, no un gasto.
+- Cuando compres la entrada para el concierto, regístrala como gasto.
+- El pago de una tarjeta de crédito no es una segunda copia de las compras que ya hayas registrado desde la tarjeta.
+- Concilia los saldos de las cuentas para que la cantidad restante en la categoría esté respaldada por dinero real.
 
-Conviene mirar el patrón de reojo:
+Las [funciones de Expense Budget Tracker](/es/features/) permiten seguir este flujo con una tabla presupuestaria mensual que compara lo planificado con los importes reales, saldos de cada cuenta calculados a partir del libro mayor y transferencias separadas de los ingresos y los gastos. La aplicación no sincroniza automáticamente las cuentas bancarias, no elige categorías por ti, no ofrece asesoramiento financiero ni exige que cumplas la asignación. Tú debes introducir las transacciones manualmente o pedir a un agente autenticado que las importe, revisar los registros y decidir qué significa cada categoría.
 
-- ¿el gasto se concentra después de días estresantes?
-- ¿la categoría se agota pronto todos los meses?
-- ¿estás sacando dinero de los ahorros para "rellenarla"?
-- ¿comer fuera está cubriendo agotamiento en lugar de disfrute?
-
-Eso no significa que el presupuesto necesite más juicio moral. Suele necesitar una regla más clara.
-
-Algunos ejemplos:
-
-- poner un tope a las compras imprevistas de un día por encima de cierta cifra
-- mover la categoría de ocio a una tarjeta o a una vista de cuenta separada
-- dejar las compras agradables grandes en un fondo para gastos previstos aparte
-- revisar la categoría una vez a mitad de semana en vez de solo al final del mes
-
-Si la categoría ya se pasó de la raya, [Cómo reajustar tu presupuesto después de gastar de más en 2026](/es/blog/how-to-reset-your-budget-after-overspending/) es el mejor flujo de recuperación.
-
-## Qué hacer cuando el mes se pone apretado
-
-El dinero para ocio puede ser flexible. Lo que no puede hacer es fingir que el resto del presupuesto sigue bien cuando no es así.
-
-Si el mes se complica por un problema real, yo ajustaría en este orden:
-
-1. frena por ahora los nuevos gastos de ocio
-2. comprueba si la presión es temporal o estructural
-3. cubre primero los gastos esenciales y las obligaciones ya existentes
-4. decide si una parte de la categoría de ocio tiene que ir a otra cosa
-
-Eso es distinto de borrar el dinero para ocio para siempre.
-
-Normalmente lo más sano es recortar la categoría con honestidad durante un mes o durante una racha, y volver a reconstruirla cuando el presupuesto se estabilice. Un presupuesto que no deja sitio para ningún gasto agradable suele acabar en gasto rebote más adelante.
-
-## Dónde encaja Expense Budget Tracker
-
-[Expense Budget Tracker](/es/features/) encaja bien en este flujo porque un **presupuesto para gastar sin culpa** solo funciona cuando la categoría está conectada con el resto del plan.
-
-Aquí resulta útil porque te permite:
-
-- mantener el dinero para ocio separado de las facturas fijas y de los fondos para gastos previstos
-- seguir el gasto planificado frente al real por categoría
-- ver saldos en varias cuentas en vez de confiar en una sola cifra de la cuenta corriente
-- tratar los movimientos entre tus propias cuentas como transferencias y no como gasto ficticio
-- revisar transacciones importadas cuando el pequeño gasto discrecional empieza a desviarse
-- mantener visibilidad compartida del hogar cuando más de una persona gasta del mismo fondo
-
-Esa es la diferencia práctica entre "creo que me puedo permitir esto" y "ya le di a esta parte del mes un trabajo concreto".
-
-Si estás montando el sistema desde cero, empieza por la [guía de inicio](/es/docs/getting-started/).
-
-## Una regla sencilla para empezar
-
-Si quieres la versión corta de **cuánto dinero para ocio debería tener**, usa esta:
-
-- haz explícita la categoría
-- mantenla estrecha
-- finánciala solo después de cubrir gastos esenciales, ahorros y costes futuros conocidos
-- separa el ocio cotidiano del ocio planificado más grande
-- revisa el ritmo una vez por semana
-
-Con eso basta para que la cifra se sienta real.
-
-El dinero para ocio debería sentirse preaprobado, no accidental.
+Si quieres crear allí el plan, la [guía de primeros pasos](/es/docs/getting-started/) explica cómo empezar con la opción alojada o con la autohospedada.
