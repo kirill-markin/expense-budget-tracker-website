@@ -1,240 +1,154 @@
 ---
-title: "How to Budget Fun Money in 2026: Set a Guilt-Free Spending Number Without Raiding Savings"
-description: "Trying to budget fun money in 2026 without sabotaging bills, sinking funds, or savings? Use a practical system for hobbies, dining out, entertainment, and personal spending that still keeps the month honest."
-date: "2026-06-04"
+title: "How Much Fun Money Should You Budget Each Month?"
+description: "Calculate a realistic monthly fun-money budget after bills, savings, and irregular costs, then turn it into a weekly pace you can actually follow."
+date: "2026-08-26"
 keywords:
-  - "how to budget fun money"
-  - "fun money budget"
-  - "guilt free spending budget"
-  - "discretionary spending budget"
   - "how much fun money should i have"
-  - "personal spending category budget"
-  - "budget for hobbies and entertainment"
+  - "fun money budget"
+  - "how much to spend on fun each month"
+  - "discretionary spending budget"
   - "monthly fun money allowance"
+  - "guilt-free spending"
 image: "/blog/how-to-budget-fun-money.png"
 ---
 
-Rent has a number. Your phone bill has a number. Fun is harder. It is dinner out on Friday, a book that looked worth it, hobby supplies, or coffee with a friend after a long week.
+If you are asking **how much fun money should I have**, use the part of your flexible remainder that fits your priorities and recent spending. That remainder exists only after required bills, essentials, debt minimums, your chosen savings floor, irregular-cost contributions, and a checking buffer are covered. A universal percentage cannot do that calculation for you.
 
-If that money never gets its own line, every non-essential purchase starts to feel suspicious. You either spend from "whatever is left" and hope the month survives, or you get so rigid that the budget starts to feel like punishment. That is usually when people start searching **how to budget fun money**.
+Use this calculation:
 
-That pressure fits 2026 pretty well. [YouGov reported](https://yougov.com/en-us/articles/54197-us-consumer-spending-and-budgeting-trends-in-2026) in March that 53% of U.S. adults have a budget for 2026, up from 46% in 2025, and 38% said they budget to stop overspending. [KPMG's Summer 2026 consumer survey](https://kpmg.com/us/en/articles/2026/kpmg-consumer-pulse-survey-summer-2026.html) said 52% are tracking expenses more carefully while everyday cost pressure remains high. People are not only trying to spend less. They are trying to make spending feel intentional again.
+`flexible remainder = monthly take-home income - essentials and required bills - debt minimums - chosen savings floor - true-monthly irregular-cost contributions - checking buffer`
 
-If you want a **fun money budget** that actually holds, the goal is simple: pick a number that fits after the serious jobs are covered, decide exactly what that number is allowed to do, and make it visible enough that it does not quietly borrow from savings, sinking funds, or next week.
+Then give the remainder its optional jobs:
 
-![A cozy table with a fun-money budget notebook, tea, a book, a calculator, and hobby items](/blog/how-to-budget-fun-money.png)
+`selected fun-money amount = flexible remainder - other optional priorities`
 
-## Fun money is not "whatever is left in checking"
+Those other priorities might include an extra debt payment, a dated larger want, or optional household purchases. If the remainder is zero or negative, the currently funded fun-money amount is $0 unless you deliberately reduce another job. Otherwise, check the selected amount against your recent actual spending. It should fit both your priorities and the way you really live.
 
-This is where discretionary spending usually goes sideways.
+This is general budgeting education, not personalized financial advice.
 
-Checking is usually holding several different jobs at the same time:
+![Hands divide colorful tickets into four weekly groups beside a wristband for a larger planned event](/blog/how-to-budget-fun-money.png)
 
-- bills that have not posted yet
-- credit card payments you already owe
-- money meant for groceries, gas, or household basics
-- sinking-fund contributions for future expenses
-- actual free spending money
+## First, define what fun money covers
 
-If all of that lives in one visible balance, the account can look generous right up until the due dates arrive. Then a coffee run, takeout order, or impulse hobby purchase gets blamed for a problem the budget created earlier.
+A fun money budget works best when it pays for small, recurring wants:
 
-That is why **monthly fun money allowance** needs to be a planned category, not a mood.
-
-If you already use a zero-based setup, this fits naturally inside it. [How to Do Zero-Based Budgeting in 2026](/blog/how-to-do-zero-based-budgeting/) is the broader version of the same idea. Every dollar gets a job. Fun money is just one of those jobs, not a loophole.
-
-## Decide what belongs in fun money
-
-The category definition usually causes more trouble than the amount.
-
-If "fun money" has to cover restaurants, hobbies, clothes, birthdays, weekend trips, annual subscriptions, and one expensive concert in September, the category is doing too much. Then it becomes impossible to tell whether the number is wrong or the category is messy.
-
-I would keep fun money narrow.
-
-Fun money usually works best for:
-
-- casual dining out
-- coffee, snacks, and little treats
+- coffee and casual meals out
 - books, games, and hobby supplies
-- small entertainment spending
-- low-stakes personal purchases that are not essentials
+- streaming rentals or local entertainment
+- small personal purchases that are not essentials
 
-I would usually give these their own category or sinking fund:
+Keep required costs out of it. Groceries, transport to work, medication, debt minimums, and necessary clothing belong elsewhere, even when the boundary feels less exciting than the purchase.
 
-- travel
-- gifts
-- annual memberships
-- bigger concert or event tickets
-- recurring subscriptions
-- necessary clothing or replacement items
+Also separate ordinary fun from larger wants tied to a date. A $35 dinner can come from this month's allowance. A $600 concert weekend in four months needs its own monthly contribution: `$600 ÷ 4 = $150`. That is a [sinking fund](/blog/how-to-track-sinking-funds/), funded as an optional priority from the flexible remainder. It is not a reason to make one month's everyday fun category enormous.
 
-That separation matters because a **discretionary spending budget** should answer one practical question: "What can I spend on ordinary enjoyable stuff without distorting the rest of the month?"
+Subscriptions need an explicit rule. Put a recurring entertainment subscription in fun money only if you want it competing with restaurants and hobbies every month. Otherwise, treat it as its own recurring bill. The exact boundary matters less than using the same boundary when you plan and when you record purchases.
 
-If the expense is large, predictable, or tied to a date, it usually wants more structure than fun money can give it. That is where [How to Track Sinking Funds in 2026](/blog/how-to-track-sinking-funds/) becomes the better tool.
+## Calculate the flexible remainder before choosing fun
 
-## Set the number from the real month
+Start with take-home income that is available for this month's plan. Subtract these jobs in order:
 
-People usually choose a fun-money number in one of two bad ways:
+1. **Bills and essentials:** housing, utilities, basic food, insurance, necessary transport, and other required costs.
+2. **Debt minimums:** required payments, not optional extra payoff.
+3. **Savings floor:** the minimum amount you have chosen to protect this month.
+4. **True-monthly irregular costs:** monthly contributions for predictable required or already committed costs, such as annual insurance, routine repairs, and scheduled fees. If these keep surprising you, calculate your [true monthly expenses](/blog/how-to-calculate-your-true-monthly-expenses/) first. Keep optional dated wants, such as a concert trip, in the flexible part of the plan.
+5. **Checking buffer:** cash left unassigned so timing differences or a slightly higher essential bill do not force an immediate transfer from savings.
 
-- too high because they want the budget to feel generous
-- too low because they want to prove they are being serious
+What remains is the flexible remainder. It is the upper limit for all optional jobs together, not automatically your fun allowance.
 
-Neither one works for long.
+`selected fun-money amount = flexible remainder × your chosen fun-money share`
 
-Build the number from the month you actually have:
+Keep the share between 0% and 100%. You can use it to make the choice repeatable, or subtract named optional priorities as in the first formula. Either way, the share is a decision, not a benchmark.
 
-1. Start with monthly take-home income.
-2. Subtract essentials and fixed obligations.
-3. Subtract minimum debt payments.
-4. Subtract baseline savings and sinking-fund contributions.
-5. Look at what is honestly left.
-6. Give part of that remainder to fun money.
+## A worked example that balances completely
 
-That sequence matters. If you choose the fun number before savings, future bills, or debt minimums are covered, the category is not really guilt-free. It is just borrowing against something quieter in the budget.
+Suppose one person has $5,200 of monthly take-home income:
 
-Here is a plain example:
-
-| Category | Amount |
+| Monthly job | Amount |
 | --- | ---: |
-| Take-home pay | $4,600 |
-| Housing and utilities | $1,750 |
-| Groceries and basics | $700 |
-| Transport and insurance | $540 |
-| Minimum debt payments | $300 |
-| Savings and sinking funds | $750 |
-| Remaining flexible room | $560 |
+| Take-home income | $5,200 |
+| Bills and essentials | -$2,950 |
+| Debt minimums | -$250 |
+| Chosen savings floor | -$700 |
+| True-monthly irregular-cost contributions | -$350 |
+| Checking buffer | -$250 |
+| **Flexible remainder** | **$700** |
 
-That $560 is not automatically all fun money. It may still need to cover restaurants, clothing, household surprises, or a little breathing room. But if you decide $180 of it is your **personal spending category budget**, that number is now standing on real cash instead of optimism.
+The calculation is `$5,200 - $2,950 - $250 - $700 - $350 - $250 = $700`.
 
-If you have no idea what the number should be, review the last 60 to 90 days of small discretionary spending first. The answer is usually sitting there in coffee, takeout, app purchases, hobby orders, and "one quick thing" transactions.
+Now give the full $700 a job:
 
-## Split everyday fun from planned fun
+| Flexible job | Amount |
+| --- | ---: |
+| Selected everyday fun-money amount | $280 |
+| Sinking fund for a larger planned want | $180 |
+| Extra debt payment | $150 |
+| Optional clothing and household purchases | $90 |
+| **Total flexible remainder assigned** | **$700** |
 
-This is one of the cleanest upgrades you can make to a **fun money budget**.
+In this example, everyday fun gets 40% of the flexible remainder: `$700 × 0.40 = $280`. Forty percent is not a recommendation. It only records this person's choice after the protected parts of the month are funded.
 
-Do not force one category to handle both:
+The budget also reconciles from the top: `$2,950 + $250 + $700 + $350 + $250 + $280 + $180 + $150 + $90 = $5,200`.
 
-- random coffees and lunch out
-- larger enjoyable purchases you can already see coming
+## Compare the target with what you actually spend
 
-Those are different jobs.
+Before settling on $280, review two or three recent, reasonably normal months. Count only purchases that match your fun-money definition. Do not include transfers, required spending, or the larger wants you moved to sinking funds.
 
-I would separate them like this:
+Suppose the last three totals were $240, $315, and $275. Their average is `$830 ÷ 3 = $276.67`, so a $280 target is close to current behavior and fits the available $700.
 
-| Category | Monthly target | What it covers |
-| --- | ---: | --- |
-| Everyday fun | $120 | Coffee, lunch out, books, small hobby buys |
-| Bigger fun fund | $80 | Concerts, local events, nicer hobby gear |
-| Total planned fun spending | $200 | Visible and intentional |
+If recent spending is around $300 and you set a $75 allowance, the spreadsheet may balance while daily life does not. Either reduce the target in stages, change what the category covers, or name the tradeoff that makes the cut worth it. If recent spending is $120 and the formula leaves room for $280, you do not need to raise spending to fill the category.
 
-This makes spending easier to read.
+Review the result after a month or two. A recurring overrun may mean the allowance is unrealistic, the category boundary is unclear, or another cost has been hiding inside it. A recurring surplus may mean the number can support a more important goal.
 
-If everyday fun is empty by the 18th, that tells you something useful about pace. If the bigger fun fund is growing for a concert in August, that is not overspending. That is planning.
+## Turn the monthly number into a real weekly pace
 
-A lot of people say they want guilt-free spending when what they really need is to stop using one vague category for both casual wants and planned enjoyable spending.
+Dividing by four makes a tidy number, but months are not four weeks long. First reserve any known purchase, then use the money and time that actually remain:
 
-## Add a weekly pace if the money disappears too fast
+`weekly pace = remaining fun money ÷ remaining spending weeks`
 
-Some months fail because the total was wrong.
+Suppose $250 remains, but $60 is already reserved for a planned dinner. The uncommitted balance is $190. With two full weeks plus a five-day stretch left, there are `2 + 5 ÷ 7 = 2.71` spending weeks. The current pace is about `$190 ÷ 2.71 = $70` per week.
 
-Some fail because the timing was loose.
+This is a guide, not a requirement to spend $10 every day. A $45 event can fit beside several quiet days. Recalculate after it happens rather than pretending the original pace still applies.
 
-If you give yourself $200 for the month and spend $140 in the first week, the problem may not be the category itself. The problem may be that the category had no pacing rule.
+For a broader weekly cash-flow calculation across groceries, household spending, and upcoming bills, use the [weekly spending guide](/blog/how-much-can-i-spend-this-week/).
 
-This is where a weekly checkpoint helps. Not because weekly budgeting is better in some abstract way. It just gives the money a rhythm.
+## Decide whether unused money rolls over or resets
 
-Example:
+Choose the rule before month-end so an unused balance does not quietly count twice.
 
-- monthly everyday fun target: $160
-- weeks in this month that matter for spending: 4
-- rough weekly pace: $40
+- **Reset:** Move the unused amount back to the flexible pool at month-end and set a fresh allowance next month. This keeps recurring fun easy to read.
+- **Rollover:** Carry the unused amount into next month's fun category. This works for hobbies with uneven spending, but give the balance a cap or it can turn into an accidental second savings fund.
 
-That does not mean every week must land on exactly $40. It means you have a reference point before the category starts pretending the month is longer than it is.
+If you are building toward one named, dated purchase, use a sinking fund instead of unlimited rollover. The goal and available balance stay clearer.
 
-If you need that side of the system, [How Much Can I Spend This Week in 2026](/blog/how-much-can-i-spend-this-week/) is the natural companion article.
+Whichever rule you choose, next month's plan must show it. A $40 rollover makes $40 more available next month; it is not new income. A reset moves the $40 to another job.
 
-## Shared budgets need explicit personal spending rules
+## Variable income needs a funded number
 
-Shared budgets get weird fast when personal spending stays vague.
+With irregular income, calculate funded fun money from cash already received and available for this month's plan. A conservative income floor can guide the draft budget, but it cannot fund the allowance before the money arrives. Do not spend against an unpaid invoice because you expect it soon.
 
-One person thinks hobby money is obviously fine because the bills are covered. The other sees the same purchase and thinks it came out of savings that had another job. Both people can be acting reasonably and still create friction.
+One practical rule is to fund the base allowance only after the month's protected jobs are covered. When additional income arrives, run the formula again and decide where the new flexible amount goes. That keeps fun spending from competing with rent during a slow month. The full cash-flow setup is in [how to budget with irregular income](/blog/how-to-budget-with-irregular-income/).
 
-If you share finances, I would make one rule explicit:
+## Shared budgets need two decisions
 
-- same amount for each person, or
-- different amounts for a reason both people actually agreed to
+Couples and households should agree on:
 
-What matters is not perfect symmetry. It is that both people know which personal spending sits outside the shared household categories.
+1. how much flexible money the household has after shared obligations
+2. how personal fun allowances are divided
 
-That makes conversations much calmer. A purchase inside the agreed personal-spending number does not need to turn into a surprise review meeting.
+Equal allowances are simple. Different amounts can also work when both people agree on the reason. The important part is that each person knows what is personal, what is shared, and whether unused money rolls over.
 
-If that is your setup, [How to Split Expenses With Your Partner in 2026](/blog/how-to-split-expenses-with-your-partner/) helps with the broader shared-money structure.
+Do not judge the arrangement from one person's visible account balance. Shared purchases, reimbursements, and transfers can make that balance misleading. If the contribution rule itself is unresolved, start with [how to split expenses with your partner](/blog/how-to-split-expenses-with-your-partner/).
 
-## Do not use fun money to hide stress spending
+## Keep purchases, transfers, and balances honest
 
-This one matters.
+A category plan only helps when the records underneath it mean what they say.
 
-Fun money should make normal life easier to live. It should not become a polite label for every rough-day purchase that shows up when the month is already under pressure.
+- Record a $30 restaurant purchase once as spending in the fun category.
+- Moving $150 from checking to savings for a concert is a transfer, not spending.
+- When the concert ticket is purchased, record the ticket as the expense.
+- A credit card payment is not a second copy of purchases already recorded from the card.
+- Reconcile account balances so the remaining category amount is backed by real money.
 
-Keep one eye on the pattern:
+[Expense Budget Tracker's features](/features/) support this workflow with a monthly planned-versus-actual budget grid, ledger-derived balances for each account, and transfers kept separate from income and spending. It does not passively sync bank accounts, choose categories for you, give financial advice, or enforce the allowance. You still need to enter transactions manually or direct an authenticated agent to import them, review the records, and decide what each category means.
 
-- Is the spending clustered after stressful days?
-- Is the category running out early every month?
-- Are you pulling from savings to "top it up"?
-- Is eating out covering exhaustion rather than enjoyment?
-
-That does not mean the budget needs more judgment. It usually needs a cleaner rule.
-
-A few examples:
-
-- cap one-day unplanned purchases above a chosen amount
-- move the fun category to a separate card or account view
-- keep bigger enjoyable purchases in a separate sinking fund
-- review the category once midweek instead of only at month-end
-
-If the category already blew past the line, [How to Reset Your Budget After Overspending in 2026](/blog/how-to-reset-your-budget-after-overspending/) is the right recovery workflow.
-
-## What to do when the month gets tight
-
-Fun money is allowed to be flexible. It is not allowed to pretend the rest of the budget is still fine when it is not.
-
-If the month gets squeezed by a real problem, I would adjust in this order:
-
-1. stop new fun spending for the moment
-2. check whether the pressure is temporary or structural
-3. cover essentials and existing obligations first
-4. decide whether part of the fun category needs to move elsewhere
-
-That is different from deleting fun money forever.
-
-Usually the healthier move is to shrink the category honestly for one month or one stretch, then rebuild it when the budget stabilizes. A budget with no room for any enjoyable spending often turns into rebound spending later anyway.
-
-## Where Expense Budget Tracker fits
-
-[Expense Budget Tracker](/features/) fits this workflow because a **guilt free spending budget** only works when the category is connected to the rest of the plan.
-
-It is useful here because it lets you:
-
-- keep fun money separate from fixed bills and sinking funds
-- track planned versus actual spending by category
-- see balances across accounts instead of trusting one checking number
-- treat transfers between your own accounts as transfers, not fake spending
-- review imported transactions when small discretionary spending starts to drift
-- keep shared household visibility when more than one person spends from the same pool
-
-That is the practical difference between "I think I can afford this" and "I already gave this part of the month a job."
-
-If you are setting the system up from scratch, start with the [getting started guide](/docs/getting-started/).
-
-## A simple starter rule
-
-If you want the short version of **how much fun money should I have**, use this:
-
-- make the category explicit
-- keep it narrow
-- fund it only after essentials, savings, and known future costs are covered
-- split everyday fun from bigger planned fun
-- check the pace once a week
-
-That is enough to make the number feel real.
-
-Fun money should feel pre-approved, not accidental.
+If you want to build the plan there, the [getting started guide](/docs/getting-started/) covers the hosted and self-hosted options.
