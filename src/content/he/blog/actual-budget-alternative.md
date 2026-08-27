@@ -2,7 +2,7 @@
 title: "חלופה ל-Actual Budget ב-2026: ריבוי מטבעות, AI וגישה ל-SQL"
 description: "השוואה בין תקציב המעטפות וגישת local-first של Actual לבין פנקס במטבעות המקור, סביבות עבודה משותפות, MCP ו-SQL דרך HTTP ב-Expense Budget Tracker — כולל בדיקת מעבר בטוחה."
 date: "2026-08-27"
-image: "/blog/actual-budget-alternative.png"
+image: "/blog/actual-budget-alternative.jpg"
 keywords:
   - "חלופה ל-Actual Budget"
   - "חלופה ל-Actual Budget ב-2026"
@@ -20,7 +20,7 @@ keywords:
 
 אף אחת מהן אינה תחליף מיידי ומלא לאחרת.
 
-![עובד רכבת בודק קרון אחד בין שתי מערכות מסילה, בעוד שתי הרכבות נשארות בבטחה במקומן](/blog/actual-budget-alternative.png)
+![עובד רכבת בודק קרון אחד בין שתי מערכות מסילה, בעוד שתי הרכבות נשארות בבטחה במקומן](/blog/actual-budget-alternative.jpg)
 
 ## התשובה הקצרה
 

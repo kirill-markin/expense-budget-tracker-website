@@ -2,7 +2,7 @@
 title: "Alternativa a Actual Budget en 2026: multidivisa, IA y acceso SQL"
 description: "Compara la presupuestación local por sobres de Actual con el libro mayor en monedas nativas, los espacios compartidos, MCP y el acceso SQL por HTTP de Expense Budget Tracker."
 date: "2026-08-27"
-image: "/blog/actual-budget-alternative.png"
+image: "/blog/actual-budget-alternative.jpg"
 keywords:
   - "alternativa a actual budget"
   - "alternativa a actual budget en 2026"
@@ -20,7 +20,7 @@ La necesidad de una **alternativa a Actual Budget en 2026** aparece cuando el mo
 
 Ninguno sustituye al otro sin cambiar la forma de trabajar.
 
-![Un trabajador ferroviario prueba un vagón entre dos sistemas de vías mientras ambos trenes permanecen seguros](/blog/actual-budget-alternative.png)
+![Un trabajador ferroviario prueba un vagón entre dos sistemas de vías mientras ambos trenes permanecen seguros](/blog/actual-budget-alternative.jpg)
 
 ## La respuesta corta
 

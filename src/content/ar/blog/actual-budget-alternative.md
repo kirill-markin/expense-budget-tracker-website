@@ -2,7 +2,7 @@
 title: "بديل Actual Budget لعام 2026: تعدد العملات والذكاء الاصطناعي والوصول إلى SQL"
 description: "مقارنة عملية بين ميزانية المظاريف المحلية أولًا في Actual ودفتر الأستاذ بالعملات الأصلية في Expense Budget Tracker، مع مساحات العمل وMCP وSQL عبر HTTP وخطة آمنة لاختبار الانتقال."
 date: "2026-08-27"
-image: "/blog/actual-budget-alternative.png"
+image: "/blog/actual-budget-alternative.jpg"
 keywords:
   - "بديل Actual Budget"
   - "بديل Actual Budget 2026"
@@ -20,7 +20,7 @@ keywords:
 
 لذلك لا يمكن استبدال أحد المنتجين بالآخر من دون تغيير في سير العمل.
 
-![عامل سكك حديدية يختبر عربة واحدة بين نظامي مسارات بينما يبقى القطاران بأمان في مكانيهما](/blog/actual-budget-alternative.png)
+![عامل سكك حديدية يختبر عربة واحدة بين نظامي مسارات بينما يبقى القطاران بأمان في مكانيهما](/blog/actual-budget-alternative.jpg)
 
 ## الخلاصة السريعة
 

@@ -2,7 +2,7 @@
 title: "جایگزین ⁦Actual Budget⁩ در ۲۰۲۶؛ بودجه‌بندی چندارزی، هوش مصنوعی و دسترسی ⁦SQL⁩"
 description: "⁦Actual Budget⁩ و ⁦Expense Budget Tracker⁩ را از نظر بودجه‌بندی پاکتی، دفتر کل چندارزی، فضای کاری مشترک، ⁦MCP⁩ و دسترسی ⁦SQL⁩ روی ⁦HTTP⁩ مقایسه کنید و مهاجرت را کم‌ریسک بیازمایید."
 date: "2026-08-27"
-image: "/blog/actual-budget-alternative.png"
+image: "/blog/actual-budget-alternative.jpg"
 keywords:
   - "جایگزین Actual Budget"
   - "جایگزین Actual Budget در ۲۰۲۶"
@@ -20,7 +20,7 @@ keywords:
 
 هیچ‌کدام جایگزین یک‌به‌یک دیگری نیست.
 
-![راه‌آهن‌بان یک واگن را میان دو سامانهٔ ریل آزمایش می‌کند و هر دو قطار در جای خود امن مانده‌اند](/blog/actual-budget-alternative.png)
+![راه‌آهن‌بان یک واگن را میان دو سامانهٔ ریل آزمایش می‌کند و هر دو قطار در جای خود امن مانده‌اند](/blog/actual-budget-alternative.jpg)
 
 ## اگر فقط جواب کوتاه را می‌خواهید
 
