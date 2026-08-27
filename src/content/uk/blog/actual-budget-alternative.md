@@ -2,7 +2,7 @@
 title: "Альтернатива Actual Budget у 2026 році: мультивалютність, AI та SQL-доступ"
 description: "Порівняйте локальний конвертний бюджет Actual із мультивалютним реєстром Expense Budget Tracker, спільними робочими просторами, MCP та HTTP-доступом до SQL — і перевірте перехід без зайвого ризику."
 date: "2026-08-27"
-image: "/blog/actual-budget-alternative.png"
+image: "/blog/actual-budget-alternative.jpg"
 keywords:
   - "альтернатива actual budget"
   - "альтернатива actual budget 2026"
@@ -20,7 +20,7 @@ keywords:
 
 Один продукт не можна просто поставити замість іншого без зміни звичного процесу.
 
-![Залізничник випробовує один вагон між двома системами колій, поки обидва потяги залишаються на місці](/blog/actual-budget-alternative.png)
+![Залізничник випробовує один вагон між двома системами колій, поки обидва потяги залишаються на місці](/blog/actual-budget-alternative.jpg)
 
 ## Якщо коротко
 

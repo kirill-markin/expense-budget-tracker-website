@@ -2,7 +2,7 @@
 title: "2026 年 Actual Budget 替代方案：多币种账本、AI 与 SQL API 对比"
 description: "对比 Actual 的本地优先信封预算，与 Expense Budget Tracker 的多币种账本、共享工作区、MCP 和 HTTP SQL API，并用可核对的流程低风险试迁移。"
 date: "2026-08-27"
-image: "/blog/actual-budget-alternative.png"
+image: "/blog/actual-budget-alternative.jpg"
 keywords:
   - "Actual Budget 替代方案"
   - "2026 年 Actual Budget 替代方案"
@@ -20,7 +20,7 @@ Actual Budget 可以把账户标记为 EUR、USD 或 GBP，但做预算时，仍
 
 两款产品都无法不做取舍地直接替换另一款。
 
-![铁路工作人员在两套轨道系统之间测试一节车厢，两列火车都安全留在原位](/blog/actual-budget-alternative.png)
+![铁路工作人员在两套轨道系统之间测试一节车厢，两列火车都安全留在原位](/blog/actual-budget-alternative.jpg)
 
 ## 先看结论
 

@@ -2,7 +2,7 @@
 title: "Альтернатива Actual Budget в 2026 году: мультивалютность, ИИ и SQL-доступ"
 description: "Сравниваем Actual Budget с Expense Budget Tracker: конверты и local-first или мультивалютный реестр, общие пространства, MCP и SQL API по HTTP. Плюс безопасный план перехода."
 date: "2026-08-27"
-image: "/blog/actual-budget-alternative.png"
+image: "/blog/actual-budget-alternative.jpg"
 keywords:
   - "альтернатива actual budget"
   - "чем заменить actual budget в 2026 году"
@@ -20,7 +20,7 @@ keywords:
 
 Один продукт не заменяет другой без изменений в привычном процессе.
 
-![Железнодорожник испытывает один вагон между двумя системами путей, пока оба состава остаются на месте](/blog/actual-budget-alternative.png)
+![Железнодорожник испытывает один вагон между двумя системами путей, пока оба состава остаются на месте](/blog/actual-budget-alternative.jpg)
 
 ## Если нужен короткий ответ
 

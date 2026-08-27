@@ -2,7 +2,7 @@
 title: "Actual Budget Alternative in 2026: Multi-Currency, AI, and SQL Access"
 description: "Compare Actual's local-first envelope workflow with Expense Budget Tracker's native-currency ledger, shared workspaces, MCP, and HTTP SQL access—and test a move safely."
 date: "2026-08-27"
-image: "/blog/actual-budget-alternative.png"
+image: "/blog/actual-budget-alternative.jpg"
 keywords:
   - "actual budget alternative"
   - "actual budget alternative 2026"
@@ -20,7 +20,7 @@ The case for an **Actual Budget alternative in 2026** starts when the data model
 
 Neither product is a drop-in replacement for the other.
 
-![A railway worker tests one wagon between two track systems while both trains remain safely in place](/blog/actual-budget-alternative.png)
+![A railway worker tests one wagon between two track systems while both trains remain safely in place](/blog/actual-budget-alternative.jpg)
 
 ## The short answer
 
