@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   trailingSlash: true,
   outputFileTracingExcludes: {
-    "/*": ["src/content/**/*"],
+    "/*": ["public/blog/**/*", "src/content/**/*"],
   },
   images: {
     formats: ["image/webp", "image/avif"],
