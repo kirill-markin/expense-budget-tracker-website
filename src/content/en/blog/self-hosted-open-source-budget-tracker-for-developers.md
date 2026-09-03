@@ -1,136 +1,234 @@
 ---
-title: "Self-Hosted Open Source Budget Tracker for Developers — Own Your Financial Data"
-description: "Why programmers should self-host their expense tracker on their own server. Deploy an open-source budget tracker with SQL API, AI agent integration, and full control over your Postgres database."
+title: "Self-Hosted Budget Tracker: Open Source, Docker, and Postgres"
+description: "Run an open-source expense and budget tracker locally with Docker and Postgres, then understand backups, privacy boundaries, and when hosted access fits."
 date: "2026-03-05"
+updated: "2026-09-03"
+image: "/blog/self-hosted-open-source-budget-tracker-for-developers-v2.png"
+keywords:
+  - "self hosted budget tracker"
+  - "open source budget tracker"
+  - "self hosted expense tracker"
+  - "Docker expense tracker"
+  - "Postgres budget app"
+  - "personal finance for developers"
 ---
 
-If you're a developer, your financial data probably lives on someone else's server. Every budget tracker and expense tracker app — Mint, YNAB, Copilot, Lunch Money — stores your transactions, balances, and spending patterns in their cloud. You trust them not to get breached, not to sell your data, and not to shut down (RIP Mint, 2024).
+The current Docker Compose setup refuses to resolve until you choose an authentication mode. For a local, no-login installation, the working command is explicit:
 
-There's a better option if you're comfortable with Docker and Postgres: self-host an open-source budget tracker and keep everything on your own infrastructure.
+```bash
+AUTH_MODE=none make up
+```
 
-## Open-source expense tracker you deploy yourself
+That small detail says a lot about self-hosting personal finance software. Running the containers is easy. Deciding who can reach them, where backups live, and which optional services may receive financial data is the real job.
 
-[Expense Budget Tracker](https://github.com/kirill-markin/expense-budget-tracker) is a fully open-source expense and budget tracking system built on Postgres. You clone the repo, run `make up`, and get a working app on `localhost:3000` with a real database you control.
+[Expense Budget Tracker](https://github.com/kirill-markin/expense-budget-tracker) is an MIT-licensed, open source budget tracker built with Next.js and Postgres. This guide follows the repository as it works now: a local Docker path for one technical user, a documented AWS/CDK production path, and separate managed endpoints for the hosted UI, MCP, and Agent API.
 
-No account creation, no data leaving your machine, and no subscription fees. MIT license — fork it, modify it, do whatever you want.
+![Person maintains a self-contained rainwater system beside a separate reserve tank and disconnected hose](/blog/self-hosted-open-source-budget-tracker-for-developers-v2.png)
 
-![Budget table showing past actuals, current month tracking, and future monthly forecast by category](/blog/budget-view-example.jpg)
+## First, choose the boundary you actually want
 
-The stack is straightforward: Next.js for the web UI, Postgres 18 for storage, and a TypeScript worker that fetches daily exchange rates. Everything runs in Docker containers via a single `docker-compose.yml`.
+“Self-hosted” can describe several very different setups. They should not be treated as interchangeable.
 
-## Self-host with Docker or deploy to AWS
+| Setup | Where finance data lives | What you operate | Best fit |
+| --- | --- | --- | --- |
+| Local Docker Compose | Postgres in a Docker volume on your machine | Containers, updates, local access, backups | One technical user who mainly wants the web UI on one machine |
+| Your AWS account with the documented CDK stack | RDS and application services in your AWS account | AWS, Cloudflare, domains, certificates, email delivery, secrets, monitoring, backups | A public or multi-user deployment where you accept the infrastructure work |
+| Managed web app | Expense Budget Tracker's hosted environment | Your account and data-entry workflow | Someone who wants the UI without operating servers |
+| Hosted MCP connector | The hosted workspace, accessed through the MCP service | OAuth consent and the client connection | An MCP-capable agent that needs scoped read or write access |
+| Hosted Agent API | The hosted workspace, accessed through the API service | A long-lived ApiKey, workspace selection, and reviewed SQL | Scripts and terminal agents that can call HTTP directly |
 
-The repository comes with two deployment options out of the box:
+The local Compose command does **not** create `api.your-domain.com` or `mcp.your-domain.com`. Those machine-access surfaces belong to the AWS architecture and the managed service. Pointing a hosted client at `https://mcp.expense-budget-tracker.com/mcp` means using the hosted workspace, not reaching into the Postgres container on your laptop.
 
-**Local Docker Compose** — four commands and you're running:
+This distinction is the first decision check for any self-hosted budget tracker: do you want local control of the web app and database, or remote integrations that require a larger deployment?
+
+## Run the Docker expense tracker locally
+
+You need Git, Docker, and Docker Compose. Clone the repository and start the stack from its root:
 
 ```bash
 git clone https://github.com/kirill-markin/expense-budget-tracker.git
 cd expense-budget-tracker
-open -a Docker   # start Docker if not running
-make up          # Postgres + migrations + web + worker
+AUTH_MODE=none make up
 ```
 
-Open `http://localhost:3000` and start entering transactions. Postgres data persists in a Docker volume. That's the entire setup.
+Then open [http://localhost:3000](http://localhost:3000).
 
-**AWS CDK** — a full production deployment with one script:
+`AUTH_MODE` is a required Compose variable. If you have not copied `.env.example` to `.env`, repeat the prefix on every Compose command. The commands below do that deliberately.
+
+`make up` is a short alias for:
 
 ```bash
-bash scripts/bootstrap.sh --region eu-central-1
+AUTH_MODE=none docker compose -f infra/docker/compose.yml up -d
 ```
 
-This spins up ECS Fargate, RDS Postgres, ALB with HTTPS, Cognito for auth, WAF, CloudWatch monitoring, automated backups, and CI/CD via GitHub Actions. The estimated cost is around $50/month, and you get enterprise-grade infrastructure that you fully own. The [deployment guide](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) walks through every step — from creating the AWS account to configuring Cloudflare DNS.
+The current [Compose file](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/docker/compose.yml) defines Postgres 18, a one-shot migration service, the Next.js web app, the authentication service, and the exchange-rate worker. With `AUTH_MODE=none`, the web app uses the local identity instead of requiring Cognito login. Treat that mode as local development access, never as authentication for a public server.
 
-Since it's just Postgres + Docker, you can also self-host it anywhere else. DigitalOcean, Hetzner, a Raspberry Pi in your closet, your company's Kubernetes cluster — if it runs Docker and Postgres, it runs this.
-
-## SQL API endpoint for programmatic access
-
-Most budget apps give you a web UI and nothing else. This one exposes a **SQL Query API** over HTTP — a `POST /v1/sql` endpoint that accepts raw SQL statements and returns JSON.
+You can inspect container state and follow the application logs with ordinary Compose commands:
 
 ```bash
-curl -X POST https://api.your-domain.com/v1/sql \
-  -H "Authorization: ApiKey ebta_a7Bk9mNp..." \
-  -H "X-Workspace-Id: workspace-id" \
-  -H "Content-Type: application/json" \
-  -d '{"sql": "SELECT category, SUM(amount) AS total FROM ledger_entries WHERE kind = '\''spend'\'' AND ts >= DATE_TRUNC('\''month'\'', CURRENT_DATE) GROUP BY category ORDER BY total"}'
+AUTH_MODE=none docker compose -f infra/docker/compose.yml ps
+AUTH_MODE=none docker compose -f infra/docker/compose.yml logs -f web
 ```
 
-You generate an API key in Settings, choose the target workspace ID, and any HTTP client can query your data. This is a simple REST endpoint — no GraphQL, no ORM abstractions, no SDK to learn. Just SQL in, JSON out.
-
-The security model is strict: API keys are stored as SHA-256 hashes (plaintext never persisted), queries are restricted to SELECT/INSERT/UPDATE/DELETE (no DDL), there's a 30-second statement timeout, a 100-row limit per response, and per-key rate limiting at 10 requests/second. All queries run through Postgres Row Level Security — the same isolation used by the web app — so an API key can only access data in its owner's workspace.
-
-## Built for AI agents and LLMs
-
-The SQL API is what makes AI integration practical for personal finance — your AI agent needs direct database access to read and write financial data.
-
-Think about how you interact with AI assistants today. You paste a bank statement screenshot into Claude or ChatGPT, ask it to categorize your expenses, and it gives you a nice text summary. Then you manually copy those numbers into whatever tool you use. That's a workflow from 2023.
-
-With a SQL API, your AI agent doesn't just analyze your data — it **writes to your database**. The workflow becomes:
-
-1. Drop a bank statement (CSV, PDF, or screenshot) into an AI agent
-2. The agent reads each transaction, matches categories to your existing ones, and `INSERT`s them into `ledger_entries`
-3. The agent checks your account balance against the bank's number
-4. You spend 5 minutes reviewing instead of an hour entering data
-
-The database schema is designed for this. Seven flat tables, no nested JSON, no complex joins required for basic operations. The `ledger_entries` table is intentionally simple — one row per account movement with clear column names. An LLM can write correct INSERT statements on the first try because there's nothing to get confused about.
-
-Expense Budget Tracker also includes a **built-in AI chat** in the web UI. Connect your OpenAI or Anthropic API key, and you get an assistant that has a `query_database` tool — it can SELECT, INSERT, UPDATE, and DELETE directly in your Postgres. Upload a screenshot of your banking app, and the AI parses every transaction, asks you to confirm, and inserts them. It follows a strict protocol: discover your existing categories first, check for duplicates, verify balances match, and only write after your explicit approval.
-
-The AI chat supports Claude (Anthropic) and GPT (OpenAI) models. Both use the same database tool with the same safety rules — keyword whitelisting, statement timeouts, and RLS enforcement. You can also use the SQL API with any external agent: [Claude Code](https://docs.anthropic.com/en/docs/claude-code), OpenAI Codex, custom scripts, or Zapier webhooks. Give the agent your `ebt_` API key, point it at your endpoint, and it has full read/write access scoped to your workspace.
-
-## Budget tracker features
-
-This isn't a bare-bones expense ledger. The features you'd expect from a commercial product are all there:
-
-- **Budget grid** — rows are categories, columns are months. Past months show actuals, future months show your forecast. Plan 12 months ahead and see projected balances at a glance
-- **Multi-currency support** — store every transaction in its native currency. Daily exchange rates from ECB, CBR, and NBS are fetched automatically. Conversion to your reporting currency happens at query time via SQL joins — no precomputed columns, no accuracy loss
-- **Account balances** — track checking accounts, savings, credit cards, cash, investments. Each account has a running balance derived from the ledger
-- **Transfers** — move money between your own accounts (including cross-currency). Two ledger entries with the same `event_id`, one negative and one positive
-- **Transaction categorization** — free-form categories that you define. No forced taxonomy. The AI learns your categories from existing data
-- **Multi-language UI** — English, Spanish, Chinese, Arabic, Hebrew, Farsi, Ukrainian, Russian. Full RTL support
-- **Workspace isolation** — Postgres Row Level Security ensures each user's data is completely isolated. Even if you share the same database server, users cannot see each other's data
-- **Demo mode** — toggle a button in the UI to switch to in-memory demo data. No database required to explore the interface
-
-## Postgres schema built for developers
-
-The entire schema fits in your head:
-
-- `ledger_entries` — one row per account movement (the core table)
-- `budget_lines` — append-only budget plan (last-write-wins per cell)
-- `budget_comments` — notes on budget cells
-- `exchange_rates` — daily FX rates (global, no access control)
-- `workspace_settings` — reporting currency per workspace
-- `account_metadata` — liquidity classification
-- `accounts` — a VIEW derived from `ledger_entries`
-
-No ORM. No migration framework. Just numbered SQL files in `db/migrations/` applied by a shell script. You can read every migration, understand every table, and write queries directly against the schema.
-
-Schema changes go through migrations. The `app` database role (used by the web app) has limited privileges — it can't create tables or modify schema. The `tracker` role (used only by the migration script) handles DDL. This is the kind of separation of concerns you'd expect in a production system.
-
-## Why developers self-host their financial data
-
-You already have the skills to run this. You understand Docker, Postgres, and AWS (or whatever cloud you prefer). The question is whether the benefits justify the effort.
-
-**Full data ownership** — your personal finance data never leaves your infrastructure. No third-party breaches affect you. No privacy policies to read. No analytics on your spending habits being sold to advertisers.
-
-**Customization** — add columns to the schema, build custom reports with raw SQL, connect it to your existing tools. Want a Telegram bot that reports daily spending? Write a script that calls the SQL API. Want to visualize data in Grafana? Point it at the Postgres database. The code is yours to modify.
-
-**No vendor lock-in** — if you stop using the web UI, your data is still in a standard Postgres database. Export it with `pg_dump`, query it from any SQL client, or migrate to something else entirely.
-
-**Learning** — the codebase is a real-world example of Next.js + Postgres + Docker + AWS CDK + Row Level Security + API key auth + AI tool integration. If you're building a SaaS product, you'll find patterns worth stealing.
-
-## Get started with the open-source budget tracker
+Stop the stack with:
 
 ```bash
-git clone https://github.com/kirill-markin/expense-budget-tracker.git
-cd expense-budget-tracker
-make up
+AUTH_MODE=none make down
 ```
 
-Open `http://localhost:3000`. Enter your first transaction. Set up a budget for the current month. If you want to test without a database, click the Demo button in the header to switch to in-memory sample data.
+The [Makefile](https://github.com/kirill-markin/expense-budget-tracker/blob/main/Makefile) maps that command to `docker compose down` without `-v`. Your Postgres data remains in the named `pgdata` volume and is reused the next time the stack starts.
 
-When you're ready for production, follow the [AWS deployment guide](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) or adapt the Docker Compose setup for your own infrastructure.
+That persistence is convenient, but it is not a backup. Host failure, disk corruption, an accidental volume deletion, or an explicit `docker compose down -v` can still remove the only copy.
 
-The repository is at [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker). Star it, fork it, or just read the code. It's MIT licensed — use it however you want.
+### Keep this setup local
 
-If you already manage servers and databases for work, running the same stack for your personal finances is a small step — and you get full control over the data.
+The Compose configuration publishes the web app on host port `3000`, Postgres on `5432`, and the auth service on `8081`. It also contains development database credentials. Do not put this configuration on an internet-facing host and assume Docker made it private.
+
+For a workstation installation:
+
+- use the machine firewall to limit network access;
+- do not forward ports `3000`, `5432`, or `8081` from your router;
+- do not expose `AUTH_MODE=none` through a public reverse proxy;
+- keep the repository, `.env` files, and database dumps out of public or broadly shared folders.
+
+The repository documents AWS/CDK as its production deployment. It does not promise a hardened recipe for every VPS, NAS, Kubernetes cluster, or home server, even if an experienced operator could adapt the code.
+
+## What runs, and what stays in Postgres
+
+The local architecture is small enough to inspect:
+
+- **Next.js web app:** serves the budget, transaction, balance, dashboard, demo, and chat interfaces.
+- **Postgres:** stores the ledger, budget plans, workspace settings, account metadata, and application state.
+- **Migration container:** applies the repository's SQL migrations before the web service starts.
+- **FX worker:** fetches public exchange-rate data and writes it through a restricted database role.
+- **Auth service:** supports the authenticated deployment architecture; local web use bypasses Cognito when `AUTH_MODE=none`.
+
+Postgres is the source of truth. That makes this a practical Postgres budget app for developers: you can inspect migrations, understand the relations, query your own database, and export it using standard Postgres tools. Row-level security and separate application roles still matter inside the app, but they do not replace host security or backups.
+
+The exchange-rate worker makes outbound requests for rate data. It does not need to send your ledger rows to request those public rates. The optional AI features have a different boundary, which deserves its own review.
+
+## Make a real backup before calling the data safe
+
+For the default local Compose database, this creates a compressed Postgres archive on the host:
+
+```bash
+AUTH_MODE=none docker compose -f infra/docker/compose.yml exec -T postgres \
+  pg_dump -U tracker -d tracker --format=custom \
+  > expense-budget-tracker.dump
+```
+
+Handle that file like a bank statement. It can contain transaction descriptions, balances, categories, notes, and other identifying details.
+
+A workable backup routine needs four decisions:
+
+1. **Frequency:** choose how much recent work you could accept losing.
+2. **Second location:** copy the dump away from the Docker host so one disk failure cannot take both copies.
+3. **Encryption and access:** protect the archive at rest and limit who can read it.
+4. **Restore testing:** periodically restore into a separate compatible Postgres instance and verify transactions, budgets, and balances.
+
+Before updating the application, create a fresh dump. Then pull the new code, rebuild the images, and start the stack again:
+
+```bash
+git pull
+AUTH_MODE=none make build
+AUTH_MODE=none make up
+```
+
+The migration container runs during startup. Read release changes before upgrading and keep the pre-upgrade dump until you have checked the application and completed a restore drill.
+
+## Self-hosting does not automatically keep every byte local
+
+The core local UI and Postgres database can run on your machine. Data leaves that boundary when you choose a feature or endpoint that sends it elsewhere.
+
+### Built-in AI chat
+
+The built-in chat uses an `OPENAI_API_KEY`. When you use it, prompts, attached or extracted content, and financial context needed for model calls can reach OpenAI. The current request path sets `store: false`, but the request still has to be processed by the provider, and other retention controls depend on your API organization. Review [OpenAI's current API data controls](https://developers.openai.com/api/docs/guides/your-data) before sending bank statements or ledger details.
+
+Langfuse tracing is optional. It turns on only when its connection values and release value are configured together. When enabled, chat traces are exported to the `LANGFUSE_BASE_URL` you selected. A Langfuse Cloud URL introduces another external processor; a self-hosted Langfuse deployment moves that destination into infrastructure you operate.
+
+If your requirement is “financial rows never go to an LLM provider,” leave the AI integration unset and do not use chat. Self-hosting the database does not cancel an outbound model request that you intentionally enable.
+
+### Your own AWS deployment
+
+The documented [AWS deployment](https://github.com/kirill-markin/expense-budget-tracker/blob/main/docs/deployment.md) puts application services and RDS in your AWS account. It also adds more systems and trust relationships: Cloudflare for DNS and edge traffic, Cognito for authentication, Resend for login email, certificates for public domains, Secrets Manager, monitoring, and optional OpenAI and Langfuse connections.
+
+The CDK stack includes managed database backup infrastructure. You still decide whether its retention meets your needs, watch failures, test restores, rotate secrets, apply updates, and respond to incidents. “My AWS account” is a useful control boundary, not the same thing as “no third parties.”
+
+### Managed UI, hosted MCP, and hosted Agent API
+
+The managed UI starts at [app.expense-budget-tracker.com](https://app.expense-budget-tracker.com). It is the lowest-operations path, but the service operator and hosting providers are part of the data boundary. Read the [privacy policy](/privacy/) before putting real financial data there.
+
+An MCP-capable client can connect to:
+
+```text
+https://mcp.expense-budget-tracker.com/mcp
+```
+
+The hosted MCP connector uses browser OAuth. The required `expenses:read` scope allows workspace discovery, schema inspection, and read queries. `expenses:write` is separate and is required for `sql_execute`. Start read-only unless the client genuinely needs to create, change, or delete financial records. The MCP client can also receive the data returned by tools, so its own privacy policy matters. See the [MCP connector guide](/docs/mcp-connector/) for the full flow.
+
+The hosted Agent API is a different interface with a different credential. Begin at:
+
+```bash
+curl --fail --silent --show-error \
+  https://api.expense-budget-tracker.com/v1/
+```
+
+After the email-code onboarding flow returns a long-lived key, direct requests use:
+
+```text
+Authorization: ApiKey <key>
+```
+
+The primary SQL endpoints deliberately separate one read from one approved write:
+
+- `POST /v1/sql/query` accepts one restricted `SELECT` or `WITH ... SELECT`.
+- `POST /v1/sql/execute` accepts one approved `INSERT`, `UPDATE`, or `DELETE`.
+
+Workspace selection and Postgres row-level security apply on the server. They do not turn a hosted request into a self-hosted one, and the ApiKey is not accepted by the OAuth-based MCP endpoint. The [API reference](/docs/api/) documents discovery, workspace selection, schema inspection, request limits, and the exact SQL policy. The [expense tracking API guide](/blog/expense-tracking-api/) covers approval and reconciliation in more depth.
+
+## What you take on when you self-host
+
+Personal finance for developers can look pleasantly simple from the application side: one repository, one Compose command, one database. The operational work continues after the first successful page load.
+
+For local Docker, you own:
+
+- Docker and host operating-system updates;
+- application updates and migration review;
+- database dumps, encrypted off-machine copies, retention, and restore tests;
+- disk capacity and container health;
+- firewall rules and physical access to the machine;
+- protection of `.env` files, API keys, model keys, and backups.
+
+For a public deployment, add:
+
+- a domain and DNS configuration;
+- TLS certificates and renewal paths;
+- authenticated access instead of `AUTH_MODE=none`;
+- OTP email delivery and its credentials;
+- database and service monitoring;
+- alert handling, incident response, and recovery;
+- cloud costs and provider account security.
+
+The [self-hosting guide](/docs/self-hosting/) is the short setup reference. The source repository's deployment documentation is the authority for the supported AWS architecture.
+
+## A practical decision checklist
+
+A self-hosted expense tracker is a good fit when most of these are true:
+
+- You are comfortable owning Docker and Postgres rather than only using them once.
+- You will automate backups and test a restore, not just trust the volume.
+- You want direct access to a standard database and source code you can audit or change.
+- Local browser access is enough, or you are ready to operate the documented AWS stack.
+- You can keep `AUTH_MODE=none` away from public networks.
+- You will review every optional outbound path, especially AI chat and telemetry.
+
+Use the managed app or another hosted option when these sound more accurate:
+
+- You want to enter and review finances without patching infrastructure.
+- You need reliable remote access but do not want to manage domains, TLS, auth, email, secrets, and monitoring.
+- You are unlikely to notice a failed backup or delayed security update.
+- OAuth-scoped MCP or the hosted Agent API solves the integration need without owning the full stack.
+
+There is also a useful middle choice: run the local system with no AI keys, keep it off the public internet, and export encrypted Postgres backups to storage you control. You get the main benefit of a self-hosted budget tracker without pretending that a laptop Compose file is a production platform.
+
+Start with `AUTH_MODE=none make up`, enter a few non-sensitive test transactions, stop and restart the stack, then create and verify a database dump. If that small operational loop feels reasonable, move real data in. If it already feels like a chore, the [managed setup](/docs/getting-started/) is probably the more honest choice.
