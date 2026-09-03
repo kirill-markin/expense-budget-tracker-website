@@ -1,136 +1,234 @@
 ---
-title: "Rastreador de presupuesto de código abierto para desarrolladores: controla tus datos financieros"
-description: "Por qué a los desarrolladores les conviene alojar su rastreador de gastos en su propia infraestructura. Despliega un rastreador de presupuesto de código abierto con API SQL, integración con agentes de IA y control total sobre tu base de datos Postgres."
+title: "Gestor de presupuesto autoalojado: código abierto, Docker y Postgres"
+description: "Ejecuta en local un gestor de gastos y presupuestos de código abierto con Docker y Postgres, y entiende cómo gestionar las copias de seguridad, cuáles son los límites de privacidad y cuándo conviene el acceso alojado."
 date: "2026-03-05"
+updated: "2026-09-03"
+image: "/blog/self-hosted-open-source-budget-tracker-for-developers-v2.png"
+keywords:
+  - "gestor de presupuesto autoalojado"
+  - "gestor de presupuesto de código abierto"
+  - "gestor de gastos autoalojado"
+  - "gestor de gastos con Docker"
+  - "aplicación de presupuesto con Postgres"
+  - "finanzas personales para desarrolladores"
 ---
 
-Si eres desarrollador, lo más probable es que tus datos financieros estén en servidores de terceros. Todas las aplicaciones de presupuesto y seguimiento de gastos, como Mint, YNAB, Copilot o Lunch Money, guardan tus transacciones, saldos y patrones de gasto en su nube. Confías en que no sufran una brecha de seguridad, en que no vendan tus datos y en que no desaparezcan de un día para otro (RIP Mint, 2024).
+La configuración actual de Docker Compose exige que elijas un modo de autenticación. Para una instalación local sin inicio de sesión, el comando correcto debe indicarlo de forma explícita:
 
-Si te manejas bien con Docker y Postgres, hay una alternativa mejor: alojar tú mismo un rastreador de presupuesto de código abierto y mantener todo dentro de tu propia infraestructura.
+```bash
+AUTH_MODE=none make up
+```
 
-## Rastreador de gastos de código abierto que despliegas tú mismo
+Ese pequeño detalle dice mucho sobre lo que supone autoalojar software de finanzas personales. Ejecutar los contenedores es fácil. El verdadero trabajo consiste en decidir quién puede acceder a ellos, dónde residirán las copias de seguridad y qué servicios opcionales pueden recibir datos financieros.
 
-[Expense Budget Tracker](https://github.com/kirill-markin/expense-budget-tracker) es un sistema de seguimiento de gastos y presupuestos completamente de código abierto construido sobre Postgres. Clonas el repositorio, ejecutas `make up` y tienes una aplicación funcionando en `localhost:3000` con una base de datos real bajo tu control.
+[Expense Budget Tracker](https://github.com/kirill-markin/expense-budget-tracker) es un gestor de presupuestos de código abierto con licencia MIT, construido con Next.js y Postgres. Esta guía refleja el funcionamiento actual del repositorio: un despliegue local con Docker para un solo usuario técnico, una vía documentada para producción con AWS/CDK y endpoints gestionados independientes para la interfaz alojada, MCP y Agent API.
 
-Sin crear cuentas, sin enviar datos fuera de tu máquina y sin cuotas de suscripción. Licencia MIT: puedes bifurcarlo, modificarlo y usarlo como quieras.
+![Persona que revisa un sistema autónomo de recogida de agua de lluvia junto a un depósito de reserva y una manguera desconectada](/blog/self-hosted-open-source-budget-tracker-for-developers-v2.png)
 
-![Tabla de presupuesto con importes reales de meses anteriores, seguimiento del mes actual y previsión mensual futura por categoría](/blog/budget-view-example.jpg)
+## Primero, elige el perímetro que realmente quieres
 
-La pila es directa: Next.js para la interfaz web, Postgres 18 para el almacenamiento y un proceso en TypeScript que obtiene los tipos de cambio diarios. Todo se ejecuta en contenedores Docker a través de un único `docker-compose.yml`.
+«Autoalojado» puede describir configuraciones muy distintas. No conviene tratarlas como si fueran intercambiables.
 
-## Alojamiento propio con Docker o despliegue en AWS
+| Configuración | Dónde residen los datos financieros | Qué administras | Para quién encaja mejor |
+| --- | --- | --- | --- |
+| Docker Compose local | Postgres en un volumen de Docker en tu máquina | Contenedores, actualizaciones, acceso local y copias de seguridad | Un usuario técnico que quiere principalmente la interfaz web en una sola máquina |
+| Tu cuenta de AWS con la pila CDK documentada | RDS y los servicios de la aplicación en tu cuenta de AWS | AWS, Cloudflare, dominios, certificados, entrega de correo, secretos, monitorización y copias de seguridad | Un despliegue público o multiusuario en el que aceptas el trabajo de infraestructura |
+| Aplicación web gestionada | El entorno alojado de Expense Budget Tracker | Tu cuenta y tu flujo de introducción de datos | Quien quiere la interfaz sin administrar servidores |
+| Conector MCP alojado | El espacio de trabajo alojado, al que se accede mediante el servicio MCP | El consentimiento OAuth y la conexión del cliente | Un agente compatible con MCP que necesita acceso de lectura o escritura con permisos limitados |
+| Agent API alojada | El espacio de trabajo alojado, al que se accede mediante el servicio API | Una ApiKey de larga duración, la selección del espacio de trabajo y sentencias SQL revisadas | Scripts y agentes de terminal que pueden hacer llamadas HTTP directamente |
 
-El repositorio trae dos opciones de despliegue listas para usar:
+El comando local de Compose **no** crea `api.your-domain.com` ni `mcp.your-domain.com`. Esas interfaces de acceso automatizado pertenecen a la arquitectura de AWS y al servicio gestionado. Conectar un cliente a `https://mcp.expense-budget-tracker.com/mcp` significa usar el espacio de trabajo alojado, no acceder al contenedor de Postgres de tu portátil.
 
-**Docker Compose local**: con cuatro comandos ya lo tienes en marcha:
+Esta distinción es la primera decisión que debes tomar con cualquier gestor de presupuesto autoalojado: ¿quieres control local sobre la aplicación web y la base de datos, o integraciones remotas que requieren un despliegue más amplio?
+
+## Ejecuta localmente el gestor de gastos con Docker
+
+Necesitas Git, Docker y Docker Compose. Clona el repositorio e inicia el conjunto de servicios desde el directorio raíz:
 
 ```bash
 git clone https://github.com/kirill-markin/expense-budget-tracker.git
 cd expense-budget-tracker
-open -a Docker   # start Docker if not running
-make up          # Postgres + migrations + web + worker
+AUTH_MODE=none make up
 ```
 
-Abre `http://localhost:3000` y empieza a introducir transacciones. Los datos de Postgres se conservan en un volumen de Docker. No hace falta nada más.
+Después abre [http://localhost:3000](http://localhost:3000).
 
-**AWS CDK**: un despliegue completo de producción con un solo script:
+`AUTH_MODE` es una variable obligatoria de Compose. Si no has copiado `.env.example` a `.env`, repite el prefijo en cada comando de Compose. Los comandos siguientes lo hacen de forma deliberada.
+
+`make up` es un alias corto de:
 
 ```bash
-bash scripts/bootstrap.sh --region eu-central-1
+AUTH_MODE=none docker compose -f infra/docker/compose.yml up -d
 ```
 
-Esto levanta ECS Fargate, RDS Postgres, un ALB con HTTPS, Cognito para autenticación, WAF, monitorización con CloudWatch, copias de seguridad automáticas y CI/CD con GitHub Actions. El coste estimado ronda los 50 dólares al mes, y a cambio obtienes una infraestructura de nivel empresarial que controlas por completo. La [guía de despliegue](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) explica todo el proceso, desde crear la cuenta de AWS hasta configurar el DNS en Cloudflare.
+El [archivo actual de Compose](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/docker/compose.yml) define Postgres 18, un servicio de migración que se ejecuta una sola vez, la aplicación web con Next.js, el servicio de autenticación y el worker de tipos de cambio. Con `AUTH_MODE=none`, la aplicación web usa la identidad local en lugar de exigir el inicio de sesión con Cognito. Trata este modo como acceso para desarrollo local, nunca como sistema de autenticación para un servidor público.
 
-Como al final esto es Postgres + Docker, también puedes alojarlo en cualquier otro entorno. DigitalOcean, Hetzner, una Raspberry Pi en casa, el clúster de Kubernetes de tu empresa: si puede ejecutar Docker y Postgres, puede ejecutar esto.
-
-## API SQL para acceso programático
-
-La mayoría de las aplicaciones de presupuesto te ofrecen una interfaz web y poco más. Esta expone una **API de consultas SQL** por HTTP: un endpoint `POST /v1/sql` que acepta sentencias SQL en crudo y devuelve JSON.
+Puedes consultar el estado de los contenedores y seguir los registros de la aplicación con comandos normales de Compose:
 
 ```bash
-curl -X POST https://api.your-domain.com/v1/sql \
-  -H "Authorization: ApiKey ebta_a7Bk9mNp..." \
-  -H "X-Workspace-Id: workspace-id" \
-  -H "Content-Type: application/json" \
-  -d '{"sql": "SELECT category, SUM(amount) AS total FROM ledger_entries WHERE kind = '\''spend'\'' AND ts >= DATE_TRUNC('\''month'\'', CURRENT_DATE) GROUP BY category ORDER BY total"}'
+AUTH_MODE=none docker compose -f infra/docker/compose.yml ps
+AUTH_MODE=none docker compose -f infra/docker/compose.yml logs -f web
 ```
 
-Generas una clave API en Settings, eliges el ID del espacio de trabajo de destino y cualquier cliente HTTP puede consultar tus datos. Es un punto de acceso REST sencillo: sin GraphQL, sin abstracciones de ORM y sin SDK que aprender. Entra SQL, sale JSON.
-
-El modelo de seguridad es estricto: las claves API se guardan como hashes SHA-256, así que el valor en texto plano nunca se persiste; las consultas están limitadas a SELECT/INSERT/UPDATE/DELETE, sin DDL; hay un límite de 30 segundos por sentencia, un máximo de 100 filas por respuesta y una limitación de 10 peticiones por segundo para cada clave. Todas las consultas pasan por Row Level Security de Postgres, el mismo aislamiento que usa la aplicación web, así que una clave API solo puede acceder a los datos del espacio de trabajo de su propietario.
-
-## Diseñado para agentes de IA y LLM
-
-La API SQL es lo que hace realmente práctica la integración con IA en finanzas personales: tu agente necesita acceso directo a la base de datos para leer y escribir información financiera.
-
-Piensa en cómo usas hoy los asistentes de IA. Pegas una captura de pantalla de un extracto bancario en Claude o ChatGPT, le pides que clasifique los gastos y te devuelve un resumen bonito en texto. Después copias esos números a mano en la herramienta que uses. Ese es un flujo de trabajo propio de 2023.
-
-Con una API SQL, tu agente de IA no se limita a analizar tus datos: también **escribe en tu base de datos**. El flujo pasa a ser este:
-
-1. Arrastras un extracto bancario, ya sea CSV, PDF o una captura de pantalla, a un agente de IA.
-2. El agente lee cada transacción, la asigna a tus categorías existentes y hace `INSERT` en `ledger_entries`.
-3. El agente comprueba que el saldo de la cuenta coincide con la cifra del banco.
-4. Tú dedicas 5 minutos a revisar en vez de una hora a introducir datos.
-
-El esquema de la base de datos está pensado justo para esto. Son siete tablas planas, sin JSON anidado y sin uniones SQL complejas para las operaciones básicas. La tabla `ledger_entries` es deliberadamente simple: una fila por movimiento de cuenta y nombres de columna claros. Un LLM puede generar sentencias INSERT correctas al primer intento porque no hay nada confuso en el esquema.
-
-Expense Budget Tracker también incluye un **chat de IA integrado** en la interfaz web. Conectas tu clave API de OpenAI o Anthropic y obtienes un asistente con la herramienta `query_database`, capaz de hacer SELECT, INSERT, UPDATE y DELETE directamente sobre tu Postgres. Subes una captura de pantalla de tu aplicación bancaria, la IA interpreta cada transacción, te pide confirmación y las inserta. Sigue un protocolo estricto: primero descubre tus categorías existentes, después busca duplicados, comprueba que los saldos cuadren y solo escribe cuando le das tu aprobación explícita.
-
-El chat de IA es compatible con modelos Claude de Anthropic y GPT de OpenAI. Ambos usan la misma herramienta de base de datos y las mismas reglas de seguridad: listas blancas de palabras clave, límites de tiempo por sentencia y aplicación de RLS. También puedes usar la API SQL con cualquier agente externo: [Claude Code](https://docs.anthropic.com/en/docs/claude-code), OpenAI Codex, scripts a medida o webhooks de Zapier. Le das al agente tu clave API `ebt_`, le indicas tu endpoint y tendrá acceso de lectura y escritura limitado a tu espacio de trabajo.
-
-## Funciones del rastreador de presupuesto
-
-Esto no es un simple libro de gastos. Incluye las funciones que esperarías de un producto comercial:
-
-- **Cuadrícula de presupuesto**: las filas son categorías y las columnas, meses. Los meses pasados muestran importes reales y los futuros, tu previsión. Puedes planificar con 12 meses de antelación y ver de un vistazo los saldos proyectados.
-- **Soporte multidivisa**: cada transacción se guarda en su moneda original. Los tipos de cambio diarios del BCE, el CBR y el NBS se obtienen automáticamente. La conversión a tu moneda de referencia se hace en tiempo de consulta mediante uniones SQL, sin columnas precalculadas ni pérdida de precisión.
-- **Saldos de cuentas**: puedes seguir cuentas corrientes, ahorros, tarjetas de crédito, efectivo e inversiones. Cada cuenta tiene un saldo acumulado derivado del libro mayor.
-- **Transferencias**: mueve dinero entre tus propias cuentas, incluso entre distintas monedas. Son dos asientos en el libro mayor con el mismo `event_id`, uno negativo y otro positivo.
-- **Categorización de transacciones**: tú defines libremente las categorías. No hay una taxonomía impuesta. La IA aprende tus categorías a partir de los datos existentes.
-- **Interfaz multilingüe**: inglés, español, chino, árabe, hebreo, persa, ucraniano y ruso. Con soporte RTL completo.
-- **Aislamiento por espacio de trabajo**: Row Level Security de Postgres garantiza que los datos de cada usuario estén completamente separados. Aunque varios usuarios compartan el mismo servidor de base de datos, no pueden ver los datos de los demás.
-- **Modo demo**: puedes activar un botón en la interfaz para cambiar a datos de demostración en memoria. No hace falta una base de datos para explorar la aplicación.
-
-## Esquema de Postgres pensado para desarrolladores
-
-El esquema entero cabe en la cabeza:
-
-- `ledger_entries` — una fila por movimiento de cuenta, la tabla principal
-- `budget_lines` — plan presupuestario de solo inserción, donde en cada celda prevalece la última escritura
-- `budget_comments` — notas sobre celdas del presupuesto
-- `exchange_rates` — tipos de cambio diarios, globales y sin control de acceso
-- `workspace_settings` — moneda de referencia por espacio de trabajo
-- `account_metadata` — clasificación de liquidez
-- `accounts` — una VIEW derivada de `ledger_entries`
-
-Sin ORM. Sin framework de migraciones. Solo archivos SQL numerados en `db/migrations/`, aplicados mediante un script de shell. Puedes leer cada migración, entender cada tabla y escribir consultas directamente contra el esquema.
-
-Los cambios del esquema pasan por migraciones. El rol de base de datos `app`, que usa la aplicación web, tiene privilegios limitados: no puede crear tablas ni modificar el esquema. El rol `tracker`, que solo utiliza el script de migración, se encarga del DDL. Es la clase de separación de responsabilidades que esperarías en un sistema de producción.
-
-## Por qué los desarrolladores alojan sus datos financieros por su cuenta
-
-Ya tienes las habilidades necesarias para ejecutar esto. Entiendes Docker, Postgres y AWS, o la nube que prefieras. La cuestión es si las ventajas compensan el esfuerzo.
-
-**Control total sobre los datos**: tus datos de finanzas personales nunca salen de tu infraestructura. No te afecta ninguna brecha de un tercero. No hay políticas de privacidad interminables que leer. Nadie vende a anunciantes análisis sobre tus hábitos de gasto.
-
-**Personalización**: puedes añadir columnas al esquema, crear informes con SQL puro y conectarlo a tus herramientas habituales. ¿Quieres un bot de Telegram que te informe del gasto diario? Escribes un script que llame a la API SQL. ¿Quieres visualizar los datos en Grafana? Apuntas a la base de datos Postgres. El código es tuyo y puedes modificarlo como quieras.
-
-**Sin dependencia del proveedor**: si dejas de usar la interfaz web, tus datos siguen en una base de datos Postgres estándar. Puedes exportarlos con `pg_dump`, consultarlos desde cualquier cliente SQL o migrarlos a otra cosa cuando quieras.
-
-**Aprendizaje**: la base de código es un ejemplo real de Next.js + Postgres + Docker + AWS CDK + Row Level Security + autenticación con claves API + integración de herramientas de IA. Si estás construyendo un producto SaaS, aquí hay patrones que merece la pena tomar prestados.
-
-## Empieza con el rastreador de presupuesto de código abierto
+Detén la pila con:
 
 ```bash
-git clone https://github.com/kirill-markin/expense-budget-tracker.git
-cd expense-budget-tracker
-make up
+AUTH_MODE=none make down
 ```
 
-Abre `http://localhost:3000`. Introduce tu primera transacción. Configura un presupuesto para el mes actual. Si quieres probarlo sin base de datos, haz clic en el botón Demo del encabezado para cambiar a datos de ejemplo en memoria.
+El [Makefile](https://github.com/kirill-markin/expense-budget-tracker/blob/main/Makefile) asigna ese comando a `docker compose down` sin `-v`. Tus datos de Postgres permanecen en el volumen con nombre `pgdata` y se reutilizan la próxima vez que se inicia la pila.
 
-Cuando quieras llevarlo a producción, sigue la [guía de despliegue en AWS](https://github.com/kirill-markin/expense-budget-tracker/blob/main/infra/aws/README.md) o adapta la configuración de Docker Compose a tu propia infraestructura.
+Esa persistencia es útil, pero no es una copia de seguridad. Un fallo del host, daños en el disco, la eliminación accidental del volumen o un `docker compose down -v` explícito aún pueden borrar la única copia.
 
-El repositorio está en [github.com/kirill-markin/expense-budget-tracker](https://github.com/kirill-markin/expense-budget-tracker). Puedes marcarlo con una estrella, bifurcarlo o simplemente leer el código. Tiene licencia MIT, así que úsalo como te convenga.
+### Mantén esta configuración en local
 
-Si ya administras servidores y bases de datos en el trabajo, usar la misma pila para tus finanzas personales es un paso pequeño a cambio de obtener control total sobre tus datos.
+La configuración de Compose publica la aplicación web en el puerto `3000` del host, Postgres en el `5432` y el servicio de autenticación en el `8081`. También contiene credenciales de desarrollo para la base de datos. No instales esta configuración en un host expuesto a internet dando por hecho que Docker la ha hecho privada.
+
+Para una instalación en una estación de trabajo:
+
+- usa el firewall de la máquina para limitar el acceso de red;
+- no redirijas desde el router los puertos `3000`, `5432` o `8081`;
+- no expongas `AUTH_MODE=none` mediante un proxy inverso público;
+- mantén el repositorio, los archivos `.env` y los volcados de la base de datos fuera de carpetas públicas o compartidas con muchas personas.
+
+El repositorio documenta AWS/CDK como vía de despliegue en producción. No ofrece un procedimiento de seguridad reforzado para cada VPS, NAS, clúster de Kubernetes o servidor doméstico, aunque un operador con experiencia podría adaptar el código.
+
+## Qué se ejecuta y qué permanece en Postgres
+
+La arquitectura local es lo bastante pequeña como para inspeccionarla:
+
+- **Aplicación web con Next.js:** ofrece las interfaces de presupuesto, transacciones, saldos, panel de control, demostración y chat.
+- **Postgres:** almacena el libro mayor, los planes presupuestarios, la configuración del espacio de trabajo, los metadatos de las cuentas y el estado de la aplicación.
+- **Contenedor de migración:** aplica las migraciones SQL del repositorio antes de que se inicie el servicio web.
+- **Worker de tipos de cambio:** obtiene datos públicos de tipos de cambio y los escribe mediante un rol restringido de la base de datos.
+- **Servicio de autenticación:** permite la arquitectura de despliegue autenticada; el uso local de la aplicación web omite Cognito cuando `AUTH_MODE=none`.
+
+Postgres es la fuente de verdad. Por eso resulta una aplicación práctica para gestionar presupuestos con Postgres: como desarrollador, puedes inspeccionar las migraciones, entender las relaciones entre los datos, consultar tu propia base de datos y exportarla con las herramientas estándar de Postgres. La seguridad a nivel de fila y los distintos roles de la aplicación siguen siendo importantes dentro del sistema, pero no sustituyen la seguridad del host ni las copias de seguridad.
+
+El worker de tipos de cambio hace solicitudes salientes para obtener esos datos. No necesita enviar las filas de tu libro mayor para consultar los tipos públicos. Las funciones opcionales de IA tienen un perímetro de confianza distinto que merece una revisión aparte.
+
+## Haz una copia de seguridad real antes de considerar seguros los datos
+
+Para la base de datos local predeterminada de Compose, este comando crea un volcado comprimido de Postgres en el host:
+
+```bash
+AUTH_MODE=none docker compose -f infra/docker/compose.yml exec -T postgres \
+  pg_dump -U tracker -d tracker --format=custom \
+  > expense-budget-tracker.dump
+```
+
+Trata ese archivo como un extracto bancario. Puede contener descripciones de transacciones, saldos, categorías, notas y otros datos identificativos.
+
+Una rutina de copias de seguridad eficaz exige tomar cuatro decisiones:
+
+1. **Frecuencia:** decide cuánto trabajo reciente aceptarías perder.
+2. **Segunda ubicación:** copia el volcado fuera del host de Docker para que un único fallo de disco no pueda eliminar ambas copias.
+3. **Cifrado y acceso:** protege el archivo en reposo y limita quién puede leerlo.
+4. **Pruebas de restauración:** restáuralo periódicamente en otra instancia compatible de Postgres y verifica las transacciones, los presupuestos y los saldos.
+
+Antes de actualizar la aplicación, crea un volcado nuevo. Después descarga el código actualizado, reconstruye las imágenes e inicia de nuevo la pila:
+
+```bash
+git pull
+AUTH_MODE=none make build
+AUTH_MODE=none make up
+```
+
+El contenedor de migración se ejecuta durante el inicio. Revisa los cambios de la versión antes de actualizar y conserva el volcado previo hasta que hayas comprobado la aplicación y completado una restauración de prueba.
+
+## El autoalojamiento no garantiza que todos los datos permanezcan en local
+
+La interfaz local principal y la base de datos Postgres pueden ejecutarse en tu máquina. Los datos salen de ese perímetro cuando eliges una función o un endpoint que los envía a otro lugar.
+
+### Chat de IA integrado
+
+El chat integrado usa una `OPENAI_API_KEY`. Cuando lo utilizas, los prompts, el contenido adjunto o extraído y el contexto financiero necesarios para las llamadas al modelo pueden enviarse a OpenAI. Las solicitudes actuales se envían con `store: false`, pero el proveedor aun así debe procesarlas, y los demás controles de retención dependen de la configuración de tu organización en la API. Revisa los [controles actuales de datos de la API de OpenAI](https://developers.openai.com/api/docs/guides/your-data) antes de enviar extractos bancarios o detalles del libro mayor.
+
+El trazado con Langfuse es opcional. Solo se activa cuando sus valores de conexión y el valor de la versión están configurados conjuntamente. Cuando está habilitado, las trazas del chat se exportan a la `LANGFUSE_BASE_URL` que hayas elegido. Una URL de Langfuse Cloud introduce otro servicio externo que procesa datos; un despliegue autoalojado de Langfuse traslada ese destino a una infraestructura que administras tú.
+
+Si tu requisito es que «las filas financieras nunca lleguen a un proveedor de LLM», no configures la integración de IA ni uses el chat. Alojar tú mismo la base de datos no impide el envío de datos en una solicitud al modelo que hayas habilitado deliberadamente.
+
+### Tu propio despliegue en AWS
+
+El [despliegue documentado en AWS](https://github.com/kirill-markin/expense-budget-tracker/blob/main/docs/deployment.md) sitúa los servicios de la aplicación y RDS en tu cuenta de AWS. También añade más sistemas y relaciones de confianza: Cloudflare para el DNS y el tráfico en el perímetro de la red, Cognito para la autenticación, Resend para los correos de inicio de sesión, certificados para los dominios públicos, Secrets Manager, monitorización y conexiones opcionales con OpenAI y Langfuse.
+
+La pila CDK incluye infraestructura gestionada para las copias de seguridad de la base de datos. Aun así, debes decidir si su política de retención cumple tus necesidades, vigilar los fallos, probar las restauraciones, rotar secretos, aplicar actualizaciones y responder a incidentes. «Mi cuenta de AWS» constituye un perímetro de control útil, pero no equivale a «sin terceros».
+
+### Interfaz gestionada, MCP alojado y Agent API alojada
+
+La interfaz gestionada empieza en [app.expense-budget-tracker.com](https://app.expense-budget-tracker.com). Es la opción que exige menos trabajo operativo, pero el operador del servicio y los proveedores de alojamiento forman parte del perímetro de confianza de tus datos. Lee la [política de privacidad](/es/privacy/) antes de introducir allí datos financieros reales.
+
+Un cliente compatible con MCP puede conectarse a:
+
+```text
+https://mcp.expense-budget-tracker.com/mcp
+```
+
+El conector MCP alojado usa OAuth en el navegador. El ámbito obligatorio `expenses:read` permite descubrir espacios de trabajo, inspeccionar el esquema y ejecutar consultas de lectura. `expenses:write` es independiente y se necesita para `sql_execute`. Empieza con acceso de solo lectura, a menos que el cliente necesite realmente crear, cambiar o eliminar registros financieros. El cliente MCP también puede recibir los datos que devuelven las herramientas, por lo que su propia política de privacidad importa. Consulta la [guía del conector MCP](/es/docs/mcp-connector/) para ver el proceso completo.
+
+La Agent API alojada es una interfaz distinta con una credencial diferente. Empieza en:
+
+```bash
+curl --fail --silent --show-error \
+  https://api.expense-budget-tracker.com/v1/
+```
+
+Después de que el flujo de alta mediante un código enviado por correo devuelva una clave de larga duración, las solicitudes directas usan:
+
+```text
+Authorization: ApiKey <key>
+```
+
+Los endpoints SQL principales separan deliberadamente una consulta de lectura de una operación de escritura aprobada:
+
+- `POST /v1/sql/query` acepta una única sentencia restringida `SELECT` o `WITH ... SELECT`.
+- `POST /v1/sql/execute` acepta una única sentencia aprobada `INSERT`, `UPDATE` o `DELETE`.
+
+El servidor aplica la selección del espacio de trabajo y la seguridad a nivel de fila de Postgres. Eso no convierte una solicitud al servicio alojado en una solicitud autoalojada, y el endpoint MCP basado en OAuth no acepta la ApiKey. La [referencia de la API](/es/docs/api/) documenta el descubrimiento, la selección del espacio de trabajo, la inspección del esquema, los límites de las solicitudes y la política SQL exacta. La [guía de la API de seguimiento de gastos](/es/blog/expense-tracking-api/) explica con más detalle la aprobación y la conciliación.
+
+## Qué responsabilidades asumes al alojar el sistema por tu cuenta
+
+Desde el punto de vista de la aplicación, las finanzas personales para desarrolladores pueden parecer muy sencillas: un repositorio, un comando de Compose y una base de datos. El trabajo operativo continúa después de que la primera página se cargue correctamente.
+
+Con Docker en local, te encargas de:
+
+- las actualizaciones de Docker y del sistema operativo del host;
+- las actualizaciones de la aplicación y la revisión de migraciones;
+- los volcados de la base de datos, las copias cifradas fuera de la máquina, la retención y las pruebas de restauración;
+- la capacidad del disco y el estado de los contenedores;
+- las reglas del firewall y el acceso físico a la máquina;
+- la protección de los archivos `.env`, las claves de API, las claves de modelos y las copias de seguridad.
+
+Para un despliegue público, añade:
+
+- un dominio y la configuración de DNS;
+- certificados TLS y sus mecanismos de renovación;
+- acceso autenticado en lugar de `AUTH_MODE=none`;
+- entrega de correos OTP y sus credenciales;
+- monitorización de la base de datos y los servicios;
+- gestión de alertas, respuesta a incidentes y recuperación;
+- costes de la nube y seguridad de las cuentas de proveedores.
+
+La [guía de autoalojamiento](/es/docs/self-hosting/) es la referencia breve de configuración. La documentación de despliegue del repositorio del código fuente es la referencia principal para la arquitectura de AWS que admite el proyecto.
+
+## Lista práctica para tomar una decisión
+
+Un gestor de gastos autoalojado encaja bien cuando se cumplen la mayoría de estas condiciones:
+
+- Te resulta cómodo ocuparte de Docker y Postgres, en lugar de limitarte a usarlos una vez.
+- Automatizarás las copias de seguridad y probarás una restauración, en vez de limitarte a confiar en el volumen.
+- Quieres acceso directo a una base de datos estándar y al código fuente para poder auditarlo o modificarlo.
+- Te basta con acceder desde el navegador local, o estás preparado para administrar la pila de AWS documentada.
+- Puedes mantener `AUTH_MODE=none` fuera de las redes públicas.
+- Revisarás cada canal opcional de salida de datos, especialmente el chat de IA y la telemetría.
+
+Usa la aplicación gestionada u otra opción alojada si estas situaciones describen mejor lo que necesitas:
+
+- Quieres introducir y revisar tus finanzas sin mantener ni aplicar parches a la infraestructura.
+- Necesitas acceso remoto fiable, pero no quieres gestionar dominios, TLS, autenticación, correo, secretos y monitorización.
+- Es poco probable que detectes una copia de seguridad fallida o una actualización de seguridad retrasada.
+- El acceso MCP con ámbitos OAuth o la Agent API alojada resuelven la integración sin que tengas que mantener toda la pila.
+
+También hay una opción intermedia útil: ejecuta el sistema en local sin claves de IA, mantenlo fuera de internet y exporta copias de seguridad cifradas de Postgres a un almacenamiento que controles. Obtienes la principal ventaja de un gestor de presupuesto autoalojado sin dar por sentado que un archivo de Compose en un portátil constituye una plataforma de producción.
+
+Empieza con `AUTH_MODE=none make up`, introduce unas cuantas transacciones de prueba sin datos sensibles, detén y reinicia la pila, y después crea y verifica un volcado de la base de datos. Si ese pequeño ciclo operativo te resulta razonable, incorpora datos reales. Si ya te parece una tarea engorrosa, la [configuración gestionada](/es/docs/getting-started/) probablemente sea la opción más realista.
