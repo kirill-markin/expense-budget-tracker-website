@@ -1,166 +1,199 @@
 ---
-title: "Rastreador de patrimonio neto en 2026: alternativa de hoja de cálculo de código abierto para hogares con varias monedas"
-description: "¿Buscas un rastreador de patrimonio neto que no se vaya torciendo en una hoja de cálculo? Aquí tienes una alternativa práctica de código abierto para seguir saldos, transferencias y finanzas domésticas multidivisa."
+title: "Rastreador de patrimonio neto sin vincular cuentas bancarias: una configuración multidivisa"
+description: "Configura un rastreador de patrimonio neto multidivisa sin vincular tu banco. Conoce el proceso mensual, los límites reales del producto y cuándo necesitas otra herramienta para las inversiones."
 date: "2026-03-13"
+updated: "2026-09-04"
+image: "/blog/net-worth-tracker-without-bank-linking.png"
 keywords:
   - "rastreador de patrimonio neto"
-  - "alternativa de hoja de cálculo"
+  - "rastreador de patrimonio neto sin vincular cuentas bancarias"
   - "rastreador de patrimonio neto multidivisa"
-  - "rastreador de presupuesto de código abierto"
-  - "rastrear el patrimonio neto en todas las cuentas"
+  - "rastreador de patrimonio neto de código abierto"
   - "alternativa a la hoja de cálculo de finanzas personales"
+  - "seguir el patrimonio neto entre cuentas"
 ---
 
-Sigo viendo la misma hoja de cálculo de finanzas personales: 11 pestañas, tres monedas, un saldo copiado a mano y una celda de color rojo brillante que dice "arreglar más tarde".
+Una cifra de patrimonio neto puede ser matemáticamente correcta y aun así no servir de nada. Basta con que falte el extracto de una tarjeta, el valor de una cuenta de inversión esté desactualizado o una transferencia no tenga contrapartida para que una cifra aparentemente impecable cuente una historia equivocada.
 
-Una semana después, nadie recuerda qué era lo que había que arreglar. Un mes después, los totales todavía parecen limpios. Esa es la parte peligrosa.
+Ese riesgo aumenta cuando un hogar tiene efectivo, deudas e inversiones repartidos entre varias monedas. La solución no tiene por qué pasar por el acceso automático al banco. Puedes crear un **rastreador de patrimonio neto sin vincular cuentas bancarias** fiable, siempre que el proceso permita rastrear cada saldo y detectar todas las cuentas desactualizadas.
 
-Cuando una hoja de cálculo empieza a mentir, suele hacerlo con mucha educación. Su **rastreador de patrimonio neto** todavía tiene fórmulas, colores y un total en la parte inferior. Simplemente deja de ser algo en lo que confiarías lo suficiente como para tomar una decisión real.
+Expense Budget Tracker cubre la parte del trabajo relacionada con el libro contable y los saldos de las cuentas, pero su alcance es más limitado que el de una plataforma integral de gestión patrimonial.
 
-Por eso creo que mucha gente no necesita otra plantilla más bonita. Necesitan un mejor sistema.
+![Rastreador de patrimonio neto multidivisa sin vincular cuentas bancarias, con cuentas de efectivo, deuda e inversión agrupadas para su revisión](/blog/net-worth-tracker-without-bank-linking.png)
 
-## Por qué una hoja de cálculo deja de funcionar como rastreador de patrimonio neto
+## Primero, ten claro qué estás creando
 
-Entiendo por qué la gente empieza por ahí. Una hoja de cálculo es flexible, económica y da la impresión de tener control. Si lo único que quieres es una instantánea mensual rápida, está bien durante un tiempo.
+La definición básica es sencilla: **el patrimonio neto equivale a los activos menos los pasivos**. La Oficina para la Protección Financiera del Consumidor de Estados Unidos utiliza el mismo cálculo en su kit [Your Money, Your Goals](https://files.consumerfinance.gov/f/201504_cfpb_ymyg_toolkit-workers.pdf).
 
-Entonces aparece la vida real:
+Una herramienta específica para el patrimonio neto suele partir de un registro de activos. Añades una cuenta bancaria, una vivienda, un coche, un préstamo y quizá inversiones individuales, y después actualizas su valor. Expense Budget Tracker comienza en otro punto: el libro contable. No tiene un campo aparte en el que puedas introducir la valoración de una vivienda o un coche.
 
-- el salario aterriza en una cuenta
-- los ahorros se encuentran en otra parte
-- los saldos de las tarjetas se mueven durante el mes
-- transfieres dinero entre tus propias cuentas
-- una cuenta está en EUR y otra en USD
+La vista Balances suma los movimientos del libro contable de cada cuenta. Una cuenta aparece cuando hay actividad en el libro; no existe un registro manual de activos independiente detrás de la pantalla. La moneda nativa permanece asociada a la cuenta y a sus transacciones, y el saldo actual también puede convertirse a una única moneda de referencia mediante datos diarios de tipos de cambio.
 
-Ahora la hoja de cálculo no solo almacena números. Se está convirtiendo silenciosamente en un sistema de contabilidad propio, y ahí es donde empieza a torcerse.
+Esto hace que el saldo combinado sea útil como vista del patrimonio neto cuando:
 
-Una hoja de cálculo puede mostrar un resultado. Es mucho peor a la hora de preservar la cadena de verdad que la produjo.
+- todas las cuentas de efectivo y deuda, y todas las cuentas de inversión valoradas manualmente que quieres incluir, existen en el libro contable
+- los saldos positivos representan activos y los saldos negativos representan pasivos
+- las transferencias entre tus propias cuentas se registran como transferencias, no como ingresos o gastos
+- la actividad reciente y las valoraciones manuales están conciliadas
+- cada moneda dispone de un tipo de conversión válido
 
-## Lo que realmente necesita un rastreador de patrimonio neto
+Eso no convierte el producto en un rastreador patrimonial universal. Los límites están claros:
 
-La mayoría de la gente describe el seguimiento del patrimonio neto como una fórmula: activos menos pasivos.
+| Lo que Expense Budget Tracker hace bien | Lo que no ofrece actualmente |
+| --- | --- |
+| Saldos derivados del libro contable para cuentas de efectivo, tarjetas, préstamos y otras cuentas transaccionales | Sincronización bancaria automática o vinculación mediante credenciales bancarias |
+| Una vista en la moneda de referencia para cuentas con distintas monedas nativas | Posiciones desglosadas por instrumento o fuentes de datos de brókeres |
+| Saldos totales introducidos manualmente y agrupados como regulares o de inversión | Precios en tiempo real de acciones, fondos, criptomonedas u otras inversiones |
+| Totales positivos y negativos por moneda, liquidez y grupo de cuenta | Una fuente de valoración inmobiliaria |
+| Historial de saldos, presupuestos y conciliación de transacciones | Un simulador específico de objetivos o FIRE |
 
-Esa parte es casi demasiado simple para que importe. Lo que importa es si el sistema subyacente mantiene los saldos honestos a lo largo del tiempo.
+Si necesitas principalmente los saldos actuales de efectivo y deuda, además de un total actualizado a mano para cada cuenta de inversión, es una opción razonable. Si necesitas asignación de activos, lotes fiscales, atribución del rendimiento o posiciones en tiempo real, úsalo junto con una herramienta de cartera.
 
-Un **rastreador de patrimonio neto** útil necesita cuatro cosas aburridas:
+## Configura las cuentas a partir de extractos reales
 
-- saldos de cuentas que permanecen vinculados a cuentas reales
-- transferencias entre tus propias cuentas que no se hagan pasar por ingresos o gastos
-- historial de transacciones que permanece en la moneda original
-- informes que pueden resumir todo en una sola vista cuando lo necesites
+Decide qué cuentas deben formar parte del total del hogar. Una lista práctica podría incluir:
 
-La fórmula es fácil. El modelo es la parte difícil.
+- cuentas corrientes, de ahorro y de efectivo
+- tarjetas de crédito y líneas de crédito
+- préstamos cuyo saldo actual puedas actualizar de forma periódica
+- un saldo total por cada bróker, plan de pensiones u otro proveedor de inversión que vayas a valorar manualmente
 
-## Por qué los hogares multidivisa rompen con estructuras débiles
+Elige una única moneda de referencia para la vista combinada. Una persona expatriada que viva en España podría elegir EUR aunque reciba ingresos o tenga ahorros en USD. Un hogar que prevea la mayoría de sus gastos futuros en GBP podría elegir GBP. Esta decisión cambia cómo se muestra el resumen; no reescribe los movimientos del libro contable en la moneda nativa.
 
-Aquí es donde empiezan a mentir la mayoría de los sistemas de hojas de cálculo.
+A continuación, crea las cuentas mediante la actividad del libro contable. Expense Budget Tracker obtiene su lista de cuentas de los movimientos del libro, por lo que la primera transacción importada o un movimiento inicial con fecha anterior da de alta la cuenta. Mantén todos los movimientos de esa cuenta en su moneda nativa real. Si necesitas ayuda para elegir un método de importación, consulta el [proceso para importar extractos bancarios](/es/blog/how-to-import-bank-statements-into-an-expense-tracker/) y la guía más amplia sobre cómo usar una [aplicación de presupuesto sin vincular cuentas bancarias](/es/blog/budget-app-without-bank-linking/).
 
-Si vives en un país, cobras en una moneda y mantienes todo tu dinero en un solo banco, puedes permitirte muchos atajos.
+Para cada cuenta, elige una fecha de corte inmediatamente anterior a la primera transacción que vayas a importar. Toma del extracto el saldo contabilizado en esa fecha de corte y añade después un único movimiento inicial con fecha anterior por ese importe exacto. Importa solo las transacciones posteriores. En el caso de una deuda, introduce el importe adeudado como saldo negativo, aunque el extracto lo muestre como un número positivo.
 
-Si eres un expatriado, un trabajador independiente, un trabajador remoto o simplemente alguien con dinero repartido por varios países, esos atajos dejan de parecer tan buena idea.
+Expense Budget Tracker no tiene un tipo de movimiento específico para el saldo inicial, así que este movimiento de configuración debe utilizar los mecanismos habituales de ingresos o gastos del libro contable. Asígnale una categoría clara, como `Opening balance`. La etiqueta permite auditar el movimiento, pero no lo excluye automáticamente de los informes. Colócalo justo antes de la fecha de corte y comienza el análisis normal de ingresos y gastos a partir de las operaciones posteriores. No introduzcas el saldo de hoy para después importar las transacciones que lo generaron. Si el saldo sigue sin cuadrar, revisa la fecha de corte, las transacciones pendientes, las comisiones, los intereses y las transferencias que falten, en vez de añadir un ajuste sin explicación. La [guía de conciliación](/es/blog/how-to-reconcile-your-budget-with-your-bank-balance/) ofrece una secuencia más completa.
 
-Necesitas un **rastreador de patrimonio neto multidivisa**, no una tabla bonita con lógica casera de tipos de cambio escondida en celdas aleatorias.
+La convención de signos se encarga de una parte del cálculo del patrimonio neto:
 
-Aquí está la trampa que sigo viendo:
+- una cuenta de activo, como una cuenta corriente, normalmente termina con un saldo positivo
+- una tarjeta de crédito u otra deuda normalmente termina con un saldo negativo
+- un pago de la cuenta corriente a una tarjeta de crédito reduce la cuenta corriente y acerca a cero el saldo negativo de la tarjeta
 
-- una hoja por moneda
-- una pestaña de resumen
-- columnas de tipo de cambio manual
-- otra columna para explicar qué tasa se utilizó
-- una nota para recordar que esta transferencia fue "interna"
+Ese último movimiento es una transferencia interna. No debería generar un gasto nuevo al realizar el pago: la compra con tarjeta ya registró el gasto.
 
-En ese punto, la hoja de cálculo todavía parece organizada. Simplemente deja de ser de confianza.
+## Mantén las transferencias neutrales
 
-Ese es un mal negocio. Las herramientas financieras no tienen por qué parecer simples. Necesitan permanecer fieles.
+Las transferencias son la forma más fácil de inflar por accidente los ingresos o los gastos. Mover dinero de una cuenta corriente a una de ahorro cambia dónde está el activo, no el patrimonio neto del hogar.
 
-## El problema de las transferencias es donde suele romperse la confianza
+Expense Budget Tracker representa una transferencia mediante dos movimientos vinculados del libro contable: un importe negativo en la cuenta de origen y otro positivo en la cuenta de destino. Deben existir ambas partes. En una transferencia dentro de la misma moneda, los importes del principal deben tener el mismo valor y signo opuesto.
 
-Mover tu propio dinero debería ser el evento menos interesante de tu sistema. En configuraciones débiles, se vuelve el más confuso.
+En una transferencia entre monedas, registra el importe entregado en la cuenta de origen y el recibido en la cuenta de destino, cada uno en su moneda nativa. Si el banco descuenta una comisión del cargo en origen, sepárala en su propio movimiento de gasto en vez de ocultarla dentro de la transferencia. Por ejemplo, un cargo de $1,005 para cambiar $1,000 debería registrarse como una transferencia de $1,000 más una comisión de $5. El principal sigue siendo un movimiento interno; la comisión es un gasto real. El total en la moneda de referencia también puede variar porque el tipo de cambio diario de la aplicación no coincidirá necesariamente con el utilizado por el banco.
 
-Mueves efectivo de la cuenta corriente a la cuenta de ahorro y, de repente, un lado parece gasto, el otro lado parece ingreso y tu resumen mensual se convierte en una actuación de improvisación.
+Aplica el mismo tratamiento a los traspasos a cuentas de ahorro, los pagos de tarjetas de crédito y las aportaciones a cuentas de inversión. Una aportación a una cuenta de inversión aumenta una cuenta y reduce otra; no es un ingreso de inversión. La evolución del mercado o los intereses pueden cambiar después el valor de la inversión, pero la aportación en sí no creó valor.
 
-Lo mismo sucede cuando las personas mantienen una aplicación para gastos, otra hoja para activos y un tercer lugar para notas. Los datos dejan de concordar consigo mismos.
+Para obtener más información sobre monedas nativas y conversión a la moneda de referencia, consulta la guía de [presupuestos multidivisa para expatriados](/es/blog/multi-currency-budgeting-for-expats/).
 
-Una buena **alternativa a la hoja de cálculo** hace algo importante mejor: trata los saldos, las transacciones y las transferencias como parte de un mismo modelo en lugar de tres hábitos separados.
+## Usa los grupos de cuentas y la liquidez como herramientas de revisión
 
-Esto es mucho menos glamoroso que otro panel de finanzas personales.
+La pantalla Balances permite clasificar una cuenta de dos formas útiles.
 
-También es mucho más útil.
+El **grupo de cuenta** puede ser `regular` o `investment`. `regular` sirve para cuentas corrientes, efectivo, ahorros, tarjetas y préstamos. `investment` separa los saldos totales de brókeres o planes de pensiones valorados manualmente de las cuentas que concilias mediante las transacciones del día a día.
 
-## Por qué creo que el código abierto es importante aquí
+La **liquidez** puede ser `high`, `medium` o `low`. Son etiquetas propias de cada hogar, no una valoración de la aplicación. Puedes marcar una cuenta corriente como `high`, una cuenta de ahorro con plazo de preaviso como `medium` y una cuenta de jubilación como `low`. Define los criterios una vez y aplícalos de manera coherente.
 
-El software de finanzas personales se vuelve muy obstinado muy rápidamente. En el momento en que una herramienta hace suposiciones equivocadas sobre monedas, transferencias o informes, ese error se siente en todas partes.
+La pantalla resume después los saldos:
 
-Por eso me convence el enfoque de código abierto para esta categoría.
+- por moneda nativa
+- por liquidez
+- por grupo de cuenta `regular` o `investment`
+- como totales positivos, totales negativos y saldo combinado
 
-Con un **rastreador de presupuesto de código abierto**, el sistema es inspeccionable. El modelo de datos no es una caja negra. Puedes autoalojarlo, leer la documentación y entender qué está haciendo realmente la herramienta con tus números.
+Las columnas de saldos positivos y negativos agrupan las cuentas según el signo de su saldo. Resultan útiles para comprobar los activos frente a las deudas, pero no constituyen una clasificación jurídica o contable formal. La configuración de tus cuentas sigue determinando si la cifra combinada significa lo que crees que significa.
 
-Eso es aún más importante cuando usas el mismo sistema para presupuestar, seguir saldos y controlar el patrimonio neto.
+## Cómo gestionar las inversiones sin fingir que esto es un rastreador de cartera
 
-Una vez que se comparten los datos, todas las malas suposiciones se difunden aún más.
+En una cuenta de inversión actualizada manualmente, registra el total del proveedor, no cada valor por separado.
 
-## El seguimiento del patrimonio neto funciona mejor cuando los saldos y el presupuesto conviven
+Un proceso práctico de cierre de mes sería este:
 
-Esta es la parte que a mucha gente se le escapa. El patrimonio neto no es solo un número que revisas una vez al mes para sentirte responsable. Se vuelve mucho más útil cuando coexiste con el resto de tu flujo de trabajo financiero.
+1. Registra las aportaciones y retiradas de efectivo como transferencias entre la cuenta del bróker y la cuenta de efectivo correspondiente.
+2. Abre el extracto del bróker en la fecha de revisión y anota el valor total de la cuenta en su moneda nativa.
+3. Compara el valor del extracto con el saldo de la cuenta del bróker derivado del libro contable.
+4. Si el valor del extracto es mayor, registra la diferencia como un movimiento positivo de tipo ingreso. Si es menor, registra la diferencia como un movimiento negativo de tipo gasto. Utiliza una categoría específica, como `Investment valuation adjustment`, y la fecha del extracto.
+5. Marca la cuenta como `investment` y asígnale el nivel de liquidez que corresponda a tu propia definición.
 
-Si el mismo sistema ya lo sabe:
+El paso 4 tiene una limitación importante: Expense Budget Tracker no dispone de un tipo de movimiento para valorar inversiones. Esos ajustes utilizan los mecanismos habituales de ingresos o gastos, por lo que afectan a los informes de ingresos y gastos basados en el libro contable siempre que el intervalo incluya su fecha; no existe una exclusión automática por categoría. Son asientos contables, no una prueba de que hayas recibido ingresos o gastado efectivo. Si esta solución vuelve confusos tus informes presupuestarios, mantén el rendimiento de las inversiones en un rastreador de cartera específico y utiliza Expense Budget Tracker solo para el efectivo que entra o sale de la cuenta del bróker.
 
-- qué cuentas tienes
-- cuáles son sus saldos
-- qué transferencias ocurrieron entre ellos
-- en qué categorías estás gastando
-- cómo serán probablemente los próximos meses
+El producto no sabe si el total de la cuenta del bróker procede de un fondo, un bono o efectivo sin invertir. No puede actualizar precios, calcular la asignación ni explicar el rendimiento. Conserva el total del proveedor que registraste y lo incluye en la vista del saldo del hogar.
 
-entonces la vista de tu patrimonio neto deja de ser un ritual aparte. Se convierte en parte del mismo panorama financiero.
+## Un ejemplo multidivisa hipotético
 
-Esa es una de las razones por las que [Expense Budget Tracker](https://expense-budget-tracker.com/es/) es más adecuado para esto que otra hoja de cálculo. Ya trata los saldos, las transferencias, las categorías y los informes multidivisa como un solo sistema. No está uniendo una vista del patrimonio neto a partir de herramientas no relacionadas.
+Imagina un hogar que utiliza EUR como moneda de referencia. Estas cifras son ilustrativas y el tipo de cambio es deliberadamente hipotético, no una cotización actual del mercado.
 
-## Dónde las hojas de cálculo se desvían y Expense Budget Tracker no
+Supongamos **1 USD = 0.92 EUR** para la conversión de referencia:
 
-La diferencia principal es simple: las hojas de cálculo son flexibles por defecto, pero dependen de ti para mantener la estructura honesta.
+| Cuenta | Saldo nativo | Grupo | Liquidez | Equivalente en EUR |
+| --- | ---: | --- | --- | ---: |
+| Cuenta corriente en EUR | €4,800 | `regular` | `high` | €4,800 |
+| Cuenta de ahorro en USD | $10,000 | `regular` | `high` | €9,200 |
+| Tarjeta de crédito en EUR | -€1,200 | `regular` | `high` | -€1,200 |
+| Total del bróker en USD | $25,000 | `investment` | `low` | €23,000 |
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/es/) es más estricto en los lugares útiles:
+Los saldos positivos suman €37,000. El saldo negativo es de -€1,200. Por tanto, el saldo combinado es de **€35,800**.
 
-- las cuentas mantienen su propia moneda nativa
-- las transacciones permanecen en la moneda en la que se realizaron
-- las transferencias entre tus propias cuentas siguen siendo transferencias
-- los informes se convierten para el análisis en lugar de reescribir la verdad de la fuente
+Expresado mediante la fórmula estándar:
 
-Eso suena a un detalle interno. No lo es.
+**Activos (€37,000) - pasivos (€1,200) = patrimonio neto (€35,800).**
 
-Eso es exactamente lo que hace que un **rastreador de patrimonio neto** sea confiable una vez que dejas de vivir la versión de la vida de "una cuenta, un país, un salario".
+La vista por grupos añade otro desglose útil:
 
-![Alternativa de hoja de cálculo de seguimiento del patrimonio neto en varias monedas que muestra el presupuesto y los saldos mensuales](/blog/budget-view-example.jpg)
+- cuentas del grupo `regular`: saldo combinado de €12,800
+- cuentas del grupo `investment`: saldo combinado de €23,000
 
-## Dónde la IA ayuda con el trabajo financiero más aburrido
+Supongamos ahora que se transfieren €500 de la cuenta corriente en EUR a una cuenta de ahorro en EUR. La cuenta de origen baja €500 y la de destino sube €500, así que el patrimonio neto combinado se mantiene en €35,800. Si la transferencia se clasificara por error como gasto en un lado e ingreso en el otro, aún sería posible corregir los saldos finales de las cuentas, pero el presupuesto mensual contaría una historia falsa.
 
-No creo que la IA sea la parte interesante de las finanzas personales. Creo que el problema es la administración aburrida y la IA resulta útil allí.
+Este ejemplo también muestra por qué resulta útil tener una única moneda de referencia. Puedes revisar cada cuenta en su moneda nativa y, aun así, obtener un total único para el hogar. El total convertido variará cuando cambien los tipos de cambio, incluso si no se ha producido ninguna transacción. Es un efecto del informe, no necesariamente un nuevo ingreso o gasto.
 
-La mayoría de la gente no abandona el seguimiento del patrimonio neto porque la idea es demasiado difícil. Se dan por vencidos porque el mantenimiento es molesto:
+## La revisión mensual que mantiene la fiabilidad de la cifra
 
-- exportar declaraciones
-- clasificar transacciones
-- consultar saldos
-- detectar transferencias duplicadas
-- descubrir por qué una cuenta no se concilia
+Un rastreador de patrimonio neto no se vuelve fiable por actualizarse solo. Es fiable cuando cada cuenta sigue un proceso repetible que permite volver al documento de origen.
 
-Ahí es exactamente donde la IA puede aligerar el flujo de trabajo. Expense Budget Tracker expone un flujo de trabajo de agente práctico a través de su API y la superficie SQL. Eso significa que puedes exportar extractos, dejar que el asistente te ayude con la categorización y la conciliación y luego revisar el resultado en lugar de escribirlo todo tú manualmente.
+Cuando sea posible, utiliza la misma fecha de revisión cada mes y sigue esta secuencia:
 
-Ese es el uso correcto de la IA aquí. No consejos falsos. No resúmenes decorativos. Menos trabajo repetitivo.
+1. **Recopila los saldos de referencia.** Descarga o abre los extractos de todas las cuentas bancarias, tarjetas, préstamos y cuentas de inversión incluidas. No hace falta vincular ninguna credencial bancaria con Expense Budget Tracker.
+2. **Importa o introduce la actividad nueva.** Añade las transacciones completadas en la moneda nativa de la cuenta. Evita mezclar sin indicarlo importes pendientes y contabilizados.
+3. **Empareja las transferencias internas.** Revisa los movimientos hacia cuentas de ahorro, los pagos de tarjetas, las aportaciones a cuentas de inversión y las conversiones entre monedas. Deben existir ambas partes y cualquier comisión debe registrarse por separado.
+4. **Concilia las cuentas de efectivo y deuda.** Compara cada saldo derivado del libro contable con su extracto. Investiga las diferencias antes de añadir un movimiento de ajuste.
+5. **Actualiza los totales manuales de las inversiones.** Registra la diferencia respecto al total del proveedor en la misma fecha de revisión y utiliza la categoría específica de ajuste. Recuerda que el ajuste seguirá apareciendo en cualquier informe de ingresos o gastos cuyo intervalo incluya esa fecha.
+6. **Revisa los avisos de Balances.** Un aviso de que falta un tipo de cambio significa que al menos una moneda no puede incluirse en el total de la moneda de referencia. No trates un total convertido parcial como si fuera el patrimonio neto.
+7. **Comprueba que los datos estén al día.** La aplicación muestra la última actividad que no sea una transferencia y marca una cuenta activa cuando lleva un periodo de inactividad inusualmente largo en comparación con su ritmo reciente de transacciones. Ese aviso invita a comprobar si falta alguna importación, pero no demuestra que falten datos.
+8. **Revisa los desgloses.** Compara los saldos positivos con los negativos, las cuentas `regular` con las `investment` y los totales de liquidez alta con los de menor liquidez. Los cambios importantes deben poder atribuirse a transacciones, una valoración manual o movimientos de los tipos de cambio.
+9. **Registra la fecha revisada.** Si utilizas un gráfico o una nota mensual externa, etiqueta el resultado con la fecha de corte exacta para poder comparar dos instantáneas.
 
-## Una mejor manera de pensar en el patrimonio neto
+## Qué significa y qué no significa «sin vincular cuentas bancarias»
 
-No empezaría con la fórmula. Empezaría con una pregunta: ¿confío en el camino desde la actividad sin procesar de la cuenta hasta el número final?
+Que no haya sincronización bancaria automática significa que Expense Budget Tracker no pide credenciales de banca en línea ni descarga continuamente las transacciones de un banco. Tú proporcionas los datos mediante entradas manuales, importaciones revisadas de extractos o un proceso asistido por un agente.
 
-Si la respuesta es no, el problema normalmente no es tu disciplina. Es el sistema.
+No significa que los datos no existan en ningún otro lugar. Si utilizas la aplicación web alojada, los datos financieros se guardan en ese servicio. Si quieres ejecutar el software en una infraestructura bajo tu control, el proyecto es de código abierto y tiene una [guía de autoalojamiento](/es/docs/self-hosting/). Elige el modelo de despliegue que se ajuste a tus requisitos de privacidad y mantenimiento.
 
-Vale la pena usar una **alternativa a la hoja de cálculo de finanzas personales** cuando reduce el trabajo manual, mantiene las monedas honestas y hace que las transferencias vuelvan a ser aburridas.
+Actualmente hay cuatro formas de trabajar con el producto:
 
-Ese es el estándar que usaría para un **rastreador de patrimonio neto multidivisa** real.
+- la aplicación web alojada para las revisiones cotidianas
+- la conexión MCP alojada para clientes de IA compatibles
+- la Agent API para agentes de terminal y clientes HTTP directos
+- un despliegue autoalojado
 
-## Si tu hoja de cálculo ya se siente frágil, esa es la señal
+Los usuarios técnicos deberían empezar a explorar la Agent API con `GET https://api.expense-budget-tracker.com/v1/`. Las lecturas utilizan `POST /v1/sql/query`; las escrituras aprobadas de forma explícita utilizan `POST /v1/sql/execute`. Un agente puede ayudar a importar y conciliar extractos mientras el usuario revisa los cambios propuestos. La [guía de primeros pasos](/es/docs/getting-started/) explica los puntos de entrada disponibles.
 
-La gente suele permanecer con las hojas de cálculo demasiado tiempo porque el archivo todavía se abre y los totales se siguen calculando. Eso no es lo mismo que el sistema siga estando sano.
+## Cuándo es una alternativa mejor que una hoja de cálculo
 
-Si ya estás haciendo malabares con varias cuentas, varias monedas y transferencias regulares, una **alternativa a la hoja de cálculo** adecuada no es excesiva. Es lo que mantiene utilizable tu panorama financiero.
+Una hoja de cálculo sigue siendo razonable para una instantánea anual sencilla. Se vuelve frágil cuando las fórmulas, los saldos copiados, las etiquetas de las transferencias y los tipos de cambio dependen de la memoria.
 
-Si buscas un **rastreador de patrimonio neto** más fiable, basado en saldos, transferencias e informes multidivisa en lugar de fórmulas frágiles, [Expense Budget Tracker](https://expense-budget-tracker.com/es/) es un práctico **rastreador de presupuesto de código abierto** que vale la pena probar.
+Expense Budget Tracker es una **alternativa a la hoja de cálculo de finanzas personales** más sólida cuando quieres:
+
+- controlar el patrimonio neto de varias cuentas a partir de un libro contable de transacciones
+- conservar intactas las monedas originales
+- ver un único total convertido a la moneda de referencia
+- separar los totales de las cuentas `regular` y `investment`
+- evitar vincular credenciales bancarias
+- inspeccionar la implementación de código abierto o autoalojarla
+- usar un agente para ayudarte a importar y conciliar extractos
+
+No es la herramienta principal adecuada si tu pregunta central es «¿Qué tengo dentro de cada cuenta de inversión?» o «¿Cuándo puedo jubilarme con estos supuestos de rentabilidad?». Esas tareas requieren datos de las posiciones, valoraciones en tiempo real o actualizadas con regularidad y modelos específicos.
+
+Una opción intermedia útil es un **rastreador de patrimonio neto multidivisa** en el que el efectivo y la deuda se concilian con transacciones reales, las inversiones usan totales actualizados manualmente, las transferencias se mantienen neutrales y no hace falta conectar el banco.
+
+Este artículo explica un flujo de registro contable, no ofrece asesoramiento financiero, fiscal, jurídico ni de inversión individualizado.
