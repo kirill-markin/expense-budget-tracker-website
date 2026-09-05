@@ -1,229 +1,235 @@
 ---
-title: "How to Import Bank Statements Into an Expense Tracker in 2026: AI Categorization Without Spreadsheet Cleanup"
-description: "Want to import CSV or PDF bank statements into an expense tracker without manual cleanup? Here is a practical 2026 workflow: let AI parse transactions, match your categories, verify balances, and save everything into a multi-currency budget system."
+title: "How to Import Bank Statements Into an Expense Tracker"
+description: "Use a CSV or PDF bank statement with an AI agent, review duplicates and transfers, then reconcile the balance before importing approved rows."
 date: "2026-03-16"
+updated: "2026-09-05"
+image: "/blog/how-to-import-bank-statements-into-an-expense-tracker-v2.png"
 keywords:
-  - "import bank statements into expense tracker"
-  - "bank statement import"
-  - "expense tracker bank statement import"
-  - "AI bank statement parser"
-  - "categorize transactions automatically"
+  - "import bank statements into an expense tracker"
   - "CSV bank statement import"
-  - "PDF bank statement parser"
-  - "multi currency expense tracker"
+  - "PDF bank statement import"
+  - "AI bank statement parser"
+  - "bank statement reconciliation"
+  - "expense tracker without bank linking"
 ---
 
-Last week I dropped a PDF bank statement into an AI agent, went to make coffee, and came back to a ledger full of categorized transactions. Not a demo table. My actual accounts. My actual categories. My actual balance check waiting for review.
+A closed bank or card statement can look ready to import while still containing several traps. Some transactions may already be in your ledger because you recorded them from receipts. A card payment may look like new spending even though the purchases were recorded weeks earlier.
 
-That is the version people usually mean when they search for how to **import bank statements into an expense tracker**.
+The safe way to **import bank statements into an expense tracker** is to preserve the bank's source, let an AI agent prepare a reviewable draft, approve only the rows you understand, then reconcile every affected account.
 
-Not "upload a file and enjoy fixing 47 rows by hand afterward." Not "export to CSV, open Excel, split one ugly column into three, then copy everything into a budget app that still does not understand transfers."
+Expense Budget Tracker doesn't have a native one-click CSV or PDF upload wizard, and it doesn't keep a persistent connection to your bank. This workflow uses an external AI agent or script to read the statement and interact with the tracker. The agent handles the file; you review and control the exact ledger write.
 
-They want the boring part to disappear without losing trust in the numbers.
+![A postal worker checks a parcel batch at a sorting gate, with one duplicate set aside](/blog/how-to-import-bank-statements-into-an-expense-tracker-v2.png)
 
-## Most bank statement import workflows still become spreadsheet work
+## Start with one source you can return to
 
-Funny thing is, a lot of products talk about **bank statement import** as if the file upload is the hard part.
+Keep the original statement unchanged. Work from a copy and give the agent the exact file path or attachment, account, currency, and closed date range.
 
-It usually is not.
+One file should represent one account and one statement period whenever possible. If a bank export combines two cards, mixes pending and posted activity, or overlaps several periods, split the review into explicit sections before normalizing transactions. Otherwise a later balance mismatch has too many places to hide.
 
-The hard part starts right after the upload:
+Use posted transactions for a closed-period import. Pending items can change amount, description, or date. Put them in a separate watch list rather than treating them as settled history.
 
-- the merchant names are messy
-- categories do not match your system
-- transfers get treated like spending
-- refunds land in the wrong month
-- foreign-currency rows look believable until you inspect them closely
+The file format changes the extraction risk. A CSV bank statement import starts with structured fields; a PDF bank statement import may start with extracted text or pixels.
 
-So the product proudly says it imported your statement, and you spend the next half hour cleaning up what the import did to your data.
+- A structured CSV usually gives the cleanest starting point, but the agent still has to confirm the delimiter, date format, decimal separator, currency, and whether amounts use separate debit and credit columns or one signed field.
+- A text-based PDF may preserve readable transaction text while losing column alignment. Give each draft row a page number plus a transaction sequence or line reference so you can trace it back.
+- A scanned or image-only PDF needs OCR or image understanding. Cropped pages, faint print, and merged columns can make exact extraction impossible. If a date, amount, currency, or balance is unclear, stop and request a better file or manual confirmation.
 
-That is not really an import workflow. That is unpaid data-entry work wearing a nicer shirt.
+An **AI bank statement parser** is only as reliable as the supplied file and the chosen tool's access to it. A neat table isn't evidence that every row or digit was extracted correctly.
 
-## The problem is not parsing. The problem is trust.
+## Use this exact review table
 
-If a tool gets three restaurant payments wrong, that is annoying.
+The agent should create a draft outside the ledger first, with exactly one review row for every posted source transaction—including duplicates and exclusions. Use these columns in this order:
 
-If it turns a transfer into an expense, misses a refund, and leaves your account balance off by 200 euros, the whole system becomes suspicious very quickly.
+| Column | What belongs there |
+|---|---|
+| `source_ref` | CSV row number, or PDF page plus transaction sequence or line reference |
+| `posted_at` | Posted date and time if the source provides them; include a time zone only when the source supplies it or the user confirms it |
+| `raw_description` | Source text exactly as shown, without merchant cleanup |
+| `statement_amount` | Original debit, credit, or signed amount exactly as shown in the source |
+| `currency` | Source currency; never infer it silently from a symbol |
+| `ledger_amount` | Amount normalized to the tracker's sign convention |
+| `target_account` | Exact existing account selected from the workspace |
+| `proposed_kind` | Exact value allowed by the live schema for this movement |
+| `proposed_category` | Exact existing category, or the live schema's required no-category value for a transfer |
+| `transfer_match` | Counterpart account and source reference, or `unresolved` |
+| `duplicate_candidate` | Matching ledger row and evidence, or `none found` |
+| `uncertainty` | Any unresolved text, date, amount, account, currency, or classification issue |
+| `decision` | `insert`, `match existing`, `exclude`, or `needs review` |
 
-That is why I think **expense tracker bank statement import** is mostly a trust problem.
+For example, a row already recorded from a receipt should remain in the table with `match existing`. It should not disappear from the evidence, and it should not become a second ledger entry.
 
-People do not need a flashy import wizard. They need a workflow that answers a few very boring questions correctly:
+The raw description and statement amount matter even after the agent produces cleaner fields. They are the quickest route back to the source when a proposed category or sign looks wrong.
 
-- did every transaction get recorded?
-- did it land in the right account?
-- did transfers stay transfers?
-- did the final balance match the bank statement?
+## Connect the agent, then inspect reality
 
-Once those answers feel shaky, most people stop importing regularly. Then the finance habit dies a slow and familiar death.
+For a terminal agent or direct HTTP script, begin with:
 
-## The workflow I actually want from an expense tracker
+```text
+GET https://api.expense-budget-tracker.com/v1/
+```
 
-The version I find useful is smaller than most apps make it look.
+Follow the discovery response, complete the email-code flow, and store the returned long-lived `ApiKey` outside chat memory. Authenticated requests use `Authorization: ApiKey <key>`. The [Agent Setup guide](/docs/agent-setup/) covers the complete onboarding sequence.
 
-1. Drop in the statement, whether it is CSV, PDF, or even a screenshot.
-2. Let the system read the rows and draft the transactions.
-3. Match new transactions against categories you already use.
-4. Keep transfers separate from real spending.
-5. Verify the ending balance against the bank statement.
-6. Save everything directly into the tracker you already budget in.
+Before constructing any SQL, the agent should:
 
-That is it.
+1. Confirm the signed-in account and exact workspace.
+2. Select the intended workspace or send its ID with the request.
+3. Inspect `GET /v1/schema` for the current allowed relations and columns.
+4. Query the exact target account, its currency, existing categories, and the last trusted reconciliation point through `POST /v1/sql/query`.
+5. Query existing ledger activity for the statement period and its duplicate-check boundary before proposing a write.
 
-No separate cleanup spreadsheet. No "temporary import table" you have to babysit. No second system where your statement data goes to wait for manual reconciliation.
+Do not copy a column list from this article into an import script. The live schema is the contract. The [API reference](/docs/api/) documents the endpoints and SQL rules, while `/v1/schema` tells the agent what can be written now.
 
-This is what people are usually asking for when they search **import bank statements into expense tracker**. They are asking for a workflow that ends with trustworthy books, not with another admin task.
+An MCP-capable client can instead connect to:
 
-## Categories matter more than import buttons
+```text
+https://mcp.expense-budget-tracker.com/mcp
+```
 
-A weak import tool treats each statement like a brand new puzzle.
+That path uses browser OAuth rather than an `ApiKey`. Request `expenses:read` to use `list_workspaces`, `get_schema`, and `sql_query`. Add the optional `expenses:write` scope only when the client is ready to call `sql_execute`. The [MCP Connector guide](/docs/mcp-connector/) explains the connection and approval model.
 
-A useful one starts with your existing history.
+Both paths cap returned query rows at 100. The direct API also caps affected rows at 100 per mutation request. If a period contains more rows, divide reads into non-overlapping date or source boundaries and show that every posted statement row appears exactly once in the review table.
 
-If you have been categorizing the same grocery store, the same landlord, the same gym, and the same salary account for months, the software should learn from that. Not in some mystical AI-marketing sense. Just in the practical sense that the next import should reuse the structure you already built.
+## Draw a practical duplicate boundary
 
-That is why **categorize transactions automatically** is not really about automation alone. It is about continuity.
+Query the target account for the full statement period plus three calendar days on each side. The small overlap catches receipt entries and imported rows whose purchase and posting dates differ. It is a review boundary, not proof that two rows are the same.
 
-The imported rows should fit the rest of your system:
+Treat an existing stable bank transaction identifier as strong duplicate evidence when both source and ledger contain it. Without one, flag a candidate when all of these match:
 
-- same categories
-- same account model
-- same transfer handling
-- same reporting currency
-- same budget views afterward
+- target account
+- currency
+- exact signed amount
+- date within three calendar days
 
-If the imported statement lands in a disconnected staging area, you did not save the work. You only postponed it.
+Then compare the raw description, cleaned counterparty, reference text, and any receipt evidence. Two real purchases can have the same amount at the same merchant, so the agent should return candidates rather than silently deleting, updating, or skipping them.
 
-## CSV, PDF, and screenshots all end up at the same decision
+This is where statement work meets receipt work. A [receipt-scanner workflow](/blog/ai-receipt-scanner-expense-tracker/) proves the details of an individual purchase: merchant, items, tax, tip, and total. A statement proves movement on an account and may provide opening and closing balances. When both describe the same purchase, match them; don't record it twice.
 
-People often search separately for **CSV bank statement import** and **PDF bank statement parser**.
+## Let your ledger categories guide the draft
 
-Fair enough. The file types are different.
+Read the categories already used in the selected workspace and map statement rows to those names. A merchant description can suggest a category, but it cannot prove one. A payment processor, marketplace, or unfamiliar transfer label is especially weak evidence.
 
-But the real decision is the same in both cases: can the product turn the raw statement into reliable transactions inside your finance system?
+Put unclear rows in `needs review`. Don't invent a category to make the table look complete. The useful output is a short uncertainty list attached to specific source references, not a confident guess buried among approved rows.
 
-CSV is cleaner when the bank export is decent.
+Refunds deserve the same care. Keep their source sign and account movement visible, then map them according to the workspace's existing treatment. Don't quietly label every positive amount as income.
 
-PDF is more realistic for how people actually live.
+## Keep transfers from becoming fake spending
 
-Sometimes you only have a screenshot from a banking app because you are traveling, the bank export is weird, or you just want to record a handful of purchases without opening five tools.
+An internal transfer changes account balances without creating consumption. If both accounts are inside your tracked boundary, represent both account movements using the relationship required by the live schema. The source leg leaves one account, the counterpart enters the other, and the pair should not inflate spending.
 
-I like systems that treat all three as normal input instead of pretending the user will always show up with perfect CSV exports and a free afternoon.
+This covers the common cases:
 
-## Multi-currency is where weak imports start lying
+- checking to savings is an internal transfer when both accounts are tracked
+- a credit-card purchase is spending on the card account
+- the later payment from checking to that tracked card is a transfer, not the purchase again
+- a separately stated bank fee is spending, even when it appears beside a transfer
+- cross-currency transfer legs keep the actual amount and currency from each account's own statement; don't invent a conversion amount for the missing side
 
-This is the part a lot of finance products get wrong quietly.
+If the counterpart account or statement is missing, leave `transfer_match` as `unresolved`. Do not manufacture the other leg or approve the row as ordinary spending just to finish the batch. The detailed decision boundary is in [Do Bank Transfers Count as Expenses?](/blog/do-bank-transfers-count-as-expenses/).
 
-The statement says one thing. The dashboard shows another. Technically both numbers are "correct," but only one of them matches what the bank actually reported.
+An account outside your tracked budget needs an explicit policy. A payment crossing that boundary may be a purchase, debt settlement, investment contribution, reimbursement, or something else. The word “transfer” in the bank description doesn't settle it.
 
-If you live across countries, hold savings in another currency, or simply travel a lot, **multi currency expense tracker** support stops being an edge case very quickly.
+## Approve a batch, not a vague intention
 
-The right order is boring:
+Once every posted source row has a decision—even if that decision is `needs review`—the agent should show:
 
-1. keep the original transaction in its native currency
-2. store the real amount exactly as it happened
-3. convert later for reporting
+- the workspace, statement account, currency, and period
+- posted source-row count and the statement's debit, credit, or signed totals
+- rows matched to existing ledger entries
+- rows excluded from import and why
+- unresolved duplicate or transfer candidates
+- the exact SQL for one small batch, constructed from the live schema
+- the expected affected-row count
 
-The wrong order is to flatten everything on import and hope the reporting still feels honest later.
+Use an approval this specific:
 
-That shortcut usually works right until the moment you care about the numbers.
+```text
+I approve statement import batch [number] only.
+Workspace: [name and ID]
+Statement account: [account name and ID]
+Period: [start through end]
+Approved source refs: [exact list]
+Expected affected rows: [count]
+Execute only the exact SQL shown in the latest preview.
+Do not change any other row. Stop after read-back verification.
+```
 
-If multi-currency budgeting is the main pain, this companion piece goes deeper:
+If the workspace, account, SQL, source list, or expected effect changes, the approval no longer applies. Ask for a new preview and a new approval.
 
-- [Multi-Currency Budgeting for Expats in 2026](https://expense-budget-tracker.com/blog/multi-currency-budgeting-for-expats/)
+## Write in small batches and read each one back
 
-## AI agents fit this job better than classic import wizards
+For the direct API, send one approved `INSERT`, `UPDATE`, or `DELETE` statement per request to `POST /v1/sql/execute`. For MCP, use `sql_execute` with `expenses:write`. A multi-row insert can still be one statement, but keep batches small enough that a human can compare every row with the review table. Start with the smallest coherent group—one transfer pair or a handful of ordinary rows. Continue only after its read-back is clean and the next batch has its own preview and approval.
 
-Import wizards are usually rigid in exactly the places where statements are messy.
+After each batch, query those exact rows again through `/v1/sql/query` or `sql_query`. Compare the stored account, timestamp, signed amount, currency, kind, category, and transfer relationship with the approved preview, then map each read-back row to its approved source reference. An HTTP success response does not prove that the ledger contains what you intended.
 
-They want the columns in one exact shape. They expect one bank format. They get nervous when a PDF has ugly spacing or when a screenshot needs interpretation.
+Don't mix cleanup into the import. If read-back exposes a wrong value or an existing row needs correction, prepare a separate exact `UPDATE` or `DELETE`, explain its effect, and request fresh approval.
 
-An AI agent is more useful here because the task is not only structural. It is also contextual.
+## Reconcile every account the import touched
 
-The agent can:
+For a statement that supplies opening and closing balances, first use the statement's own debit, credit, and balance convention:
 
-- inspect the statement format
-- look up your existing categories
-- compare new rows against recent transactions
-- detect obvious duplicates
-- keep transfers from pretending to be expenses
-- verify the account balance after import
+```text
+expected source closing balance = source opening balance + sum(posted source movements)
+```
 
-That is a much closer match to the real job.
+For the tracker, calculate forward from its last known-good account checkpoint rather than assuming the statement's first date is already reconciled:
 
-I do not care about AI here because it sounds futuristic. I care because statement imports are full of little judgment calls, and rigid import forms are bad at those.
+```text
+expected tracker balance at cutoff = last known-good tracker balance
+                                   + sum(signed ledger movements after that checkpoint through the cutoff)
+```
 
-## What Expense Budget Tracker does differently
+Translate any bank-specific debit, credit, or card-debt presentation into the tracker's sign convention and show that translation. The expected tracker balance must then equal the normalized statement closing balance for that account. Also compare the imported source refs with the review table: every posted statement row should be inserted, matched to an existing row, or explicitly excluded.
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/) fits this workflow better than a typical budgeting app because it is not trying to bolt import logic onto a disconnected finance dashboard.
+If the import created or matched both sides of an internal transfer, reconcile both affected accounts against their own statements or known-good balance checkpoints. One matching source account can still hide a fabricated or duplicated destination leg.
 
-The product already has the pieces that matter:
+A CSV transaction export may not include opening and closing balances. In that case, use a separate bank-provided balance at an exact cutoff or a previous known-good reconciliation point. Without either, you can verify row coverage and totals, but you cannot claim full **bank statement reconciliation**.
 
-- a real ledger with accounts, categories, budgets, and transfers
-- multi-currency storage without lossy pre-conversion
-- AI chat in the app
-- external agent workflows through the published API
-- shared workspaces if more than one person touches the finances
+The stop condition is simple: if any account has an unexplained balance difference, an unresolved source row, an uncertain amount or currency, or an ambiguous duplicate or transfer, stop. Don't add a balancing transaction. Preserve the draft and investigate the specific gap with the [budget reconciliation workflow](/blog/how-to-reconcile-your-budget-with-your-bank-balance/).
 
-That matters because statement import should end inside the same system you use afterward for planning, balances, and reporting.
+## Know where the statement data goes
 
-The workflow can be straightforward:
+This is an **expense tracker without bank linking**, not a promise that the statement stays on your machine.
 
-1. give the agent access to the finance workspace
-2. upload the bank statement
-3. let it read your current categories and accounts
-4. draft the transactions
-5. verify the ending balance
-6. save the rows directly into the ledger
+The AI client or model provider you choose may process the CSV or PDF and the financial text it contains. Review that provider's data-handling terms and give it only the file access needed for the job. In this documented workflow, the agent sends SQL requests and approved structured writes to the tracker, then receives selected structured rows in return. The original statement file is not uploaded to the tracker.
 
-If you want the technical setup, these are the relevant follow-ups:
+Self-hosting Expense Budget Tracker doesn't automatically self-host the AI agent, OCR tool, or model provider. Those are separate systems with separate data boundaries. If avoiding persistent bank access is the priority, read [how a budget app can work without bank linking](/blog/budget-app-without-bank-linking/) and choose each part of the workflow accordingly.
 
-- [How to Use AI to Track Expenses and Manage Your Budget](https://expense-budget-tracker.com/blog/how-to-use-ai-to-track-expenses-and-manage-your-budget/)
-- [AI Expense Tracker Setup for Claude Code, Codex, and OpenClaw](https://expense-budget-tracker.com/blog/ai-agent-expense-tracker-claude-code-codex-openclaw/)
-- [AI agent setup docs](https://expense-budget-tracker.com/docs/agent-setup/)
+## A prompt you can reuse
 
-## A practical import workflow that does not become a second job
+```text
+Import the closed bank or card statement at [file path or attachment] into Expense
+Budget Tracker. This is for workspace [name] and account [name], covering [dates].
 
-Here is the version I would actually recommend:
+Do not write yet. Preserve the original file. Identify whether it is structured CSV,
+text-based PDF, or scanned/image PDF, and report any extraction limits. Exclude pending
+activity. Build the exact review table from this article, keeping a source reference,
+raw description, original amount, normalized ledger amount, and uncertainty for every
+posted row.
 
-1. Start with one account, not your whole financial life.
-2. Drop in the latest statement.
-3. Let the agent draft the import from the file.
-4. Review new merchants and unusual categories.
-5. Check the ending balance against the statement.
-6. Move on with your life.
+For direct HTTP, begin at https://api.expense-budget-tracker.com/v1/, follow its
+discovery response, use the returned or stored long-lived ApiKey, confirm /me and the
+exact workspace, inspect /v1/schema, and read via /v1/sql/query. For MCP, use
+list_workspaces, get_schema, and sql_query with expenses:read; request expenses:write
+only for an approved sql_execute write.
 
-That last part matters more than people admit.
+Before proposing SQL, query the existing target period plus three calendar days on each
+side. Respect the 100-row result limit by using non-overlapping boundaries when needed.
+Flag duplicate candidates; never skip them silently. Reuse existing categories. Treat
+credit-card payments and movements between tracked accounts as transfers, link both
+actual account movements according to the live schema, and leave missing counterparts
+unresolved rather than inventing them.
 
-A lot of budgeting systems fail because each import session feels like a small tax audit. If the workflow stays under ten minutes and the numbers stay believable, you will keep doing it.
+Show the completed review table, row counts, source totals, duplicate evidence, transfer
+pairs, exclusions, and all unresolved items. Then show the exact live-schema SQL for one
+small batch and its expected affected-row count. Wait for my batch-specific approval.
 
-That is the real win.
+After approval, execute only that one INSERT, UPDATE, or DELETE statement through
+/v1/sql/execute or sql_execute. Re-query the exact rows and compare them with the approved
+preview. Reconcile every affected account to its statement closing balance or an exact
+known-good balance checkpoint. Stop without adding a balancing row if anything remains
+unexplained.
+```
 
-## So what is the best way to import bank statements into an expense tracker in 2026?
-
-I do not think the best answer is a prettier CSV wizard.
-
-I think the better answer is:
-
-- let the system read messy inputs
-- let it reuse your existing finance structure
-- let it verify balances before you trust it
-- save everything directly into the tracker you already use
-
-That is why I think an AI-assisted, ledger-first workflow is the strongest answer to **import bank statements into expense tracker** right now.
-
-The goal is not to admire the import screen.
-
-The goal is to finish with clean transactions, correct balances, and a budget that still matches reality.
-
-## Try the bank statement import workflow that ends in real bookkeeping
-
-If you want a practical way to **import bank statements into an expense tracker**, start here:
-
-- [Open Expense Budget Tracker](https://expense-budget-tracker.com/)
-- [Read the features page](https://expense-budget-tracker.com/features/)
-- [Read the getting started guide](https://expense-budget-tracker.com/docs/getting-started/)
-- [View the source on GitHub](https://github.com/kirill-markin/expense-budget-tracker)
-
-Most people do not need another personal finance app that says "import supported."
-
-They need one that can read a messy statement, keep the books honest, and stop turning a normal monthly routine into spreadsheet repair.
+The result is concrete: the original evidence, a decision for every source row, an approved ledger change, and balances you can explain.
