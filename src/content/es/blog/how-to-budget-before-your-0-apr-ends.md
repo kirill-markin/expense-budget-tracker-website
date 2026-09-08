@@ -1,221 +1,171 @@
 ---
-title: "Cómo hacer un presupuesto antes de que termine tu 0% APR en 2026: evita intereses sin descuadrar el resto de tu presupuesto"
-description: "¿Tu 0% APR termina pronto en 2026? Aquí tienes una forma práctica de presupuestar el saldo promocional pendiente, evitar errores habituales del periodo promocional y elegir una cifra de pago que tu mes realmente pueda sostener."
+title: "¿Tu promoción con 0% APR termina pronto? Un plan que sí encaja"
+description: "¿Tu 0% APR termina pronto? Calcula pagos seguros, deja margen para que se registren y decide qué hacer si queda saldo cuando venza la tasa promocional."
 date: "2026-07-09"
-image: "/blog/how-to-budget-before-your-0-apr-ends.png"
+updated: "2026-09-08"
+image: "/blog/how-to-budget-before-your-0-apr-ends-v2.png"
 keywords:
-  - "cómo hacer un presupuesto antes de que termine tu 0 apr"
-  - "0 apr termina pronto presupuesto"
-  - "cómo pagar tu 0 apr antes de que termine"
-  - "presupuesto para pagar una transferencia de saldo"
-  - "presupuesto para 0 apr introductorio"
-  - "evitar intereses después del 0 apr"
-  - "presupuesto después de que termine el 0 apr"
-  - "plan de pago para promoción de tarjeta de crédito"
+  - "0% APR termina pronto"
+  - "qué pasa cuando termina el 0% APR"
+  - "pagar el 0% APR antes de que termine"
+  - "plan de pago para 0% APR"
+  - "fin de promoción de transferencia de saldo"
+  - "interés diferido frente a 0% APR"
 ---
 
-Una sola línea en un correo de la tarjeta de crédito puede convertir un mes normal en cuentas con fecha límite: tu APR promocional termina el 14 de septiembre. El saldo sigue ahí, el pago mínimo parece inofensivo y, de repente, el presupuesto tiene una fecha tope muy clara.
+Tu extracto indica que la tasa promocional termina pronto, pero no puedes liquidar el saldo pendiente con una sola nómina. Dividirlo entre los «meses que quedan» es demasiado impreciso. Necesitas saber cuál es la última fecha en la que el emisor puede recibir y registrar el pago con suficiente margen, qué oportunidades reales tendrás para pagar antes de esa fecha y cómo seguir cubriendo el alquiler, los alimentos, los servicios básicos, los medicamentos, el transporte y todos los pagos mínimos obligatorios.
 
-Ahí es cuando la gente empieza a buscar **cómo hacer un presupuesto antes de que termine tu 0% APR**.
+Con esos datos puedes crear un plan para liquidar el saldo con 0% APR que de verdad puedas seguir. También sabrás con tiempo si quedará saldo después de la promoción y podrás elegir una alternativa antes de que empiecen los intereses.
 
-No es un caso raro ni marginal en 2026. La Reserva Federal de Nueva York dijo el [10 de febrero de 2026](https://www.newyorkfed.org/newsevents/news/research/2026/20260210) que los saldos de tarjetas de crédito subieron `$44` mil millones en el cuarto trimestre de 2025, hasta `$1.28` billones. La Reserva Federal dijo el [13 de mayo de 2026](https://www.federalreserve.gov/publications/2026-economic-well-being-of-us-households-in-2025-executive-summary.htm) que el 16% de los adultos no pagó todas sus facturas durante el mes anterior, y que los saldos medios de tarjetas de crédito habían subido más de un 35% entre quienes dijeron que tenían dificultades para salir adelante. El [Consumer Credit Card Market Report 2025 del CFPB](https://files.consumerfinance.gov/f/documents/cfpb_consumer-credit-card-market-report_2025.pdf) dijo que las tarjetas con una promoción introductoria de APR del 0% representaron `$899` mil millones en volumen de compras y `$352` mil millones en saldos en 2024, alrededor de un tercio del volumen de compras y de los saldos pendientes.
+Este artículo ofrece información educativa, no asesoramiento financiero, legal, fiscal o crediticio personalizado. El contrato de tu tarjeta y el emisor son las fuentes oficiales sobre tu oferta.
 
-Muchos hogares arrastran saldos promocionales mientras el resto del mes ya va justo. Precisamente por eso esto necesita un plan de presupuesto antes de que la fecha límite aparezca en el extracto menos oportuno.
+![Un operario guía por una esclusa de piedra una barca estrecha que lleva seis cajas de madera](/blog/how-to-budget-before-your-0-apr-ends-v2.png)
 
-Esto es solo orientación presupuestaria. No es asesoramiento legal, fiscal, crediticio ni financiero.
+## Primero, confirma qué significa «sin intereses» en tu oferta
 
-![Un escritorio cálido con agenda, calculadora, tarjeta de crédito, sobre del extracto y una fecha límite en el calendario para planificar el presupuesto de pago del 0% APR](/blog/how-to-budget-before-your-0-apr-ends.png)
+Lo que ocurre cuando termina el 0% APR depende del tipo de oferta. Una oferta introductoria con una tasa porcentual anual (APR, por sus siglas en inglés) real del 0 % y una oferta de interés diferido pueden parecer similares en el momento de la compra, pero mantener un saldo después de la fecha límite tiene consecuencias muy distintas.
 
-## Primero averigua qué tipo de promoción tienes realmente
-
-La gente suele meter estas ofertas en el mismo saco. Tu presupuesto no debería hacer lo mismo.
-
-Hay tres versiones habituales:
-
-| Tipo de oferta | Lo que suele pasar cuando termina la promoción | Riesgo para el presupuesto |
+| Oferta | Si queda saldo después de la promoción | Qué debes verificar |
 | --- | --- | --- |
-| APR introductorio del 0% en compras | Los intereses empiezan a aplicarse sobre cualquier saldo restante a partir de ese momento | Necesitas un objetivo real de pago antes de la fecha límite |
-| APR del 0% en transferencia de saldo | El saldo transferido deja de ser barato, y las compras nuevas ya pueden ser caras mientras la transferencia sigue ahí | Una sola tarjeta puede convertirse discretamente en dos problemas |
-| Promoción de tienda con interés diferido | Si el saldo no se paga completo a tiempo, pueden cargarte intereses sobre todo el periodo promocional | El pago mínimo puede ser peligrosamente engañoso |
+| APR introductoria real del 0 % para compras | La APR posterior a la promoción indicada empieza a aplicarse al saldo promocional pendiente cuando termina la oferta; a diferencia del interés diferido, el periodo anterior al 0 % no se recalcula con efecto retroactivo solo porque quede saldo | Fecha exacta de finalización, saldo afectado, APR posterior a la promoción y regla sobre el registro de los pagos |
+| Promoción de transferencia de saldo con APR del 0 % | La tasa indicada empieza a aplicarse al saldo transferido cuando termina la promoción; las compras nuevas quizá ya estén generando intereses | Saldo transferido, comisión de transferencia, APR de compras, condiciones del periodo de gracia y APR posterior a la promoción |
+| Oferta de interés diferido, a menudo descrita como «sin intereses si se paga el total» | Podrías deber los intereses acumulados desde la fecha de compra original si no pagas todo el saldo promocional a tiempo | Saldo sujeto a interés diferido, fecha límite para liquidarlo, intereses diferidos acumulados y reglas de asignación de pagos |
 
-Esa última importa más de lo que parece. El CFPB dice en su [explicación sobre interés diferido](https://www.consumerfinance.gov/ask-cfpb/i-got-a-credit-card-promising-no-interest-for-a-purchase-if-i-pay-in-full-within-12-months-how-does-this-work-en-40/) que, si no pagas el saldo completo durante el periodo promocional, o si te retrasas más de 60 días en un pago mínimo, pueden cobrarte intereses por cada mes desde la compra original. También dice que los pagos mínimos probablemente no bastarán para liquidar el saldo antes de que termine la promoción.
+La diferencia importa. La [guía sobre interés diferido](https://www.consumerfinance.gov/ask-cfpb/i-got-a-credit-card-promising-no-interest-for-a-purchase-if-i-pay-in-full-within-12-months-how-does-this-work-en-40/) de la Oficina para la Protección Financiera del Consumidor (CFPB) indica que los pagos mínimos probablemente no bastarán para liquidar la compra antes de que termine la oferta. También explica que, si no pagas el total a tiempo, podrías deber intereses desde la fecha de compra original. En un análisis de 2024, el CFPB determinó que [el 90 % de las tarjetas de comercios tenía una APR máxima declarada superior al 30 %](https://www.consumerfinance.gov/data-research/research-reports/issue-spotlight-the-high-cost-of-retail-credit-cards/). Confundir el interés diferido de una tarjeta de comercio con una financiación real al 0 % puede salir caro.
 
-Antes de presupuestar nada, revisa el extracto o el contrato de la tarjeta y responde a una pregunta muy simple:
+Revisa la primera página del extracto, la información de la oferta y el contrato de la tarjeta. Después, pide al emisor que te confirme con claridad:
 
-¿Qué ocurre exactamente con este saldo el primer día después de que termine la promoción?
+- ¿Es una APR real del 0 % o una oferta de interés diferido?
+- ¿A qué saldo se aplica la promoción?
+- ¿En qué fecha y a qué hora termina la promoción?
+- ¿El pago final debe enviarse, recibirse o registrarse antes de esa fecha límite?
+- ¿Cuánto puede tardar en registrarse tu método de pago?
+- ¿Qué APR se aplica después a cada saldo pendiente?
 
-Si no puedes responderlo en una sola frase, todavía no tienes un plan de pago.
+No des por hecho que la fecha de vencimiento del pago mensual también es la fecha límite de la promoción. El CFPB señala que una oferta de interés diferido puede terminar en una fecha distinta a la fecha normal de vencimiento del pago.
 
-## El pago mínimo casi nunca es la cifra real para liquidar la promoción
+## Prepara una hoja para liquidar el saldo promocional
 
-El mínimo sirve para mantener la cuenta al día. No sirve para liquidar la promoción.
+Lleva una hoja sencilla fuera de la cuenta de la tarjeta. Basta con una aplicación de notas o una hoja de cálculo:
 
-La cuenta útil es simple:
+| Hoja para liquidar la promoción | Tu cifra |
+| --- | --- |
+| Saldo promocional actual | $ |
+| Tipo de oferta: 0 % real, transferencia de saldo o interés diferido |  |
+| Fecha y hora de finalización de la promoción |  |
+| Fecha límite de recepción o registro exigida por el emisor |  |
+| Tiempo de procesamiento indicado por el emisor para tu método de pago |  |
+| Margen de tiempo adicional que eliges |  |
+| Fecha segura de pago |  |
+| Oportunidades de pago antes de la fecha segura |  |
+| Importe necesario por oportunidad | $ |
+| Efectivo que queda disponible en tu presupuesto tras cubrir gastos esenciales y pagos mínimos | $ |
+| Saldo previsto en la fecha segura | $ |
+| APR posterior a la promoción, si corresponde | % |
 
-`saldo promocional pendiente / ciclos de extracto restantes = objetivo mínimo de pago mensual`
+Calcula primero la fecha segura:
 
-Ejemplo:
+`fecha segura de pago = fecha límite del emisor − tiempo de procesamiento indicado − margen de tiempo adicional`
 
-- saldo promocional pendiente: `$4,800`
-- ciclos de extracto restantes antes de que termine la promoción: `6`
-- objetivo de pago mensual: `$800`
+El emisor debe indicarte el tiempo de procesamiento. Tu margen adicional cubre los riesgos que decidas contemplar, como fines de semana, horas límite, incidencias en la cuenta o un pago que necesite revisión. El CFPB recomienda liquidar los saldos con interés diferido bastante antes del final, porque un pago puede tardar demasiado en llegar. Si el emisor no te da un plazo de procesamiento claro, haz el pago final antes y confirma que el saldo promocional haya llegado a cero.
 
-No hace falta que te guste esa cifra. Lo que sí hace falta es que el presupuesto reaccione a la cifra real y no a la que tranquiliza.
+Ahora cuenta las oportunidades de pago anteriores a la fecha segura. Una oportunidad es una fecha en la que el dinero estará realmente disponible: un día de cobro, una transferencia programada desde ahorros que ya existen u otro ingreso confirmado. No cuentes con un bono, un reembolso, una venta o un pago por trabajo adicional que solo esperas recibir.
 
-Yo contaría ciclos de extracto, no meses vagos. Si la promoción termina a mitad de septiembre pero tu extracto se cierra a finales de agosto, tu fecha límite práctica puede ser anterior a la fecha que te llamó la atención al principio.
+Después, calcula:
 
-Suele ser justo aquí cuando el saldo deja de parecer abstracto. Ya no es solo deuda. Es deuda con un reloj en marcha.
+`pago necesario por oportunidad = saldo promocional actual ÷ oportunidades de pago antes de la fecha segura`
 
-## Pon el pago de la promoción en su propia línea del presupuesto
+Redondea hacia arriba al siguiente centavo. Si tus ingresos llegan de forma irregular, puedes variar los pagos individuales, pero la suma debe cubrir el saldo antes de la fecha segura. Sigue haciendo puntualmente todos los pagos mínimos obligatorios mientras aplicas el plan.
 
-No lo escondas dentro de `pago de tarjeta de crédito`.
+## Un ejemplo práctico
 
-Yo crearía una línea específica como:
+Supongamos que un hogar tiene un saldo de $4,200 en una oferta real con APR del 0 % para compras. El emisor confirma la fecha límite de la promoción e indica que el método de pago elegido puede tardar dos días hábiles en registrarse. El hogar añade otros tres días hábiles de margen, así que su fecha segura de pago queda cinco días hábiles antes de que termine la promoción.
 
-- `pago 0 apr`
-- `pago transferencia de saldo`
-- `pago de compra promocional`
+Antes de esa fecha segura hay seis días de cobro:
 
-Esa línea debería ir separada de:
+`$4,200 ÷ 6 = $700 por día de cobro`
 
-- los pagos mínimos normales de otras tarjetas
-- el gasto con tarjeta del mes en curso
-- las transferencias habituales entre tus propias cuentas
+El hogar reserva $700 de cada una de esas seis nóminas. En un mes con dos nóminas, después de los gastos habituales deben quedar al menos $1,400 en efectivo para los dos pagos. También deja de usar la tarjeta para compras nuevas, porque cambiarían tanto el saldo como el plan. Cada vez que se registra un pago, comprueba el saldo con el emisor y ajusta el siguiente importe si una comisión, un reembolso u otro cambio ha modificado la cifra.
 
-La razón es simple. El pago de una promoción tiene fecha límite y objetivo. La actividad normal de la tarjeta suele seguir otras reglas.
+Ahora supongamos que el presupuesto solo permite pagar $600 cada día de cobro:
 
-Si mezclas todo, pierdes la respuesta a la pregunta que más importa:
+`$4,200 − ($600 × 6) = $600 pendientes`
 
-¿Vamos realmente al ritmo necesario para liquidar este saldo antes de que desaparezca el periodo barato?
+Esa diferencia de $600 no justifica sacar dinero reservado para alimentos ni dejar de pagar el mínimo de otra tarjeta. Es una cifra que conviene planificar desde ahora.
 
-Si ya sigues tu deuda con detalle, este artículo encaja bien con [Cómo seguir el pago de la deuda de tu tarjeta de crédito en 2026](/blog/how-to-track-credit-card-debt-payoff/). Si el problema mayor es que la cuenta corriente sigue quedándose demasiado justa alrededor de las fechas de vencimiento, [Cómo salir del desfase de caja con la tarjeta de crédito en 2026](/blog/how-to-get-off-the-credit-card-float/) es el siguiente paso más útil.
+Si tu hogar prepara el presupuesto por meses en vez de por nóminas, la regla es la misma: cuenta solo las fechas mensuales en las que habrá fondos antes de la fecha segura de pago. Un último mes parcial no se convierte en una oportunidad de pago completa solo porque aparezca en el calendario.
 
-## Una tarjeta de transferencia de saldo normalmente debería dejar de usarse para gastar
+## Si va a quedar saldo, calcula solo una referencia mensual aproximada
 
-Aquí es donde una decisión inteligente puede complicarse muy rápido.
+Este cálculo aproximado sirve únicamente para una **oferta real al 0 %** y te permite ver la magnitud de la alternativa:
 
-El CFPB dice en su [guía sobre transferencias de saldo](https://www.consumerfinance.gov/ask-cfpb/do-i-pay-interest-on-new-purchases-after-i-get-a-zero-or-low-rate-balance-transfer-en-49/) que, en la mayoría de las tarjetas, si arrastras saldo de un mes a otro, las compras nuevas pueden generar intereses desde la fecha de la transacción. El CFPB también dice en su [explicación sobre consolidación de deudas](https://www.consumerfinance.gov/ask-cfpb/what-do-i-need-to-know-if-im-thinking-about-consolidating-my-credit-card-debt-en-1861/) que, si usas la misma tarjeta de transferencia para compras nuevas, no tendrás periodo de gracia para esas compras y tendrás que pagar intereses hasta que se liquide todo el saldo por completo, incluido el saldo transferido.
+`saldo pendiente × APR posterior a la promoción ÷ 12 = referencia mensual aproximada de intereses`
 
-Por eso yo normalmente trataría una tarjeta de transferencia de saldo como una cuenta temporal en cuarentena:
+Para la diferencia de $600 del ejemplo anterior, con una APR hipotética del 24,99 % después de la promoción:
 
-- el saldo transferido se queda ahí
-- el gasto nuevo no
+`$600 × 0.2499 ÷ 12 ≈ $12.50`
 
-Usar esa misma tarjeta para supermercado, gasolina o suscripciones mientras el saldo transferido sigue ahí es la forma en que un plan promocional limpio acaba convertido en cargos de intereses confusos y extractos difíciles de interpretar.
+Esto no predice el primer extracto posterior a la promoción. Las [definiciones de contratos de tarjetas de crédito](https://www.consumerfinance.gov/data-research/credit-card-data/know-you-owe-credit-cards/credit-card-contract-definitions/) del CFPB describen los métodos de saldo diario y saldo diario promedio, que utilizan una tasa periódica diaria. Los pagos y los cargos nuevos cambian el saldo empleado en esos cálculos cuando se registran. El interés real depende del contrato de la tarjeta, la fecha en la que termina la promoción dentro del ciclo de facturación, el número de días en los que se aplica la tasa habitual, las fechas de los pagos, las comisiones y el método de cálculo del emisor.
 
-Si necesitas una mejor forma de usar la tarjeta del día a día sin dejar de pagar el total, lee [Cómo hacer un presupuesto con tarjetas de crédito en 2026](/blog/how-to-budget-with-credit-cards/).
+**No** uses esta fórmula para el interés diferido. Ese cargo puede aplicarse a todo el periodo promocional, así que calcular un mes de intereses sobre el saldo actual puede subestimar mucho el riesgo. Pide al emisor el importe de los intereses diferidos acumulados, el saldo promocional exacto y el pago necesario para liquidarlo antes de la fecha límite.
 
-## Elige una cifra de pago que el mes realmente pueda sostener
+## No uses a diario la tarjeta de transferencia de saldo
 
-El presupuesto tiene que seguir funcionando mientras trabajas en la promoción.
+Una promoción de transferencia de saldo que termina pronto puede resultar confusa si sigues usando la misma tarjeta para pagar alimentos, combustible o suscripciones.
 
-Eso significa que el orden sigue siendo aburrido:
+En la mayoría de las tarjetas, el CFPB indica que [las compras nuevas pueden generar intereses desde la fecha de la transacción](https://www.consumerfinance.gov/ask-cfpb/do-i-pay-interest-on-new-purchases-after-i-get-a-zero-or-low-rate-balance-transfer-en-49/) mientras mantengas un saldo transferido. Pagar solo las compras nuevas quizá no restablezca el periodo de gracia; puede que tengas que pagar el saldo total de la cuenta, incluida la transferencia.
 
-1. gastos esenciales
-2. pagos mínimos obligatorios de deudas
-3. cantidad realista para liquidar la promoción
-4. todo lo demás
+Salvo que las condiciones del emisor indiquen claramente lo contrario, la regla práctica más sencilla es dejar de hacer compras nuevas con esa tarjeta. Mantén aislado el saldo transferido, haz los pagos previstos y usa otro método para los gastos corrientes. Si las compras actuales ya dependen de la próxima nómina, [salir del desfase de caja con la tarjeta de crédito](/blog/how-to-get-off-the-credit-card-float/) es el problema complementario más urgente.
 
-Si el objetivo promocional solo funciona porque estás dejando discretamente sin cubrir el alquiler, la compra o la próxima factura de suministros, el plan no es disciplinado. Es solo una cuenta optimista.
+## Elige la opción que tu presupuesto pueda sostener
 
-Una forma útil de poner a prueba esa cifra es preguntarte:
+Incluye los gastos esenciales y todos los pagos mínimos obligatorios en el presupuesto antes de probar el objetivo de la promoción. Después, sigue la opción que respalden las cifras:
 
-- ¿sigue funcionando este importe en un mes con una sorpresa incómoda?
-- ¿sigue funcionando en un mes de tres nóminas o de dos nóminas, según cómo me paguen?
-- ¿me obliga a volver a usar la tarjeta en otra parte?
+| Lo que muestra la hoja | Qué hacer ahora | Qué no hacer |
+| --- | --- | --- |
+| El importe necesario para liquidar el saldo cabe después de los gastos esenciales y los pagos mínimos | Reserva suficiente efectivo para cada oportunidad de pago, deja de aumentar el saldo y confirma que el pago final se haya registrado antes de la fecha segura | Esperar al último extracto para empezar |
+| Quedará saldo, pero los gastos esenciales están cubiertos | Decide qué gastos puedes aplazar, calcula los intereses posteriores a una promoción real al 0 % y compara el costo de las alternativas antes de que termine la oferta | Suponer que otra transferencia será automáticamente más barata |
+| El objetivo exigiría quitar dinero de la vivienda, los alimentos, los servicios básicos, los medicamentos, el transporte o los pagos mínimos | Protege esas obligaciones, contacta con el emisor con tiempo y considera acudir a un servicio de asesoramiento crediticio sin fines de lucro | Crear una emergencia nueva solo para cumplir la fecha límite de la promoción |
+| La oferta es de interés diferido y no puedes pagar el total | Pide ahora al emisor el importe exacto para liquidar el saldo y las consecuencias de los intereses diferidos acumulados; toma la decisión cuanto antes | Usar el cálculo de un mes de intereses que aparece arriba |
 
-Si la respuesta es no, recorta categorías a propósito en vez de esperar que la cifra encaje por arte de magia más adelante.
+Si el plan exige recortes, concreta cuáles. «Gastar menos» no es una instrucción útil. Reduce o pausa categorías flexibles específicas y comprueba que el mes deje disponible el importe exacto para liquidar el saldo. Si los gastos esenciales ya consumen el presupuesto mensual, prepara un [presupuesto básico](/blog/how-to-make-a-bare-bones-budget/) antes de prometer a la tarjeta un dinero que no tienes.
 
-Los recortes no tienen que ser dramáticos para ser reales:
+Otra transferencia de saldo o un préstamo de consolidación pueden ayudar en algunos casos, pero compara la comisión, la duración de la promoción, la APR posterior, el pago obligatorio y el costo total. La [guía sobre consolidación de deudas](https://www.consumerfinance.gov/ask-cfpb/what-do-i-need-to-know-if-im-thinking-about-consolidating-my-credit-card-debt-en-1861/) del CFPB advierte que una cuota mensual más baja puede deberse a un plazo de pago más largo y terminar costando más en total. También menciona el asesoramiento crediticio sin fines de lucro y recomienda contactar con los acreedores para consultar posibles cambios en los pagos, las comisiones, las tasas o las fechas de vencimiento.
 
-| Cambio en la categoría | Importe mensual |
-| --- | ---: |
-| Pausar el dinero extra para comer fuera | `$120` |
-| Reducir compras flexibles | `$90` |
-| Bajar entretenimiento y suscripciones | `$55` |
-| Recortar gasto semanal diverso | `$85` |
-| Redirigir temporalmente una aportación no urgente a un fondo de ahorro para gastos previstos | `$150` |
-| Total liberado | `$500` |
+## Pon la fecha segura en un calendario real
 
-Eso ya es un plan. "Debería gastar menos el mes que viene" no lo es.
+Las condiciones del emisor indican qué debe ocurrir. Tu calendario evita que se te pase.
 
-Si el mes ya parece frágil antes incluso de añadir el objetivo promocional, empieza por [Cómo hacer un presupuesto de supervivencia en 2026](/blog/how-to-make-a-bare-bones-budget/) o [Cómo ponerse al día con las facturas en 2026](/blog/how-to-catch-up-on-bills/).
+Crea eventos de calendario para:
 
-## Si no puedes liquidarlo a tiempo, decide pronto qué pasará después
+- cada fecha de pago prevista;
+- la fecha segura del pago final;
+- una comprobación un día hábil después de la fecha prevista de registro;
+- otra comprobación antes de la fecha límite real del emisor; y
+- el primer extracto posterior a la promoción, para verificar el resultado.
 
-Esperar al último extracto es la forma en que una deuda promocional se convierte en deuda cara de toda la vida.
+Incluye el nombre de la tarjeta, el importe previsto y dónde confirmar el saldo que muestra el emisor. Un [calendario de facturas](/blog/how-to-use-a-bill-calendar-for-budgeting/) resulta útil porque muestra los pagos junto a las nóminas y las fechas de vencimiento de los gastos esenciales, en vez de dejar la promoción perdida en el asunto de un correo.
 
-El CFPB dice que las tasas promocionales de transferencia de saldo duran un tiempo limitado, pueden incluir una comisión de transferencia y luego pueden subir, aumentando tu pago. También dice que, si te endeudaste porque estabas gastando más de lo que ganabas, consolidar por sí solo no resolverá el problema salvo que reduzcas el gasto o aumentes los ingresos.
+## Usa Expense Budget Tracker sin convertir el capital en gasto
 
-Así que, si las cuentas dicen que la promoción no desaparecerá a tiempo, decide pronto entre unas cuantas opciones honestas:
+[Expense Budget Tracker](/) puede reunir el saldo de la tarjeta, el presupuesto habitual y los pagos reales en un solo libro mayor. Mantén el calendario exacto de la promoción y la fecha límite del emisor en la hoja externa y el calendario que preparaste antes.
 
-- recortar más y terminar antes de la fecha límite
-- aceptar el coste después de la promoción y presupuestarlo de forma explícita
-- comparar otra transferencia de saldo u opción de consolidación antes de que venza la promoción actual
-- pedir ayuda a un asesor de crédito sin ánimo de lucro si el mes ya está demasiado ajustado para sostener esa deuda con claridad
+Sigue este proceso:
 
-La mala versión es no hacer nada y luego sorprenderte cuando el saldo barato se vuelve caro justo según lo previsto.
+1. Mantén la tarjeta promocional como una cuenta independiente. Su saldo se calcula a partir de los movimientos del libro mayor, así que los cargos y los pagos siguen visibles en vez de quedar reducidos a una cifra genérica de deuda.
+2. En cada presupuesto mensual actual o futuro incluido en el calendario de pagos, limita el gasto habitual previsto para que `ingresos previstos − gastos previstos` deje al menos el efectivo necesario para los pagos de ese mes. Si hay dos pagos de $700, el resultado debe ser de al menos $1,400.
+3. Trata esa resta como una comprobación de disponibilidad de efectivo, no como una función para programar transferencias. No programa los pagos ni demuestra que habrá suficiente dinero en la cuenta corriente en un día concreto; de esas cuestiones se encargan la hoja externa, el calendario y los saldos de las cuentas.
+4. Registra cada pago de la cuenta corriente a la tarjeta como dos asientos de transferencia vinculados y sin categoría de gasto. Las compras originales de la tarjeta ya fueron el gasto. Clasificar el pago del capital como un gasto nuevo contaría dos veces el mismo consumo y distorsionaría los resultados previstos frente a los reales y las proyecciones de la cartera.
+5. Añade una nota opcional al movimiento de transferencia, como `pago de promoción 4 de 6`, si te ayuda a comparar el libro mayor con el calendario externo.
+6. Concilia el saldo de la tarjeta con el emisor después de cada extracto y tras el pago final. Investiga cualquier diferencia en vez de añadir un asiento de ajuste.
+7. Si se registra un interés o una comisión después de la promoción, anota ese cargo como gasto en una categoría clara de texto libre, como `intereses y comisiones de tarjeta de crédito`. El cargo es un costo; el pago del capital sigue siendo una transferencia.
 
-## Pon la fecha límite en un calendario, no en tu cabeza
+Puedes introducir y revisar el presupuesto y los movimientos del libro mayor en la interfaz del producto, mediante el conector MCP alojado o con la API para agentes. Consulta [Primeros pasos](/docs/getting-started/) para conocer las opciones de configuración. Si quieres un proceso más completo para seguir el saldo, usa [Cómo seguir el pago de la deuda de una tarjeta de crédito](/blog/how-to-track-credit-card-debt-payoff/).
 
-Las deudas promocionales se pasan por alto porque las fechas clave viven en tres sitios distintos:
+Expense Budget Tracker **no** se conecta a tu emisor para leer las condiciones de la tarjeta, guardar las condiciones promocionales en los metadatos de la cuenta, calcular intereses según la APR, planificar transferencias ni enviar recordatorios de fechas límite. El contrato de la tarjeta y el saldo que muestra el emisor siguen siendo las referencias oficiales. La hoja externa contiene el calendario de pagos y tu calendario personal se ocupa de los recordatorios.
 
-- el asunto del correo
-- la letra pequeña del extracto
-- el calendario de vencimientos
+## Termina cuando el saldo figure en cero, no cuando envíes el pago
 
-Yo seguiría al menos esto:
+Cuando el 0% APR está a punto de terminar, «pago programado» no significa que hayas acabado. El emisor debe mostrar que el saldo promocional correspondiente llegó a cero antes de la fecha segura.
 
-- fecha de final de la promoción
-- próxima fecha de cierre del extracto
-- próxima fecha de vencimiento del pago
-- último extracto que todavía cae por completo dentro del periodo promocional
-- objetivo de pago por nómina o por mes
-
-Esto pertenece al mismo sistema que usas para el alquiler, los suministros y otras obligaciones fijas. [Cómo usar un calendario de facturas para hacer presupuesto en 2026](/blog/how-to-use-a-bill-calendar-for-budgeting/) es un buen artículo complementario porque las fechas límite promocionales se comportan como facturas con peores consecuencias.
-
-## Mantén el plan de la promoción separado de tu colchón de emergencia
-
-Aquí es donde la gente resuelve un problema reabriendo otro sin darse cuenta.
-
-Si vacías tu último colchón de efectivo real solo para liquidar el saldo promocional, las cuentas pueden verse más limpias mientras el hogar se vuelve más frágil.
-
-Yo tendría cuidado con usar dinero que ya está asignado a:
-
-- alquiler o hipoteca
-- seguro que vence pronto
-- ahorro de emergencia de verdad
-- gastos anuales que están a punto de llegar
-
-Si estás atrapado entre terminar la promoción y mantener vivo un colchón básico, el dilema es prácticamente el mismo que en [Pagar deudas o crear primero un fondo de emergencia en 2026](/blog/pay-off-debt-or-build-emergency-fund-first/). No finjas que todos los dólares están igual de libres solo porque hoy están en la misma cuenta.
-
-## Dónde ayuda Expense Budget Tracker
-
-[Expense Budget Tracker](/) encaja bien con este tipo de problema porque la deuda promocional es mitad problema de fecha límite y mitad problema de flujo de caja.
-
-La configuración útil es bastante directa:
-
-- mantener visible el saldo promocional como su propia cuenta de deuda
-- darle al objetivo de pago su propia línea del presupuesto
-- separar el gasto normal con tarjeta de las transferencias para liquidar
-- comparar el mes actual y los siguientes sin reconstruir el plan de memoria
-- guardar notas sobre la fecha límite exacta de la promoción y el calendario del extracto
-
-Si primero quieres una visión general del producto, [Funciones](/features/) y [Primeros pasos](/docs/getting-started/) son los puntos de entrada más claros.
-
-Lo que importa más es la claridad operativa. Puedes ver si la promoción se está reduciendo lo bastante rápido, si el efectivo realmente está ahí y si el resto del mes sigue funcionando.
-
-## La versión corta
-
-Si tu 0% APR termina pronto, yo trabajaría en este orden:
-
-1. confirmar si es APR introductorio, transferencia de saldo o interés diferido
-2. calcular el objetivo real de pago mensual a partir del saldo pendiente y los ciclos de extracto que quedan
-3. darle al pago promocional su propia línea del presupuesto
-4. dejar de hacer gasto nuevo con la tarjeta de transferencia de saldo
-5. poner la fecha límite en un calendario
-6. decidir pronto qué pasará si el saldo no va a desaparecer a tiempo
-
-Esa es la versión que aguanta en la vida real.
-
-La promoción no es un recordatorio amable para organizarte más adelante. Es una fecha límite. El presupuesto debería tratarla así mientras todavía queda tiempo para hacer algo útil.
+Confirma el tipo de oferta, prepara la hoja a partir de la fecha límite del emisor, reserva efectivo para cada oportunidad real de pago y elige una alternativa mientras los gastos esenciales sigan protegidos. Así puedes liquidar un saldo con 0% APR antes de que termine la promoción cuando las cifras encajen, sin convertir un pago incompleto en una emergencia doméstica cuando no encajen.
