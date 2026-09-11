@@ -1,339 +1,240 @@
 ---
-title: "Claude Code Expense Tracker in 2026: Import, Verify, and Budget"
-description: "Connect Claude Code to Expense Budget Tracker, review a bank-statement import, verify balances, and manage your budget through the current Agent API."
+title: "Claude Code Expense Tracker: Connect, Import, and Reconcile"
+description: "Connect Claude Code to Expense Budget Tracker with one link, preview and approve statement imports, reconcile balances, and update a budget without bank linking."
 date: "2026-03-05"
-updated: "2026-08-20"
-image: "/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code.png"
+updated: "2026-09-11"
+image: "/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code-v2.png"
 keywords:
   - "Claude Code expense tracker"
+  - "Claude expense tracker"
   - "expense tracker for Claude"
-  - "Claude personal finance"
-  - "Claude Code budget"
-  - "AI expense tracker"
+  - "Claude Code budget tracker"
+  - "connect Claude to expense tracker"
   - "import bank statement with Claude Code"
 ---
 
-A useful Claude Code expense tracker should begin with a read, not a write. Before one bank transaction enters the ledger, Claude Code can identify the workspace, inspect the live schema, check the target account and date range, and show you what it plans to change.
+A four-row statement can reconcile to `€0.00` and still leave your budget wrong. Classify a €54.20 supermarket purchase as Travel instead of Groceries and the account balance stays perfect, while the category report is off by €54.20.
 
-That review point is the reason to use a terminal agent for this job. Claude Code can handle the file and HTTP work, while you keep the financial judgment: which account is correct, whether a row is a transfer, which category fits, and whether the proposed write should happen at all.
+A useful Claude Code expense tracker needs two checks, not one: the stored movements must explain the bank balance, and the stored categories must match the reviewed statement. Claude Code can do the file parsing, calculations, and API calls. You choose the account and categories, inspect the proposed records, and approve the exact writes.
 
-That makes it an AI expense tracker with a visible approval boundary rather than a general finance chatbot.
+Expense Budget Tracker does not keep a native bank connection or offer a statement-upload flow for this setup. Export the statement yourself, place it somewhere Claude Code is allowed to read, and send only the approved records through the managed Agent API. If avoiding persistent bank access is your main requirement, [Budget App Without Bank Linking](/blog/budget-app-without-bank-linking/) covers the broader trade-offs.
 
-Expense Budget Tracker supports that workflow through its direct Agent API. The starting point is one public discovery URL:
+![A mosaic conservator lifts a misplaced blue tile from a terracotta band beside a level brass balance scale](/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code-v2.png)
 
-```text
-https://api.expense-budget-tracker.com/v1/
-```
+## Connect Claude Code with one discovery link
 
-From there, Claude Code can complete email OTP onboarding, store the returned long-lived `ApiKey` outside chat memory, inspect the allowed schema, and use separate endpoints for reads and approved writes.
+Install and sign in to Claude Code using Anthropic's [official quickstart](https://code.claude.com/docs/en/quickstart). The [CLI reference](https://code.claude.com/docs/en/cli-reference) explains how working directories and additional file access work.
 
-![A tailor and client review a paper pattern and one test fabric piece before cutting the full bolt](/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code.png)
-
-## What this setup does—and where the data goes
-
-Claude Code runs in your terminal and can work with a statement file you make available on your computer. That does not make the whole workflow offline or local-only.
-
-[Anthropic's current Claude Code requirements](https://docs.anthropic.com/en/docs/claude-code/getting-started) specify an Internet connection. Authentication and AI processing use Anthropic or the model provider configured for your Claude Code installation. Relevant statement content, prompts, and API results may therefore be processed outside your computer under that provider's terms.
-
-The rest of the path is separate:
-
-| Boundary | What happens there |
-|---|---|
-| Your computer | The source statement starts as a local file. Claude Code gets only the file access you allow. |
-| Claude Code and its model provider | Claude Code interprets the file, prepares queries, and explains results. Internet access is required for authentication and AI processing. |
-| Direct Agent API | Claude Code sends the specific authenticated reads and approved writes needed for the task. The API cannot browse arbitrary files on your computer. |
-| Expense Budget Tracker storage | Approved financial records are stored in the hosted database, or in infrastructure you control if you self-host the application. |
-
-This is also different from the remote MCP connector for Claude and Claude Desktop. The direct API uses a long-lived `ApiKey` and is the path covered here. MCP uses browser OAuth at a different URL; it does not inherit access to local files merely because you connected it.
-
-If your main requirement is no persistent bank connection, [Budget App Without Bank Linking](/blog/budget-app-without-bank-linking/) explains these data boundaries in more detail.
-
-## Connect Claude Code through the discovery URL
-
-Install and authenticate Claude Code using Anthropic's [official setup guide](https://docs.anthropic.com/en/docs/claude-code/getting-started). The [CLI reference](https://docs.anthropic.com/en/docs/claude-code/cli-usage) covers interactive and non-interactive command usage.
-
-Once `claude` works in your terminal, open it in a directory where you keep your finance files and give it this prompt:
+Open `claude` in the directory that contains the statement, or grant access to its directory using a method supported by your setup. Then paste this prompt:
 
 ```text
-Connect to Expense Budget Tracker using https://api.expense-budget-tracker.com/v1/.
-Follow the discovery response instead of assuming endpoint details. Ask me for my
-account email and then the 8-digit code from my inbox. Save the returned ApiKey
-outside chat memory only after I approve the storage location.
+Connect to Expense Budget Tracker from this discovery link:
+https://app.expense-budget-tracker.com/api/agent
 
-After login, call /me, list my workspaces, ask me to confirm the target workspace,
-save that workspace for this key, and inspect /schema. Do not write financial data yet.
+Fetch it with GET, read the returned JSON, and follow the current action URLs. Do not
+guess or hardcode the API flow. Ask me for my Expense Budget Tracker email and start
+the email OTP flow.
+After that request succeeds, tell me to check spam or junk if the message is not
+visible, ask me for the 8-digit code, and follow the returned verification action.
+
+After verification, ask me to approve a persistent storage location for the returned
+ApiKey outside chat memory and source control. Load my account context, list my
+workspaces, ask me to confirm the target workspace, save it as the default for this
+key, and inspect the live schema. Run one small read-only query to confirm the selected
+workspace. Do not write financial data.
 ```
 
-The current onboarding sequence is:
+The [app-scoped agent link](https://app.expense-budget-tracker.com/api/agent) returns the live discovery document. It currently supplies `https://api.expense-budget-tracker.com/v1/` as the API base, along with the authentication and SQL action URLs. Paste the app-domain link; Claude Code should follow the URLs returned by the service rather than memorizing the internal sequence.
 
-1. `GET https://api.expense-budget-tracker.com/v1/` and follow the actions in the discovery response.
-2. Provide the account email when Claude Code asks for it.
-3. Provide the 8-digit email code. Successful verification returns a long-lived `ApiKey`.
-4. Store the key outside chat memory, preferably as `EXPENSE_BUDGET_TRACKER_API_KEY` in a location you have approved. Do not commit it to a repository.
-5. Call `/v1/me` and `/v1/workspaces` with `Authorization: ApiKey <key>`.
-6. Select the intended workspace with `POST /v1/workspaces/{workspaceId}/select`.
-7. Call `/v1/schema` before generating SQL.
+The same email flow handles signup and login. Once you provide the 8-digit code, Claude Code receives a long-lived `ApiKey`. Approve a specific storage location, such as a secrets file excluded from source control. Never put the key in `CLAUDE.md` or commit it to a repository. [AI Agent Setup](/docs/agent-setup/) documents the underlying authentication and workspace sequence.
 
-The selected workspace is saved for that key. Later SQL requests can omit `X-Workspace-Id`, although Claude Code can still send the header when you want to override the saved workspace for one request. If the account has exactly one workspace and the key has no selection yet, the API can save and use it automatically. It is still worth naming the workspace in every review before a write.
+## Don't mix up the Agent API and MCP setups
 
-The detailed auth flow and storage guidance live in [AI Agent Setup](/docs/agent-setup/).
+“Claude expense tracker” can refer to two different integrations. This article uses Claude Code in a terminal with the Agent API. Claude and Claude Desktop can instead use the hosted remote MCP connector.
 
-## Give Claude Code a review rule before the first import
+| | Claude Code with Agent API | Claude or Claude Desktop with MCP |
+|---|---|---|
+| Best fit | Terminal work with accessible local files and direct HTTP | Conversations in an MCP-capable Claude client |
+| Starting point | `https://app.expense-budget-tracker.com/api/agent` | `https://mcp.expense-budget-tracker.com/mcp` |
+| Authentication | Email OTP, then a long-lived `ApiKey` | Browser OAuth |
+| Data interface | Discovery URLs leading to query and execute endpoints | `sql_query` and optional `sql_execute` tools |
+| Statement access | Files and directories available to that Claude Code session | The remote connector does not provide local file access |
 
-A local `CLAUDE.md` can preserve the operating rules for this finance directory without storing the key itself. Keep the instructions short and specific:
+The credentials are not interchangeable. For the Claude web or desktop app, follow the [Claude expense tracker MCP guide](/blog/claude-expense-tracker-mcp-connector/). Use the Agent API workflow below when the job begins with a file available to Claude Code.
+
+There are two more boundaries worth making explicit:
+
+- Model-provider processing is separate from Expense Budget Tracker's API and storage. Review the [Claude Code data-usage documentation](https://code.claude.com/docs/en/data-usage) and the terms for the provider configured in your installation before sharing statement data.
+- The local Docker Compose setup in the [self-hosting guide](/docs/self-hosting/) starts the web app, auth service, database, and FX worker. It does not provide the managed Agent API used here. The repository's AWS deployment is a separate setup that includes the public machine API.
+
+## Give the import a precise boundary
+
+Use one account, one currency, and one closed statement period for the first run. A CSV is convenient because its rows are easy to inspect. For any other export, first have Claude Code confirm that it can read the file in your environment and show the parsed rows. Do not assume support from the filename alone.
+
+Give Claude Code these six facts:
+
+1. The local path to the statement.
+2. The bank account and its matching tracker account.
+3. The account currency.
+4. The first and last posted dates.
+5. The opening or previous known-good balance.
+6. The statement closing balance.
+
+Leave pending transactions out until they post. Keep the source file unchanged and have Claude Code build a separate preview.
+
+This is a useful local `CLAUDE.md` rule set for the finance directory:
 
 ```markdown
 # Expense Budget Tracker workflow
 
-- Start from https://api.expense-budget-tracker.com/v1/ and inspect /schema.
-- Use POST /v1/sql/query for every read.
-- Before a write, show the target workspace, exact SQL, expected affected rows,
-  source totals, and possible duplicates. Wait for my explicit approval.
-- Use POST /v1/sql/execute only for the exact approved INSERT, UPDATE, or DELETE.
-- Verify every write with a fresh /v1/sql/query request.
-- Never invent a balancing transaction or silently change an uncertain category.
-- Keep the ApiKey outside this file and outside chat memory.
+- Start from https://app.expense-budget-tracker.com/api/agent and follow discovery.
+- Confirm the target workspace and inspect the live schema before writing SQL.
+- Use the read action for all inspection and reconciliation.
+- Before a write, show the source totals, possible duplicates, exact SQL, and expected rows.
+- Wait for my explicit approval of the complete change set.
+- Use the write action only for the approved INSERT, UPDATE, or DELETE.
+- Verify every write with a fresh read.
+- Never invent a balancing entry or silently resolve an uncertain category.
+- Keep the ApiKey outside this file and outside source control.
 ```
 
-Add your real account names, category conventions, transfer rules, and reporting currency if they are stable. Do not copy example categories into the tracker just because an article used them. Claude Code should query your existing data and use the live schema.
+Add stable details such as your real account names, category rules, transfer convention, and reporting currency. Do not copy example categories from this article unless they match your ledger.
 
-## Import one bank statement with Claude Code
+## Import the statement through a complete preview
 
-The safest first import is intentionally small: one account, one currency, one closed statement period, and a file whose rows you can review. CSV is a good starting point because its structure is visible. Other formats need a file-specific extraction check before you can trust the resulting rows.
-
-### 1. Fix the source boundary
-
-Before Claude Code parses anything, identify:
-
-- the bank account and its matching tracker account
-- the account currency
-- the first and last posted dates in the statement
-- the opening or previous known-good balance
-- the statement closing balance
-- whether pending transactions appear in the file
-
-Use posted transactions for the import and reconciliation. Keep pending activity outside the approved batch until it posts.
-
-### 2. Inspect the target before drafting rows
-
-Ask Claude Code to use the read endpoint first:
+After the connection works, paste the following prompt and replace the bracketed values:
 
 ```text
-I want to import ~/finances/checking-2026-07.csv.
+Import [local statement path] into [tracker account] for [posted start date] through
+[posted end date] in [currency]. The opening balance is [amount] and the bank's closing
+balance is [amount].
 
-Use /v1/sql/query only. Confirm the selected workspace, inspect /v1/schema, list the
-available accounts, and identify the one account that matches this statement. Query
-the statement date range in ledger_entries and look for overlap. Show me the account,
-currency, date boundary, existing row count, and any possible duplicates. Do not write.
+First confirm the selected workspace and inspect the live schema. Use only the read
+action to inspect the target account, existing categories, and ledger rows that overlap
+the statement period. Confirm that you can read the local file, parse it, and prepare a
+complete preview without writing anything.
+
+For every source row, show its source identifier or row number, posted date, signed
+amount, currency, target account, proposed transaction type, proposed category, and
+duplicate status. Flag transfers, refunds, reimbursements, fees, foreign-currency rows,
+unfamiliar counterparties, and uncertain classifications.
+
+Then show the source row count and signed total, all proposed ledger rows, possible
+duplicates, the exact SQL you would send, and the expected affected-row count. Stop
+and wait for my explicit approval of the complete change set.
 ```
 
-The primary read endpoint is:
+The database work stays read-only until you approve a change. Claude Code should inspect the live schema instead of copying column names from an article, find the matching account, and query existing rows across the same dates. A shared date and amount makes a transaction a duplicate candidate, not a confirmed duplicate. Two legitimate purchases can match both fields.
 
-```text
-POST https://api.expense-budget-tracker.com/v1/sql/query
-```
+### A four-row worked example
 
-It accepts one read-only `SELECT` or `WITH ... SELECT`. The request body uses the current SQL generated from `/schema`:
+Suppose a checking statement has an opening balance of €1,250.00 and four posted rows:
 
-```json
-{
-  "sql": "SELECT * FROM accounts LIMIT 100"
-}
-```
+| Row | Posted | Description | Signed amount | Proposed type | Proposed category | Review note |
+|---|---|---|---:|---|---|---|
+| 1 | 2026-08-31 | Salary | +€2,000.00 | Income | Salary | Clear |
+| 2 | 2026-09-02 | Market | −€54.20 | Expense | Groceries | Check merchant if unfamiliar |
+| 3 | 2026-09-03 | Savings transfer | −€300.00 | Transfer | — | Confirm the other account |
+| 4 | 2026-09-04 | Cafe | −€8.40 | Expense | Dining | Clear |
 
-Claude Code should calculate totals and grouped results in SQL rather than pulling the entire ledger into the conversation. Query results are capped at 100 rows.
+The four signed amounts total `+€1,637.40`. Added to the `€1,250.00` opening balance, they produce an expected closing balance of `€2,887.40`. This example fits on one screen, but a longer import still needs every source row represented in the preview and every uncertainty called out.
 
-### 3. Review a preview, not a promise
+The transfer needs its other account confirmed because moving money between your own accounts is not spending. Refunds and reimbursements also need their real type preserved. When a classification is uncertain, leave it flagged for a decision instead of choosing the most plausible category.
 
-Have Claude Code parse the statement into a preview table before it creates an `INSERT`. At minimum, the preview should include the source row, date, amount, currency, target account, proposed transaction type, proposed category, and duplicate status.
+### Approve one exact change set
 
-Review these rows closely:
+Review the workspace, account, date boundary, row count, signed total, duplicate candidates, and classifications. Approve the specific preview and SQL, rather than giving a broad instruction to “import everything.”
 
-- transfers between your own accounts
-- refunds and reimbursements
-- cash withdrawals and bank fees
-- unfamiliar counterparties
-- foreign-currency transactions
-- rows near the beginning and end of the statement period
-- any candidate that resembles an existing ledger entry
+The Agent API separates reads and writes. Claude Code uses the discovered read action for one `SELECT` or `WITH ... SELECT`, then uses the write action only for an explicitly approved `INSERT`, `UPDATE`, or `DELETE`. The live schema remains the authority for tables and columns; the [API reference](/docs/api/) explains the SQL contract and limits.
 
-A matching date and amount can indicate a duplicate, but it is not proof. Two legitimate transactions can share both. If the source includes a stable bank identifier, use it as evidence when the live schema has a suitable field; otherwise keep it in the preview instead of forcing it into the database.
+### Probe long inserts and updates before batching
 
-Then ask for a compact approval summary:
+Before a long `INSERT` or `UPDATE`, the live discovery instructions tell the agent to send a representative probe with the same SQL shape: 1–3 literal rows for an `INSERT`, or one targeted row for an `UPDATE`. Your approval covers both the probe and the remaining rows in that reviewed change set.
 
-```text
-Prepare the import preview without writing. Show:
+If the probe succeeds, Claude Code should continue immediately in sequential batches of no more than 100 records, verifying each batch as it goes. A 247-row approved import with a 3-row probe leaves batches of 100, 100, and 44. A changed scope, a new ambiguity, or an execution failure creates a new approval point. Routine later batches in the already approved set do not.
 
-1. the confirmed workspace and account
-2. the source date range and currency
-3. the count and signed total of source rows
-4. every proposed ledger row
-5. possible duplicates and uncertain classifications
-6. the exact INSERT statement or statements you would send
-7. the expected affected-row count
+Restricted SQL does not support `ON CONFLICT`, so duplicate handling must stay explicit. Read results are capped at 100 rows. Claude Code should check the response's row-count and truncation metadata, aggregate totals in SQL, and split detailed verification into narrow ordered reads. A truncated response is not a complete import check.
 
-Stop and wait for my approval.
-```
+### Read the stored rows back
 
-### 4. Send only the approved change set
+A successful API response proves that the request ran. It does not prove that every stored value matches the preview. Query the affected account and period again and compare:
 
-The primary write endpoint is:
-
-```text
-POST https://api.expense-budget-tracker.com/v1/sql/execute
-```
-
-It accepts one approved `INSERT`, `UPDATE`, or `DELETE`, including supported `WITH` forms. It is deliberately separate from the read endpoint.
-
-Each mutation is limited to 100 affected rows. For a long import, approve the complete proposed change set before execution. Claude Code should send 1–3 representative rows with the same SQL shape first. If that probe succeeds, it should immediately continue with the remaining approved rows in sequential batches of no more than 100. It should track and verify every batch, but it should not stop merely to ask you to continue or reconfirm. A changed scope, new ambiguity, or failed execution creates a new review point.
-
-The SQL surface does not support `ON CONFLICT`, so duplicate handling must be explicit rather than hidden behind an upsert.
-
-`POST /v1/sql` still exists for compatibility and restricted atomic multi-statement scripts. It is not the normal endpoint for statement reads or routine writes.
-
-### 5. Read the rows back
-
-An API success response is not the end of the import. Ask Claude Code to query the affected account and period again through `/v1/sql/query` and compare the stored result with the approved preview:
-
-- affected row count
-- dates and amounts
-- original currency
+- inserted row count
+- dates, signed amounts, and currencies
 - account assignment
 - transaction types and categories
-- duplicate count
+- duplicate candidates
+- batch totals and the complete statement total
 
-Do not ask Claude Code to “fix whatever looks wrong.” If verification finds a difference, return to a read-only diagnosis, prepare one specific correction, and approve that correction separately.
+If anything differs, return to read-only diagnosis. Review one specific correction before another write. The [bank statement import guide](/blog/how-to-import-bank-statements-into-an-expense-tracker/) goes deeper on overlapping periods, refunds, and transfers.
 
-The broader [bank statement import guide](/blog/how-to-import-bank-statements-into-an-expense-tracker/) covers transfers, refunds, overlapping periods, and other rows that can make a clean-looking import misleading.
+## Reconcile the balance and the categories separately
 
-## Reconcile one account before importing another
+Balance reconciliation asks whether the stored movements explain the bank's closing balance across the same posted dates.
 
-Reconciliation proves that the ledger movements explain the bank statement. Compare one bank account with its matching tracker account in the same currency and over the same posted boundary.
-
-For a normal deposit account, the basic check is:
+For a normal deposit account:
 
 **expected closing balance = opening balance + posted inflows − posted outflows**
 
-If the tracker uses signed movements, the equivalent is:
+With signed movements:
 
 **expected closing balance = opening balance + sum of signed posted movements**
 
-Liability accounts such as credit cards may use different sign conventions. Make Claude Code state the convention it found before comparing numbers.
+Liability accounts such as credit cards may use another sign convention. Claude Code should state the convention it found before calculating the comparison.
 
-Use a prompt that keeps the diagnosis read-only:
-
-```text
-Use /v1/sql/query only. Reconcile the imported checking account against the statement
-closing balance of [amount and currency]. State the opening boundary and sign convention.
-If the balances differ, show the exact difference and list candidate missing, duplicated,
-or mis-signed rows. Do not insert a balancing entry and do not change existing data.
-```
-
-If the difference is not zero, inspect the opening balance, missing or duplicated transactions, transfers, pending items, signs, dates, and currencies. A synthetic balancing entry makes the screen match while hiding the cause.
-
-A zero difference proves that the account movements add up. It does not prove that the categories are correct. Review category totals separately before moving to the next account. The [budget reconciliation guide](/blog/how-to-reconcile-your-budget-with-your-bank-balance/) goes deeper into that distinction.
-
-## Analyze spending through the read endpoint
-
-Once the import is verified, Claude Code can use `ledger_entries` for read-only spending analysis. Keep the question precise and ask for the SQL so you can review the definition behind the answer.
+Continue with this prompt:
 
 ```text
-Inspect /v1/schema, then use /v1/sql/query to compare spending by category for the
-latest three complete calendar months. Resolve explicit start and end dates before
-writing the SQL. Exclude transfers according to the stored transaction type. Aggregate
-in SQL, show the query, and explain any excluded or uncertain rows. Do not change data.
+Use the read action only. Reconcile [account] for [posted start date] through [posted
+end date] against the bank closing balance of [amount and currency]. State the opening
+boundary, the sign convention, the stored row count, and the signed movement total.
+
+Show expected closing balance, bank closing balance, and the exact difference. If the
+difference is not zero, list candidate missing, duplicated, excluded, wrong-date, or
+mis-signed rows. Do not insert a balancing entry and do not change any data.
+
+After the balance check, review category totals separately. List uncategorized rows,
+transfer rows counted as spending, and categories that differ from the approved preview.
 ```
 
-This matters because “spending” is not a universal column. A useful answer depends on the current schema, transaction types, account currency, refunds, and the exact date boundary. Claude Code can write the query, but you should still be able to see what it counted.
+In the four-row example, `€1,250.00 + €1,637.40 = €2,887.40`. If the bank also closes at €2,887.40, the balance difference is `€0.00`.
 
-For one-off investigation, ask for narrow questions such as:
+That zero validates the account arithmetic for the chosen boundary. It does not validate the categories. Moving the €54.20 Market row from Groceries to Travel leaves the balance difference at zero while shifting €54.20 between category totals. Category review is a separate acceptance check.
 
-- Which categories changed most between two complete months?
-- Which counterparties make up a category total?
-- Are there possible duplicates in the latest imported period?
-- Which actual categories have no matching budget line?
+When the difference is not zero, inspect the opening balance, missing or duplicated rows, transfers, pending items, signs, dates, and currencies. Never add a synthetic balancing transaction to make the difference disappear. The [reconciliation guide](/blog/how-to-reconcile-your-budget-with-your-bank-balance/) explains the diagnostic loop in more detail.
 
-The 100-row result limit is usually enough when Claude Code groups and filters at the database boundary.
+## Update the budget only after reconciliation
 
-## Update a Claude Code budget without handing over the decision
-
-Budget changes use the same review loop as statement imports. Claude Code can read `budget_lines`, compare the plan with actual ledger activity, and prepare a proposed `INSERT`, `UPDATE`, or `DELETE`. You decide whether the new amounts reflect your plans.
+Only move to the budget after the rows read back correctly, the account reconciles, and the category totals make sense. A Claude Code budget tracker can compare actual activity with `budget_lines` and prepare proposed changes. One unusual month does not automatically define the next plan.
 
 ```text
-Use /v1/sql/query to compare this month's actual income and spending with budget_lines.
-Then draft next month's budget using the existing categories and current schema.
+Confirm the workspace and inspect the current schema. Use the read action to compare
+actual income and spending for [complete period] with the matching budget lines. Exclude
+transfers using the stored transaction type and show uncategorized activity separately.
 
-Show the current amount, proposed amount, difference, and reason for each changed line.
-Show the exact SQL and expected affected rows. Do not call /v1/sql/execute until I
-approve specific lines. After an approved write, query those lines again to verify them.
+For each proposed budget change, show the category, current amount, actual amount,
+proposed amount, difference, and reason. Then show the exact SQL and expected affected
+rows. Do not write until I approve specific lines.
+
+After approval, use the write action only for those lines and verify them with a fresh
+read. Report any stored value that differs from the approved proposal.
 ```
 
-Do not let a high-spending month silently become the new plan. A large expense may be exceptional; a missing category may be a data problem; a transfer may have been misclassified. Claude Code can surface the differences, but a Claude Code budget still needs your judgment about what should happen next.
+A large expense may be exceptional. Apparent overspending may turn out to be a miscategorized transfer or refund. Claude Code can calculate the differences and prepare the SQL; the next month's amounts remain your decision.
 
-## Know the current Agent API boundary
+## Keep the same order for every statement
 
-The API exposes a small set of relations. Always treat `/v1/schema` as the current source of truth, but the present read/write split is:
+For each statement, keep the order fixed:
 
-| Relation | Access |
-|---|---|
-| `ledger_entries` | Read and approved write |
-| `budget_lines` | Read and approved write |
-| `workspace_settings` | Read and approved write |
-| `account_metadata` | Read and approved write |
-| `accounts` | Read-only |
-| `fx_rates_raw` | Read-only |
-| `fx_rates_daily` | Read-only |
+1. Start from `https://app.expense-budget-tracker.com/api/agent` and follow discovery.
+2. Load account context, confirm the workspace, and inspect the live schema.
+3. Give Claude Code one accessible statement file and explicit balance boundaries.
+4. Read the overlapping ledger data and prepare the complete import preview.
+5. Approve one exact change set.
+6. For a long insert, run a 1–3 row probe, then sequential batches of no more than 100.
+7. Read every stored batch back and compare it with the preview.
+8. Reconcile the account to the bank's closing balance without a balancing entry.
+9. Review category totals even when the balance difference is zero.
+10. Prepare, approve, and verify any budget-line changes separately.
 
-The current Agent API limits are:
-
-- 100 returned rows per query
-- 100 affected rows per mutation statement and request
-- 25-second total SQL request deadline
-- 10 requests per second and 10,000 requests per day for each key
-
-The SQL policy blocks DDL such as `CREATE`, `DROP`, and `ALTER`, transaction wrappers, SQL comments, quoted identifiers, dollar-quoted strings, `set_config()`, and restricted functions. The allowed functions are currently `SUM`, `COUNT`, `MIN`, `MAX`, `AVG`, and `COALESCE`. Use `ILIKE` instead of `LOWER(...)` for case-insensitive text search, and explicit date ranges instead of `NOW()` or `DATE_TRUNC()`. The primary endpoints accept one statement per request. `ON CONFLICT` is not supported.
-
-These controls reduce the SQL surface, but they do not decide whether a category is right or whether a statement row is really a transfer. Row Level Security isolates workspaces at the database level. ApiKeys are stored as SHA-256 hashes and can be revoked from the product. You should still protect the plaintext key on your computer and review each financial mutation.
-
-See the [API Reference](/docs/api/) for the current endpoint contract and limits.
-
-## Claude Code Agent API and Claude MCP are separate paths
-
-Searches for an expense tracker for Claude often mix terminal use with Claude or Claude Desktop connectors. Expense Budget Tracker supports both, but the setup and credentials are not interchangeable.
-
-| | Claude Code with Agent API | Claude or Claude Desktop with MCP |
-|---|---|---|
-| Best fit | Local files, terminal workflows, scripts, and direct HTTP | Conversations in an MCP-capable Claude client |
-| Start here | `https://api.expense-budget-tracker.com/v1/` | `https://mcp.expense-budget-tracker.com/mcp` |
-| Authentication | Email OTP, then long-lived `ApiKey` | Browser OAuth |
-| Read/write interface | `/v1/sql/query` and `/v1/sql/execute` | `sql_query` and optional `sql_execute` tools |
-| Local file access | Depends on the files and permissions available to Claude Code | Not provided by the remote connector itself |
-
-Use the [MCP Connector documentation](/docs/mcp-connector/) or the complete [Claude expense tracker MCP guide](/blog/claude-expense-tracker-mcp-connector/) when your goal is to connect Claude or Claude Desktop. Keep using this Agent API workflow when the task begins with a local statement and a terminal.
-
-## A reusable prompt for the whole workflow
-
-This prompt keeps discovery, preview, approval, and verification in one sequence:
-
-```text
-Connect to Expense Budget Tracker through https://api.expense-budget-tracker.com/v1/
-and follow the discovery response. Use the ApiKey stored outside chat memory. Call /me,
-list workspaces, confirm the target workspace with me, select it, and inspect /schema.
-
-I want to import [local CSV path] into [account] for [closed date range] in [currency].
-Use /v1/sql/query first to inspect the account, existing categories, and overlapping
-ledger entries. Parse the file and prepare a complete preview. Flag possible duplicates,
-transfers, refunds, reimbursements, fees, unusual counterparties, and uncertain categories.
-
-Show the source totals, proposed rows, exact SQL, and expected affected-row count. Do not
-write until I approve the complete change set. Use /v1/sql/execute only for that approved
-write. For a long import, send a representative 1–3 row probe first. If it succeeds,
-immediately continue the remaining approved rows in sequential batches of at most 100.
-Verify every batch through /v1/sql/query, but do not ask me to reconfirm unless the scope
-changes, new ambiguity appears, or execution fails.
-
-Finally, reconcile this one account with the statement closing balance. If it does not
-match, explain the difference without creating a balancing transaction or changing data.
-```
-
-Start with one account and one closed period. If the preview is understandable, the approved rows read back correctly, and the closing balance reconciles, you have a reviewable Claude personal finance workflow—not a chatbot with vague permission to change your books.
+Start with one account and one closed period. Once that statement reaches a reconciled ledger and a reviewed budget, repeat the workflow for the next account. The repetitive file and API work stays with Claude Code, while every financial decision remains visible before it changes your records.
