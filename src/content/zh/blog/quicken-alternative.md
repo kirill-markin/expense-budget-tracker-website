@@ -1,163 +1,145 @@
 ---
-title: "2026 年 Quicken 替代方案：功能取舍与低风险迁移指南"
-description: "对比 Quicken Classic 与开源替代方案的功能取舍，并按低风险流程测试迁移，避免数据丢失或重复入账。"
+title: "2026 年 5 款 Quicken 替代方案：按使用场景选择"
+description: "从银行同步、投资、桌面使用、隐私和迁移路径等方面，对比 Moneydance、Monarch Money、GnuCash、Actual Budget 和 Expense Budget Tracker。"
 date: "2026-03-17"
-updated: "2026-08-15"
-image: "/blog/quicken-alternative.png"
+updated: "2026-09-12"
+image: "/blog/quicken-alternatives-migration-readers.png"
 keywords:
   - "Quicken 替代方案"
-  - "2026 年 Quicken 替代方案"
+  - "Quicken 的替代方案"
   - "开源 Quicken 替代方案"
-  - "可导入 Quicken 数据的替代方案"
-  - "Quicken 个人理财替代软件"
-  - "自托管 Quicken 替代方案"
-  - "Quicken 数据迁移"
-  - "多币种预算应用"
+  - "Quicken 替代品"
+  - "可导入 Quicken 数据的 Quicken 替代方案"
+  - "类似 Quicken 的软件"
 ---
 
-如果你依赖 Quicken Classic 从已连接的账户下载交易，还要用它管理投资和退休计划、税务报表、账单、附件，或已经习惯传统桌面流程，Expense Budget Tracker 无法拿来就替代它。就这些需求而言，Quicken 更强。
+一个 Quicken 文件用久了，往往会悄悄变成三套系统：日常收支账本、投资追踪工具，以及定期账单、附件、税务分类和报表的资料库。所以，只看界面挑替代软件通常会踩坑。真正该问的是：哪些工作必须保留下来？哪种导出格式又真的能把这些数据带走？
 
-Expense Budget Tracker 成为实用的 **Quicken 替代方案**，靠的是另一套能力：它提供可逐笔查验的总账，保留交易的原币种，把自己账户之间的转账作为单独的账本记录，支持共享工作区，还开放了可供智能体使用的权限受限 SQL API。代码开源，是否自托管则由你决定。
+本文对比的 **Quicken 替代方案**，可以先简单归纳为：
 
-这项取舍很明显：你能掌控数据模型，也能决定交易如何进入系统，但会放弃 Quicken 成熟个人理财套件里的许多功能。Expense Budget Tracker 不会自动同步银行账户，也没有直接导入 Quicken QDF、QXF 或 QIF 文件的工具。因此，稳妥的迁移应该从一个非投资账户开始，而不是一次搬走全部财务历史。
+- **Moneydance** 最接近功能完整、以桌面端为主的个人财务管理方式。
+- **Monarch Money** 适合想通过已关联账户，在现代化托管仪表盘中管理家庭财务的人。
+- **GnuCash** 适合想用免费开源桌面会计软件，并且愿意采用复式记账的人。
+- **Actual Budget** 适合偏好本地优先信封预算法的人；它支持多种交易文件，也可选择通过服务提供商同步银行数据。
+- **Expense Budget Tracker** 适合看重可核查的原币种总账、共享工作区和智能体访问，并且愿意按需导入交易、不依赖银行自动同步的人。
 
-![一名园艺师将一根插枝放进透明容器生根，成熟藤蔓仍保持完好](/blog/quicken-alternative.png)
+没有任何一款软件适合所有 Quicken 用户。先根据使用场景缩小范围，再在迁移数据前仔细核对导出格式对照表。
 
-## Quicken Classic 与 Expense Budget Tracker 快速对比
+![档案员用五种不同的迁移读取设备测试一份完整的财务档案](/blog/quicken-alternatives-migration-readers.png)
 
-| 对比项 | Quicken Classic | Expense Budget Tracker | 更适合哪种需求 |
-|---|---|---|---|
-| 产品形态 | 本地安装的 Windows 或 Mac 软件，按年订阅；功能因平台和套餐而异 | 可使用托管版网页应用，也可部署开源版本自行托管 | 熟悉桌面软件，选 Quicken；需要网页访问和基础设施控制权，选 Expense Budget Tracker |
-| 交易录入 | 从已连接的账户下载交易、手动录入、对账，以及 Quicken 自身的导入导出流程 | 手动录入，或由智能体协助导入对账单并由你审核；不支持银行账户自动同步 | 想自动下载交易，选 Quicken；想控制每次导入，选 Expense Budget Tracker |
-| 投资与退休 | 专门的投资追踪、投资组合工具和退休功能 | 没有类似 Quicken 的投资与退休功能套件 | 如果投资分析属于核心流程，继续使用 Quicken |
-| 税务、报表、账单与记录 | 成熟的报表、税务规划、账单追踪或支付，以及交易附件功能 | 提供总账、预算、仪表盘和余额报表，但不复现 Quicken 在这些方面的完整流程 | 如果这些工具必不可少，继续使用 Quicken |
-| 多币种 | Windows 版支持多币种账户和报表，可处理汇率，且账户币种固定 | 保留原币种交易，读取数据时再换算为选定的报表币种 | 两者都能处理多币种财务；按你偏好的数据与报表模型选择 |
-| 转账与余额 | 在 Quicken 的流程中使用账户账簿、转账和对账 | 余额由总账计算，自己账户之间的转账单独记录 | 最看重总账可追溯性，选 Expense Budget Tracker |
-| 共享与自动化 | 套餐和平台决定可用功能，产品由厂商管理 | 共享工作区、智能体接入、AI 对话，以及按工作区隔离的权限受限 SQL API | 需要可编程访问或按工作区协作，选 Expense Budget Tracker |
-| 源代码与托管 | 专有应用 | 开源实现、托管版，以及基于 Docker Compose 的自托管方案 | 必须查看源代码或自行托管，选 Expense Budget Tracker |
+## 先想清楚要完成什么，再选产品
 
-Quicken Classic 是一款[本地安装的 Windows 或 Mac 软件，按年订阅，并提供多个套餐层级](https://www.quicken.com/products/pricing-comparison-classic/)。套餐细节请以该页面的当前信息为准，不要依赖对比文章里引用的价格，因为优惠和续订条款会变化。
+| 替代方案 | 最适合 | 银行数据 | 投资 | 运行方式 | 最实用的 Quicken 迁移路径 |
+|---|---|---|---|---|---|
+| [Moneydance](https://infinitekind.com/landing) | 想在 macOS、Windows 或 Linux 上使用传统桌面个人财务软件的人 | 银行支持时可使用 OFX Direct Connect；美国和加拿大用户可选 Moneydance+ 聚合服务；也支持手动导入文件 | 投资账户、投资组合视图、成本基础和价格下载 | 数据保存在本地的桌面应用 | 从 Quicken 导出一个 QIF 文件，再导入新的 Moneydance 数据文件 |
+| [Monarch Money](https://help.monarch.com/hc/en-us/articles/360048393352-Connection-issues) | 想连接金融机构，并减少桌面软件维护工作的家庭用户 | 通过数据聚合服务连接账户；交易记录和历史余额需要分别用 CSV 导入 | 可追踪已连接账户的持仓；连接不完整时可手动记录持仓或余额 | 托管式网页与移动端服务 | 把需要保留的历史数据转换为交易 CSV 和余额 CSV；持仓需另行设置 |
+| [GnuCash](https://www.gnucash.org/features.phtml) | 需要免费开源桌面会计，以及对账、报表、投资和多币种功能的人 | 可导入 QIF、OFX/QFX 和 CSV；网上银行需单独配置，与文件导入不是同一套流程 | 股票和共同基金账户、投资组合报表及价格获取 | 在 Windows、macOS 和 Linux 上运行的本地桌面应用 | 使用 Quicken 的 QIF 导出和 GnuCash 的 QIF 导入助手，再单独核对投资数据 |
+| [Actual Budget](https://actualbudget.org/) | 想用本地优先、开源信封预算法的人 | 可导入 QIF、OFX、QFX、CSV 和 CAMT；在 `actual-server` 上可选择服务提供商同步，但需要手动触发 | 不提供类似 Quicken 的完整投资功能 | 本地应用，也可选择通过 Actual 服务器同步 | 导入 QIF 交易历史，或逐个账户导入最新的 OFX/QFX 文件 |
+| [Expense Budget Tracker](/features/) | 需要原币种记账、共享工作区，以及托管或自托管方案的可编程总账用户 | 手动录入，或由智能体协助导入对账单；不支持银行自动同步 | 不提供投资或退休规划功能 | 托管式网页应用，或开源自托管部署 | 将 Quicken 报表或最新的银行/信用卡导出文件作为审核后的输入；不提供 Quicken 文件直接导入器 |
 
-真正要决定的，不是哪份功能清单更长，而是你希望软件替你承担哪些工作。
+这张表按使用场景比较，而不是给产品打分。桌面会计软件和托管式家庭财务仪表盘解决的是两类问题，哪怕它们都能显示活期账户余额。
 
-## 继续使用 Quicken 的理由
+## 哪些情况下，继续用 Quicken 反而更合适
 
-Quicken 用多年时间构建了一套覆盖广泛的家庭财务流程。它的 Windows 文档涵盖[银行和信用卡账户、投资、预算、报表、对账、附件与多币种](https://info.quicken.com/win/about-working-with-quicken)。这些不是预算总账旁边可有可无的附加功能，它们可能正是你一直保留 Quicken 文件的原因。
+不要仅仅因为另一款应用更新、开源，或在某个场景下更便宜，就急着迁移。[Quicken Classic](https://www.quicken.com/products/pricing-comparison-classic/) 仍是安装在本地的 Windows 或 Mac 软件，具体功能取决于套餐和平台。如果你同时依赖它的多项功能，这套成熟流程很难被一款产品完整替代。
 
-如果下面有多项符合你的用法，继续使用 Quicken：
+如果你依赖下面这些功能，最好继续使用 Quicken，或者至少把它保留在现有方案中：
 
-- 从金融机构下载交易能为你节省不少时间。
-- 你在同一款应用里追踪证券、成本基础、投资组合或退休情景。
-- 面向税务的分类和报表会用于每年的报税流程。
-- 账单追踪或支付是日常流程的一部分。Quicken 当前的 [Bill Manager 页面](https://www.quicken.com/products/bill-manager/)说明哪些套餐支持追踪，哪些支持支付。
-- 收据和其他附件需要与交易保存在一起。
-- 你偏好本地安装的桌面应用，以及成熟的账户账簿和报表流程。
+- 已稳定连接的金融机构自动下载交易；
+- 证券批次、成本基础、投资组合分析或退休规划；
+- 面向税务的分类和报表；
+- [账单追踪或账单支付](https://www.quicken.com/products/bill-manager/)；
+- 与账户或交易保存在一起的附件；
+- 企业或出租物业相关流程；
+- 已经用顺手的定期交易、自定义报表和对账流程；
+- 用一个桌面文件集中完成以上所有工作。
 
-离开一款已经能处理这些工作的工具，增加的麻烦可能比省下的更多。寻找 **Quicken 个人理财替代软件**，应该是为了解决真实的不匹配，而不只是换一个更新的界面。
+Quicken 的 Windows 指南涵盖了[账户、下载、投资、预算、报表、对账、附件和多币种](https://info.quicken.com/win/about-working-with-quicken)。即使每款替代产品单看都更出色，如果必须用两三款互不相连的软件才能取代一个 Quicken 文件，实际体验也可能倒退。
 
-## 测试 Expense Budget Tracker 的理由
+## 五款替代方案，各有取舍
 
-Expense Budget Tracker 从一份可查验的总账出发，并不试图复刻 Quicken Classic 的每一项功能。账户余额由总账记录计算，自己账户之间的资金移动仍按转账处理。预算条目把计划、实际和差额放在一起，并保留只追加、不覆写的预算变更历史。
+### Moneydance：最接近传统桌面财务软件
 
-它还会保留交易的原币种，读取数据生成报表时才应用汇率。这样一来，收入为 EUR、储蓄为 USD、信用卡消费为 GBP 的家庭，可以查看一份统一报表，同时保留每笔交易原本发生时的金额。[多币种预算指南](/zh/blog/multi-currency-budgeting-for-expats/)更详细地介绍了这套模型。
+如果你说的“类似 Quicken 的软件”，指的是具备账户账簿、定期项目、报表、网上银行、多币种和投资追踪功能的桌面软件，那么 Moneydance 很值得优先考虑。它保留了完整的个人财务软件形态，而不是只做预算。
 
-Quicken 的多币种能力并不弱。Windows 版 Quicken Classic [支持多种货币、保留账户原始金额，并在报表中应用汇率](https://info.quicken.com/win/multiple-currencies)。账户创建后，币种不能更改。Expense Budget Tracker 采用另一种设计：原币种金额留在总账里，读取时才换算。Mac 与 Windows 提供的功能可能不同，请查看自己所用平台的最新 Quicken 文档。
+它在迁移方面最大的优势，是官方提供了用于导入 Quicken 导出数据的 [QIF 导入流程](https://infinitekind.tenderapp.com/kb/importing-data-from-other-programs/importing-data-in-qif-format-2)。不过，有导入流程不等于所有数据都能原样迁移。完成导入后，仍要分别检查投资交易、拆分交易、账户币种、转账、定期项目和期初余额。
 
-如果下面有多项比 Quicken 更广泛的功能更重要，Expense Budget Tracker 更合适：
+对于后续的银行数据，Moneydance 文档列出了 [OFX Direct Connect、手动下载 OFX/QFX/QIF、CSV 导入，以及可选的 Moneydance+ 聚合服务](https://infinitekind.tenderapp.com/kb/online-banking-and-bill-pay/downloads-methods)。这些方式并不能互相替代：Direct Connect 取决于银行是否支持，Moneydance+ 需要另行订阅，常规 CSV 导入器则面向银行下载文件。Moneydance 自己的 [QIF 故障排查指南](https://infinitekind.tenderapp.com/kb/importing-data-from-other-programs/possible-problems-after-qif-import)也提醒用户，期初余额、日期、重复转账和缺失的历史汇率都可能需要手动处理。
 
-- 你希望能从报表余额追溯到底层总账。
-- 相比长期连接银行，你更喜欢按需导入对账单。
-- 多种原币种是日常情况，而不是偶尔旅行才遇到的例外。
-- 你需要用共享工作区区分个人或家庭财务场景。
-- 脚本或智能体需要通过有文档说明、可供程序调用的接口查询和更新财务数据。
-- 你想使用**开源 Quicken 替代方案**，即使目前先用托管版。
-- 你需要以后能在自有基础设施上运行一款**自托管 Quicken 替代方案**。
+如果你想继续在桌面端管理财务，并尽可能保留 Quicken 一体化软件的特点，可以选择 Moneydance。如果你真正想要的是完全托管的家庭财务服务，或在浏览器中使用的可编程总账，它的吸引力就没那么大。
 
-[功能页面](/zh/features/)列出了产品目前的范围。开发者还可以阅读[支出追踪 API 指南](/zh/blog/expense-tracking-api/)以及[自托管开源预算追踪器的取舍](/zh/blog/self-hosted-open-source-budget-tracker-for-developers/)。
+### Monarch Money：适合托管式家庭财务管理
 
-## 导入方式是最重要的实际差异
+Monarch 适合想把各个账户集中到现代网页和移动端仪表盘，又不想自行维护软件的人。它通过数据聚合服务连接金融机构，既能追踪已连接账户的投资持仓，也支持[手动维护投资持仓](https://help.monarch.com/hc/en-us/articles/10032888165140-Manual-Investment-Holdings)。
 
-Quicken 可以从已连接的账户下载交易，省去不少日常录入工作。Expense Budget Tracker 不提供银行账户自动同步。你可以手动录入交易，也可以让已连接的智能体读取银行对账单或信用卡导出文件，通过 API 写入交易记录，再由你审核。
+官方提供的手动迁移方式是 CSV，但并没有一个上传入口能一次导入所有内容。[交易导入器](https://help.monarch.com/hc/en-us/articles/4409682789908-Importing-Transactions-Manually)可以接收可选的分类、标签和备注，但不会导入预算或现金流汇总数据。[历史余额要通过另一套 CSV 流程导入](https://help.monarch.com/hc/en-us/articles/14882425704212-Importing-Account-Balances-Manually)，投资持仓仍需正常连接账户或手动设置。交易 CSV 无法整批一键撤销，因此 Monarch 建议先用较小的文件测试。
 
-这套流程需要你更多地参与，但也更容易查验：源文件和日期范围由你选择，分类与转账由你检查，导入后的期末余额还可以与对账单核对。[不连接银行账户的预算应用](/zh/blog/budget-app-without-bank-linking/)和[将银行对账单导入支出追踪器](/zh/blog/how-to-import-bank-statements-into-an-expense-tracker/)这两篇指南说明了具体流程。
+如果你更看重账户连接和托管式家庭财务视图，而不是把数据保存在自己的桌面端，可以选择 Monarch。不要把交易 CSV 导入当成完整的 Quicken 文件转换。
 
-不要把对账单导入流程误认为 Quicken 文件导入器。Expense Budget Tracker 目前不能直接导入：
+### GnuCash：开源桌面会计之选
 
-- Quicken QDF 数据文件
-- Quicken Transfer Format（QXF）文件
-- Quicken Interchange Format（QIF）文件
+如果你熟悉复式记账，GnuCash 是一款值得考虑的**开源 Quicken 替代方案**。它支持对账、定期交易、自定义报表、多币种账户和投资账户，并提供 Windows、macOS 和 Linux 桌面版本。
 
-正在寻找**可导入 Quicken 数据的替代方案**的人，选产品前应该确认具体的源文件格式、目标产品、支持的账户类型和重复项处理规则。“可以导入交易”和“可以打开完整的 Quicken 文件”不是同一种承诺。
+在这五款产品中，它的迁移路径尤其直接：GnuCash 官方说明了如何使用 [QIF 导入助手迁移 Quicken 数据](https://www.gnucash.org/docs/v5/C/gnucash-manual/trans-import.html)。同一份手册还介绍了 OFX/QFX 和 CSV 交易导入。OFX/QFX 与 CSV 使用的通用导入器会匹配重复项，QIF 导入助手则有自己的一套审核步骤和限制。需要适应的是它的会计模型：Quicken 中的分类会变成收入或支出科目，转账则会记录为保持借贷平衡的分录。这套结构能力很强，但也更考验记账者。
 
-## Quicken 导出文件究竟保留了什么
+如果免费开源桌面会计是硬性要求，可以选择 GnuCash。正式决定前，先用数据副本测试 QIF 导出，确认证券、重复项、账户映射和其他 Quicken 特有规则都得到了正确保留。
 
-Quicken 记录了几种导出方式，包括[将报表数据导出为 Excel、QXF 和 QIF](https://info.quicken.com/win/export-data-from-quicken)。它们解决的问题并不相同。
+### Actual Budget：本地优先的信封预算法
 
-QXF 主要用于在 Quicken 文件和安装环境之间传输数据，并不是一份可供任意财务应用完整读取的通用备份。Quicken 的 [QXF 导出文档](https://info.quicken.com/win/how-do-i-export-data-to-a-qxf-file)说明，这种格式不包含预算、附件、报表、设置、业务数据和投资数据。因此，即使某款产品支持 QXF，实际收到的内容也可能比你预期的少。
+Actual Budget 的核心是信封预算法和本地优先的数据模型。应用直接使用本地数据，也可以通过你选择的服务器同步。如果开启可选的端到端加密，Actual 会在预算数据离开设备前将其加密；但官方文档也明确指出，保存在本地设备上的数据并未加密。如果开启银行同步，服务提供商的凭据会存放在 `actual-server` 上，也不受预算数据加密机制保护。
 
-把 Quicken 报表导出为 Excel 后，数据以行列形式呈现，更容易检查，但它仍然只是一份报表，不是原始数据库。直接从银行或信用卡发卡机构导出的最新对账单范围更窄，却往往更适合用来试迁移：账户和日期范围清楚，也能与原始对账单的期末余额核对。
+Actual 支持本文中最丰富的交易文件格式：[QIF、OFX、QFX、CSV 和 CAMT](https://actualbudget.org/docs/transactions/importing/)。可选的银行集成支持不同地区的服务提供商，其中包括面向北美金融机构的 SimpleFIN Bridge；不过，[拉取交易需要手动操作](https://actualbudget.org/docs/advanced/bank-sync/)，并不会在后台自动运行。
 
-测试 Expense Budget Tracker 时，只选一个可控的数据源：
+如果本地优先的信封预算法和灵活的对账单导入，比 Quicken 的投资、税务和账单管理套件更重要，可以选择 Actual。
 
-- 如果需要保留 Quicken 账户账簿里的分类或备注，使用导出为 Excel 的 Quicken 交易报表。
-- 如果独立核对余额更重要，使用银行或信用卡发卡机构最新导出的对账单。
+### Expense Budget Tracker：总账透明、可核查
 
-不要在同一日期范围内混用这两个来源。这样很容易在对比开始前，就把每笔交易重复算一遍。
+Expense Budget Tracker 会以交易发生时的原币种保存每条总账记录，只在读取数据生成报表时换算金额。自己账户之间的转账也会作为独立的转账记录保存。它还提供共享工作区、托管的 [MCP 连接器](/docs/mcp-connector/)、直接的 Agent API，以及开源自托管方案。
 
-## 低风险 Quicken 迁移流程
+它的产品边界很明确：不提供银行自动同步和投资功能，也不能直接导入 QDF、QXF 或 QIF。你可以手动录入交易，也可以把银行对账单或信用卡导出文件交给智能体，先检查智能体准备写入的记录，再批准入账。[对账单导入指南](/blog/how-to-import-bank-statements-into-an-expense-tracker/)介绍了这套审核与对账流程；[不连接银行账户的预算应用](/blog/budget-app-without-bank-linking/)则解释了这种做法在隐私和维护方面的取舍。
 
-实用的 **Quicken 数据迁移**，应该先用一个小账户验证结果一致，再搬入更多数据。测试期间继续保留 Quicken。
+如果你真正需要的是总账可追溯、多种原币种、共享工作区、智能体工作流或自托管，可以选择 Expense Budget Tracker。在承担相关运维工作前，建议先阅读[面向开发者的自托管指南](/blog/self-hosted-open-source-budget-tracker-for-developers/)。
 
-1. **保留原始文件。** 不要改动正在使用的 Quicken 文件，导出任何内容前先单独备份。不要把 QXF 导出文件当作唯一的历史副本。
-2. **盘点现有结构。** 列出你实际使用的账户、账户币种、分类、周期性项目、转账、附件、投资数据、报表和税务流程。标出 Expense Budget Tracker 无法替代的部分。
-3. **选择一个有代表性的非投资账户。** 活期账户或信用卡都可以；样本中应有一个正常月份的日常消费、一笔退款和至少一笔转账，这比异常整洁的样本更有参考价值。
-4. **划定精确边界。** 选择一个完整且已经结算的对账单周期，记录期初和期末余额，并决定试迁移数据来自 Quicken 报表，还是金融机构的对账单。同一周期绝不能从两个来源重复载入。
-5. **只重建必要设置。** 按正确的原币种添加账户，并为样本创建一小组分类。在确认新模型适合你之前，不要先复刻多年的分类历史。
-6. **录入或导入样本。** 先手动添加几笔交易，或者从[入门指南](/zh/docs/getting-started/)开始，使用[智能体接入流程](/zh/docs/agent-setup/)。你需要把 `https://api.expense-budget-tracker.com/v1/` 提供给智能体；它会按照发现文档操作、验证邮件中的验证码、保存 API 密钥、选择工作区、检查允许访问的数据库结构，再通过权限受限的 SQL API 写入数据。先处理一小批，并检查它写入的每一行。
-7. **先检查转账，再看总额。** 确认自己账户之间的资金移动被记录为转账，而不是一个账户里的收入和另一个账户里的支出。如果转账的另一端不在试迁移范围内，就把这条边界记录下来，不要虚构分类来让数字看似正确。
-8. **核对期末余额。** 将交易数量、正负号、日期、币种、转账处理方式和最终余额与选定的数据源对比。解决所有差异后，再添加下一个周期。
-9. **每次只扩展一个账户。** 只有试迁移结果一致后，才添加更多月份或账户。投资、附件、账单管理和税务报表流程继续留在 Quicken 中，除非你已经分别选好替代工具。
+## Quicken 的哪些导出格式能迁移到哪些产品？
 
-这套流程刻意比一次上传所有导出文件更慢。它能回答真正重要的问题：总账是否一致、导入边界是否可信，以及哪些 Quicken 功能仍然需要另找归宿。
+这些扩展名很容易混淆。**QDF** 是 Quicken Classic for Windows 使用的工作数据文件；**QXF** 是 Quicken Transfer Format；**QIF** 是较早的 Quicken Interchange Format；**QFX** 则是一种与 OFX 相关的银行交易交换文件，和 QXF 不是一回事。
 
-## 多币种决策值得单独测试
+本文查阅的五款替代产品，其官方导入文档都没有提供直接导入现用 QDF 文件的方法。Quicken 当前的 Windows [QXF 文档](https://info.quicken.com/win/how-do-i-export-data-to-a-qxf-file)将 QXF 定义为 Quicken 文件之间的传输格式。QXF 会包含符合条件的非投资、非企业账户，以及这些账户的交易、定期交易、分类和标签；但不会包含投资与企业账户、预算、附件、报表和应用设置。
 
-两款产品都可以列入多币种财务工具的候选清单，但它们采用的模型不同。
+以上规则适用于 Quicken Classic for Windows。Quicken Classic for Mac 的菜单和可用格式不同，因此选定迁移方式前，先确认你安装的版本究竟能导出哪些内容。
 
-Windows 版 Quicken Classic 为账户指定固定币种，并在报表中应用汇率。只要现有账户和报表已经正确设置，这套方式就能很好地工作。Expense Budget Tracker 保留每笔交易的原币种，读取时再换算为你选择的报表币种。它的仪表盘还能单独显示汇率变动的影响。
+| 来自 Quicken 或金融机构的数据源 | Moneydance | Monarch Money | GnuCash | Actual Budget | Expense Budget Tracker |
+|---|---|---|---|---|---|
+| 正在使用的 `.QDF` 文件 | [Moneydance 无法读取 Quicken 原生文件](https://infinitekind.tenderapp.com/kb/importing-data-from-other-programs/importing-from-quicken-without-qif)；必须先从 Quicken 导出 | 没有文档说明可直接导入 | 没有文档说明可直接导入 | 没有文档说明可直接导入 | 不支持直接导入 |
+| `.QXF` 传输文件 | [Moneydance 表示无法读取 QXF](https://infinitekind.tenderapp.com/kb/importing-data-from-other-programs/importing-from-quicken-without-qif)；应改用当前 Quicken 版本能够提供的 QIF 导出 | 没有文档说明可直接导入；需要通过 CSV 重建所需历史数据 | 没有文档说明可直接导入；应改用 QIF 或交易文件 | 没有文档说明可直接导入；应改用 QIF 或交易文件 | 不支持直接导入 |
+| `.QIF` 导出 | 官方文档明确支持的 Quicken 迁移路径 | 没有文档说明可直接导入；需要把所需数据转换成 Monarch 的 CSV 结构 | 官方文档明确支持的 Quicken 导入助手；仍需核对账户和投资数据 | 官方文档明确支持导入交易 | 不支持直接导入；应改用经过审核的报表或对账单数据 |
+| 先将 Quicken 报表导出到 Excel，再另存为 CSV | 不能完成完整迁移；对于来自其他财务软件的 CSV，[Moneydance 要求使用 Text File Importer 扩展](https://infinitekind.tenderapp.com/kb/online-banking-and-bill-pay/importing-csv-files)，而不是常规的银行 CSV 导入流程 | 可导入交易 CSV；历史余额需通过另一个 CSV 流程导入，持仓需另行处理，预算不会迁移 | 可导入交易 CSV，但需要映射账户和列 | 可导入交易 CSV，但需要映射字段 | 审核后手动录入或由智能体协助录入；没有内置文件上传器 |
+| 最新的银行或信用卡导出文件 | 可直接导入 OFX/QFX/QIF；CSV 需要手动映射 | 可导入交易 CSV；如果有带日期的余额 CSV，需要另行导入 | 可导入 QIF、OFX/QFX 或交易 CSV | 可导入 QIF、OFX/QFX、CSV 或 CAMT | 手动导入对账单，或由智能体协助导入；没有内置文件上传器 |
 
-评估一款**多币种预算应用**时，用一笔真实的跨币种转账和一个汇率发生过变化的周期来测试。检查原始金额、两个账户的余额、报表币种总额，以及这笔转账是否影响支出。笼统的“支持多币种”标签回答不了这些问题。
+Quicken 自己的[导出指南](https://info.quicken.com/win/export-data-from-quicken)把 QIF 称为旧式传输格式，也允许将报表数据导出到 Excel。如果目标产品要求 CSV，可以用电子表格工具把合适的工作表另存为 CSV。无论采用哪种方式，得到的都只是报表，而不是源数据库。导入前仍需正确映射账户、日期、正负号、分类和转账。
 
-## 常见问题
+第一次试迁移时，最新的银行或信用卡导出文件通常比时间跨度很长的 Quicken 报表更规整：对账单周期边界明确，还有期末余额可以核对。如果你更在意保留 Quicken 中编辑过的收款方、分类或备注，则应使用 Quicken 报表。切勿把同一账户、同一日期范围的两种数据源都导入目标产品。
 
-### Expense Budget Tracker 能逐项替代 Quicken 的全部功能吗？
+## 先做一次小规模、可回退的试迁移
 
-不能。它无法复现 Quicken 从已连接账户下载交易的功能，也没有 Quicken 的投资与退休套件、税务规划和报表流程、Bill Manager、附件功能或传统桌面体验。选择它的理由是可查验的总账、可控导入、多币种报表、工作区、API、开源代码和可选自托管能力。
+即使目标产品的导入操作本身无法撤销，也要确保整个迁移决定可以回退。例如，Monarch 明确说明，交易 CSV 导入后无法一键整批撤销。
 
-### Expense Budget Tracker 可以导入 Quicken QDF、QXF 或 QIF 文件吗？
+1. **备份 Quicken。** 保留正在使用的 QDF 文件，并在导出任何内容前创建一份常规 Quicken 备份。整个试迁移期间都要保留 Quicken，以便随时核对。
+2. **盘点总账之外的工作。** 列出已连接账户、投资、定期交易、账单流程、附件、税务报表、自定义报表、币种，以及企业或出租物业数据。给每一项安排明确去处，或者决定继续留在 Quicken 中。
+3. **选择一个已有结清账期的非投资账户。** 一张包含退款和转账的活期账户或信用卡对账单，比过于干净的样本更能发现问题。
+4. **只选一种数据源。** 针对一个对账单周期，只使用 Quicken 导出或金融机构的最新导出文件。记下期初余额、期末余额和交易笔数。
+5. **使用随时可以删除的测试环境。** 新建 Moneydance 或 GnuCash 数据文件、测试账户、单独的 Actual 预算、临时的 Monarch 手动账户，或新的 Expense Budget Tracker 工作区。不要直接在你已经依赖的目标环境里测试。
+6. **先导入一小批数据。** 10～20 笔类型各异的交易，就足以暴露收支正负颠倒、日期错误、收款方缺失、分类问题和重复项处理方式。
+7. **核对每笔交易的含义，不要只看总额。** 检查收支正负、日期、币种、拆分交易、退款和转账。两条错误记录可能恰好相互抵消，让期末余额看起来仍然正确。
+8. **核对完整周期。** 让目标产品的期末余额与所选数据源一致，并解释每一处差异。然后再比较你实际会用到的报表或预算视图。
+9. **先并行使用，再逐步扩大范围。** 测试下一个周期时，继续用 Quicken 文件作参照。每次只增加一个账户；投资、税务、附件和账单流程在替代方案得到验证前，仍应留在 Quicken 中。
 
-不可以。目前没有直接的 QDF、QXF 或 QIF 导入器。可以用一份小型 Quicken 交易报表 Excel 导出文件，或一份最新的银行或信用卡对账单作为可控数据源，再手动录入，或交给已连接的智能体处理。扩大范围前，先审核并对账。
+如果你的财务涉及多种币种，请在试迁移中加入一笔真实的跨币种转账。检查转账两端的原币金额、两个账户的余额、手续费，以及换算为报表币种后的结果。[多币种预算指南](/blog/multi-currency-budgeting-for-expats/)详细介绍了这种总账模型。
 
-### Expense Budget Tracker 会自动同步银行账户吗？
+## 最后怎么选
 
-不会。交易来自手动录入，或由已连接的智能体执行、用户主动发起的对账单导入流程。如果自动从已连接账户下载交易是核心需求，Quicken 更合适。
+如果你想要最接近 Quicken 的桌面体验，以及官方文档支持的 QIF 迁移路径，可以选择 Moneydance。需要托管式账户聚合和家庭财务仪表盘，选 Monarch。需要开源桌面会计和可靠的 QIF 迁移路径，选 GnuCash。需要本地优先的信封预算法和灵活的交易导入，选 Actual。
 
-### Quicken 支持多币种吗？
+如果你明确需要透明总账、原币种记录、共享工作区和可编程访问，可以选择 Expense Budget Tracker。普通用户可从[托管应用](https://app.expense-budget-tracker.com/)开始。终端或 AI 智能体应先访问 [`https://app.expense-budget-tracker.com/api/agent`](https://app.expense-budget-tracker.com/api/agent)；返回的发现信息中会包含当前 Agent API 的基础地址、身份验证路径、MCP 端点和支持的操作。
 
-支持。Windows 版 Quicken Classic 支持多币种账户和基于汇率的报表。账户指定币种后不能更改。Mac 与 Windows 的功能可能不同，因此请查看 Quicken 针对 Mac 的最新文档。
-
-### 测试替代方案时，我可以继续使用 Quicken 吗？
-
-可以，而且这样更安全。保留 Quicken 文件及其备份，从一个非投资账户中选择一个已经结算的对账单周期，把 Expense Budget Tracker 当作并行试用系统。不要把同一周期导入两次，也不要为了强行让结果一致而修改源文件。
-
-### Expense Budget Tracker 可以共享或自托管吗？
-
-可以。它通过工作区实现数据隔离与协作，既可以使用托管版，也可以通过基于 Postgres 的开源 Docker Compose 配置自行运行。自托管会增加运维责任，因此它是一项选择，不是使用前提。
-
-## 应该选择哪一款？
-
-如果 Quicken 的交易下载、投资、退休规划、税务报表、账单、附件或桌面流程对你很重要，继续使用 Quicken。这些都是成熟的功能，Expense Budget Tracker 也没有声称自己能取代它们。
-
-如果你需要总账可追溯性、按需导入、读取时换算的原币种数据、单独记录转账、共享工作区、智能体访问、开源代码或自托管，可以测试 Expense Budget Tracker。先从一个真实账户和一个已经结算的对账单周期开始。
-
-如果试迁移结果与源数据余额一致，而且这项取舍仍然适合你，可以[打开 Expense Budget Tracker](https://app.expense-budget-tracker.com/)，再逐步扩大迁移范围。在每项重要流程都有明确去处之前，继续把 Quicken 作为参照。
+真正合适的替代方案，应该尽可能完整地保留你的实际工作流程，同时尽量少留下不易察觉的功能缺口。在新产品成功核对一个已结算周期、并且总账之外的每项工作都有妥善去处前，请保留原始 Quicken 文件。
