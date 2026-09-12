@@ -1,163 +1,145 @@
 ---
-title: "Quicken Alternative in 2026: What You Gain, Lose, and How to Migrate"
-description: "Compare Quicken Classic with an open-source alternative, see what each does better, and test a migration without losing or double-counting data."
+title: "5 Quicken Alternatives in 2026: Choose by Use Case"
+description: "Compare Moneydance, Monarch Money, GnuCash, Actual Budget, and Expense Budget Tracker by bank sync, investing, desktop use, privacy, and migration path."
 date: "2026-03-17"
-updated: "2026-08-15"
-image: "/blog/quicken-alternative.png"
+updated: "2026-09-12"
+image: "/blog/quicken-alternatives-migration-readers.png"
 keywords:
+  - "quicken alternatives"
   - "quicken alternative"
-  - "quicken alternative 2026"
   - "open source quicken alternative"
+  - "quicken replacement"
   - "quicken alternatives that import quicken data"
-  - "alternative to quicken for personal finance"
-  - "self-hosted quicken alternative"
-  - "quicken migration"
-  - "multi-currency budget app"
+  - "software similar to quicken"
 ---
 
-If you depend on Quicken Classic for connected-account downloads, investment and retirement tools, tax reports, bill management, attachments, or a traditional desktop workflow, Expense Budget Tracker is not a drop-in replacement. Quicken is the stronger product for those jobs.
+A Quicken file can quietly become three systems at once: a checkbook, an investment tracker, and an archive of scheduled bills, attachments, tax categories, and reports. That is why choosing a replacement by interface alone usually goes wrong. The useful question is which jobs must survive—and which export can actually carry them.
 
-Expense Budget Tracker becomes a useful **Quicken alternative** for a different reason. It gives you an inspectable ledger, keeps transactions in their native currencies, treats transfers as first-class records, supports shared workspaces, and exposes a restricted SQL API that agents can use. The code is open source, and self-hosting is optional.
+Among the **Quicken alternatives** covered here, the shortest answer is:
 
-The tradeoff is substantial: you gain control over the data model and how transactions enter it, but you give up much of Quicken's mature personal-finance suite. Expense Budget Tracker also has no automatic bank sync and no direct importer for Quicken QDF, QXF, or QIF files. A safe move therefore starts with one non-investment account, not your entire financial history.
+- **Moneydance** is the closest fit for a broad, desktop-based personal-finance workflow.
+- **Monarch Money** fits a household that wants a managed, modern dashboard with connected accounts.
+- **GnuCash** fits someone who wants free, open-source desktop accounting and is willing to work in a double-entry system.
+- **Actual Budget** fits local-first envelope budgeting, with broad transaction-file imports and optional provider-based bank sync.
+- **Expense Budget Tracker** fits people who want an inspectable, native-currency ledger, shared workspaces, and agent access—and accept deliberate imports instead of automatic bank sync.
 
-![A gardener roots one cutting in a clear vessel while the mature vine remains intact](/blog/quicken-alternative.png)
+None is a universal Quicken replacement. Start with the use-case table, then check the export matrix before moving any data.
 
-## Quicken Classic vs. Expense Budget Tracker at a glance
+![An archivist tests one intact financial archive against five different migration readers](/blog/quicken-alternatives-migration-readers.png)
 
-| Decision | Quicken Classic | Expense Budget Tracker | Better fit when... |
-|---|---|---|---|
-| Product model | Locally installed Windows or Mac software sold by annual subscription; features differ by platform and plan | Managed web app or open-source, self-hosted deployment | Choose Quicken for a familiar desktop product; choose Expense Budget Tracker for web access and infrastructure control |
-| Transaction entry | Connected-account downloads, manual entry, reconciliation, and Quicken import/export workflows | Manual entry or agent-assisted statement imports that you review; no automatic bank sync | Choose Quicken for passive downloads; choose Expense Budget Tracker when you want to control each import |
-| Investments and retirement | Dedicated investment tracking, portfolio tools, and retirement features | No Quicken-style investment or retirement suite | Stay with Quicken if investment analysis is part of the job |
-| Tax, reports, bills, and records | Mature reports, tax-planning features, bill tracking or payment, and transaction attachments | Ledger, budgets, dashboards, and balance reporting; it does not reproduce Quicken's full workflow in these areas | Stay with Quicken if these tools are essential |
-| Multiple currencies | Supports multiple-currency accounts and reports on Windows, with exchange-rate handling and fixed account currencies | Stores native-currency transactions and converts them at read time into the selected reporting currency | Both can fit multi-currency finances; choose based on the data and reporting model you prefer |
-| Transfers and balances | Account registers, transfers, and reconciliation inside the Quicken workflow | Running balances derived from the ledger, with transfers between your accounts as first-class records | Choose Expense Budget Tracker when ledger traceability is the priority |
-| Sharing and automation | Plan- and platform-dependent Quicken features inside a managed product | Shared workspaces, agent onboarding, AI chat, and a restricted SQL API with workspace isolation | Choose Expense Budget Tracker for programmable access or workspace-based collaboration |
-| Source and hosting | Proprietary application | Open-source implementation, hosted option, and Docker Compose self-hosting | Choose Expense Budget Tracker when inspectable code or self-hosting is a requirement |
+## Choose the job before the product
 
-Quicken Classic is [locally installed for Windows or Mac, sold as an annual subscription, and offered in tiers](https://www.quicken.com/products/pricing-comparison-classic/). Check that page for current plan details rather than relying on a quoted price: offers and renewal terms change.
+| Alternative | Best fit | Bank data | Investing | Where it runs | Most practical Quicken path |
+|---|---|---|---|---|---|
+| [Moneydance](https://infinitekind.com/landing) | A traditional desktop finance app on macOS, Windows, or Linux | OFX Direct Connect where the bank supports it, optional Moneydance+ aggregation in the U.S. and Canada, and manual file imports | Investment accounts, portfolio views, cost basis, and downloaded prices | Desktop app with local data | Export one QIF file from Quicken, then import it into a new Moneydance data set |
+| [Monarch Money](https://help.monarch.com/hc/en-us/articles/360048393352-Connection-issues) | A managed household dashboard with institution connections and less desktop administration | Connected accounts through aggregation providers; separate CSV imports for transactions and balance history | Connected holdings; manual holdings or balance tracking when a connection is incomplete | Managed web and mobile service | Convert the history you need to transaction and balance CSV files; set up holdings separately |
+| [GnuCash](https://www.gnucash.org/features.phtml) | Free, open-source desktop accounting with reconciliation, reports, investments, and multiple currencies | QIF, OFX/QFX, and CSV file imports; online-banking setup is separate from file import | Stock and mutual-fund accounts, portfolio reports, and price retrieval | Local desktop app on Windows, macOS, and Linux | Use Quicken's QIF export and GnuCash's QIF import assistant, then verify investment data separately |
+| [Actual Budget](https://actualbudget.org/) | Local-first, open-source envelope budgeting | QIF, OFX, QFX, CSV, and CAMT imports; optional provider sync on `actual-server`, triggered manually | No Quicken-like investment suite | Local app, optionally synced through an Actual server | Import QIF transaction history, or use fresh OFX/QFX files account by account |
+| [Expense Budget Tracker](/features/) | A programmable ledger with native-currency entries, shared workspaces, managed hosting or self-hosting | Manual entry or agent-assisted statement imports; no automatic bank sync | No investment or retirement suite | Managed web app or open-source self-hosted deployment | Use a Quicken report or fresh bank/card export as reviewed input; there is no direct Quicken-file importer |
 
-The rest of the decision is less about which feature list is longer and more about which responsibilities you want the software to take on.
+This is a use-case comparison, not a scorecard. A desktop accounting application and a managed household dashboard solve different problems even when both can display a checking-account balance.
 
-## Reasons to stay with Quicken
+## When Quicken is still the right answer
 
-Quicken has had years to build a broad household-finance workflow. Its Windows documentation covers [bank and credit accounts, investments, budgets, reports, reconciliation, attachments, and multiple currencies](https://info.quicken.com/win/about-working-with-quicken). Those are not small extras around a budget ledger. They can be the reason the file exists.
+Do not migrate just because another app is newer, open source, or cheaper in one scenario. [Quicken Classic](https://www.quicken.com/products/pricing-comparison-classic/) remains a locally installed Windows or Mac product with plan- and platform-dependent features. Its mature workflow is difficult to replace when several parts work together.
 
-Stay with Quicken if several of these describe your setup:
+Keep Quicken, or keep it as one part of your setup, if you depend on:
 
-- Downloading transactions from financial institutions saves you meaningful time.
-- You track securities, cost basis, portfolios, or retirement scenarios in the same application.
-- Tax-oriented categories and reports support your yearly filing process.
-- Bill tracking or payment is part of your routine. Quicken's current [Bill Manager page](https://www.quicken.com/products/bill-manager/) explains which plans include tracking and which include payment.
-- Receipts and other attachments need to stay beside transactions.
-- You prefer a locally installed desktop application and its established register-and-report workflow.
+- automatic downloads from institutions that already connect reliably;
+- security lots, cost basis, portfolio analysis, or retirement planning;
+- tax-oriented categories and reports;
+- [bill tracking or bill payment](https://www.quicken.com/products/bill-manager/);
+- attachments stored beside accounts or transactions;
+- business or rental-property workflows;
+- established scheduled transactions, custom reports, and reconciliation habits;
+- one desktop file that keeps all of those jobs together.
 
-Moving away from a tool that already handles these jobs can create more work than it removes. An **alternative to Quicken for personal finance** should solve a real mismatch, not merely have a newer interface.
+Quicken's Windows guide covers [accounts, downloads, investments, budgets, reports, reconciliation, attachments, and multiple currencies](https://info.quicken.com/win/about-working-with-quicken). Replacing that file with two or three disconnected products can be a downgrade even if each replacement looks better in isolation.
 
-## Reasons to test Expense Budget Tracker
+## Five alternatives, five different tradeoffs
 
-Expense Budget Tracker starts with an inspectable ledger rather than trying to recreate every part of Quicken Classic. Account balances are derived from ledger entries. Transfers between your own accounts remain transfers. Budget lines put planned, actual, and gap values together, with an append-only history of budget changes.
+### Moneydance: the desktop-first choice
 
-It also keeps the transaction's native currency and applies exchange rates when data is read for reporting. That gives a household with EUR income, USD savings, and GBP card spending one reporting view without overwriting what originally happened. The [multi-currency budgeting guide](/blog/multi-currency-budgeting-for-expats/) explains that model in more detail.
+Moneydance is the most natural shortlist entry when “software similar to Quicken” means a desktop register, scheduled items, reports, online banking, multi-currency support, and investment tracking. It keeps the broad personal-finance shape rather than narrowing the product to budgeting alone.
 
-Quicken should not be described as weak at multi-currency. Quicken Classic for Windows [supports multiple currencies, maintains original account values, and uses exchange rates for reports](https://info.quicken.com/win/multiple-currencies). An account's currency cannot be changed after the account is created. Expense Budget Tracker makes a different design choice: native amounts stay in the ledger, and conversion happens at read time. Mac and Windows feature availability can differ, so check the current Quicken documentation for the platform you use.
+Its most important migration advantage is a documented [QIF import flow for data exported from Quicken](https://infinitekind.tenderapp.com/kb/importing-data-from-other-programs/importing-data-in-qif-format-2). That is still a migration, not a promise of perfect parity. Investment transactions, splits, account currencies, transfers, scheduled items, and opening balances deserve separate checks after import.
 
-Expense Budget Tracker is the stronger fit when several of these matter more than Quicken's broader feature set:
+For ongoing bank data, Moneydance documents [OFX Direct Connect, manual OFX/QFX/QIF downloads, CSV imports, and the optional Moneydance+ aggregation service](https://infinitekind.tenderapp.com/kb/online-banking-and-bill-pay/downloads-methods). The paths are not interchangeable: Direct Connect depends on bank support, Moneydance+ is an optional subscription, and the normal CSV importer is designed around bank downloads. Moneydance's own [QIF troubleshooting guide](https://infinitekind.tenderapp.com/kb/importing-data-from-other-programs/possible-problems-after-qif-import) calls out opening balances, dates, duplicate transfers, and missing historical exchange rates as possible cleanup work.
 
-- You want to inspect the ledger behind a reported balance.
-- You prefer deliberate statement imports over a permanent bank connection.
-- Several native currencies are normal rather than an occasional travel edge case.
-- You need shared workspaces for personal or household contexts.
-- A script or agent should query and update financial data through a documented machine interface.
-- You want an **open source Quicken alternative**, even if you use the managed app today.
-- You need the option to run a **self-hosted Quicken alternative** on your own infrastructure.
+Choose Moneydance when you want to stay on desktop and preserve more of Quicken's all-in-one character. It is less compelling when the real goal is a fully managed household service or a browser-native, programmable ledger.
 
-The [features page](/features/) is the current product-scope reference. Developers can also read about the [expense-tracking API](/blog/expense-tracking-api/) and the tradeoffs of a [self-hosted open-source budget tracker](/blog/self-hosted-open-source-budget-tracker-for-developers/).
+### Monarch Money: the managed household choice
 
-## Import behavior is the biggest practical difference
+Monarch fits people who want accounts gathered into a current web and mobile dashboard without running their own software. It connects institutions through aggregation providers and can track connected or [manual investment holdings](https://help.monarch.com/hc/en-us/articles/10032888165140-Manual-Investment-Holdings).
 
-Quicken's connected-account downloads reduce routine data entry. Expense Budget Tracker does not offer automatic bank sync. You enter transactions manually, or a connected agent can inspect a bank statement or card export and write the resulting rows through the API for you to review.
+Its documented manual migration route is CSV, but it is not one all-purpose upload. The [transaction importer](https://help.monarch.com/hc/en-us/articles/4409682789908-Importing-Transactions-Manually) accepts optional categories, tags, and notes; it does not import budgets or aggregate cash-flow totals. [Balance history uses a separate CSV flow](https://help.monarch.com/hc/en-us/articles/14882425704212-Importing-Account-Balances-Manually), and investment holdings still need a working connection or manual setup. Transaction CSV imports cannot be undone as one operation, so Monarch recommends testing a smaller file first.
 
-That workflow is more deliberate. It can also be easier to audit because you choose the source file and date range, review categories and transfers, and compare the resulting closing balance with the statement. The guides to [budget apps without bank linking](/blog/budget-app-without-bank-linking/) and [importing bank statements into an expense tracker](/blog/how-to-import-bank-statements-into-an-expense-tracker/) show what that process involves.
+Choose Monarch when connected accounts and a managed household view matter more than local desktop ownership. Do not mistake a transaction CSV import for a full Quicken-file conversion.
 
-Do not confuse that statement workflow with a Quicken-file importer. Expense Budget Tracker currently does not directly import:
+### GnuCash: the open-source accounting choice
 
-- a working Quicken QDF file
-- a Quicken Transfer Format (QXF) file
-- a Quicken Interchange Format (QIF) file
+GnuCash is the **open source Quicken alternative** for someone comfortable with double-entry accounting. It provides reconciliation, scheduled transactions, customizable reports, multi-currency accounts, investment accounts, and desktop builds for Windows, macOS, and Linux.
 
-People searching for **Quicken alternatives that import Quicken data** should verify the exact source format, destination product, supported account types, and duplicate rules before choosing a tool. “Imports transactions” is not the same promise as “opens my complete Quicken file.”
+The migration path is unusually direct for this list: GnuCash officially documents a [QIF assistant for Quicken data](https://www.gnucash.org/docs/v5/C/gnucash-manual/trans-import.html). The same manual documents OFX/QFX and CSV transaction imports; duplicate matching is part of the generic importer used by OFX/QFX and CSV, while the QIF assistant has its own review steps and limitations. The tradeoff is the accounting model. Categories become income and expense accounts, and transfers are balanced entries. That structure is powerful, but it asks more of the person maintaining the books.
 
-## What Quicken export files actually preserve
+Choose GnuCash when free and open-source desktop accounting is the requirement. Test the QIF export with a copy of your data before deciding that securities, duplicates, account mapping, and other Quicken-specific conventions survived.
 
-Quicken documents several export routes, including [exporting report data to Excel, QXF, and QIF](https://info.quicken.com/win/export-data-from-quicken). They solve different problems.
+### Actual Budget: the local-first envelope choice
 
-QXF is primarily a transfer format between Quicken files and installations, not a complete neutral backup for any finance app. Quicken's [QXF export documentation](https://info.quicken.com/win/how-do-i-export-data-to-a-qxf-file) says it excludes budgets, attachments, reports, settings, and business and investment data. Even a product that accepts QXF may therefore receive less than you expect.
+Actual Budget is built around envelope budgeting and a local-first data model. The app works with local data and can sync through a server you choose. If you enable its optional end-to-end encryption, Actual encrypts budget data before it leaves the device; its documentation also says data on the local device remains unencrypted. If you enable bank sync, provider credentials live on `actual-server` and are not covered by the budget-data encryption.
 
-A Quicken report exported to Excel is easier to inspect as rows and columns, but it is still a report rather than the original database. A fresh bank or card statement export is narrower again, yet often makes the cleanest pilot source because the account and date range are clear and you can reconcile it against the issuer's statement balance.
+Actual has the broadest documented transaction-file list here: [QIF, OFX, QFX, CSV, and CAMT](https://actualbudget.org/docs/transactions/importing/). Optional bank integration supports regional providers, including SimpleFIN Bridge for North American institutions, but [fetching transactions is a manual action](https://actualbudget.org/docs/advanced/bank-sync/), not an unattended background sync.
 
-For an Expense Budget Tracker pilot, choose one controlled source:
+Choose Actual when local-first envelope budgeting and flexible statement imports matter more than Quicken's investment, tax, and bill-management suite.
 
-- Use a Quicken transaction report exported to Excel if you need categories or memos from the Quicken register.
-- Use a fresh statement export from the bank or card issuer if independent balance reconciliation matters more.
+### Expense Budget Tracker: the inspectable-ledger choice
 
-Do not combine both sources for the same dates. That is an easy way to double-count every transaction before the comparison has even started.
+Expense Budget Tracker stores each ledger entry in its native currency and converts amounts at read time for reporting. Transfers between your own accounts remain first-class transfer records. It adds shared workspaces, a hosted [MCP connector](/docs/mcp-connector/), a direct Agent API, and an open-source self-hosted option.
 
-## A low-risk Quicken migration workflow
+The boundaries are deliberate: there is no automatic bank sync, investment suite, or direct QDF, QXF, or QIF importer. You can enter transactions manually or give a bank statement or card export to an agent, inspect the proposed rows, and approve the write. The [statement-import guide](/blog/how-to-import-bank-statements-into-an-expense-tracker/) explains that review and reconciliation loop; [Budget Apps Without Bank Linking](/blog/budget-app-without-bank-linking/) covers the privacy and maintenance tradeoff.
 
-A useful **Quicken migration** proves parity on a small account before moving more data. Keep Quicken available during the test.
+Choose Expense Budget Tracker when ledger traceability, multiple native currencies, shared workspaces, agent workflows, or self-hosting are the actual requirements. The [self-hosting guide for developers](/blog/self-hosted-open-source-budget-tracker-for-developers/) is worth reading before taking on the operational side.
 
-1. **Preserve the original.** Keep the working Quicken file unchanged and make a separate backup before exporting anything. Do not treat a QXF export as the only copy of your history.
-2. **Inventory the structure.** List the accounts, account currencies, categories, recurring items, transfers, attachments, investment data, reports, and tax workflows you actually use. Mark anything Expense Budget Tracker does not replace.
-3. **Pick one representative non-investment account.** A checking account or credit card with a normal month of purchases, one refund, and at least one transfer is more useful than an unusually clean sample.
-4. **Set a precise boundary.** Choose one closed statement period. Record its opening and closing balances, and decide whether the pilot source will be a Quicken report export or the institution's statement export. Never load the same period from both.
-5. **Recreate only the needed setup.** Add the account with the correct native currency and create a small category set for that sample. Do not reproduce years of category history before you know the new model fits.
-6. **Enter or import the sample.** Add a few transactions manually, or start with the [getting-started guide](/docs/getting-started/) and use the [agent setup flow](/docs/agent-setup/). You give the agent `https://api.expense-budget-tracker.com/v1/`; it follows the discovery document, verifies an email code, stores its API key, selects a workspace, inspects the allowed schema, and writes through the restricted SQL API. Begin with a small batch and review every row it writes.
-7. **Check transfers before totals.** Confirm that movement between your own accounts is represented as a transfer rather than income in one account and spending in another. If the other side of a transfer is outside the pilot, document that boundary instead of inventing a category to make the numbers look right.
-8. **Reconcile the closing balance.** Compare transaction count, signs, dates, currencies, transfer treatment, and the final balance with the chosen source. Resolve every difference before adding another period.
-9. **Expand one account at a time.** Only after the pilot matches should you add more months or accounts. Leave investment, attachment, bill-management, and tax-report workflows in Quicken unless you have chosen a separate replacement for each.
+## Which Quicken exports can go where?
 
-This is intentionally slower than uploading every available export. It gives you a clear answer to the questions that matter: whether the ledger matches, whether you trust the import boundary, and which Quicken capabilities still need a home.
+The extensions are easy to confuse. **QDF** is the working Quicken Classic for Windows data file. **QXF** is Quicken Transfer Format. **QIF** is the older Quicken Interchange Format. **QFX** is a bank-transaction exchange file related to OFX; it is not QXF.
 
-## The multi-currency decision deserves its own test
+The official import documentation reviewed for these five alternatives does not describe a direct path from a working QDF file. Quicken's current Windows [QXF documentation](https://info.quicken.com/win/how-do-i-export-data-to-a-qxf-file) frames QXF as a transfer format between Quicken files. QXF includes eligible non-investment, non-business accounts plus their transactions, scheduled transactions, categories, and tags. It excludes investment and business accounts, budgets, attachments, reports, and application settings.
 
-Both products can belong on a shortlist for multi-currency finances, but they answer different questions.
+Those are Quicken Classic for Windows export rules. Quicken Classic for Mac has different menus and available formats, so confirm what your installed version can export before choosing a migration route.
 
-Quicken Classic for Windows ties a currency to the account and uses exchange rates in reporting. That can work well when your existing accounts and reports are already configured correctly. Expense Budget Tracker stores each transaction in its native currency and converts at read time to the reporting currency you choose. Its dashboards can also show FX impact.
+| Source from Quicken or the institution | Moneydance | Monarch Money | GnuCash | Actual Budget | Expense Budget Tracker |
+|---|---|---|---|---|---|
+| Working `.QDF` file | [Moneydance cannot read Quicken's native file](https://infinitekind.tenderapp.com/kb/importing-data-from-other-programs/importing-from-quicken-without-qif); export from Quicken first | No documented direct importer | No documented direct importer | No documented direct importer | No direct importer |
+| `.QXF` transfer file | [Moneydance says it cannot read QXF](https://infinitekind.tenderapp.com/kb/importing-data-from-other-programs/importing-from-quicken-without-qif); use an available QIF export instead | No documented direct importer; reconstruct the needed history through CSV | No documented direct importer; use QIF or transaction files instead | No documented direct importer; use QIF or transaction files instead | No direct importer |
+| `.QIF` export | Documented Quicken migration path | No documented direct importer; convert the needed data to Monarch's CSV structure | Documented Quicken import assistant; verify accounts and investments | Documented transaction import | No direct importer; use reviewed report or statement data instead |
+| Quicken report exported to Excel, then saved as CSV | Not a full migration; [Moneydance directs finance-app CSV files to its Text File Importer extension](https://infinitekind.tenderapp.com/kb/online-banking-and-bill-pay/importing-csv-files) rather than the normal bank CSV flow | Transaction CSV import; balance history is a separate CSV import, holdings are separate, and budgets do not transfer | Transaction CSV import with account and column mapping | Transaction CSV import with field mapping | Manual or agent-assisted input after review; no built-in file uploader |
+| Fresh bank or card export | Direct OFX/QFX/QIF import; CSV with manual mapping | Transaction CSV; separate dated-balance CSV if available | QIF, OFX/QFX, or transaction CSV | QIF, OFX/QFX, CSV, or CAMT | Manual or agent-assisted statement import; no built-in file uploader |
 
-When evaluating a **multi-currency budget app**, test a real cross-currency transfer and a period whose exchange rate changed. Check the original amounts, both account balances, the reporting-currency total, and whether the transfer affects spending. A generic “supports multiple currencies” badge will not answer those questions.
+Quicken's own [export guide](https://info.quicken.com/win/export-data-from-quicken) describes QIF as a legacy transfer format and lets you export report data to Excel. If a destination requires CSV, you can save a suitable worksheet as CSV in a spreadsheet tool. Either way, the result is still a report—not the source database. It needs the correct account, date, sign, category, and transfer mapping before import.
 
-## Frequently asked questions
+For a first pilot, a fresh bank or card export is often cleaner than a long Quicken report. The statement period has a known boundary and a closing balance you can reconcile. Use the Quicken report instead when preserving its edited payees, categories, or memos matters more. Never load both sources for the same account and dates.
 
-### Is Expense Budget Tracker a feature-for-feature Quicken replacement?
+## Run a small, reversible migration pilot
 
-No. It does not reproduce Quicken's connected-account downloads, investment and retirement suite, tax-planning and reporting workflow, Bill Manager, attachments, or traditional desktop experience. Choose it for its ledger model, controlled imports, multi-currency reporting, workspaces, API, open-source code, and optional self-hosting.
+Make the decision reversible even when the destination's import command is not. Monarch, for example, says a transaction CSV import has no one-click undo.
 
-### Can Expense Budget Tracker import a Quicken QDF, QXF, or QIF file?
+1. **Back up Quicken.** Preserve the working QDF file and create a normal Quicken backup before exporting anything. Keep Quicken available throughout the pilot.
+2. **Inventory the jobs around the ledger.** List connected accounts, investments, scheduled transactions, bill workflows, attachments, tax reports, custom reports, currencies, and business or rental data. Give each one an explicit destination—or decide it stays in Quicken.
+3. **Choose one closed non-investment account.** A checking account or credit card with a refund and a transfer is more informative than an unusually clean sample.
+4. **Choose one source.** Use either a Quicken export or a fresh institution export for one statement period. Record the opening balance, closing balance, and transaction count.
+5. **Use a disposable destination.** Create a new Moneydance or GnuCash file, a test account, a separate Actual budget, a temporary manual Monarch account, or a new Expense Budget Tracker workspace. Do not test inside the destination you already rely on.
+6. **Import a tiny batch first.** Ten to twenty varied transactions are enough to expose reversed signs, broken dates, missing payees, category problems, and duplicate behavior.
+7. **Check transaction meaning, not only the total.** Confirm signs, dates, currencies, split transactions, refunds, and transfers. Two wrong rows can cancel each other while leaving the closing balance looking correct.
+8. **Reconcile the whole period.** Match the destination's closing balance to the chosen source and explain every difference. Then compare the reports or budget views you will actually use.
+9. **Run in parallel before expanding.** Keep the Quicken file as the reference while you test another period. Add accounts one at a time; leave investments, tax, attachments, and bill workflows in Quicken until their replacements are proven.
 
-No. There is currently no direct QDF, QXF, or QIF importer. Use a small Quicken report export to Excel or a fresh bank or card statement as a controlled source, then enter the data manually or work with a connected agent. Review and reconcile the result before expanding.
+For multi-currency finances, include one real cross-currency transfer in the pilot. Check both native amounts, both account balances, fees, and the reporting-currency result. The [multi-currency budgeting guide](/blog/multi-currency-budgeting-for-expats/) shows the ledger model in detail.
 
-### Does Expense Budget Tracker automatically sync bank accounts?
+## The practical shortlist
 
-No. Transactions come from manual entry or deliberate statement-import work through a connected agent. Quicken is the better fit if automatic connected-account downloads are a core requirement.
+Choose Moneydance for the closest desktop-style replacement and a documented QIF migration. Choose Monarch for managed aggregation and a household dashboard. Choose GnuCash for open-source desktop accounting and a strong QIF path. Choose Actual for local-first envelope budgeting and flexible transaction imports.
 
-### Does Quicken support multiple currencies?
+Choose Expense Budget Tracker when you specifically want a transparent ledger, native-currency records, shared workspaces, and programmable access. Humans can start at [the managed app](https://app.expense-budget-tracker.com/). A terminal or AI agent should begin at [`https://app.expense-budget-tracker.com/api/agent`](https://app.expense-budget-tracker.com/api/agent); that discovery response supplies the current Agent API base, authentication route, MCP endpoint, and supported actions.
 
-Yes. Quicken Classic for Windows supports accounts in multiple currencies and exchange-rate-based reporting. The currency assigned to an account cannot later be changed. Check Quicken's current documentation for Mac behavior because platform features differ.
-
-### Can I keep using Quicken while testing an alternative?
-
-Yes, and that is the safer approach. Preserve the Quicken file and backup, choose one closed period from one non-investment account, and treat Expense Budget Tracker as a parallel pilot. Do not import new periods twice or edit the source file to force parity.
-
-### Can Expense Budget Tracker be shared or self-hosted?
-
-Yes. It uses workspaces for data isolation and collaboration, and it can run as a managed app or through its open-source Docker Compose setup with Postgres. Self-hosting adds operational responsibility, so it is an option rather than a requirement.
-
-## Which should you choose?
-
-Stay with Quicken if its downloads, investments, retirement planning, tax reports, bills, attachments, or desktop workflow are important to you. Those are mature capabilities, and Expense Budget Tracker does not pretend otherwise.
-
-Test Expense Budget Tracker if you want ledger traceability, deliberate imports, native-currency data converted at read time, first-class transfers, shared workspaces, agent access, open-source code, or self-hosting. Start with one real account and one closed statement period.
-
-If that pilot matches the source balance and the tradeoff still looks useful, [open Expense Budget Tracker](https://app.expense-budget-tracker.com/) and expand the migration gradually. Keep Quicken as the reference until every workflow you care about has an explicit destination.
+The right alternative is the one that preserves your real workflow with the fewest hidden gaps. Keep the original Quicken file until the replacement has matched a closed period and every non-ledger job has somewhere honest to go.
