@@ -1,180 +1,162 @@
 ---
-title: "Plan de gastos vs. presupuesto: ¿cuál es la diferencia?"
-description: "Compara un plan de gastos y un presupuesto tradicional, descubre cuándo conviene cada uno y aplica un método híbrido sencillo basado en transacciones reales."
+title: "Plan de gastos frente a presupuesto: ¿son lo mismo?"
+description: "Un plan de gastos y un presupuesto suelen ser lo mismo. Conoce las diferencias prácticas y organiza un sistema mensual para gestionar fechas, registrar movimientos y revisar resultados."
 date: "2026-04-24"
-updated: "2026-08-23"
-image: "/blog/spending-plan-vs-budget.png"
+updated: "2026-09-14"
+image: "/blog/spending-plan-vs-budget-v2.png"
 keywords:
   - "plan de gastos vs presupuesto"
   - "presupuesto vs plan de gastos"
+  - "qué es un plan de gastos"
+  - "definición de plan de gastos"
   - "plan de gastos mensual"
   - "presupuesto de flujo de caja"
-  - "presupuesto flexible"
-  - "presupuesto vs gasto real"
+  - "presupuesto planificado vs real"
 ---
 
-![Una colcha une grandes bloques de color con un mosaico detallado](/blog/spending-plan-vs-budget.png)
+![Una persona añade un tabique extraíble a una maqueta de madera con cuatro habitaciones](/blog/spending-plan-vs-budget-v2.png)
 
-**Presupuesto** y **plan de gastos** suelen ser dos formas de llamar a lo mismo. El [material Money Smart de la FDIC](https://www.fdic.gov/system/files/2024-05/fdic-gr9-12-parentguide-module-2.pdf) dice expresamente que un presupuesto también puede llamarse plan de gastos. [Consumer.gov lo define en términos igual de prácticos](https://consumer.gov/your-money/making-budget): un plan escrito sobre cómo gastarás tu dinero cada mes.
+En la práctica, un **plan de gastos** y un **presupuesto** suelen ser lo mismo: un plan escrito que indica cómo vas a usar tu dinero, normalmente a lo largo de un mes. [Consumer.gov define un presupuesto](https://consumer.gov/your-money/making-budget) como un plan mensual de gastos por escrito. [Money Smart para adultos, de la FDIC](https://catalog.fdic.gov/catalog/sfc/servlet.shepherd/document/download/069t000000BcgyNAAR), llama a su versión «plan de gastos y ahorro» y lo elabora a partir de los ingresos y gastos mensuales.
 
-Sin embargo, en las finanzas personales del día a día, las dos expresiones suelen sugerir distintos niveles de detalle. En este artículo, **plan de gastos** se refiere a un esquema sencillo y flexible, mientras que **presupuesto** designa un plan detallado por categorías. Son dos formas útiles de organizarse, no definiciones formales.
+La respuesta corta a **plan de gastos vs. presupuesto** es que no hay una elección formal entre uno u otro. A veces se llama «plan de gastos» a un esquema más ligero y «presupuesto» a un plan detallado por categorías, pero se trata de una distinción informal, no oficial.
 
-En la práctica, para elegir entre **plan de gastos y presupuesto**, busca el nivel de detalle que te ayude a tomar decisiones y vincula el método a las transacciones y los saldos reales de tus cuentas. Un enfoque híbrido combina las decisiones por categorías con el calendario de cobros y pagos sin confundir ambos problemas.
+La cuestión útil es cuánto detalle necesitas. Si te basta con una cifra global para gestionar los gastos flexibles del mes, mantén el plan sencillo. Si la compra, los restaurantes, el transporte o los gastos compartidos exigen decisiones por separado, utiliza categorías. Añade después un calendario de ingresos y pagos, el registro de transacciones y una revisión a final de mes cuando hagan falta. Son tareas distintas, uses el nombre que uses.
 
-## Plan de gastos vs. presupuesto: comparación rápida
+## Una definición práctica de plan de gastos
 
-Esta tabla compara dos estilos habituales, no dos sistemas oficialmente distintos.
+Un plan de gastos mensual estima los ingresos disponibles, reparte el dinero entre gastos fijos, gastos flexibles, ahorro y reservas, y deja cierto margen para hacer ajustes. También es una definición práctica de presupuesto mensual.
 
-| Pregunta | Plan de gastos sencillo | Presupuesto detallado |
+El nombre importa menos que estas cuatro tareas, que a menudo se mezclan:
+
+| Tarea | Pregunta que responde | Vista útil |
 | --- | --- | --- |
-| ¿Qué se planifica? | Ingresos, facturas, reservas y una cantidad general para gastos flexibles | Ingresos y cantidades planificadas para cada categoría de gasto |
-| Pregunta principal | «¿Cuánto puedo gastar después de cubrir mis obligaciones?» | «¿A qué debería destinar el dinero y qué categorías se están desviando?» |
-| Seguimiento habitual | Total de gastos flexibles y próximas necesidades de liquidez | Importe presupuestado frente al real por categoría |
-| Cuándo conviene | Para preparar un plan mensual rápido cuando bastan las cifras generales | Cuando el hogar necesita ajustar unas categorías frente a otras o compartir la misma visión |
-| Riesgo principal | Una única cantidad general puede ocultar el origen del gasto excesivo | Demasiadas categorías pueden generar trabajo sin mejorar las decisiones |
-| ¿Puede reflejar el calendario de cobros y pagos? | Sí | Sí |
+| Asignación mensual | ¿A qué se destinará el dinero de este mes? | Grupos generales o categorías detalladas |
+| Fechas de facturas e ingresos | ¿Habrá suficiente dinero en la cuenta adecuada en cada fecha? | Calendario de facturas o presupuesto de flujo de caja |
+| Registro de transacciones reales | ¿Qué ocurrió en realidad? | Registros de ingresos, gastos y transferencias |
+| Revisión de fin de mes | ¿Cuadran los saldos y qué debe cambiar el próximo mes? | Comparación entre lo planificado y lo real, más los saldos de las cuentas |
 
-El nombre no determina la flexibilidad. Un presupuesto detallado puede incluir colchones y categorías ajustables. Un plan de gastos mensual puede ser rígido si todo el dinero queda comprometido y no hay margen para cambios.
+El [kit Your Money, Your Goals del CFPB](https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/toolkit/) ofrece herramientas distintas para registrar los gastos, preparar un calendario de facturas y crear un presupuesto de flujo de caja. Separarlas resulta práctico: un plan por categorías puede cuadrar para el conjunto del mes y, aun así, la cuenta corriente puede quedarse corta antes del siguiente ingreso.
 
-## Un mes presentado de tres formas distintas
+Las transferencias provocan otra confusión habitual. Pasar dinero de la cuenta corriente a una cuenta de ahorro que también llevas en el registro solo cambia dónde está ese dinero. Afecta a las fechas de los movimientos y a los saldos de las cuentas, pero no se convierte en un nuevo gasto del hogar. [¿Las transferencias bancarias cuentan como gastos?](/blog/do-bank-transfers-count-as-expenses/) explica los casos límite.
 
-Pensemos en un hogar que recibe el salario en dos pagos de $2,400, uno el día 1 y otro el 15. Sus ingresos netos mensuales son de $4,800 y empieza el mes con $900 en la cuenta corriente.
+## Elige el método más sencillo que te ayude a decidir
 
-Esos $900 iniciales no son ingresos nuevos. Importan porque algunas facturas llegan antes del segundo cobro.
+Aplica esta regla antes de crear una plantilla complicada:
 
-### 1. La decisión por categorías
+| Si esta es tu pregunta principal | Empieza con |
+| --- | --- |
+| «¿Cuánto queda después de las facturas, el ahorro y las reservas?» | Un plan de gastos mensual sencillo con una única partida para gastos flexibles |
+| «¿Qué parte de los gastos flexibles se desvía una y otra vez?» | Un presupuesto detallado por categorías |
+| «¿Puede la cuenta corriente cubrir todas las facturas antes del siguiente ingreso?» | Cualquiera de los dos planes, más una vista del flujo de caja con fechas |
+| «Todavía no confío en mis cifras iniciales.» | Las transacciones reales y una [auditoría de gastos](/blog/how-to-do-a-spending-audit/) |
 
-Primero, el hogar distribuye los ingresos del mes:
+Que un plan sea general no lo vuelve automáticamente más flexible; un presupuesto detallado tampoco es automáticamente restrictivo. Ambos pueden incluir colchones y ajustes a mitad de mes. Solo vale la pena añadir detalle cuando sirve para tomar una decisión.
 
-| Grupo | Categoría | Planificado |
+Por ejemplo, «Alimentación: $900» puede bastar hasta que el gasto en el supermercado se mantenga estable y empiece a subir el de restaurantes. En ese momento, desglosar el grupo en supermercado y restaurantes permite decidir mejor. Dividir cada compra en decenas de categorías demasiado específicas probablemente no aporte nada.
+
+## Un mes con las cuatro tareas por separado
+
+Supongamos que un hogar recibe dos pagos de $2,400, uno el día 1 y otro el 15. Sus ingresos netos mensuales son de $4,800 y empieza el mes con $900 en la cuenta corriente.
+
+Los $900 iniciales no son ingresos de ese mes. Ese dinero ya estaba disponible y resulta importante porque algunas facturas llegan antes del segundo pago.
+
+### Reparte el dinero del mes
+
+La versión sencilla del plan solo necesita cuatro líneas. El detalle entre paréntesis puede permanecer oculto, salvo que separar las categorías ayude a decidir mejor.
+
+| Grupo | Detalle | Planificado |
 | --- | --- | ---: |
-| Gastos fijos | Alquiler | $1,500 |
-| Gastos fijos | Servicios básicos | $250 |
-| Gastos fijos | Seguro | $200 |
-| Gastos fijos | Teléfono e internet | $100 |
-| Gastos fijos | Cuidado de niños | $650 |
-|  | **Subtotal de gastos fijos** | **$2,700** |
-| Gastos flexibles | Supermercado | $600 |
-| Gastos flexibles | Transporte | $240 |
-| Gastos flexibles | Restaurantes y ocio | $300 |
-| Gastos flexibles | Gastos del hogar y personales | $160 |
-|  | **Subtotal de gastos flexibles** | **$1,300** |
-| Ahorro y reservas | Ahorro para emergencias | $300 |
-| Ahorro y reservas | Reserva para gastos irregulares | $200 |
-|  | **Subtotal de ahorro y reservas** | **$500** |
-| Colchón | Sin asignar en la cuenta corriente | $300 |
-|  | **Total de ingresos asignados** | **$4,800** |
+| Gastos fijos | Alquiler $1,500; servicios básicos $250; seguro $200; teléfono e internet $100; cuidado infantil $650 | $2,700 |
+| Gastos flexibles | Supermercado $600; transporte $240; restaurantes y ocio $300; gastos del hogar y personales $160 | $1,300 |
+| Ahorro y reservas | Ahorro para emergencias $300; reserva para gastos irregulares $200 | $500 |
+| Colchón en la cuenta corriente | Margen sin asignar para pequeños cambios y desfases entre fechas | $300 |
+| **Total de ingresos asignados** |  | **$4,800** |
 
-El cálculo es:
+El plan cuadra:
 
 **$4,800 de ingresos − $2,700 de gastos fijos − $1,300 de gastos flexibles − $500 de ahorro y reservas = $300 de colchón**
 
-Un plan de gastos sencillo podría quedarse en los tres subtotales en negrita y el colchón. Un presupuesto detallado conserva cada categoría porque el supermercado, el transporte y los restaurantes pueden exigir decisiones distintas más adelante.
+Si solo necesitas saber cuánto puedes dedicar a gastos flexibles, basta con las filas generales. Si necesitas elegir entre supermercado y restaurantes, puedes conservar los importes detallados. Es el mismo plan mensual a dos niveles de detalle.
 
-### 2. El calendario de cobros y pagos
+### Comprueba cuándo entra el dinero
 
-El total mensual cuadra, pero no garantiza que la cuenta corriente tenga saldo suficiente cada semana. Un **presupuesto de flujo de caja** se ocupa precisamente de ese calendario. La [herramienta de presupuesto de flujo de caja del CFPB](https://files.consumerfinance.gov/f/documents/cfpb_your-money-your-goals_cash_flow_budget_tool_2018-11_ADA.pdf) registra el dinero semana a semana y traslada cada saldo final a la semana siguiente.
+El total mensual cuadra, pero la cuenta corriente también debe mantener saldo suficiente a medida que se suceden los movimientos. Un **presupuesto de flujo de caja** añade fechas o semanas:
 
-Así quedaría el calendario previsto del hogar:
-
-| Semana | Saldo inicial en cuenta corriente | Ingresos | Facturas fijas | Gastos flexibles | Transferencia a ahorros | Saldo final en cuenta corriente |
+| Semana | Saldo inicial en cuenta corriente | Ingresos | Gastos fijos | Gastos flexibles | Transferencia al ahorro | Saldo final en cuenta corriente |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | 1 | $900 | $2,400 | $1,600 | $325 | $0 | $1,375 |
 | 2 | $1,375 | $0 | $450 | $325 | $0 | $600 |
 | 3 | $600 | $2,400 | $650 | $325 | $500 | $1,525 |
 | 4 | $1,525 | $0 | $0 | $325 | $0 | $1,200 |
 
-La semana 1 incluye el alquiler, el teléfono e internet. La semana 2 incluye los servicios básicos y el seguro. La semana 3 incluye el cuidado de niños y el segundo cobro del salario.
+La semana 1 incluye el alquiler, el teléfono e internet. La semana 2 incluye los servicios básicos y el seguro. La semana 3 incluye el cuidado infantil, el segundo pago y la transferencia al ahorro.
 
-El movimiento de $500 desde la cuenta corriente a una cuenta de ahorro incluida en el seguimiento es una transferencia interna. Reduce el saldo de la cuenta corriente y aumenta el del ahorro por la misma cantidad. Por eso figura en la tabla semanal del flujo de caja, pero no suma $500 al gasto del hogar. Las cantidades destinadas a emergencias y gastos irregulares siguen siendo asignaciones deliberadas del presupuesto; sencillamente, responden a una pregunta distinta de la del registro de gastos. [¿Las transferencias bancarias cuentan como gastos?](/es/blog/do-bank-transfers-count-as-expenses/) explica los casos menos evidentes con más detalle.
+El saldo más bajo de esta vista semanal es $600, no los $1,200 que aparecen al final del mes. Una vista con fechas concretas podría revelar un saldo aún menor dentro de una semana. Si ese mínimo quedara demasiado cerca de cero, el hogar podría cambiar una fecha de vencimiento, la fecha de la transferencia, el ritmo de gasto o el colchón inicial antes de que surgiera el problema. Un [calendario de facturas](/blog/how-to-use-a-bill-calendar-for-budgeting/) resulta útil cuando lo difícil es encajar las fechas.
 
-Si el total mensual deja margen, pero un saldo intermedio se acerca a cero, ajusta la fecha de vencimiento de una factura, la fecha de una transferencia, el ritmo del gasto flexible o el colchón inicial antes de llegar a esa semana. Un [calendario de facturas](/es/blog/how-to-use-a-bill-calendar-for-budgeting/) resulta útil cuando las fechas son la parte complicada.
+### Registra lo que ocurrió de verdad
 
-### 3. Lo presupuestado frente a lo real
+Al final del mes, las transacciones contabilizadas muestran dónde se desvió el plan:
 
-Al final del mes, el hogar cierra el plan con las transacciones ya contabilizadas:
-
-| Categoría | Presupuestado | Real | Real menos presupuestado |
+| Categoría | Planificado | Real | Real − planificado |
 | --- | ---: | ---: | ---: |
-| Alquiler | $1,500 | $1,500 | $0 |
-| Servicios básicos | $250 | $270 | +$20 |
-| Seguro | $200 | $200 | $0 |
-| Teléfono e internet | $100 | $100 | $0 |
-| Cuidado de niños | $650 | $650 | $0 |
-| **Subtotal de gastos fijos** | **$2,700** | **$2,720** | **+$20** |
+| Gastos fijos | $2,700 | $2,720 | +$20 |
 | Supermercado | $600 | $640 | +$40 |
 | Transporte | $240 | $190 | −$50 |
 | Restaurantes y ocio | $300 | $360 | +$60 |
 | Gastos del hogar y personales | $160 | $130 | −$30 |
-| **Subtotal de gastos flexibles** | **$1,300** | **$1,320** | **+$20** |
 | **Gasto total** | **$4,000** | **$4,040** | **+$40** |
 
-La transferencia al ahorro se realizó íntegramente. Por tanto, el colchón restante del mes es:
+En conjunto, el hogar gastó $40 más de lo planificado. El mayor gasto en las partidas fijas, el supermercado y los restaurantes quedó compensado en parte por un menor gasto en transporte y en gastos del hogar y personales.
 
-**$4,800 de ingresos − $4,040 de gastos − $500 de ahorro y reservas = $260**
+La transferencia de $500 al ahorro también se realizó, pero queda fuera de los gastos del hogar porque ambas cuentas están incluidas en el plan. Aun así, aparece tanto en el registro como en la vista del flujo de caja. Restarla una vez como gasto y otra como transferencia supondría contar dos veces el mismo movimiento.
 
-El saldo final de la cuenta corriente debería ser:
+### Concilia los saldos antes de ajustar el plan
+
+El exceso de gasto de $40 reduce el colchón planificado de $300 a $260:
+
+**$4,800 de ingresos − $4,040 de gastos − $500 de transferencia al ahorro = $260**
+
+Si no hay otras transacciones, la cuenta corriente debería terminar con $1,160:
 
 **$900 de saldo inicial + $4,800 de ingresos − $4,040 de gastos − $500 de transferencia = $1,160**
 
-Son $40 menos que el saldo final previsto de $1,200, exactamente lo mismo que se gastó de más en total. El saldo de la cuenta de ahorro incluida en el seguimiento aumentó en $500: la transferencia movió el dinero de una cuenta a otra, pero no cambió el gasto total del hogar.
+Son $40 menos que el saldo final planificado de $1,200, exactamente lo que se gastó de más. La cuenta de ahorro incluida en el registro aumentó su saldo en $500, así que la transferencia cambió dónde estaba el dinero del hogar, no su gasto total.
 
-Esto es lo que aporta una comparación entre **presupuesto y gasto real**. El supermercado y los restaurantes superaron sus importes, pero el transporte y los gastos del hogar compensaron parte de la diferencia. Ahora el hogar puede decidir si debe reajustar alguna categoría, en lugar de tratar cada desviación como un fracaso.
+Si el saldo real de la cuenta corriente no es $1,160, hay que comprobar el saldo inicial y buscar cualquier movimiento que falte, esté duplicado o se haya clasificado mal antes de cambiar los importes de las categorías del mes siguiente. El [proceso de conciliación del presupuesto](/blog/how-to-reconcile-your-budget-with-your-bank-balance/) explica esa comprobación paso a paso.
 
-## ¿Qué método te conviene?
+Después de conciliar los saldos, la comparación entre el **presupuesto planificado y el real** ya es lo bastante fiable para orientar el mes siguiente. Quizá no haga falta cambiar nada tras un solo mes. Si el supermercado y los restaurantes superan repetidamente lo previsto, puede tener sentido aumentar los importes planificados, dividir una categoría o equilibrarlo con un cambio deliberado en otra partida.
 
-### Elige un plan de gastos sencillo cuando baste con la cifra global
+## Un ciclo mensual sencillo
 
-Un plan más ligero es una opción razonable cuando:
+El ritmo básico de Consumer.gov funciona bien: prepara un plan, registra los gastos, compara el resultado y úsalo para planificar el mes siguiente. Esta versión mantiene conectadas las cuatro tareas:
 
-- los ingresos y los gastos fijos son previsibles
-- una única cantidad para gastos flexibles ofrece suficiente orientación
-- añadir más detalle por categorías no cambiaría ninguna decisión
-- el principal reto es conseguir que el mes actual cuadre
+1. **Delimita qué entra en el plan.** Anota las cuentas corrientes, las cuentas de ahorro, el efectivo y las tarjetas incluidas, junto con sus saldos actuales.
+2. **Parte de datos reales.** Revisa los ingresos, las facturas y los gastos flexibles recientes en lugar de estimarlos de memoria.
+3. **Elige el nivel de detalle.** Empieza por grupos generales. Divide una categoría solo cuando disponer de esa cifra por separado pueda cambiar una decisión.
+4. **Añade las fechas.** Coloca en el calendario los ingresos, los gastos fijos y las transferencias previstas; después, proyecta la evolución del saldo durante el mes.
+5. **Registra la realidad.** Mantén separados los ingresos, los gastos y las transferencias. Incluye todas las cuentas que llevas en el registro para que los totales abarquen todo lo incluido en el plan.
+6. **Cierra el mes.** Primero concilia los saldos, después compara lo planificado con lo real y ajusta las pocas estimaciones que hayan resultado poco realistas.
 
-En este caso, presupuestar con flexibilidad supone mantener al día menos previsiones y dejar margen para mover el dinero según avanza el mes. Aun así, hay que registrar las transacciones. De lo contrario, el importe disponible para gastos flexibles no pasará de ser una estimación.
+Este ciclo funciona tanto si el documento se llama presupuesto como si se llama plan de gastos y ahorro o plan de gastos mensual. El nombre no garantiza que las cifras sean correctas; las transacciones y la conciliación, sí.
 
-### Elige un presupuesto detallado cuando las categorías cambien tus decisiones
+## Dónde encaja Expense Budget Tracker y dónde no
 
-El detalle adicional compensa cuando:
+Las [funciones de Expense Budget Tracker](/features/) permiten seguir este proceso con importes mensuales planificados y reales por categoría, saldos de cuenta calculados a partir del registro y transferencias entre tus propias cuentas. La aplicación también admite cuentas en varias divisas y espacios de trabajo compartidos.
 
-- quieres fijar un límite propio al supermercado, los restaurantes, el transporte u otra categoría
-- los gastos irregulares necesitan partidas mensuales explícitas
-- dos o más personas necesitan consultar los mismos importes por categoría
-- intentas entender por qué se repite un exceso de gasto
+No se conecta a cuentas bancarias ni ofrece importación o categorización automática de transacciones de forma nativa. Tú sigues siendo responsable de introducir en el registro todas las transacciones, clasificarlas correctamente y conciliar los saldos. Si buscas una aplicación que se sincronice con el banco y se encargue de todo, esta no es esa aplicación. El proceso está pensado para quien quiere controlar de forma explícita las categorías, las cuentas, las transferencias y los registros compartidos.
 
-Mantén la lista de categorías lo bastante corta como para poder revisarla. «Alimentación» puede ser suficiente hasta que el supermercado y los restaurantes empiecen a exigir decisiones distintas. En ese caso, separa la categoría.
+## Preguntas frecuentes sobre planes de gastos y presupuestos
 
-### Combina ambos cuando importen las fechas y el control por categorías
+### ¿Es mejor un plan de gastos que un presupuesto?
 
-El enfoque híbrido reúne:
+No por definición. Un plan más sencillo funciona mejor cuando bastan los totales generales. Un presupuesto detallado por categorías resulta más útil cuando los límites separados hacen visibles las compensaciones entre partidas o ayudan a varias personas a coordinarse. Usa el menor nivel de detalle que siga sirviendo para gestionar el mes.
 
-1. un plan mensual por categorías
-2. una vista semanal del flujo de caja
-3. las transacciones reales y los saldos de las cuentas
-4. una comparación entre lo presupuestado y lo real al final del mes
+### ¿Es lo mismo un presupuesto de flujo de caja que un presupuesto mensual?
 
-Resulta especialmente útil cuando los cobros del salario y las facturas llegan en fechas que no encajan bien o el dinero se mueve entre varias cuentas. El ejemplo anterior es híbrido: las categorías orientan las decisiones y la tabla semanal evita que un total mensual holgado oculte una falta de liquidez.
+Un presupuesto de flujo de caja es una vista temporal. Muestra cuándo entra y sale dinero de una cuenta y cómo debería evolucionar su saldo. Un presupuesto mensual por categorías muestra qué parte de los ingresos se asigna a cada propósito. Un mismo mes puede requerir ambas vistas.
 
-## Prepara un sistema que puedas poner en práctica este mes
+### ¿Debe aparecer el ahorro en un plan de gastos?
 
-1. **Delimita qué entra en el plan.** Enumera las cuentas corrientes, las cuentas de ahorro, el efectivo y las tarjetas que vas a incluir. Anota el saldo actual de cada una.
-2. **Parte del historial de transacciones, no de la memoria.** Revisa los ingresos, las facturas y los gastos variables recientes. Una [auditoría de gastos](/es/blog/how-to-do-a-spending-audit/) puede revelar categorías ausentes y promedios engañosos antes de que fijes los importes.
-3. **Presupuesta primero los ingresos previsibles y los pagos obligatorios.** Incluye las fechas, no solo los totales mensuales.
-4. **Asigna importes al ahorro y a las reservas.** Decide cuánto y para qué. Si tanto la cuenta de origen como la de destino están registradas, anota el movimiento como una transferencia, no como un gasto.
-5. **Usa solo el detalle por categorías que resulte útil.** Empieza con una cantidad general para gastos flexibles. Divídela únicamente cuando disponer de cifras separadas vaya a cambiar lo que haces.
-6. **Proyecta el saldo semana a semana.** Traslada cada saldo final a la semana siguiente y fíjate en el punto más bajo, no solo en el último día del mes.
-7. **Registra las transacciones reales durante el mes.** El método de presupuestación de Consumer.gov sigue el mismo ciclo básico: planificar al principio, registrar los gastos, comparar el resultado al final del mes y usarlo para planificar el siguiente.
-8. **Concilia antes de revisar el plan.** Comprueba que el registro coincida con los movimientos contabilizados en las cuentas bancarias y las tarjetas. Después, compara lo presupuestado con lo real en cada categoría. Si los saldos no cuadran, sigue el [proceso de conciliación del presupuesto](/es/blog/how-to-reconcile-your-budget-with-your-bank-balance/) antes de cambiar el plan.
+Sí, si ahorrar es uno de los usos previstos para el dinero del mes. Sin embargo, mover dinero entre dos cuentas incluidas en el plan es una transferencia, no un gasto del hogar. Mantén la asignación en el plan y la transferencia en el registro, sin sumarla a los gastos totales.
 
-El orden importa. Un análisis por categorías basado en transacciones ausentes o transferencias contabilizadas dos veces puede parecer preciso y, aun así, ser erróneo.
-
-## Dónde encaja Expense Budget Tracker
-
-Las [funciones de Expense Budget Tracker](/es/features/) permiten aplicar el enfoque híbrido sin imponer un determinado nivel de detalle al plan. Su tabla de presupuesto mensual muestra cada categoría de ingresos y gastos junto con el importe presupuestado, el real y la diferencia. El registro genera saldos acumulados por cuenta, y las transferencias entre cuentas propias se registran como tales, no como gastos adicionales.
-
-Las cuentas multidivisa y los espacios de trabajo compartidos están disponibles cuando el hogar los necesita. Estas funciones no sustituyen las decisiones mensuales; mantienen conectados el plan por categorías, las transacciones, las transferencias y los saldos para que puedas contrastarlos entre sí.
-
-## Cierra el ciclo
-
-Elijas la etiqueta que elijas, cierra el mes de la misma manera: registra lo que ocurrió, concilia los saldos, compara el plan con los resultados reales y ajusta solo las cifras que hayan resultado poco realistas. Así, cualquiera de los dos enfoques deja de ser una plantilla de un solo uso y se convierte en un sistema que puedes volver a usar el mes siguiente.
+En resumen, al comparar un **presupuesto con un plan de gastos**, los dos términos suelen referirse a la misma forma de planificación mensual. Elige categorías generales o detalladas, añade una vista del flujo de caja cuando importen las fechas, registra lo que ocurrió y concilia los saldos antes de llevar el plan al mes siguiente.
