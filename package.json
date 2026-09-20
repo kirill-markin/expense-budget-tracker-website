@@ -20,7 +20,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "node --import tsx --test tests/blogEnglishSource.test.ts"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
