@@ -1,167 +1,95 @@
 ---
-title: "Alternativa a Copilot Money en 2026: rastreador de presupuesto de código abierto con importación de extractos bancarios y soporte multidivisa"
-description: "¿Buscas una alternativa a Copilot Money en 2026? La diferencia práctica es esta: Copilot ofrece una experiencia muy pulida y centrada en el móvil, mientras que un rastreador de presupuesto de código abierto te da importación de extractos bancarios, informes multidivisa, espacios compartidos y autoalojamiento opcional."
+title: "Alternativa a Copilot Money: código abierto y multidivisa"
+description: "Compara Copilot Money y Expense Budget Tracker: sincronización bancaria, monedas, acceso compartido y coste. Prueba a migrar unos pocos datos CSV antes de cambiar."
 date: "2026-03-19"
+updated: "2026-09-20"
+image: "/blog/copilot-money-alternative-v2.png"
 keywords:
   - "alternativa a Copilot Money"
-  - "alternativa a Copilot Money 2026"
-  - "alternativa a Copilot"
   - "alternativa de código abierto a Copilot Money"
-  - "importar extractos bancarios a un rastreador de gastos"
+  - "exportación de Copilot Money"
   - "app de presupuesto multidivisa"
-  - "app de presupuesto compartido"
-  - "app de presupuesto autoalojada"
+  - "control de presupuesto autoalojado"
 ---
 
-El lunes pasado vi cómo un flujo financiero completamente normal dejaba de encajar con la realidad por tres detalles silenciosos. Una transferencia parecía un gasto. Un reembolso daba la impresión de ser un ingreso. Un pago con tarjeta en moneda extranjera parecía correcto hasta que la vista de saldos empezó a transmitir una certeza que los datos no merecían. No pasó nada dramático. La aplicación simplemente dejó de describir la vida real con suficiente precisión.
+Una cuenta corriente en USD y una cuenta en EUR necesitan saldos separados, aunque quieras un único informe de gastos del hogar. Copilot Money solo admite USD actualmente, así que este es un motivo concreto para plantearse una **alternativa a Copilot Money**. La solución que documenta para otras monedas consiste en introducir manualmente el importe convertido. Su [guía sobre monedas](https://help.copilot.money/en/articles/10715424-international-currency) explica esta limitación.
 
-Normalmente es ahí cuando la gente empieza a buscar una **alternativa a Copilot Money**.
+Expense Budget Tracker es una alternativa de código abierto que conserva los movimientos en su moneda original y los convierte para los informes. También permite invitar a otras personas a un espacio de trabajo y alojar la aplicación por tu cuenta. A cambio, tendrás que seguir registrando los movimientos: no hay sincronización bancaria automática ni un importador nativo de Copilot Money. Introduces las transacciones en el navegador o revisas la propuesta de importación de un agente externo.
 
-No porque Copilot sea malo. Lo curioso es que Copilot tiene sentido desde el primer momento si lo que buscas es una app de finanzas personales pulida y moderna desde los primeros minutos. La búsqueda de una alternativa suele empezar más tarde, cuando las importaciones pesan más, las finanzas compartidas se vuelven complejas, aparece más de una moneda o empiezas a querer un sistema financiero que no se sienta tan prestado.
+Esta comparación se basa en la documentación publicada de ambos productos, consultada el 20 de septiembre de 2026. No describe una migración que hayamos realizado. Expense Budget Tracker es nuestro producto; lo que te ayudará a decidir es comprobar si su forma de trabajar encaja con tus cuentas.
 
-Esa es la búsqueda real de una **alternativa a Copilot Money en 2026**.
+![Una persona prueba a colocar una caja en una barca mientras otras dos esperan en el muelle](/blog/copilot-money-alternative-v2.png)
 
-## Copilot resulta atractivo porque la experiencia está muy cuidada
+## Compara el trabajo que tendrás cada semana
 
-Conviene decirlo sin rodeos.
+| Necesidad | Copilot Money | Expense Budget Tracker |
+|---|---|---|
+| Movimientos bancarios | Las conexiones bancarias incorporan los movimientos a la app | Registro manual o importaciones revisadas mediante un agente externo o un script |
+| Monedas | USD; sin conversión nativa de divisas | Movimientos en su moneda original, con tipos de cambio diarios disponibles para los informes |
+| Finanzas compartidas | Se comparte la misma cuenta; los demás dispositivos con sesión iniciada tienen control total | Invitaciones a un espacio de trabajo compartido |
+| Acceso | Disponible en Estados Unidos para iPhone, iPad, Mac y web | Interfaz de navegador, conector MCP y Agent API |
+| Facturas recurrentes e inversiones | Seguimiento de suscripciones y funciones de inversión | Planificación del presupuesto y saldos de cuentas; tendrás que mantener al día las facturas previstas |
+| Alojamiento | Servicio alojado por el proveedor | Nube gestionada o autoalojamiento a partir del código abierto |
+| Coste | $95 al año o $13 al mes | Versión alojada gratuita durante la beta; código gratuito para autoalojamiento, con costes de infraestructura y mantenimiento |
 
-Buena parte del software de finanzas personales todavía se siente anticuado, recargado o ligeramente condescendiente. Copilot no tiene ese problema. Se ve más limpio y más actual que muchas otras opciones de la categoría.
+La [web de Copilot Money](https://www.copilot.money/) recoge las plataformas y los precios. Su [guía de inicio rápido](https://help.copilot.money/en/articles/11157550-quick-start-guide) describe la disponibilidad en Estados Unidos, las conexiones bancarias, los presupuestos, las suscripciones y las inversiones. Sí permite compartir el acceso: las [instrucciones para compartir con tu pareja](https://help.copilot.money/en/articles/4523792-sharing-your-account-with-a-partner) explican cómo hacerlo mediante una misma cuenta.
 
-Eso importa.
+En el caso de Expense Budget Tracker, consulta los [precios actuales](/es/pricing/) antes de decidir. Que sea gratuito durante la beta no significa que vaya a serlo siempre. Alojarlo por tu cuenta también significa hacerte cargo de las actualizaciones y las copias de seguridad; la [guía de autoalojamiento](/es/docs/self-hosting/) explica qué implica. Un proveedor externo de IA puede seguir procesando los datos financieros que le facilites, aunque alojes la aplicación por tu cuenta.
 
-Para mucha gente, una buena experiencia de producto no es un lujo. Es la diferencia entre abrir la app con frecuencia o dejar de usarla poco a poco.
+Si las actualizaciones bancarias automáticas son lo que mantiene tu presupuesto al día, tener que revisar los movimientos antes de registrarlos puede añadir un trabajo que no quieras asumir cada semana. Expense Budget Tracker tampoco sustituye la detección automática de suscripciones ni la gestión de carteras de inversión. Si te importa más conservar las monedas por separado o controlar el alojamiento, prueba a migrar unos pocos datos antes de trasladar tu historial.
 
-El roce suele empezar cuando el sistema financiero tiene que hacer algo más que verse bien.
+## Qué puedes trasladar con una exportación de Copilot Money
 
-Ahí es donde la gente empieza a necesitar alguna combinación de:
+Copilot Money permite exportar transacciones en CSV desde sus distintas plataformas, y la versión web puede exportar una selección filtrada. Los campos documentados incluyen fechas, nombres, importes, estado, categorías, tipos, cuentas, notas y movimientos recurrentes asociados. Consulta sus [instrucciones de exportación de transacciones](https://help.copilot.money/en/articles/5944414-exporting-your-transaction-data).
 
-- importaciones de extractos bancarios más limpias
-- gestión más fiable de transferencias y reembolsos
-- soporte para más de una moneda sin limpieza de hojas de cálculo
-- acceso compartido para el hogar
-- más propiedad sobre los datos subyacentes
+Utiliza ese CSV como documento de origen. La siguiente tabla propone cómo revisar la correspondencia de los campos; no es una especificación de importación automática:
 
-Es entonces cuando una **alternativa a Copilot** deja de ser una cuestión de gustos y pasa a depender de si el modelo subyacente refleja bien la realidad.
+| Campo exportado | Qué revisar antes de registrarlo en la aplicación |
+|---|---|
+| Fecha | Confirma el formato y el periodo al que pertenece |
+| Nombre y notas | Conserva la descripción original y el contexto útil, de modo que puedas relacionarlos con la fila de origen |
+| Importe | Conserva el valor original; comprueba su signo con compras, reembolsos, ingresos y transferencias conocidos antes de normalizarlo |
+| Pendiente o contabilizado | Incluye solo movimientos contabilizados en la prueba de un periodo cerrado |
+| Categoría y categoría superior | Asigna las categorías que hayas elegido para el espacio de trabajo; no des por hecho que las estructuras son idénticas |
+| Tipo | Distingue ingresos, gastos/reembolsos y transferencias internas |
+| Cuenta y número enmascarado | Asócialos a la cuenta de destino exacta y confirma su moneda por separado |
+| Excluido | Anota el motivo de la exclusión; excluirlo del presupuesto no elimina necesariamente su efecto en el saldo de una cuenta |
+| Movimientos recurrentes asociados | Consérvalos como contexto; vuelve a crear por separado los planes presupuestarios que necesites |
 
-## La verdadera pregunta es si el sistema sigue funcionando cuando la vida deja de ser ordenada
+Mantén intacta la exportación y numera las filas de origen en tu copia de trabajo. Un CSV de transacciones no es una copia de seguridad completa de la aplicación. No des por hecho que permite restaurar los importes presupuestados, la configuración de movimientos recurrentes o los saldos iniciales. Obtén extractos bancarios o saldos de referencia con fecha para hacer la conciliación.
 
-Muchas aplicaciones financieras resultan convincentes durante la fase de demostración.
+Copilot Money ya distingue entre ingresos (Income), transferencias internas (Internal Transfers) y movimientos de tipo Regular, que incluyen gastos y reembolsos. Su [guía de tipos de transacción](https://help.copilot.money/en/articles/3971267-transaction-types) trata los pagos de tarjetas de crédito como transferencias internas. Conserva esas distinciones al migrar en lugar de clasificar cada salida de dinero como gasto.
 
-Un salario. Una moneda. Algunas transacciones recurrentes. Categorías limpias. Quizás una cuenta de ahorros.
+## Prueba con un único periodo cerrado
 
-Eso no es falso. Simplemente está incompleto.
+Elige un periodo breve y cerrado que incluya compras habituales, un reembolso y una transferencia entre dos cuentas que lleves en la aplicación. Incluye ambas cuentas de la transferencia y obtén sus saldos iniciales y finales. Deja los movimientos pendientes fuera de la prueba.
 
-La vida real se complica de formas poco espectaculares:
+Empieza en la [app web](/es/docs/getting-started/) con unos pocos movimientos manuales, o utiliza un agente externo para el CSV. El [procedimiento de importación de extractos](/es/blog/how-to-import-bank-statements-into-an-expense-tracker/) cubre toda la revisión. No hay una pantalla de carga de archivos que convierta esta exportación en una migración terminada.
 
-- una persona paga el alquiler y la otra le devuelve el dinero después
-- un viaje ocurre en otra moneda
-- una cuenta guarda ahorros y otra se usa para el gasto diario
-- importar un extracto en PDF importa más que introducir todo a mano
-- en casa todos quieren ver los mismos números sin discutir por ellos
+Para una importación asistida, pide al agente que primero examine el esquema actual y el espacio de trabajo seleccionado. Pídele un borrador que incluya la fila de origen, la cuenta de destino, la moneda, el importe original exportado, el importe normalizado del registro contable, la categoría propuesta, el movimiento correspondiente de la transferencia y cualquier duda. Mantén separadas las dos columnas de importes para poder revisar cada cambio de signo. Compara el borrador con los movimientos existentes para señalar duplicados. Revisa los datos exactos que se propone guardar antes de aprobar un lote pequeño y, después, vuelve a leer las filas guardadas. La [guía del conector MCP](/es/docs/mcp-connector/) explica el acceso de lectura y el permiso de escritura independiente.
 
-Aquí es donde la mejor **app de presupuesto compartido** suele ser la que tiene el modelo contable más honesto, no el panel más vistoso.
+No intentes recuperar la moneda de una cuenta extranjera cambiando la etiqueta de dólares a euros en los importes exportados. Si el origen contiene valores convertidos o etiquetados de forma incorrecta, vuelve a los registros bancarios originales para obtener los importes reales en EUR.
 
-## La importación de extractos bancarios es donde una herramienta financiera empieza a decir la verdad
+## Comprueba los saldos antes de comparar informes
 
-Si quisiera poner a prueba una **alternativa a Copilot Money** rápidamente, no empezaría por la pantalla de inicio.
+Este ejemplo de prueba utiliza los signos normalizados de Expense Budget Tracker: las salidas son negativas; los ingresos, las transferencias recibidas y los reembolsos son positivos. Estos signos describen el registro contable de destino, no el formato CSV de Copilot Money. Los importes son ficticios.
 
-Empezaría con un extracto bancario desordenado.
+| Cuenta | Saldo inicial | Movimientos contabilizados | Saldo final |
+|---|---:|---|---:|
+| Cuenta corriente en USD | $1,000 | +$500 de ingreso − $80 de compra + $20 de reembolso − $200 de transferencia − $3 de comisión | $1,237 |
+| Cuenta de ahorro en USD | $300 | +$200 de transferencia | $500 |
+| Cuenta corriente en EUR | €400 | −€60 de compra + €15 de reembolso | €355 |
 
-Ahí es donde el acabado del producto deja de ayudar y el sistema subyacente tiene que ganarse la confianza.
+La cuenta corriente cuadra así: `1,000 + 500 − 80 + 20 − 200 − 3 = 1,237`. La cuenta de ahorro recibe la transferencia correspondiente de $200. Ambos movimientos de la transferencia afectan a los saldos, pero ninguno cuenta como gasto o ingreso. Los reembolsos de $20 y €15 reducen el gasto en las categorías de sus compras originales, en lugar de convertirse en ingresos. La comisión de $3, contabilizada por separado, sigue siendo un gasto.
 
-Los nombres de los comercios llegan mal formateados. Los reembolsos entran de forma poco clara. Las transferencias tienen que seguir siendo transferencias. El saldo de cierre tiene que cuadrar. Los movimientos en divisa extranjera tienen que seguir siendo creíbles después de importar, no solo antes.
+En esta prueba, el gasto neto en USD es de $63 y el gasto neto en EUR es de €45. No los sumes para obtener «108» de gasto del hogar. Primero, contrasta cada uno de los tres saldos finales con su propia documentación. Después, utiliza una moneda de informe y los tipos de cambio disponibles para comparar los importes.
 
-Por eso búsquedas como **importar extractos bancarios a un rastreador de gastos** son tan útiles en esta categoría.
+Los tipos de cambio de los informes no indican qué conversión aplicó realmente el banco. Una transferencia entre monedas necesita el importe real contabilizado en cada lado. Comprueba la cobertura de tipos de cambio para todas las monedas que necesites; Expense Budget Tracker no promete admitir cualquier moneda. La [guía de presupuestos multidivisa](/es/blog/multi-currency-budgeting-for-expats/) explica las monedas admitidas y la diferencia entre la conversión para informes y la conciliación de cuentas.
 
-El flujo de trabajo que de verdad importa es simple:
+## Decide después de la prueba, antes de trasladar años de datos
 
-1. importar el extracto
-2. categorizar los movimientos
-3. mantener las transferencias separadas de los gastos
-4. comprobar el saldo
-5. seguir presupuestando en el mismo sistema
+Continúa solo cuando hayas registrado qué hacer con cada fila de origen, todas las cuentas afectadas cuadren y las transferencias y los reembolsos aparezcan correctamente en los informes de gastos. Resuelve primero las dudas sobre posibles duplicados y las transferencias a las que les falte el movimiento correspondiente. Nunca añadas un asiento de ajuste solo para ocultar una diferencia sin explicar.
 
-[Expense Budget Tracker](https://expense-budget-tracker.com/es/) encaja mejor con ese flujo de trabajo porque las importaciones pueden alimentar directamente el mismo modelo que se usa para saldos, presupuestos e informes. Las filas importadas no se convierten en una función secundaria que se limpia después. Pasan a formar parte del mismo libro mayor en el que ya confía el resto del producto.
+Después, dedica una semana a mantener al día los nuevos movimientos con el método de registro que hayas elegido. Invita a tu pareja si el acceso compartido forma parte de la decisión y comprueba que ambos podéis hacer lo que necesitáis.
 
-Si lo que más flojea en tu configuración actual son las importaciones, este artículo profundiza más:
-
-- [Cómo importar extractos bancarios a un rastreador de gastos en 2026](https://expense-budget-tracker.com/es/blog/how-to-import-bank-statements-into-an-expense-tracker/)
-
-## La gestión multidivisa es donde muchas apps pulidas empiezan a quedarse cortas
-
-Antes esto sonaba a nicho. Ya no.
-
-El sueldo en una moneda. Los viajes en otra. Los ahorros en otro sitio. O simplemente una vida repartida entre países con suficiente frecuencia como para que la app financiera empiece a borrar matices que debería conservar.
-
-Ahí es cuando una **app de presupuesto multidivisa** floja parece suficiente hasta que de verdad necesitas confiar en ella.
-
-El modelo más limpio es más simple:
-
-- mantener cada movimiento en su moneda original
-- mantener los saldos vinculados a la cuenta real
-- convertir después para los informes
-
-Expense Budget Tracker sigue ese modelo. Primero guarda cada transacción en su moneda original y convierte al consultar para generar informes. Suena técnico, pero el resultado para quien usa la app es muy práctico: los números se mantienen más estables cuando tu dinero no vive en una sola moneda.
-
-Si la vida multidivisa es la razón principal por la que estás buscando alternativas, este es el artículo más centrado en eso:
-
-- [Presupuesto multidivisa para expatriados en 2026](https://expense-budget-tracker.com/es/blog/multi-currency-budgeting-for-expats/)
-
-## Las finanzas compartidas importan más cuando la app se convierte en infraestructura del hogar
-
-Este es otro punto donde la diferencia se nota más tarde.
-
-Al principio, una app de finanzas es solo una app.
-
-Con el tiempo, empieza a comportarse más como una infraestructura. Las categorías se asientan. Se crean hábitos. La pareja necesita acceso. El patrimonio neto empieza a importar tanto como el presupuesto. El sistema empieza a influir en decisiones reales, no solo a resumir bien el mes pasado.
-
-Es ahí cuando la propiedad y el acceso compartido pasan a ser mucho más importantes.
-
-Expense Budget Tracker es más sólido aquí porque está construido alrededor de:
-
-- espacios compartidos
-- invitaciones
-- saldos
-- transferencias
-- presupuestos
-- informes sobre el mismo libro mayor subyacente
-
-Esa es una base más sana para un hogar que tratar las finanzas compartidas como una función ligera de colaboración añadida a posteriori.
-
-Si la planificación compartida es la parte que más te importa, este artículo va más allá:
-
-- [Mejor aplicación de presupuesto para parejas en 2026](https://expense-budget-tracker.com/es/blog/best-budget-app-for-couples/)
-
-## El código abierto importa porque mover tu historial financiero más adelante es difícil
-
-Esta parte suele sonar abstracta hasta que deja de serlo.
-
-En el primer mes, la propiedad parece opcional.
-
-En el tercer año, tus categorías, tus informes, tus hábitos de importación y el historial financiero de tu hogar ya están dentro de las decisiones de producto de otra persona.
-
-Ahí es exactamente cuando una app financiera cerrada empieza a parecer más cara de lo que sugiere el precio de la suscripción por sí solo.
-
-Con una herramienta financiera de código abierto, la relación cambia. El código es visible. El modelo de datos es visible. Existe la posibilidad de autoalojarlo. Incluso si nunca usas nada de eso directamente, el producto deja de sentirse como una caja cerrada que podría reinterpretar tu vida financiera más adelante por ti.
-
-Por eso creo que una **alternativa de código abierto a Copilot Money** seria atrae cada vez a más gente. La categoría está madurando. La gente quiere comodidad, pero también continuidad.
-
-Si la propiedad es la razón principal por la que estás mirando alternativas, empieza aquí:
-
-- [Rastreador de presupuesto Open Source autoalojado para desarrolladores](https://expense-budget-tracker.com/es/blog/self-hosted-open-source-budget-tracker-for-developers/)
-
-## Entonces, ¿cuál es la mejor alternativa a Copilot Money en 2026?
-
-Si tu prioridad absoluta es una app de consumo muy pulida y agradable desde el primer día, Copilot puede seguir teniendo sentido.
-
-Si ahora quieres importaciones más limpias, una gestión más honesta de las transferencias, informes multidivisa, espacios compartidos y la opción de ser dueño del sistema que hay detrás de tus números, la mejor respuesta no suele ser "Copilot, pero un poco distinto".
-
-Es otro modelo.
-
-Por eso [Expense Budget Tracker](https://expense-budget-tracker.com/es/) es una **alternativa a Copilot Money** más sólida en 2026. No porque intente imitar a Copilot a la perfección, sino porque está construido alrededor de las partes que más importan cuando tus finanzas dejan de estar lo bastante ordenadas para una demo y empiezan a convertirse en infraestructura real del hogar.
-
-Si quieres explorar esa opción:
-
-- [Abrir la app](https://app.expense-budget-tracker.com/)
-- [Leer la guía de primeros pasos](https://expense-budget-tracker.com/es/docs/getting-started/)
-- [Consultar el código fuente en GitHub](https://github.com/kirill-markin/expense-budget-tracker)
+Si sigues usando Copilot Money por la sincronización bancaria, la detección de suscripciones o el seguimiento de inversiones, quizá te convenga quedarte. Si la prueba confirma que conservar las monedas originales, compartir el espacio de trabajo o alojar la aplicación por tu cuenta compensan el trabajo de registro, traslada otro periodo cerrado. Una muestra conciliada es un motivo más sólido para cambiar que una lista de funciones.
