@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "next": "16.3.6",
+    "next": "16.3.7",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "remark": "^15.0.1",
@@ -35,11 +35,11 @@
   "devDependencies": {
     "@google-cloud/bigquery": "^9.1.0",
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/node": "^24.13.6",
+    "@types/node": "^24.19.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "eslint": "^9.39.5",
-    "eslint-config-next": "16.3.6",
+    "eslint-config-next": "16.3.7",
     "postcss": "^8.5.28",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
