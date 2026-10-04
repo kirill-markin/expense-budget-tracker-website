@@ -90,7 +90,13 @@ export const Footer = ({
                 </a>
               </span>
               <span className={styles.attributionLine}>
-                {messages.footer.operatedBy}
+                <a
+                  href="https://kirill-markin.com/samo-danni-eood/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {messages.footer.operatedBy}
+                </a>
               </span>
             </div>
           </div>
