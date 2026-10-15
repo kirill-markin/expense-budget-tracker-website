@@ -1,5 +1,6 @@
 import { useId } from "react";
 import Image from "next/image";
+import { resolveMarketingMediaUrl } from "@/lib/marketingMedia";
 import Link from "next/link";
 import type { AppLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
@@ -18,7 +19,7 @@ export const BlogCta = ({ locale }: BlogCtaProps): React.JSX.Element => {
   return (
     <aside aria-labelledby={headingId} className={styles.cta}>
       <Image
-        src="/home/budget-screenshot.jpg"
+        src={resolveMarketingMediaUrl("/home/budget-screenshot.jpg")}
         alt={messages.home.showcaseImageAlt}
         width={3624}
         height={2030}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { resolveMarketingMediaUrl } from "@/lib/marketingMedia";
 import { AuthButton } from "@/components/AuthButton";
 import { CopyCodeField } from "@/components/CopyCodeField";
 import { SiteFrame } from "@/components/SiteFrame";
@@ -159,7 +160,7 @@ function renderHomePage(locale: AppLocale): React.JSX.Element {
         </div>
         <div className={homeStyles.showcaseFrame}>
           <Image
-            src="/home/budget-screenshot.jpg"
+            src={resolveMarketingMediaUrl("/home/budget-screenshot.jpg")}
             alt={messages.home.showcaseImageAlt}
             width={3624}
             height={2030}

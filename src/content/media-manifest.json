@@ -1,1 +1,1218 @@
-[]
+[
+  {
+    "publicPath": "/blog/actual-budget-alternative.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/6edbbf122b4b8f0b01f17ed5c2a38c38a05cfab2c92b1677b9c044b42030ffc7.jpg",
+    "width": 1000,
+    "height": 562,
+    "sha256": "6edbbf122b4b8f0b01f17ed5c2a38c38a05cfab2c92b1677b9c044b42030ffc7",
+    "bytes": 118421
+  },
+  {
+    "publicPath": "/blog/ai-receipt-scanner-expense-tracker.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/f7616236c8a9f06445d33850be59d59aeb2ebdefc65d39d7f5d4076ffc399546.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "f7616236c8a9f06445d33850be59d59aeb2ebdefc65d39d7f5d4076ffc399546",
+    "bytes": 2020390
+  },
+  {
+    "publicPath": "/blog/annual-subscription-billed-monthly.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/3d1694e65af86dc96b8287928c4894c59b4ecdaf12687d9673387045d2baf7cc.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "3d1694e65af86dc96b8287928c4894c59b4ecdaf12687d9673387045d2baf7cc",
+    "bytes": 3178452
+  },
+  {
+    "publicPath": "/blog/balance-transfer-fee-decision.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/c6a7d8523a3e8a0bd9812077d699f6e44e973938494687b8bded6fde581194d2.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "c6a7d8523a3e8a0bd9812077d699f6e44e973938494687b8bded6fde581194d2",
+    "bytes": 2487670
+  },
+  {
+    "publicPath": "/blog/best-budget-app-for-couples-v2.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/6464ec3e366d2a0ec31ece4eb7205b8dd5f098ff0d177a6d8ad442115f99f566.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "6464ec3e366d2a0ec31ece4eb7205b8dd5f098ff0d177a6d8ad442115f99f566",
+    "bytes": 2419258
+  },
+  {
+    "publicPath": "/blog/budget-app-without-bank-linking.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/d517d904854c84e5eb845f8582154f9a20eb23696451eaf0ecac590260a7e390.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "d517d904854c84e5eb845f8582154f9a20eb23696451eaf0ecac590260a7e390",
+    "bytes": 2885353
+  },
+  {
+    "publicPath": "/blog/budget-reconciliation-example.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/c56301e87aee0e55c3ef9d79aaefb33b036c9fa3387b1bbf091cfc44bec5a181.jpg",
+    "width": 3624,
+    "height": 2030,
+    "sha256": "c56301e87aee0e55c3ef9d79aaefb33b036c9fa3387b1bbf091cfc44bec5a181",
+    "bytes": 896957
+  },
+  {
+    "publicPath": "/blog/budget-view-example.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/08cf13659e97d3ba52bf562a1221af60b1dbc4671cd4a8d00db98bae8ee11909.jpg",
+    "width": 3624,
+    "height": 2030,
+    "sha256": "08cf13659e97d3ba52bf562a1221af60b1dbc4671cd4a8d00db98bae8ee11909",
+    "bytes": 495324
+  },
+  {
+    "publicPath": "/blog/cancel-utility-budget-billing.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/eef236662be1d1d734e794bea5f6b47f3e1c5f38eee4d175382553e84bd11ae2.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "eef236662be1d1d734e794bea5f6b47f3e1c5f38eee4d175382553e84bd11ae2",
+    "bytes": 3030412
+  },
+  {
+    "publicPath": "/blog/claude-expense-tracker-mcp-connector.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/9f3e0e6d74dff4d19bf2670ccbb4c78b9117ef180fbe48f6d7fcebc0287994da.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "9f3e0e6d74dff4d19bf2670ccbb4c78b9117ef180fbe48f6d7fcebc0287994da",
+    "bytes": 2267089
+  },
+  {
+    "publicPath": "/blog/copilot-money-alternative-v2.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/4003736b7ea3b7fd60da7bc4ceb55ddd09e21cd751c7b7a15be8b783f5068f78.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "4003736b7ea3b7fd60da7bc4ceb55ddd09e21cd751c7b7a15be8b783f5068f78",
+    "bytes": 2518830
+  },
+  {
+    "publicPath": "/blog/credit-card-annual-fee-review.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/96d0b13a15de888acd581d11f81005111b24a82cdd314d9315a626878f0164da.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "96d0b13a15de888acd581d11f81005111b24a82cdd314d9315a626878f0164da",
+    "bytes": 3023649
+  },
+  {
+    "publicPath": "/blog/credit-card-payment-transfer-ledger.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/5f4b072714f692102cce220e9e3683880ac1a8de384227d6eb08cb620796c187.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "5f4b072714f692102cce220e9e3683880ac1a8de384227d6eb08cb620796c187",
+    "bytes": 2635995
+  },
+  {
+    "publicPath": "/blog/do-bank-transfers-count-as-expenses.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/c16d634b157878ff6eebddc5c1167acdab4ce6119c1ff647d4dffcf8cefb3662.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "c16d634b157878ff6eebddc5c1167acdab4ce6119c1ff647d4dffcf8cefb3662",
+    "bytes": 2288689
+  },
+  {
+    "publicPath": "/blog/everydollar-alternative.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/83afa2a486a000e6e86e5ea6675a41982aefee83c4f8e1f0563f81f6113e9ef3.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "83afa2a486a000e6e86e5ea6675a41982aefee83c4f8e1f0563f81f6113e9ef3",
+    "bytes": 2794206
+  },
+  {
+    "publicPath": "/blog/expense-tracking-api.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/dcc40ba7e3bfebf66e187ac1c468dd3a985c7cefaa027ddf2487a44b05ccd1d3.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "dcc40ba7e3bfebf66e187ac1c468dd3a985c7cefaa027ddf2487a44b05ccd1d3",
+    "bytes": 2694914
+  },
+  {
+    "publicPath": "/blog/fix-duplicate-budget-transactions.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/b89d3be9413bfb93ab60d792290ec92deb92414a8f906d1e14c18af7b59264d5.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "b89d3be9413bfb93ab60d792290ec92deb92414a8f906d1e14c18af7b59264d5",
+    "bytes": 2366052
+  },
+  {
+    "publicPath": "/blog/foreign-currency-refund.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/057ddac3edc31b6bb378c3a2b71c550a098e219423594bf9d294ad358f86f146.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "057ddac3edc31b6bb378c3a2b71c550a098e219423594bf9d294ad358f86f146",
+    "bytes": 3159338
+  },
+  {
+    "publicPath": "/blog/health-fsa-election.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/a0ed8178015de82207b00c9d42d3f49bc2d510ca79de87b4a6f659c66c996165.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "a0ed8178015de82207b00c9d42d3f49bc2d510ca79de87b4a6f659c66c996165",
+    "bytes": 2455434
+  },
+  {
+    "publicPath": "/blog/hotel-holds-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/5dba14b4287e90e6f0f7304844aab7590767dbbbfe91d3144157ca6d491a26b3.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "5dba14b4287e90e6f0f7304844aab7590767dbbbfe91d3144157ca6d491a26b3",
+    "bytes": 3043314
+  },
+  {
+    "publicPath": "/blog/how-much-can-i-spend-this-week.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/62311c144d4678754d558fe14d74b6266150021a06dd3d8382e55473c51f4b8a.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "62311c144d4678754d558fe14d74b6266150021a06dd3d8382e55473c51f4b8a",
+    "bytes": 347733
+  },
+  {
+    "publicPath": "/blog/how-much-car-can-i-afford.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/7712fbaedc56f2c7a918b92c0574a9f661ca5ba9add520aa4e781cd95c917351.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "7712fbaedc56f2c7a918b92c0574a9f661ca5ba9add520aa4e781cd95c917351",
+    "bytes": 2088198
+  },
+  {
+    "publicPath": "/blog/how-much-emergency-fund-should-i-have.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/909d09a5391cc6da16d6dd1652ba660b017698a517127131b7f64c960d4e47f2.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "909d09a5391cc6da16d6dd1652ba660b017698a517127131b7f64c960d4e47f2",
+    "bytes": 2082256
+  },
+  {
+    "publicPath": "/blog/how-much-house-can-i-afford.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/ace5a6974a38817b9aabeba2e4e4f3f393a62fd45cf20dd5172f2eaf3f45359f.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "ace5a6974a38817b9aabeba2e4e4f3f393a62fd45cf20dd5172f2eaf3f45359f",
+    "bytes": 2074405
+  },
+  {
+    "publicPath": "/blog/how-much-money-do-i-need-to-move-out.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/1b66ac243f0eebf86cb1ecb85c43a5e1f008657af8f9af17f6e7fc814b71f535.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "1b66ac243f0eebf86cb1ecb85c43a5e1f008657af8f9af17f6e7fc814b71f535",
+    "bytes": 2047374
+  },
+  {
+    "publicPath": "/blog/how-much-rent-can-i-afford-v2.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/4d026d9c05a53c8bcc34d0609beae8e4013b3a75ca6e7ccb1e630cad601cca04.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4d026d9c05a53c8bcc34d0609beae8e4013b3a75ca6e7ccb1e630cad601cca04",
+    "bytes": 2948964
+  },
+  {
+    "publicPath": "/blog/how-much-rent-can-i-afford.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/f109e65a103081e7c7d16305a2d69109a60c7c3f0e525732f02ea5ab5542f08b.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "f109e65a103081e7c7d16305a2d69109a60c7c3f0e525732f02ea5ab5542f08b",
+    "bytes": 2029121
+  },
+  {
+    "publicPath": "/blog/how-much-should-i-keep-in-checking.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/72272b019bf1e2f90272063242e323b1ac8fb15be335bf46033005acb8dd4f97.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "72272b019bf1e2f90272063242e323b1ac8fb15be335bf46033005acb8dd4f97",
+    "bytes": 1996489
+  },
+  {
+    "publicPath": "/blog/how-much-should-i-save-each-month.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/c1202f1a11a91ac03f4e47c1db9861baf87120e90f76336d95d76b93f14bc445.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "c1202f1a11a91ac03f4e47c1db9861baf87120e90f76336d95d76b93f14bc445",
+    "bytes": 2138121
+  },
+  {
+    "publicPath": "/blog/how-much-should-i-spend-on-lunch.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/1c0ca9684e1eda45271b9ebc588d13f69149440f1384d2b09599f4939b290242.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "1c0ca9684e1eda45271b9ebc588d13f69149440f1384d2b09599f4939b290242",
+    "bytes": 1916148
+  },
+  {
+    "publicPath": "/blog/how-to-avoid-overdraft-fees.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/4e83f0d7cf499efa111f4f6e15d8a535c50d4292db54fe6f881c017021371624.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4e83f0d7cf499efa111f4f6e15d8a535c50d4292db54fe6f881c017021371624",
+    "bytes": 2101607
+  },
+  {
+    "publicPath": "/blog/how-to-budget-a-10-month-teacher-salary.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/42a84501f2d0effe3136ae2a66a2827ffa1b3e0ecbb9fa7c26df2305be1f8129.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "42a84501f2d0effe3136ae2a66a2827ffa1b3e0ecbb9fa7c26df2305be1f8129",
+    "bytes": 2304503
+  },
+  {
+    "publicPath": "/blog/how-to-budget-a-27-paycheck-year.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/7794e2841111602f5c67278372e31b7219da35b33e1eafdd6d1ca3a864a07171.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "7794e2841111602f5c67278372e31b7219da35b33e1eafdd6d1ca3a864a07171",
+    "bytes": 2331193
+  },
+  {
+    "publicPath": "/blog/how-to-budget-a-bonus.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/5bf8f4e797805123a21cb7a5ee699fc62d927b14bd35f71fe244cd6d78b4f8e2.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "5bf8f4e797805123a21cb7a5ee699fc62d927b14bd35f71fe244cd6d78b4f8e2",
+    "bytes": 2008608
+  },
+  {
+    "publicPath": "/blog/how-to-budget-a-dependent-care-fsa-v2.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/9561a2e617b4b2c62f6a7ec71c54ff846b7875c6e02458cd6453ea186d1f610c.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "9561a2e617b4b2c62f6a7ec71c54ff846b7875c6e02458cd6453ea186d1f610c",
+    "bytes": 2761076
+  },
+  {
+    "publicPath": "/blog/how-to-budget-a-dependent-care-fsa.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/b353998d8f182e28ff1753f875dd15d5a8ce6ce7f00e82eb71c1324ae97ddd76.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "b353998d8f182e28ff1753f875dd15d5a8ce6ce7f00e82eb71c1324ae97ddd76",
+    "bytes": 2179234
+  },
+  {
+    "publicPath": "/blog/how-to-budget-after-a-layoff.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/9dd11ed501b7a31d27d59fa7b21835382f96f3835d6f5cfdd05ce3b71f44b814.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "9dd11ed501b7a31d27d59fa7b21835382f96f3835d6f5cfdd05ce3b71f44b814",
+    "bytes": 1960712
+  },
+  {
+    "publicPath": "/blog/how-to-budget-after-a-pay-cut.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/a7687d9834a25c5e2f943c93ae5c77abc79d20f6102f8a8c52410f0a5fcca5eb.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a7687d9834a25c5e2f943c93ae5c77abc79d20f6102f8a8c52410f0a5fcca5eb",
+    "bytes": 1941674
+  },
+  {
+    "publicPath": "/blog/how-to-budget-after-a-raise.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/349aa5868319c3239ab9f681d0e47503385db006dc106d7d37fb1e904a05b2dd.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "349aa5868319c3239ab9f681d0e47503385db006dc106d7d37fb1e904a05b2dd",
+    "bytes": 2025325
+  },
+  {
+    "publicPath": "/blog/how-to-budget-after-a-snap-benefit-cut.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/2c2cbd50475b60eec57774ae456941510512b0027a9d8539f4faded78f182717.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2c2cbd50475b60eec57774ae456941510512b0027a9d8539f4faded78f182717",
+    "bytes": 2085172
+  },
+  {
+    "publicPath": "/blog/how-to-budget-after-changing-your-w-4.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/3420afab3a00687bc986b1ffd11f180a26850242d40dc6112d32d8c792a87aa6.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "3420afab3a00687bc986b1ffd11f180a26850242d40dc6112d32d8c792a87aa6",
+    "bytes": 2030630
+  },
+  {
+    "publicPath": "/blog/how-to-budget-after-divorce.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/86ed2f19de72c3ca6c9af5a5efa7570a65de2185b2388a8def77dc0e14e6d75d.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "86ed2f19de72c3ca6c9af5a5efa7570a65de2185b2388a8def77dc0e14e6d75d",
+    "bytes": 2075237
+  },
+  {
+    "publicPath": "/blog/how-to-budget-as-a-college-student.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/e4f0736b28324210f050e051f0ec0e152f52f39b4a3b9fa424fa8a5445e97139.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "e4f0736b28324210f050e051f0ec0e152f52f39b4a3b9fa424fa8a5445e97139",
+    "bytes": 2266104
+  },
+  {
+    "publicPath": "/blog/how-to-budget-as-a-single-parent.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/d8ef885de7c27c064fda0c6db9ddc5d2dc45a781201d4861beee5cb9519889a2.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "d8ef885de7c27c064fda0c6db9ddc5d2dc45a781201d4861beee5cb9519889a2",
+    "bytes": 2207670
+  },
+  {
+    "publicPath": "/blog/how-to-budget-before-your-0-apr-ends-v2.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/f604ee6a59aa4955c1981d76ff4bb68c9062d2e7723f02a44ab2c57e62ef21f4.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "f604ee6a59aa4955c1981d76ff4bb68c9062d2e7723f02a44ab2c57e62ef21f4",
+    "bytes": 2838635
+  },
+  {
+    "publicPath": "/blog/how-to-budget-before-your-0-apr-ends.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/6a894c681cc092deb89f0c2bd1151d01e35bfb0574ac1563bbdb5dc5a2652cfb.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "6a894c681cc092deb89f0c2bd1151d01e35bfb0574ac1563bbdb5dc5a2652cfb",
+    "bytes": 1965724
+  },
+  {
+    "publicPath": "/blog/how-to-budget-commission-income.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/d4b260e8a4e39c7fc9530976cb18216d27e3b193efa193fa44b039ffdb3df0a8.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "d4b260e8a4e39c7fc9530976cb18216d27e3b193efa193fa44b039ffdb3df0a8",
+    "bytes": 2398187
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-a-baby.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/02eadf5f8ee4ec9b15c4760f305f3db3b488e3ce45e75fcd56d02677bf94c965.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "02eadf5f8ee4ec9b15c4760f305f3db3b488e3ce45e75fcd56d02677bf94c965",
+    "bytes": 322536
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-a-hobby.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/6ce781322cad8ea65ee02e3e22e13bf16d56896751f79d8d37004bf4f524df63.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "6ce781322cad8ea65ee02e3e22e13bf16d56896751f79d8d37004bf4f524df63",
+    "bytes": 3176888
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-a-tax-bill.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/a874ad467acd04b5c1e4176f9fa536c9c6c89088518db229239b15141726432b.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a874ad467acd04b5c1e4176f9fa536c9c6c89088518db229239b15141726432b",
+    "bytes": 2131072
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-a-vacation.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/73b82bce1b5cf70b3bbcb15d45c7449896edcf14dfdf3684d6b6c4ff006c3778.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "73b82bce1b5cf70b3bbcb15d45c7449896edcf14dfdf3684d6b6c4ff006c3778",
+    "bytes": 492315
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-a-wedding.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/362885a05beb2a5d640f4d0e8d63ff6c17656f9dfe74a1cbce5e6b89c6a18eb0.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "362885a05beb2a5d640f4d0e8d63ff6c17656f9dfe74a1cbce5e6b89c6a18eb0",
+    "bytes": 292465
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-adoption-costs.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/b3429825bf1f35597685c2c522a251bfc5a74e28fa56db3a7888be174f49d771.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "b3429825bf1f35597685c2c522a251bfc5a74e28fa56db3a7888be174f49d771",
+    "bytes": 2175875
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-aging-parents.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/43393b35cc568a66b672de471b602359af305aed995618068a956c28fc983bd6.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "43393b35cc568a66b672de471b602359af305aed995618068a956c28fc983bd6",
+    "bytes": 365738
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-ai-subscriptions.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/9cf9f6fa3fbbbcd30621897ec5e4b69030dfe8d882cb4376d9a360596587bf03.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "9cf9f6fa3fbbbcd30621897ec5e4b69030dfe8d882cb4376d9a360596587bf03",
+    "bytes": 2060540
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-an-escrow-shortage.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/a2313d3790f3d7d83547a35ece22b9a27136ccbb8437dbf60d9fa9d8efa1f8ef.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a2313d3790f3d7d83547a35ece22b9a27136ccbb8437dbf60d9fa9d8efa1f8ef",
+    "bytes": 2445551
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-back-to-school.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/c4f25d4ba909c102d5cb5d7ee4fb10ebcf47197ca97f0aed24b6336082cc1f1c.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "c4f25d4ba909c102d5cb5d7ee4fb10ebcf47197ca97f0aed24b6336082cc1f1c",
+    "bytes": 426015
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-car-expenses.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/74f2a875d56ff60042d763e6146903459a2866545fa2e436f945ad4b9e655f47.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "74f2a875d56ff60042d763e6146903459a2866545fa2e436f945ad4b9e655f47",
+    "bytes": 499827
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-car-insurance.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/20de1c1f326d097f5d67d169357ed8b2b8cd3145d07aca5846a893ffc0ae1ca8.jpg",
+    "width": 1671,
+    "height": 941,
+    "sha256": "20de1c1f326d097f5d67d169357ed8b2b8cd3145d07aca5846a893ffc0ae1ca8",
+    "bytes": 366703
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-childcare-expenses.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/8f2595121d4e4d515b0b6af9c2016a602eae88d301c490ece9b50a051c1628af.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "8f2595121d4e4d515b0b6af9c2016a602eae88d301c490ece9b50a051c1628af",
+    "bytes": 529499
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-classroom-supplies.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/2cc44e864ee1bfc5fdceae928c6418798aa167de5994958bbf41309512ac7a33.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2cc44e864ee1bfc5fdceae928c6418798aa167de5994958bbf41309512ac7a33",
+    "bytes": 2125149
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-college-tuition.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/2b903489b376f67a01cdc35c60156fcc34b9aaa70c43db7fe6c06771d9f8030a.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2b903489b376f67a01cdc35c60156fcc34b9aaa70c43db7fe6c06771d9f8030a",
+    "bytes": 367231
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-dental-work.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/d7c5c2c8ae6e5cb590bd58d90f4870117724a67f20da949c5006f7521c67f7e5.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "d7c5c2c8ae6e5cb590bd58d90f4870117724a67f20da949c5006f7521c67f7e5",
+    "bytes": 2065522
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-funeral-costs.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/fbff9e7b6645ee8a7f297804fd01a411f33b055811fb2bcf529fce68c71e83d6.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "fbff9e7b6645ee8a7f297804fd01a411f33b055811fb2bcf529fce68c71e83d6",
+    "bytes": 2168474
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-health-insurance.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/2dcc5141c2e39b264417b4468e7770b75376559622c8c4d79c55665899b729f0.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2dcc5141c2e39b264417b4468e7770b75376559622c8c4d79c55665899b729f0",
+    "bytes": 2170872
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-higher-electric-bills.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/d0fc733762e0e2e49604dcddc4ebebf70a5bd4d3988d4d8e893120a49a07dc28.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "d0fc733762e0e2e49604dcddc4ebebf70a5bd4d3988d4d8e893120a49a07dc28",
+    "bytes": 2101029
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-higher-gas-prices.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/a7b0159cd8009920c9682190607ef09457053a5e590243a82dfd2d66286198ca.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a7b0159cd8009920c9682190607ef09457053a5e590243a82dfd2d66286198ca",
+    "bytes": 2102577
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-home-maintenance.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/946e24e011a5c6b62ee719d78040b75bbf4a15741d8f300de1023847bbb126a3.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "946e24e011a5c6b62ee719d78040b75bbf4a15741d8f300de1023847bbb126a3",
+    "bytes": 549270
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-home-renovation.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/475a0c23957252eb32db40042c1b9e09de38d0a04bbb201b79f432fa360dc3b4.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "475a0c23957252eb32db40042c1b9e09de38d0a04bbb201b79f432fa360dc3b4",
+    "bytes": 417753
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-homeowners-insurance.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/2db0914d11a1cd3e3af3195a9f361c810ae9558439ba6a16dd80083e42f24583.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2db0914d11a1cd3e3af3195a9f361c810ae9558439ba6a16dd80083e42f24583",
+    "bytes": 402024
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-medical-expenses.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/8717fc35d3f6c2b57b46b860e950616d1e5fa7bc81f164937ec21bfaf6ec640e.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "8717fc35d3f6c2b57b46b860e950616d1e5fa7bc81f164937ec21bfaf6ec640e",
+    "bytes": 316171
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-moving-expenses.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/a56bfec3d89cea38628f610abd4f98053f94afbe15ad1ffa27df114b03c1aa38.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a56bfec3d89cea38628f610abd4f98053f94afbe15ad1ffa27df114b03c1aa38",
+    "bytes": 299625
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-pet-expenses.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/ae8a3b78792df319bcae33ff63fc0ec979afadba282ba53e61ed1b2c05a4640f.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "ae8a3b78792df319bcae33ff63fc0ec979afadba282ba53e61ed1b2c05a4640f",
+    "bytes": 380564
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-price-increases.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/926f3f24cd85bc317455f1c67f740ad4e0cb381c78b1b5aea99af3617f4ce02d.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "926f3f24cd85bc317455f1c67f740ad4e0cb381c78b1b5aea99af3617f4ce02d",
+    "bytes": 2538656
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-property-taxes.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/9b8a110a8ab85749001509989996e9baa4e46f4f519ea51620f5b0531658a1c8.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "9b8a110a8ab85749001509989996e9baa4e46f4f519ea51620f5b0531658a1c8",
+    "bytes": 407123
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-return-to-office-costs.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/f6ec95bb11b9509a9d45a30a62ab37f088de73edebd15becd53f3df2e0e6c573.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "f6ec95bb11b9509a9d45a30a62ab37f088de73edebd15becd53f3df2e0e6c573",
+    "bytes": 2006637
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-school-lunches-v2.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/5d4df181328542d0e0e453028143bd564659f8e46cba38c0507195803efb1808.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "5d4df181328542d0e0e453028143bd564659f8e46cba38c0507195803efb1808",
+    "bytes": 428169
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-school-lunches.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/202872e039b3837262f94bee521e31b270a028224fd0b91b33e575848ef6271e.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "202872e039b3837262f94bee521e31b270a028224fd0b91b33e575848ef6271e",
+    "bytes": 2398968
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-sending-money-to-family-abroad.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/7027bc3bf30fa7b3842d03b2686438f5ae3b58469791927f5a646fc63190bb61.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "7027bc3bf30fa7b3842d03b2686438f5ae3b58469791927f5a646fc63190bb61",
+    "bytes": 2435941
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-student-loan-payments.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/c464a1bdb52b6566db43698eaac79d939bedeb69d5b24e8b8566b5185a12095f.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "c464a1bdb52b6566db43698eaac79d939bedeb69d5b24e8b8566b5185a12095f",
+    "bytes": 1665303
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-summer-camp.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/b4acd0d665a35b0b6b842a4d1e25a2b0eff40a824d693f8c512f129a7a851e35.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "b4acd0d665a35b0b6b842a4d1e25a2b0eff40a824d693f8c512f129a7a851e35",
+    "bytes": 392364
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-unpaid-leave.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/0af38c2d46bfc679b9df094d5bc72b52f42f79306245670cb68d1bedf96634d9.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "0af38c2d46bfc679b9df094d5bc72b52f42f79306245670cb68d1bedf96634d9",
+    "bytes": 1985917
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-utilities.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/e20e84a47c3ed53b221579497928a47f91fabd9e3b790dd2373e47269f643e9c.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "e20e84a47c3ed53b221579497928a47f91fabd9e3b790dd2373e47269f643e9c",
+    "bytes": 359528
+  },
+  {
+    "publicPath": "/blog/how-to-budget-for-youth-sports.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/8f419fd447a9859f0b71201de4d1588df8a871d37c3ca7c5e81ea48ab6451926.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "8f419fd447a9859f0b71201de4d1588df8a871d37c3ca7c5e81ea48ab6451926",
+    "bytes": 2283001
+  },
+  {
+    "publicPath": "/blog/how-to-budget-fun-money.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/5e16642a2f3229c37c4b2315c078a9913d3778c2ab646d1fbe9a65601156b3c8.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "5e16642a2f3229c37c4b2315c078a9913d3778c2ab646d1fbe9a65601156b3c8",
+    "bytes": 1928388
+  },
+  {
+    "publicPath": "/blog/how-to-budget-gig-income.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/80fa31481a7ab19dfd128789f3232d387c2227133459b84ae74e5ce9f28fc399.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "80fa31481a7ab19dfd128789f3232d387c2227133459b84ae74e5ce9f28fc399",
+    "bytes": 2328185
+  },
+  {
+    "publicPath": "/blog/how-to-budget-in-retirement.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/8aa02303827118f9da21d472269d2645735cf727936db18163e13760a28e5103.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "8aa02303827118f9da21d472269d2645735cf727936db18163e13760a28e5103",
+    "bytes": 2376383
+  },
+  {
+    "publicPath": "/blog/how-to-budget-monthly-paychecks.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/0087086cb2684fd248f7f815b443a6b1eada8f978188c80cc805bbbb7dd375eb.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "0087086cb2684fd248f7f815b443a6b1eada8f978188c80cc805bbbb7dd375eb",
+    "bytes": 359475
+  },
+  {
+    "publicPath": "/blog/how-to-budget-on-ssdi-or-ssi.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/5480425cae0df6b7bfb1544f86ddd9a5dae00a30d3fbf45f9f4a79583666fa7d.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "5480425cae0df6b7bfb1544f86ddd9a5dae00a30d3fbf45f9f4a79583666fa7d",
+    "bytes": 2432164
+  },
+  {
+    "publicPath": "/blog/how-to-budget-overtime-pay.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/5d30924f10430c323867bc57abf954fbc1eda2cd210ec3f5cdb0bd3195215adf.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "5d30924f10430c323867bc57abf954fbc1eda2cd210ec3f5cdb0bd3195215adf",
+    "bytes": 2019978
+  },
+  {
+    "publicPath": "/blog/how-to-budget-tip-income.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/41c4566b3f699c9c636d6552b76ee47fd4279f4624aac125d1b0fa8053d9be45.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "41c4566b3f699c9c636d6552b76ee47fd4279f4624aac125d1b0fa8053d9be45",
+    "bytes": 2068158
+  },
+  {
+    "publicPath": "/blog/how-to-budget-trump-account-contributions.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/28c8e819f84aaeca54233e7fc9fc6a8f692035a7626c39b5f10c93bf1549205b.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "28c8e819f84aaeca54233e7fc9fc6a8f692035a7626c39b5f10c93bf1549205b",
+    "bytes": 2078320
+  },
+  {
+    "publicPath": "/blog/how-to-budget-when-bills-are-due-before-payday.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/a4599e847b8a525dbc75af0082e01e6460eb7bb6f9862041f930c68b6bce7e01.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a4599e847b8a525dbc75af0082e01e6460eb7bb6f9862041f930c68b6bce7e01",
+    "bytes": 245810
+  },
+  {
+    "publicPath": "/blog/how-to-budget-when-changing-jobs.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/649d70aa527191d1cf9af00add909920e31835574b64469f173f941ec986a4fd.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "649d70aa527191d1cf9af00add909920e31835574b64469f173f941ec986a4fd",
+    "bytes": 3756184
+  },
+  {
+    "publicPath": "/blog/how-to-budget-when-switching-bank-accounts.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/9f406f2d0c479811c1ab58f62131a443bd2eebec6b5323939ef85873a5acb21b.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "9f406f2d0c479811c1ab58f62131a443bd2eebec6b5323939ef85873a5acb21b",
+    "bytes": 2356486
+  },
+  {
+    "publicPath": "/blog/how-to-budget-with-adhd.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/5ee7622b064e1a9e29cb0c662318d19b0419e52576980b52038906a820a4fdc8.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "5ee7622b064e1a9e29cb0c662318d19b0419e52576980b52038906a820a4fdc8",
+    "bytes": 2381512
+  },
+  {
+    "publicPath": "/blog/how-to-budget-your-first-paycheck.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/980cb20445ffb7fcd0087623488a6a06043ef40c7c9c27a0cdf1252eacd9b81f.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "980cb20445ffb7fcd0087623488a6a06043ef40c7c9c27a0cdf1252eacd9b81f",
+    "bytes": 1835766
+  },
+  {
+    "publicPath": "/blog/how-to-budget-your-tax-refund.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/c1c33177cd91fd4d65a5828820250ea38379c6efd7cba76ae1480fd1c8fc102d.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "c1c33177cd91fd4d65a5828820250ea38379c6efd7cba76ae1480fd1c8fc102d",
+    "bytes": 377640
+  },
+  {
+    "publicPath": "/blog/how-to-build-a-holiday-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/e373ffe65544e9359cc6bbbda5429f734337be75ff2870fe82c5a547ea9a7dba.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "e373ffe65544e9359cc6bbbda5429f734337be75ff2870fe82c5a547ea9a7dba",
+    "bytes": 2138476
+  },
+  {
+    "publicPath": "/blog/how-to-calculate-your-personal-inflation-rate.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/6adb656ec301a7c9b4b10dd6ae809bf10f74abb25a65040dd91b3fcb4f6ee940.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "6adb656ec301a7c9b4b10dd6ae809bf10f74abb25a65040dd91b3fcb4f6ee940",
+    "bytes": 2264576
+  },
+  {
+    "publicPath": "/blog/how-to-calculate-your-true-monthly-expenses.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/4680200560acaaed2f7ce83d57d1887b9a36f160b90b034ae2980cf7f6a96bc8.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4680200560acaaed2f7ce83d57d1887b9a36f160b90b034ae2980cf7f6a96bc8",
+    "bytes": 2015165
+  },
+  {
+    "publicPath": "/blog/how-to-catch-up-on-bills.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/3f5da89374a6417b3db28e73e874d13ba3945e5c951ec19ab6eb474354443809.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "3f5da89374a6417b3db28e73e874d13ba3945e5c951ec19ab6eb474354443809",
+    "bytes": 2047400
+  },
+  {
+    "publicPath": "/blog/how-to-do-a-monthly-budget-review.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/5456c0e7eefe2f80402a7a1b5bf3c6a2f5d9666edc35bf3cdba325177eb8fd80.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "5456c0e7eefe2f80402a7a1b5bf3c6a2f5d9666edc35bf3cdba325177eb8fd80",
+    "bytes": 2049203
+  },
+  {
+    "publicPath": "/blog/how-to-get-out-of-the-paycheck-advance-cycle.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/da91948268eb029a5c47e326648642b3d122cbfb32796ed5f1a32dcfd6e3db4b.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "da91948268eb029a5c47e326648642b3d122cbfb32796ed5f1a32dcfd6e3db4b",
+    "bytes": 2204482
+  },
+  {
+    "publicPath": "/blog/how-to-import-bank-statements-into-an-expense-tracker-v2.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/5f603e10aa0599f919a6f3b6e5db462d9d6d71e80085873a9b718bafe33b406e.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "5f603e10aa0599f919a6f3b6e5db462d9d6d71e80085873a9b718bafe33b406e",
+    "bytes": 2298447
+  },
+  {
+    "publicPath": "/blog/how-to-lower-monthly-bills.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/9f5bfbc073d18ccf7d2b8d0a9f86a50949d3752de0773c142c8b0041b8d3e5f8.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "9f5bfbc073d18ccf7d2b8d0a9f86a50949d3752de0773c142c8b0041b8d3e5f8",
+    "bytes": 2135161
+  },
+  {
+    "publicPath": "/blog/how-to-make-a-bare-bones-budget.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/6b3881f17c0131877ba091c7ca1114082d63e95822103b7194cd70e6af34597d.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "6b3881f17c0131877ba091c7ca1114082d63e95822103b7194cd70e6af34597d",
+    "bytes": 316350
+  },
+  {
+    "publicPath": "/blog/how-to-make-a-monthly-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/6751a0c9634e204b96f3f8926247a421bc0d970efc5a9e708da547f06778f070.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "6751a0c9634e204b96f3f8926247a421bc0d970efc5a9e708da547f06778f070",
+    "bytes": 2264028
+  },
+  {
+    "publicPath": "/blog/how-to-manage-a-shared-household-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/46fd56f051da512cd1936d57652e7c9d3524e03ca28e05a6b7ce372c49c18eb4.png",
+    "width": 1731,
+    "height": 909,
+    "sha256": "46fd56f051da512cd1936d57652e7c9d3524e03ca28e05a6b7ce372c49c18eb4",
+    "bytes": 1954552
+  },
+  {
+    "publicPath": "/blog/how-to-pay-for-a-car-repair-without-an-emergency-fund.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/f6f0c90779bfb0b6ac7614dc3e9d7f02f495e303c9906b07c4c04f70414f9d13.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "f6f0c90779bfb0b6ac7614dc3e9d7f02f495e303c9906b07c4c04f70414f9d13",
+    "bytes": 2294905
+  },
+  {
+    "publicPath": "/blog/how-to-pay-medical-bills-you-cant-afford.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/4f871f30c4b4b64124650295a344ba6291df0828e9110d9239ccea6f4baff004.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4f871f30c4b4b64124650295a344ba6291df0828e9110d9239ccea6f4baff004",
+    "bytes": 2150857
+  },
+  {
+    "publicPath": "/blog/how-to-rebuild-your-emergency-fund.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/9139036ad690524c90aff7e46b83a1a674745ff788799777546cc4db0f665d35.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "9139036ad690524c90aff7e46b83a1a674745ff788799777546cc4db0f665d35",
+    "bytes": 2064339
+  },
+  {
+    "publicPath": "/blog/how-to-save-for-a-house-down-payment-while-renting.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/0c88cfbcb4a6435706649b42605c97550dd35b1cae37feca68685cad2ce85eb1.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "0c88cfbcb4a6435706649b42605c97550dd35b1cae37feca68685cad2ce85eb1",
+    "bytes": 1946967
+  },
+  {
+    "publicPath": "/blog/how-to-separate-business-and-personal-expenses.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/fc0a566aa07324c10c3e511a793808fceecc3412bf3b7c25d34ba137ec128d48.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "fc0a566aa07324c10c3e511a793808fceecc3412bf3b7c25d34ba137ec128d48",
+    "bytes": 2082801
+  },
+  {
+    "publicPath": "/blog/how-to-split-expenses-with-your-partner.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/ef1318cd9e45a8de7923bd4c4dc7b77c394eecbaad044b93964a7807486cab5e.png",
+    "width": 1400,
+    "height": 788,
+    "sha256": "ef1318cd9e45a8de7923bd4c4dc7b77c394eecbaad044b93964a7807486cab5e",
+    "bytes": 1412780
+  },
+  {
+    "publicPath": "/blog/how-to-start-a-budget-in-the-middle-of-the-month.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/8cb7c9a0bbbf2890067b714e24db5f3d2e289757145760896f472c5a48088ff5.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "8cb7c9a0bbbf2890067b714e24db5f3d2e289757145760896f472c5a48088ff5",
+    "bytes": 317762
+  },
+  {
+    "publicPath": "/blog/how-to-stop-doom-spending.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/f0874eae100878b76e85437e0741fd9e38444ecf7c9ecd21720409985c6bf657.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "f0874eae100878b76e85437e0741fd9e38444ecf7c9ecd21720409985c6bf657",
+    "bytes": 2313119
+  },
+  {
+    "publicPath": "/blog/how-to-track-a-rental-security-deposit-in-your-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/92d452498f1c432b02fd7b0255011a81c29472d61998283c5f8316adf8b57d4f.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "92d452498f1c432b02fd7b0255011a81c29472d61998283c5f8316adf8b57d4f",
+    "bytes": 2191527
+  },
+  {
+    "publicPath": "/blog/how-to-track-credit-card-cash-back-in-your-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/3b1fb1e4beae5e92c2a3f6eb71d22d6cfd1e8a360c882390fb7d4fec5a08e837.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "3b1fb1e4beae5e92c2a3f6eb71d22d6cfd1e8a360c882390fb7d4fec5a08e837",
+    "bytes": 2085644
+  },
+  {
+    "publicPath": "/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code-v2.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/52929dbe5d9a641573df81eb0e6749e9d561b86556ba9c437deb0be55c57a0a2.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "52929dbe5d9a641573df81eb0e6749e9d561b86556ba9c437deb0be55c57a0a2",
+    "bytes": 2428916
+  },
+  {
+    "publicPath": "/blog/how-to-track-expenses-and-manage-your-budget-with-claude-code.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/7ae239d50ba78947b7b62dd80111361572bc77d1de91b0ca8968413d3883a132.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "7ae239d50ba78947b7b62dd80111361572bc77d1de91b0ca8968413d3883a132",
+    "bytes": 2136989
+  },
+  {
+    "publicPath": "/blog/how-to-track-gift-cards-in-your-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/ea2e1afa634299f4a4c496d217c11944d29f19063e951bc1558fd5ce72a83fa6.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "ea2e1afa634299f4a4c496d217c11944d29f19063e951bc1558fd5ce72a83fa6",
+    "bytes": 2953368
+  },
+  {
+    "publicPath": "/blog/how-to-track-hsa-expenses-and-receipts.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/3a8640a4d459621c24e2203e030d98dc4a0cabe87a4ca950f8d9c9732becabec.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "3a8640a4d459621c24e2203e030d98dc4a0cabe87a4ca950f8d9c9732becabec",
+    "bytes": 2194071
+  },
+  {
+    "publicPath": "/blog/how-to-track-money-from-selling-used-items.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/4382e3300685602abad409e61aa3ba96e3c21ab6f4c54edd6ee1a8f24393ef12.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "4382e3300685602abad409e61aa3ba96e3c21ab6f4c54edd6ee1a8f24393ef12",
+    "bytes": 3093883
+  },
+  {
+    "publicPath": "/blog/how-to-track-money-lent-to-friends-and-family.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/ed6aeba53d5697b9a7b41053a37c5c8ef9ac6da384a8802ab5e6fb98fc2b7aab.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "ed6aeba53d5697b9a7b41053a37c5c8ef9ac6da384a8802ab5e6fb98fc2b7aab",
+    "bytes": 2780715
+  },
+  {
+    "publicPath": "/blog/how-to-track-refunds-in-your-budget-v2.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/81c72ab35c5c7f7e50e56481f427b5c1e306c6f5bc2cb51f221431047600dd41.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "81c72ab35c5c7f7e50e56481f427b5c1e306c6f5bc2cb51f221431047600dd41",
+    "bytes": 2109087
+  },
+  {
+    "publicPath": "/blog/how-to-track-refunds-in-your-budget.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/f2c827733efc1d595b5c5a172a17df89bfc809d7b418d19a71fe400db1e26fc1.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "f2c827733efc1d595b5c5a172a17df89bfc809d7b418d19a71fe400db1e26fc1",
+    "bytes": 376642
+  },
+  {
+    "publicPath": "/blog/how-to-track-savings-interest-in-your-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/09118577c792b0bf7b6afa81c6070a03cc8790d37aa4ee8e7c8b876d37b4ad9e.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "09118577c792b0bf7b6afa81c6070a03cc8790d37aa4ee8e7c8b876d37b4ad9e",
+    "bytes": 2343210
+  },
+  {
+    "publicPath": "/blog/how-to-track-subscriptions.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/3145611ecd53e2a3ceb9b90ae6669fa587b56c2bacc8151061dcd03ceebff64d.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "3145611ecd53e2a3ceb9b90ae6669fa587b56c2bacc8151061dcd03ceebff64d",
+    "bytes": 2418313
+  },
+  {
+    "publicPath": "/blog/how-to-track-venmo-and-cash-app-in-your-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/beff1c5f2a3ace96e618428b62524fd399bef9fef78a5162ba8a029e11836242.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "beff1c5f2a3ace96e618428b62524fd399bef9fef78a5162ba8a029e11836242",
+    "bytes": 2028548
+  },
+  {
+    "publicPath": "/blog/how-to-use-the-60-30-10-budget-rule.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/409d1cc22dead61e74e4a1bbc819bb44ea8e4a9f96404321b584f1e592e14997.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "409d1cc22dead61e74e4a1bbc819bb44ea8e4a9f96404321b584f1e592e14997",
+    "bytes": 2178397
+  },
+  {
+    "publicPath": "/blog/how-to-use-the-pay-yourself-first-budget.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/fd77f2d1e27332965d9dd014bf0446014fa28549983a09731badf09866ec7713.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "fd77f2d1e27332965d9dd014bf0446014fa28549983a09731badf09866ec7713",
+    "bytes": 338458
+  },
+  {
+    "publicPath": "/blog/hurricane-preparedness-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/74f600d79dd495d890ce1b493aafb494e9a35f792d481030940a296034528810.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "74f600d79dd495d890ce1b493aafb494e9a35f792d481030940a296034528810",
+    "bytes": 2391024
+  },
+  {
+    "publicPath": "/blog/joint-vs-separate-bank-accounts-for-couples.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/a5312a3e352adf57c65860fb91633247ddfd63f39c8013400b0bec29d79c1821.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a5312a3e352adf57c65860fb91633247ddfd63f39c8013400b0bec29d79c1821",
+    "bytes": 2124635
+  },
+  {
+    "publicPath": "/blog/mint-alternative-open-source-budget-tracker-you-can-self-host.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/8d6b101652b4bfb5549411d4c71ceabe4f3f2b438bd8f7c2dd6a459f7c729e86.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "8d6b101652b4bfb5549411d4c71ceabe4f3f2b438bd8f7c2dd6a459f7c729e86",
+    "bytes": 2236789
+  },
+  {
+    "publicPath": "/blog/monarch-money-alternative.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/6964a5d41fe906c6f0ebc11b1ea3f6238968abac49c05178cdb92a11e5a8f1f6.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "6964a5d41fe906c6f0ebc11b1ea3f6238968abac49c05178cdb92a11e5a8f1f6",
+    "bytes": 2163683
+  },
+  {
+    "publicPath": "/blog/multi-currency-budgeting-for-expats-v2.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/e4c08bab7d5ce194bbe057d2734d432949342f4b8ad70b14145c9dad65262fd3.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "e4c08bab7d5ce194bbe057d2734d432949342f4b8ad70b14145c9dad65262fd3",
+    "bytes": 2589871
+  },
+  {
+    "publicPath": "/blog/music-festival-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/4012d843dd155e29a30f97604b81e37c94d1364aac17c62531e5a5a7b2e99107.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "4012d843dd155e29a30f97604b81e37c94d1364aac17c62531e5a5a7b2e99107",
+    "bytes": 3132070
+  },
+  {
+    "publicPath": "/blog/net-worth-tracker-without-bank-linking.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/214a977600b8128b55e8323c9dc9810c199cd42fa62482bb436f9e4d7150c189.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "214a977600b8128b55e8323c9dc9810c199cd42fa62482bb436f9e4d7150c189",
+    "bytes": 2352198
+  },
+  {
+    "publicPath": "/blog/pay-off-debt-or-build-emergency-fund-first.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/42b97929355fb6b811a365d82f8c0bcfa668b630a9f69cf1f152253582a1c485.jpg",
+    "width": 1672,
+    "height": 941,
+    "sha256": "42b97929355fb6b811a365d82f8c0bcfa668b630a9f69cf1f152253582a1c485",
+    "bytes": 332682
+  },
+  {
+    "publicPath": "/blog/podcast-expense-tracker.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/3941abd88731f64f781618e8404273afd4460c791e524d8a528d6d817bebca03.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "3941abd88731f64f781618e8404273afd4460c791e524d8a528d6d817bebca03",
+    "bytes": 2485094
+  },
+  {
+    "publicPath": "/blog/quicken-alternative.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/c956f1490bba983abc5901801c1bcea4c27d6252df2a5b61be071faff632664d.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "c956f1490bba983abc5901801c1bcea4c27d6252df2a5b61be071faff632664d",
+    "bytes": 2191691
+  },
+  {
+    "publicPath": "/blog/quicken-alternatives-migration-readers.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/636c999a33d3223af9814a1a6f805970509516454a465ff5b0f855c74f783415.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "636c999a33d3223af9814a1a6f805970509516454a465ff5b0f855c74f783415",
+    "bytes": 2379033
+  },
+  {
+    "publicPath": "/blog/rocket-money-alternative.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/5d097a5af421528b969afe5715e2ec87ea7b9d52933b288db3ad30b35e38c39e.jpg",
+    "width": 1000,
+    "height": 562,
+    "sha256": "5d097a5af421528b969afe5715e2ec87ea7b9d52933b288db3ad30b35e38c39e",
+    "bytes": 196348
+  },
+  {
+    "publicPath": "/blog/self-hosted-open-source-budget-tracker-for-developers-v2.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/7dadd890bfaad2d606a7b8119d908ae780e34534ea2fe3c9ed92da7403d2e2d8.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "7dadd890bfaad2d606a7b8119d908ae780e34534ea2fe3c9ed92da7403d2e2d8",
+    "bytes": 3033163
+  },
+  {
+    "publicPath": "/blog/should-i-buy-before-prices-go-up.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/2de00a42489d4adbd285d79cf98d6660a138f5131de6b302c61fd5e1ec14980a.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2de00a42489d4adbd285d79cf98d6660a138f5131de6b302c61fd5e1ec14980a",
+    "bytes": 2146935
+  },
+  {
+    "publicPath": "/blog/spending-plan-vs-budget-v2.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/a43d63b10a65e9672642b5b2117a9b47e99c7d8109e0840b61f853379cbcf064.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a43d63b10a65e9672642b5b2117a9b47e99c7d8109e0840b61f853379cbcf064",
+    "bytes": 2005224
+  },
+  {
+    "publicPath": "/blog/spending-plan-vs-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/9dd825a1737374096038bf0ee3f42233b4760b2f68fd820a9ba03d0d24330518.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "9dd825a1737374096038bf0ee3f42233b4760b2f68fd820a9ba03d0d24330518",
+    "bytes": 2853367
+  },
+  {
+    "publicPath": "/blog/split-transaction-budget-categories.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/939a5a80b7b6e0d0e859a43c76a6c102641303a13b652c6e4bc1b57e4c942b8e.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "939a5a80b7b6e0d0e859a43c76a6c102641303a13b652c6e4bc1b57e4c942b8e",
+    "bytes": 2393051
+  },
+  {
+    "publicPath": "/blog/splitwise-alternative.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/3f11134853185eedee36bbba8bfcb5ce447b04e4b82f2692af3c787987c70918.jpg",
+    "width": 1000,
+    "height": 562,
+    "sha256": "3f11134853185eedee36bbba8bfcb5ce447b04e4b82f2692af3c787987c70918",
+    "bytes": 113111
+  },
+  {
+    "publicPath": "/blog/wedding-guest-budget.png",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/f59d604ef18709051f2e295ab8e10e5eef9122a09ab2911326b4c4779c2c1bc8.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "f59d604ef18709051f2e295ab8e10e5eef9122a09ab2911326b4c4779c2c1bc8",
+    "bytes": 2324779
+  },
+  {
+    "publicPath": "/home/budget-screenshot.jpg",
+    "url": "https://kisawtnsjrjeautf.public.blob.vercel-storage.com/marketing/08cf13659e97d3ba52bf562a1221af60b1dbc4671cd4a8d00db98bae8ee11909.jpg",
+    "width": 3624,
+    "height": 2030,
+    "sha256": "08cf13659e97d3ba52bf562a1221af60b1dbc4671cd4a8d00db98bae8ee11909",
+    "bytes": 495324
+  }
+]

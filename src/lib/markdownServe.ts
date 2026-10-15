@@ -1,4 +1,5 @@
 import { buildAbsoluteUrl, getLocalizedPath, getResolvedPagePath } from "@/lib/i18n/routing";
+import { resolveMarkdownMedia } from "@/lib/content/resolveMarkdownMedia";
 import {
   DEFAULT_LOCALE,
   SUPPORTED_LOCALES,
@@ -194,7 +195,7 @@ function appendMarkdownFooter(
 ): string {
   const messages = MARKDOWN_MESSAGES[locale];
 
-  return `${markdown.trim()}\n\n---\n*[${messages.viewStyledHtml}](${getOriginalPageUrl(
+  return `${resolveMarkdownMedia(markdown).trim()}\n\n---\n*[${messages.viewStyledHtml}](${getOriginalPageUrl(
     pagePath
   )})*\n\n*${messages.mcpNote} \`${MCP_URL}\` ${messages.mcpNoteSuffix}*\n\n*${messages.agentNote} \`GET ${DISCOVERY_URL}\` ${messages.agentNoteSuffix}*\n\n*${messages.tip}*`;
 }

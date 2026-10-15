@@ -71,3 +71,17 @@ export function parseMediaManifest(value: unknown): readonly MarketingMedia[] {
 }
 
 export const marketingMediaManifest = parseMediaManifest(manifest);
+
+const mediaByPublicPath = new Map(
+  marketingMediaManifest.map((entry) => [entry.publicPath, entry])
+);
+
+export function resolveMarketingMediaUrl(value: string): string {
+  const publicPath = value.replace(/^https:\/\/expense-budget-tracker\.com(?=\/)/, "");
+  const media = mediaByPublicPath.get(publicPath);
+  if (media !== undefined) return media.url;
+  if (/^\/(blog|home)\/.*\.(png|jpe?g|webp|avif|gif|tiff?)$/.test(publicPath)) {
+    throw new Error(`Missing marketing media manifest entry: ${publicPath}. Publish it with npm run media:add.`);
+  }
+  return value;
+}
