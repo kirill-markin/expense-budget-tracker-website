@@ -4,7 +4,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import sharp from "sharp";
-import { parseMediaManifest, type MarketingMedia } from "../src/lib/marketingMedia";
+import { marketingMediaManifest, parseMediaManifest, resolveMarketingMediaUrl, type MarketingMedia } from "../src/lib/marketingMedia";
+import { resolveMarkdownMedia } from "../src/lib/content/resolveMarkdownMedia";
+import { renderMarkdownToHtml } from "../src/lib/content/renderMarkdownToHtml";
 import { assertAvailablePath, checksum, inspectMedia, prepareMedia } from "./mediaFiles";
 
 const sha256 = "a".repeat(64);
@@ -16,6 +18,46 @@ const entry: MarketingMedia = {
   sha256,
   bytes: 100,
 };
+
+test("marketing paths resolve to imported media and missing assets fail explicitly", () => {
+  assert.ok(marketingMediaManifest.length > 0);
+  for (const media of marketingMediaManifest) {
+    assert.equal(resolveMarketingMediaUrl(media.publicPath), media.url);
+    assert.equal(resolveMarketingMediaUrl(`https://expense-budget-tracker.com${media.publicPath}`), media.url);
+    assert.equal(resolveMarketingMediaUrl(media.url), media.url);
+  }
+  assert.equal(resolveMarketingMediaUrl("/logo.svg"), "/logo.svg");
+  assert.equal(resolveMarketingMediaUrl("/blog/article/"), "/blog/article/");
+  assert.equal(resolveMarketingMediaUrl("https://example.com/image.png"), "https://example.com/image.png");
+  assert.throws(() => resolveMarketingMediaUrl("/blog/unpublished-test-image.png"), /Missing marketing media manifest entry/);
+});
+
+test("Markdown and HTML share Blob destinations without editing prose or code samples", async () => {
+  const media = marketingMediaManifest[0];
+  assert.ok(media);
+  const markdown = [
+    `![Cover](${media.publicPath} "Cover")`,
+    `![Reference][cover]`,
+    `[cover]: <${media.publicPath}> "Cover"`,
+    `[Download](${media.publicPath})`,
+    `Plain path: ${media.publicPath}`,
+    `\`${media.publicPath}\``,
+    "```md",
+    `![Example](${media.publicPath})`,
+    "```",
+  ].join("\n\n");
+  const resolved = resolveMarkdownMedia(markdown);
+  assert.ok(resolved.includes(`![Cover](${media.url} "Cover")`));
+  assert.ok(resolved.includes(`[cover]: <${media.url}> "Cover"`));
+  assert.ok(resolved.includes(`[Download](${media.url})`));
+  assert.ok(resolved.includes(`Plain path: ${media.publicPath}`));
+  assert.ok(resolved.includes(`\`${media.publicPath}\``));
+  assert.ok(resolved.includes(`![Example](${media.publicPath})`));
+  const html = await renderMarkdownToHtml(markdown);
+  assert.ok(html.includes(`src="${media.url}"`));
+  assert.ok(html.includes(`href="${media.url}"`));
+  assert.equal(resolveMarkdownMedia(resolved), resolved);
+});
 
 test("manifest rejects duplicate paths, invalid dimensions and nonimmutable public URLs", () => {
   assert.deepEqual(parseMediaManifest([entry]), [entry]);
