@@ -21,7 +21,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node --import tsx --test tests/blogEnglishSource.test.ts"
+    "test": "node --import tsx --test tests/blogEnglishSource.test.ts scripts/mediaFiles.test.ts",
+    "media:add": "tsx scripts/addMedia.ts",
+    "media:replace": "tsx scripts/replaceMedia.ts",
+    "media:migrate": "tsx scripts/migrateMedia.ts"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -38,9 +41,11 @@
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@vercel/blob": "2.8.2",
     "eslint": "^9.39.5",
     "eslint-config-next": "16.4.0",
     "postcss": "^8.5.30",
+    "sharp": "0.35.5",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3"
