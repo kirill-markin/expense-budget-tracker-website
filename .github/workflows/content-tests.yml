@@ -18,4 +18,5 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - run: npm test
+      - name: Run content and media publishing tests
+        run: npm test
