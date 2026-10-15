@@ -2,7 +2,9 @@
 
 Marketing website for Expense Budget Tracker. Static Next.js site deployed on Vercel.
 
-**Git Workflow**: commit directly to `main`; deploy is automatic after push.
+**Git Workflow**: use a PR to `main`; require the `Media Git guard` check before merging. Deploy is automatic after merge.
+
+Publish media with `npm run media:add`; commit the manifest and content URL, never media binaries. Read [publishing](docs/media.md) and [Git safeguards](docs/media-git.md) before adding media.
 
 ## Rules
 

@@ -13,6 +13,8 @@
   "license": "MIT",
   "packageManager": "npm@11.21.0",
   "scripts": {
+    "media:check": "node scripts/checkMediaGit.ts",
+    "hooks:install": "node scripts/installMediaHooks.ts",
     "bigquery:query": "node --env-file=.env.bigquery.local --import tsx scripts/queryBigQuery.ts",
     "generate:static-content": "tsx scripts/generateStaticContent.ts",
     "predev": "npm run generate:static-content",
