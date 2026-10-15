@@ -32,7 +32,6 @@ export function proxy(request: NextRequest): NextResponse {
     return NextResponse.rewrite(rewriteUrl);
   }
 
-  // --- Markdown serving: .md extension ---
   const markdownPagePath = getPagePathFromMarkdownPathname(pathname);
   if (markdownPagePath !== null) {
     const rewriteUrl = request.nextUrl.clone();
@@ -40,7 +39,6 @@ export function proxy(request: NextRequest): NextResponse {
     return NextResponse.rewrite(rewriteUrl);
   }
 
-  // --- Markdown serving: Accept header ---
   const accept = request.headers.get("accept") || "";
   if (
     accept.includes("text/markdown") &&
@@ -54,7 +52,6 @@ export function proxy(request: NextRequest): NextResponse {
     return NextResponse.rewrite(rewriteUrl);
   }
 
-  // --- Default: add Vary and Link headers ---
   const response = NextResponse.next();
   response.headers.append("Vary", "Accept");
 
@@ -68,6 +65,6 @@ export function proxy(request: NextRequest): NextResponse {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)|robots\\.txt).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|tiff?|ico)|robots\\.txt).*)",
   ],
 };

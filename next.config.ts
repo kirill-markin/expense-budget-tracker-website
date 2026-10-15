@@ -1,4 +1,10 @@
 import type { NextConfig } from "next";
+import { marketingMediaManifest } from "./src/lib/marketingMedia";
+
+const mediaHosts = [...new Set(marketingMediaManifest.map(({ url }) => new URL(url).hostname))];
+if (mediaHosts.length !== 1 || mediaHosts[0] !== "kisawtnsjrjeautf.public.blob.vercel-storage.com") {
+  throw new Error("Marketing media must use the dedicated Expense Budget Tracker Blob store.");
+}
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
@@ -7,6 +13,13 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/webp", "image/avif"],
+    remotePatterns: mediaHosts.map((hostname) => ({
+      protocol: "https" as const,
+      hostname,
+      port: "",
+      pathname: "/marketing/*",
+      search: "",
+    })),
     unoptimized: false,
   },
   reactStrictMode: true,
@@ -38,6 +51,14 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/:directory(blog|home)/:image(.*\\.(?:png|jpe?g|webp|avif|gif|tiff?))",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+          { key: "x-vercel-enable-rewrite-caching", value: "1" },
+          { key: "Vercel-CDN-Cache-Control", value: "public, max-age=86400" },
+        ],
+      },
     ];
 
     if (process.env.VERCEL_ENV !== "production") {
@@ -53,6 +74,12 @@ const nextConfig: NextConfig = {
     }
 
     return headers;
+  },
+  async rewrites() {
+    return marketingMediaManifest.map(({ publicPath, url }) => ({
+      source: publicPath.replaceAll(".", "\\."),
+      destination: url,
+    }));
   },
 };
 

@@ -1,6 +1,8 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import matter from "gray-matter";
+import { resolveMarketingMediaUrl } from "@/lib/marketingMedia";
+import { resolveMarkdownMedia } from "@/lib/content/resolveMarkdownMedia";
 import {
   getBlogFilePath,
   getContentSectionDirectory,
@@ -314,6 +316,9 @@ function normalizeBlogImage(
     return null;
   }
 
+  const resolvedImage = resolveMarketingMediaUrl(image);
+  if (resolvedImage !== image) return resolvedImage;
+
   if (isHttpUrl(image)) {
     return image;
   }
@@ -377,7 +382,7 @@ function parseBlogPost(slug: string, locale: AppLocale): BlogPostRecord {
         ? null
         : assertValidIsoDateString(updated, "updated", filePath),
     publishedAt: parsePublishedAt(date, filePath),
-    bodyMarkdown: content,
+    bodyMarkdown: resolveMarkdownMedia(content),
   };
 }
 
