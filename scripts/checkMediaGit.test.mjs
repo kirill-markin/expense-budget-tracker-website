@@ -56,7 +56,7 @@ test("staged guard reads the index, allows old media deletion and text, rejects 
     save(root, path, data);
     writeFileSync(join(root, path), "unstaged text");
     expect(run(root, ["staged"], ""), 1);
-    git(root, "rm", "--cached", path);
+    git(root, "rm", "--cached", "-f", path);
   }
   for (const path of ["public/icon-preview.png", "public/logo-512.png", "src/app/favicon.ico"]) {
     save(root, path, png);
