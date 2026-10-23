@@ -19,7 +19,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha || github.event.after }}
       - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version-file: .nvmrc
       - name: Test media guard against real Git fixtures
         run: node --test scripts/checkMediaGit.test.mjs
       - name: Check every introduced commit
