@@ -4,7 +4,7 @@
 
 ## Optional local hooks
 
-Use Node 24, then run `npm run hooks:install` once per clone. This sets the repository's `core.hooksPath` to `.githooks`, including its worktrees. Existing custom hook paths or non-sample default hooks cause an explicit failure; integrate these commands into your hooks manually:
+Use Node 26, then run `npm run hooks:install` once per clone. This sets the repository's `core.hooksPath` to `.githooks`, including its worktrees. Existing custom hook paths or non-sample default hooks cause an explicit failure; integrate these commands into your hooks manually:
 
 - Pre-commit: `node scripts/checkMediaGit.ts staged`
 - Pre-push: `node scripts/checkMediaGit.ts pre-push "$@"` (preserve the Git ref-update input on stdin).
