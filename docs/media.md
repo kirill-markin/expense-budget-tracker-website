@@ -2,7 +2,7 @@
 
 ## Upload setup
 
-Use Node 24 and `npm ci`. The dedicated public Vercel Blob store `store_kIsawtNsJrjEAUTf` is connected to the website project. Put its `BLOB_READ_WRITE_TOKEN` in `.env.media.local` in the main checkout, with file permissions `0600`; never commit it. Upload commands locate this single file via Git's common directory, including from worktrees. An explicitly supplied `BLOB_READ_WRITE_TOKEN` environment variable takes precedence. Website builds and public downloads require no credentials.
+Use Node 26 and `npm ci`. The dedicated public Vercel Blob store `store_kIsawtNsJrjEAUTf` is connected to the website project. Put its `BLOB_READ_WRITE_TOKEN` in `.env.media.local` in the main checkout, with file permissions `0600`; never commit it. Upload commands locate this single file via Git's common directory, including from worktrees. An explicitly supplied `BLOB_READ_WRITE_TOKEN` environment variable takes precedence. Website builds and public downloads require no credentials.
 
 ## Add and replace
 
