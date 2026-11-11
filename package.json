@@ -11,7 +11,7 @@
   "description": "Marketing website for Expense Budget Tracker",
   "author": "Kirill Markin",
   "license": "MIT",
-  "packageManager": "npm@11.21.1",
+  "packageManager": "npm@11.21.2",
   "scripts": {
     "media:check": "node scripts/checkMediaGit.ts",
     "hooks:install": "node scripts/installMediaHooks.ts",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "next": "16.4.5",
+    "next": "16.4.6",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "remark": "^15.0.1",
@@ -38,17 +38,17 @@
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
-    "@google-cloud/bigquery": "^9.6.0",
-    "@tailwindcss/postcss": "^4.3.4",
+    "@google-cloud/bigquery": "^9.6.1",
+    "@tailwindcss/postcss": "^4.3.5",
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "@vercel/blob": "2.8.2",
+    "@vercel/blob": "2.9.0",
     "eslint": "^9.39.5",
-    "eslint-config-next": "16.4.5",
+    "eslint-config-next": "16.4.6",
     "postcss": "^8.5.32",
     "sharp": "0.35.5",
-    "tailwindcss": "^4.3.4",
+    "tailwindcss": "^4.3.5",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3"
   },
@@ -60,7 +60,7 @@
       "postcss": "$postcss"
     },
     "@vercel/oidc": {
-      "@vercel/cli-config": "0.3.6"
+      "@vercel/cli-config": "0.3.8"
     }
   },
   "repository": {
