@@ -11,7 +11,7 @@
   "description": "Marketing website for Expense Budget Tracker",
   "author": "Kirill Markin",
   "license": "MIT",
-  "packageManager": "npm@11.21.2",
+  "packageManager": "npm@11.21.3",
   "scripts": {
     "media:check": "node scripts/checkMediaGit.ts",
     "hooks:install": "node scripts/installMediaHooks.ts",
@@ -46,14 +46,14 @@
     "@vercel/blob": "2.9.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "16.4.6",
-    "postcss": "^8.5.32",
+    "postcss": "^8.5.33",
     "sharp": "0.35.5",
     "tailwindcss": "^4.3.5",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3"
   },
   "engines": {
-    "node": "^26.13.0"
+    "node": "^26.13.1"
   },
   "overrides": {
     "next": {
