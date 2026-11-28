@@ -25,6 +25,8 @@ interface FooterMessages {
   readonly termsOfService: string;
   readonly builtBy: string;
   readonly localeSwitcherAriaLabel: string;
+  readonly localeSearchLabel: string;
+  readonly localeSearchEmpty: string;
   readonly operatedBy: string;
 }
 
@@ -108,6 +110,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       termsOfService: "Terms of Service",
       builtBy: "Built by Kirill Markin",
       localeSwitcherAriaLabel: "Select language",
+      localeSearchLabel: "Search languages",
+      localeSearchEmpty: "No languages found.",
       operatedBy: "Operated by SAMO DANNI EOOD · VAT: BG207395566 · Country: Bulgaria",
     },
     breadcrumbs: {
@@ -173,6 +177,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       termsOfService: "Términos del servicio",
       builtBy: "Creado por Kirill Markin",
       localeSwitcherAriaLabel: "Seleccionar idioma",
+      localeSearchLabel: "Buscar idiomas",
+      localeSearchEmpty: "No se encontraron idiomas.",
       operatedBy: "Operado por SAMO DANNI EOOD · VAT: BG207395566 · País: Bulgaria",
     },
     breadcrumbs: {
@@ -239,6 +245,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       termsOfService: "Условия использования",
       builtBy: "Создано Кириллом Маркиным",
       localeSwitcherAriaLabel: "Выбрать язык",
+      localeSearchLabel: "Поиск языков",
+      localeSearchEmpty: "Языки не найдены.",
       operatedBy: "Оператор: SAMO DANNI EOOD · VAT: BG207395566 · Страна: Болгария",
     },
     breadcrumbs: {
@@ -305,6 +313,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       termsOfService: "Умови використання",
       builtBy: "Створено Кирилом Маркіним",
       localeSwitcherAriaLabel: "Вибрати мову",
+      localeSearchLabel: "Пошук мов",
+      localeSearchEmpty: "Мов не знайдено.",
       operatedBy: "Оператор: SAMO DANNI EOOD · VAT: BG207395566 · Країна: Болгарія",
     },
     breadcrumbs: {
@@ -371,6 +381,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       termsOfService: "شرایط استفاده",
       builtBy: "ساخته‌شده توسط Kirill Markin",
       localeSwitcherAriaLabel: "انتخاب زبان",
+      localeSearchLabel: "جستجوی زبان‌ها",
+      localeSearchEmpty: "زبانی یافت نشد.",
       operatedBy: "توسط SAMO DANNI EOOD اداره می‌شود · VAT: BG207395566 · کشور: بلغارستان",
     },
     breadcrumbs: {
@@ -436,6 +448,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       termsOfService: "服务条款",
       builtBy: "由 Kirill Markin 构建",
       localeSwitcherAriaLabel: "选择语言",
+      localeSearchLabel: "搜索语言",
+      localeSearchEmpty: "未找到匹配的语言。",
       operatedBy: "由 SAMO DANNI EOOD 运营 · VAT: BG207395566 · 国家：保加利亚",
     },
     breadcrumbs: {
@@ -500,6 +514,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       termsOfService: "شروط الخدمة",
       builtBy: "بناء Kirill Markin",
       localeSwitcherAriaLabel: "اختيار اللغة",
+      localeSearchLabel: "البحث عن اللغات",
+      localeSearchEmpty: "لم يُعثر على لغات مطابقة.",
       operatedBy: "تدير الخدمة شركة SAMO DANNI EOOD · VAT: BG207395566 · الدولة: بلغاريا",
     },
     breadcrumbs: {
@@ -565,6 +581,8 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       termsOfService: "תנאי שימוש",
       builtBy: "נבנה על ידי Kirill Markin",
       localeSwitcherAriaLabel: "בחירת שפה",
+      localeSearchLabel: "חיפוש שפות",
+      localeSearchEmpty: "לא נמצאו שפות.",
       operatedBy: "מופעל על ידי SAMO DANNI EOOD · VAT: BG207395566 · מדינה: בולגריה",
     },
     breadcrumbs: {

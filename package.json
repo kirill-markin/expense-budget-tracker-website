@@ -23,7 +23,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node --import tsx --test tests/blogEnglishSource.test.ts scripts/mediaFiles.test.ts",
+    "test": "node --import tsx --test tests/*.test.ts scripts/mediaFiles.test.ts",
     "media:add": "tsx scripts/addMedia.ts",
     "media:replace": "tsx scripts/replaceMedia.ts",
     "media:migrate": "tsx scripts/migrateMedia.ts"

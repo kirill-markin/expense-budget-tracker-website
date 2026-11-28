@@ -1,5 +1,5 @@
 import type { BlogPostRecord } from "@/lib/blog";
-import { type AppLocale, getHtmlLang } from "@/lib/i18n/config";
+import { type AppLocale, getLanguageTag } from "@/lib/i18n/config";
 import { getAbsoluteUrl } from "@/lib/i18n/routing";
 
 const AUTHOR_NAME = "Kirill Markin";
@@ -94,7 +94,7 @@ export function createBlogPostingStructuredData(
     },
     publisher: ARTICLE_PUBLISHER,
     url: params.pageUrl,
-    inLanguage: getHtmlLang(params.locale),
+    inLanguage: getLanguageTag(params.locale),
     ...(params.post.updated === null
       ? {}
       : { dateModified: params.post.updated }),

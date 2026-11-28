@@ -1,5 +1,4 @@
-import type { AppLocale } from "@/lib/i18n/config";
-import { DEFAULT_LOCALE } from "@/lib/i18n/config";
+import { DEFAULT_LOCALE, getHreflang, type AppLocale } from "@/lib/i18n/config";
 import { getAbsoluteUrl, getLocalizedPath } from "@/lib/i18n/routing";
 
 export function getLanguageAlternates(
@@ -12,13 +11,14 @@ export function getLanguageAlternates(
 
   const alternates = Object.fromEntries(
     availableLocales.map((locale) => [
-      locale,
+      getHreflang(locale),
       getAbsoluteUrl(getLocalizedPath(locale, routePath)),
     ])
   );
 
-  return {
-    ...alternates,
-    "x-default": getAbsoluteUrl(getLocalizedPath(DEFAULT_LOCALE, routePath)),
-  };
+  if (availableLocales.includes(DEFAULT_LOCALE)) {
+    alternates["x-default"] = alternates[getHreflang(DEFAULT_LOCALE)];
+  }
+
+  return alternates;
 }

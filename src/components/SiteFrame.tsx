@@ -1,5 +1,5 @@
 import type { AppLocale } from "@/lib/i18n/config";
-import { getHtmlLang } from "@/lib/i18n/config";
+import { getLanguageTag } from "@/lib/i18n/config";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
@@ -14,7 +14,7 @@ export function SiteFrame(props: SiteFrameProps): React.JSX.Element {
   return (
     <>
       <Header locale={props.locale} />
-      <main lang={getHtmlLang(props.locale)}>
+      <main lang={getLanguageTag(props.locale)}>
         {props.children}
       </main>
       <Footer

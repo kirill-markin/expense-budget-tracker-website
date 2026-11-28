@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFrame } from "@/components/SiteFrame";
 import { getAvailableBlogIndexLocales, listBlogPosts } from "@/lib/blog";
-import { isPrefixedLocale, type AppLocale } from "@/lib/i18n/config";
+import { isPrefixedLocale } from "@/lib/i18n/config";
 import { getSiteMessages } from "@/lib/i18n/messages";
 import { getLocalizedPath } from "@/lib/i18n/routing";
 import { createPageMetadata } from "@/lib/seo/createPageMetadata";
@@ -23,8 +23,13 @@ export async function generateMetadata({
     return { title: "Not Found" };
   }
 
+  const availableLocales = getAvailableBlogIndexLocales();
+
+  if (!availableLocales.includes(locale)) {
+    notFound();
+  }
+
   const pageCopy = getSiteMessages(locale).blogIndex;
-  const availableBlogIndexLocales = getAvailableBlogIndexLocales();
 
   return createPageMetadata({
     title: pageCopy.title,
@@ -32,9 +37,7 @@ export async function generateMetadata({
     locale,
     routePath: "/blog/",
     openGraphType: "website",
-    availableLocales: availableBlogIndexLocales.includes(locale)
-      ? availableBlogIndexLocales
-      : [locale],
+    availableLocales,
   });
 }
 
@@ -47,14 +50,15 @@ export default async function LocalizedBlogPage(
     notFound();
   }
 
+  const availableLocales = getAvailableBlogIndexLocales();
+
+  if (!availableLocales.includes(locale)) {
+    notFound();
+  }
+
   const posts = listBlogPosts(locale);
   const messages = getSiteMessages(locale);
   const pageCopy = messages.blogIndex;
-  const availableBlogIndexLocales = getAvailableBlogIndexLocales();
-  const availableLocales: ReadonlyArray<AppLocale> =
-    availableBlogIndexLocales.includes(locale)
-      ? availableBlogIndexLocales
-      : [locale];
 
   return (
     <SiteFrame
@@ -73,23 +77,19 @@ export default async function LocalizedBlogPage(
           ]}
         />
         <h1 className={styles.title}>{pageCopy.title}</h1>
-        {posts.length === 0 ? (
-          <p className={styles.empty}>{pageCopy.empty}</p>
-        ) : (
-          <div className={styles.list}>
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={getLocalizedPath(locale, `/blog/${post.slug}/`)}
-                className={styles.card}
-              >
-                <time className={styles.date}>{post.date}</time>
-                <h2>{post.title}</h2>
-                <p>{post.description}</p>
-              </Link>
-            ))}
-          </div>
-        )}
+        <div className={styles.list}>
+          {posts.map((post) => (
+            <Link
+              key={post.slug}
+              href={getLocalizedPath(locale, `/blog/${post.slug}/`)}
+              className={styles.card}
+            >
+              <time className={styles.date}>{post.date}</time>
+              <h2>{post.title}</h2>
+              <p>{post.description}</p>
+            </Link>
+          ))}
+        </div>
       </div>
     </SiteFrame>
   );

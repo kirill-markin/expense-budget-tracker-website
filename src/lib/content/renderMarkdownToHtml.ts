@@ -1,9 +1,12 @@
 import { remark } from "remark";
-import gfm from "remark-gfm";
 import html from "remark-html";
+import type { AppLocale } from "@/lib/i18n/config";
+import { parseMarkdownWithProductLinks } from "./resolveMarkdownProductLinks";
 import { resolveMarkdownMedia } from "./resolveMarkdownMedia";
 
-export async function renderMarkdownToHtml(markdown: string): Promise<string> {
-  const result = await remark().use(gfm).use(html).process(resolveMarkdownMedia(markdown));
-  return result.toString();
+const processor = remark().use(html);
+
+export async function renderMarkdownToHtml(markdown: string, locale: AppLocale): Promise<string> {
+  const { tree } = parseMarkdownWithProductLinks(resolveMarkdownMedia(markdown), locale);
+  return processor.stringify(tree);
 }

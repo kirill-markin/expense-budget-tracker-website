@@ -26,24 +26,9 @@ export const AuthButton = ({ locale }: AuthButtonProps): React.JSX.Element => {
   const mounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
   const messages = getSiteMessages(locale);
 
-  if (!mounted) {
+  if (mounted && hasLoggedInCookie()) {
     return (
-      <div className={styles.buttonGroup}>
-        <a href={getLoginUrl("/")} className={styles.loginButton}>
-          {messages.auth.login}
-        </a>
-        <a href={getSignupUrl()} className={styles.signupButton}>
-          {messages.auth.signup}
-        </a>
-      </div>
-    );
-  }
-
-  const loggedIn = hasLoggedInCookie();
-
-  if (loggedIn) {
-    return (
-      <a href={getAppUrl()} className={styles.signupButton}>
+      <a href={getAppUrl(locale)} className={styles.signupButton}>
         {messages.auth.openApp}
       </a>
     );
@@ -51,10 +36,10 @@ export const AuthButton = ({ locale }: AuthButtonProps): React.JSX.Element => {
 
   return (
     <div className={styles.buttonGroup}>
-      <a href={getLoginUrl("/")} className={styles.loginButton}>
+      <a href={getLoginUrl("/", locale)} className={styles.loginButton}>
         {messages.auth.login}
       </a>
-      <a href={getSignupUrl()} className={styles.signupButton}>
+      <a href={getSignupUrl(locale)} className={styles.signupButton}>
         {messages.auth.signup}
       </a>
     </div>

@@ -1,4 +1,6 @@
 import { buildAbsoluteUrl, getLocalizedPath, getResolvedPagePath } from "@/lib/i18n/routing";
+import { localizeProductEntryUrl } from "@/lib/auth";
+import { resolveMarkdownProductLinks } from "@/lib/content/resolveMarkdownProductLinks";
 import { resolveMarkdownMedia } from "@/lib/content/resolveMarkdownMedia";
 import {
   DEFAULT_LOCALE,
@@ -44,7 +46,6 @@ type MarkdownResult = {
 interface MarkdownMessages {
   readonly docsTitle: string;
   readonly blogTitle: string;
-  readonly postsComingSoon: string;
   readonly viewStyledHtml: string;
   readonly mcpNote: string;
   readonly mcpNoteSuffix: string;
@@ -64,7 +65,6 @@ const MARKDOWN_MESSAGES: Readonly<Record<AppLocale, MarkdownMessages>> = {
   en: {
     docsTitle: "Documentation",
     blogTitle: "Blog",
-    postsComingSoon: "Posts coming soon.",
     viewStyledHtml: "View the styled HTML version of this page",
     mcpNote: "OAuth-capable remote MCP clients can connect at",
     mcpNoteSuffix:
@@ -78,7 +78,6 @@ const MARKDOWN_MESSAGES: Readonly<Record<AppLocale, MarkdownMessages>> = {
   es: {
     docsTitle: "Documentación",
     blogTitle: "Blog",
-    postsComingSoon: "Próximamente habrá publicaciones.",
     viewStyledHtml: "Ver la versión HTML con estilo de esta página",
     mcpNote: "Los clientes MCP remotos compatibles con OAuth pueden conectarse a",
     mcpNoteSuffix:
@@ -92,7 +91,6 @@ const MARKDOWN_MESSAGES: Readonly<Record<AppLocale, MarkdownMessages>> = {
   ru: {
     docsTitle: "Документация",
     blogTitle: "Блог",
-    postsComingSoon: "Публикации скоро появятся.",
     viewStyledHtml: "Открыть HTML-версию этой страницы",
     mcpNote: "Удаленные MCP-клиенты с поддержкой OAuth могут подключиться к",
     mcpNoteSuffix:
@@ -106,7 +104,6 @@ const MARKDOWN_MESSAGES: Readonly<Record<AppLocale, MarkdownMessages>> = {
   uk: {
     docsTitle: "Документація",
     blogTitle: "Блог",
-    postsComingSoon: "Публікації незабаром з’являться.",
     viewStyledHtml: "Переглянути HTML-версію цієї сторінки",
     mcpNote: "Віддалені MCP-клієнти з підтримкою OAuth можуть підключитися до",
     mcpNoteSuffix:
@@ -120,7 +117,6 @@ const MARKDOWN_MESSAGES: Readonly<Record<AppLocale, MarkdownMessages>> = {
   fa: {
     docsTitle: "مستندات",
     blogTitle: "وبلاگ",
-    postsComingSoon: "مطلب‌ها به‌زودی منتشر می‌شوند.",
     viewStyledHtml: "نسخه HTML این صفحه را ببینید",
     mcpNote: "کلاینت‌های راه‌دور MCP سازگار با OAuth می‌توانند به این نشانی متصل شوند",
     mcpNoteSuffix:
@@ -134,7 +130,6 @@ const MARKDOWN_MESSAGES: Readonly<Record<AppLocale, MarkdownMessages>> = {
   zh: {
     docsTitle: "文档",
     blogTitle: "博客",
-    postsComingSoon: "文章即将发布。",
     viewStyledHtml: "查看此页面的 HTML 样式版本",
     mcpNote: "支持 OAuth 的远程 MCP 客户端可连接",
     mcpNoteSuffix:
@@ -147,7 +142,6 @@ const MARKDOWN_MESSAGES: Readonly<Record<AppLocale, MarkdownMessages>> = {
   ar: {
     docsTitle: "التوثيق",
     blogTitle: "المدونة",
-    postsComingSoon: "ستتوفر المقالات قريبًا.",
     viewStyledHtml: "عرض نسخة HTML المنسقة من هذه الصفحة",
     mcpNote: "يمكن لعملاء MCP البعيدين الذين يدعمون OAuth الاتصال بـ",
     mcpNoteSuffix:
@@ -160,7 +154,6 @@ const MARKDOWN_MESSAGES: Readonly<Record<AppLocale, MarkdownMessages>> = {
   he: {
     docsTitle: "תיעוד",
     blogTitle: "בלוג",
-    postsComingSoon: "פוסטים יפורסמו בקרוב.",
     viewStyledHtml: "לצפייה בגרסת ה-HTML המעוצבת של העמוד",
     mcpNote: "לקוחות MCP מרוחקים שתומכים ב-OAuth יכולים להתחבר אל",
     mcpNoteSuffix:
@@ -224,6 +217,11 @@ function renderMarketingPageMarkdownDocument(pagePath: string): MarkdownResult {
 
 export function renderDocsListingMarkdown(locale: AppLocale): MarkdownResult {
   const docs = listDocs(locale);
+
+  if (docs.length === 0) {
+    return { markdown: `# 404\n\nPage not found: ${getLocalizedPath(locale, "/docs/")}`, status: 404 };
+  }
+
   const messages = MARKDOWN_MESSAGES[locale];
   const lines: string[] = [`# ${messages.docsTitle}`, ""];
 
@@ -267,7 +265,7 @@ export function renderDocMarkdown(
 
   return {
     markdown: appendMarkdownFooter(
-      `# ${doc.title}\n\n${doc.bodyMarkdown}`,
+      `# ${doc.title}\n\n${resolveMarkdownProductLinks(doc.bodyMarkdown, locale)}`,
       getPagePathFromRoutePath(getLocalizedPath(locale, `/docs/${slug}/`)),
       locale
     ),
@@ -277,12 +275,11 @@ export function renderDocMarkdown(
 
 export function renderBlogListingMarkdown(locale: AppLocale): MarkdownResult {
   const posts = getBlogPosts(locale);
-  const messages = MARKDOWN_MESSAGES[locale];
-
   if (posts.length === 0) {
-    return { markdown: `# ${messages.blogTitle}\n\n${messages.postsComingSoon}`, status: 200 };
+    return { markdown: `# 404\n\nPage not found: ${getLocalizedPath(locale, "/blog/")}`, status: 404 };
   }
 
+  const messages = MARKDOWN_MESSAGES[locale];
   const lines: string[] = [`# ${messages.blogTitle}`, ""];
 
   posts.forEach((post) => {
@@ -316,7 +313,7 @@ export function renderBlogPostMarkdown(
 
   return {
     markdown: appendMarkdownFooter(
-      `# ${post.title}\n\n*${post.date}*\n\n${post.bodyMarkdown.trim()}`,
+      `# ${post.title}\n\n*${post.date}*\n\n${resolveMarkdownProductLinks(post.bodyMarkdown.trim(), locale)}`,
       getPagePathFromRoutePath(getLocalizedPath(locale, `/blog/${slug}/`)),
       locale
     ),
@@ -438,7 +435,7 @@ ${blogSection}
 ## Links
 
 - [GitHub Repository](${SITE_CONTEXT.githubUrl})
-- [Cloud App](${SITE_CONTEXT.appUrl})
+- [Cloud App](${localizeProductEntryUrl(SITE_CONTEXT.appUrl, DEFAULT_LOCALE)})
 - [Hosted MCP Server](${MCP_URL}): OAuth Bearer access for remote MCP clients; requires \`expenses:read\`. A client can also request optional \`expenses:write\`; it appears on the OAuth consent screen and is required for mutations
 - [Agent API Discovery](${DISCOVERY_URL}): Separate ApiKey onboarding for CLI and direct HTTP agents
 

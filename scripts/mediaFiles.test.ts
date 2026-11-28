@@ -53,7 +53,7 @@ test("Markdown and HTML share Blob destinations without editing prose or code sa
   assert.ok(resolved.includes(`Plain path: ${media.publicPath}`));
   assert.ok(resolved.includes(`\`${media.publicPath}\``));
   assert.ok(resolved.includes(`![Example](${media.publicPath})`));
-  const html = await renderMarkdownToHtml(markdown);
+  const html = await renderMarkdownToHtml(markdown, "en");
   assert.ok(html.includes(`src="${media.url}"`));
   assert.ok(html.includes(`href="${media.url}"`));
   assert.equal(resolveMarkdownMedia(resolved), resolved);

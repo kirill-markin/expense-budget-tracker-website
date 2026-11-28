@@ -23,6 +23,12 @@ export async function generateMetadata({
     return { title: "Not Found" };
   }
 
+  const availableLocales = getAvailableDocIndexLocales();
+
+  if (!availableLocales.includes(locale)) {
+    notFound();
+  }
+
   const pageCopy = getSiteMessages(locale).docs;
 
   return createPageMetadata({
@@ -31,7 +37,7 @@ export async function generateMetadata({
     locale,
     routePath: "/docs/",
     openGraphType: "website",
-    availableLocales: getAvailableDocIndexLocales(),
+    availableLocales,
   });
 }
 
@@ -44,6 +50,12 @@ export default async function LocalizedDocsPage(
     notFound();
   }
 
+  const availableLocales = getAvailableDocIndexLocales();
+
+  if (!availableLocales.includes(locale)) {
+    notFound();
+  }
+
   const docs = listDocs(locale);
   const messages = getSiteMessages(locale);
   const pageCopy = messages.docs;
@@ -52,7 +64,7 @@ export default async function LocalizedDocsPage(
     <SiteFrame
       locale={locale}
       routePath="/docs/"
-      availableLocales={getAvailableDocIndexLocales()}
+      availableLocales={availableLocales}
     >
       <div className={styles.container}>
         <Breadcrumbs
