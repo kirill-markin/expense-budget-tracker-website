@@ -5,7 +5,7 @@ import { RootDocument } from "@/app/RootDocument";
 import { JsonLdSchema } from "@/components/JsonLdSchema";
 import {
   PREFIXED_LOCALES,
-  getHtmlLang,
+  getLanguageTag,
   getTextDirection,
   isPrefixedLocale,
   type PrefixedLocale,
@@ -35,7 +35,7 @@ export default async function LocaleLayout(
 
   return (
     <RootDocument
-      lang={getHtmlLang(locale)}
+      lang={getLanguageTag(locale)}
       dir={getTextDirection(locale)}
     >
       <JsonLdSchema locale={locale} />

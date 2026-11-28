@@ -1,5 +1,5 @@
 import { readPageContent } from "@/lib/content/readPageContent";
-import type { AppLocale } from "@/lib/i18n/config";
+import { getLanguageTag, type AppLocale } from "@/lib/i18n/config";
 import { buildAbsoluteUrl, getLocalizedPath } from "@/lib/i18n/routing";
 
 interface JsonLdSchemaProps {
@@ -32,6 +32,7 @@ export function JsonLdSchema({ locale }: JsonLdSchemaProps): React.JSX.Element {
     "https://expense-budget-tracker.com",
     getLocalizedPath(locale, "/")
   );
+  const languageTag = getLanguageTag(locale);
   const softwareAppSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -39,7 +40,7 @@ export function JsonLdSchema({ locale }: JsonLdSchemaProps): React.JSX.Element {
     name: "Expense Budget Tracker",
     description: homePageContent.description,
     url: homeUrl,
-    inLanguage: locale,
+    inLanguage: languageTag,
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
     license: "https://opensource.org/licenses/MIT",
@@ -59,7 +60,7 @@ export function JsonLdSchema({ locale }: JsonLdSchemaProps): React.JSX.Element {
     url: homeUrl,
     name: "Expense Budget Tracker",
     description: homePageContent.description,
-    inLanguage: locale,
+    inLanguage: languageTag,
     publisher: publisherOrganization,
   };
 

@@ -1,6 +1,7 @@
 export const SITE_URL = "https://expense-budget-tracker.com";
 export const SITE_NAME = "Expense Budget Tracker";
 
+// Locale keys are stable route and content directory slugs.
 export const DEFAULT_LOCALE = "en";
 export const PREFIXED_LOCALES = [
   "es",
@@ -18,67 +19,78 @@ export type PrefixedLocale = (typeof PREFIXED_LOCALES)[number];
 export type TextDirection = "ltr" | "rtl";
 
 interface LocaleMetadata {
-  readonly htmlLang: string;
+  readonly languageTag: string;
+  // Set when Google Search needs a different supported language or region tag.
+  readonly hreflang?: string;
   readonly openGraphLocale: string;
   readonly label: string;
+  readonly englishLabel: string;
   readonly shortLabel: string;
   readonly direction: TextDirection;
 }
 
 const LOCALE_METADATA: Readonly<Record<AppLocale, LocaleMetadata>> = {
   en: {
-    htmlLang: "en",
+    languageTag: "en",
     openGraphLocale: "en_US",
     label: "English",
+    englishLabel: "English",
     shortLabel: "EN",
     direction: "ltr",
   },
   es: {
-    htmlLang: "es",
+    languageTag: "es",
     openGraphLocale: "es_ES",
     label: "Español",
+    englishLabel: "Spanish",
     shortLabel: "ES",
     direction: "ltr",
   },
   ru: {
-    htmlLang: "ru",
+    languageTag: "ru",
     openGraphLocale: "ru_RU",
     label: "Русский",
+    englishLabel: "Russian",
     shortLabel: "RU",
     direction: "ltr",
   },
   uk: {
-    htmlLang: "uk",
+    languageTag: "uk",
     openGraphLocale: "uk_UA",
     label: "Українська",
+    englishLabel: "Ukrainian",
     shortLabel: "UK",
     direction: "ltr",
   },
   fa: {
-    htmlLang: "fa",
+    languageTag: "fa",
     openGraphLocale: "fa_IR",
     label: "فارسی",
+    englishLabel: "Persian",
     shortLabel: "FA",
     direction: "rtl",
   },
   zh: {
-    htmlLang: "zh",
+    languageTag: "zh-Hans",
     openGraphLocale: "zh_CN",
     label: "中文",
+    englishLabel: "Simplified Chinese",
     shortLabel: "ZH",
     direction: "ltr",
   },
   ar: {
-    htmlLang: "ar",
+    languageTag: "ar",
     openGraphLocale: "ar_SA",
     label: "العربية",
+    englishLabel: "Arabic",
     shortLabel: "AR",
     direction: "rtl",
   },
   he: {
-    htmlLang: "he",
+    languageTag: "he",
     openGraphLocale: "he_IL",
     label: "עברית",
+    englishLabel: "Hebrew",
     shortLabel: "HE",
     direction: "rtl",
   },
@@ -92,8 +104,12 @@ export function isPrefixedLocale(value: string): value is PrefixedLocale {
   return PREFIXED_LOCALES.includes(value as PrefixedLocale);
 }
 
-export function getHtmlLang(locale: AppLocale): string {
-  return LOCALE_METADATA[locale].htmlLang;
+export function getLanguageTag(locale: AppLocale): string {
+  return LOCALE_METADATA[locale].languageTag;
+}
+
+export function getHreflang(locale: AppLocale): string {
+  return LOCALE_METADATA[locale].hreflang ?? getLanguageTag(locale);
 }
 
 export function getOpenGraphLocale(locale: AppLocale): string {
@@ -102,6 +118,10 @@ export function getOpenGraphLocale(locale: AppLocale): string {
 
 export function getLocaleLabel(locale: AppLocale): string {
   return LOCALE_METADATA[locale].label;
+}
+
+export function getLocaleEnglishLabel(locale: AppLocale): string {
+  return LOCALE_METADATA[locale].englishLabel;
 }
 
 export function getLocaleShortLabel(locale: AppLocale): string {
