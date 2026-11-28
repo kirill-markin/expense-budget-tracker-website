@@ -24,6 +24,7 @@ import {
   MARKETING_PAGE_SLUGS,
 } from "@/lib/content/readPageContent";
 import { getLanguageAlternates } from "@/lib/seo/getLanguageAlternates";
+import { checkSitemap, type SitemapEntry } from "@/lib/sitemap/checkSitemap";
 import {
   getFileLastModified,
   getNewestDirectoryFileLastModified,
@@ -83,7 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     throw new Error("Missing docs markdown files for sitemap");
   }
 
-  const marketingEntries: MetadataRoute.Sitemap = MARKETING_PAGE_SLUGS.flatMap(
+  const marketingEntries: SitemapEntry[] = MARKETING_PAGE_SLUGS.flatMap(
     (slug) => {
       const availableLocales = getAvailableLocalesForMarketingPage(slug);
       const alternates = getOptionalAlternates(
@@ -104,7 +105,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   );
 
-  const staticEntries: MetadataRoute.Sitemap = [
+  const staticEntries: SitemapEntry[] = [
     ...availableBlogIndexLocales.map((locale) => {
       return {
         url: getAbsoluteUrl(getLocalizedPath(locale, "/blog/")),
@@ -123,7 +124,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  const blogEntries: MetadataRoute.Sitemap = blogPosts.flatMap((post) => {
+  const blogEntries: SitemapEntry[] = blogPosts.flatMap((post) => {
     const availableLocales = getAvailableBlogLocales(post.slug);
     const alternates = getOptionalAlternates(
       `/blog/${post.slug}/`,
@@ -139,7 +140,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
   });
 
-  const docEntries: MetadataRoute.Sitemap = docs.flatMap((doc) => {
+  const docEntries: SitemapEntry[] = docs.flatMap((doc) => {
     const availableLocales = getAvailableDocLocales(doc.slug);
     const alternates = getOptionalAlternates(
       `/docs/${doc.slug}/`,
@@ -155,5 +156,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
   });
 
-  return [...marketingEntries, ...staticEntries, ...blogEntries, ...docEntries];
+  const entries = [...marketingEntries, ...staticEntries, ...blogEntries, ...docEntries];
+  checkSitemap(entries);
+  return entries;
 }
