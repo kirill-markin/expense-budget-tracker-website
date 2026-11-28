@@ -1,4 +1,15 @@
 import type { AppLocale } from "@/lib/i18n/config";
+import { messages as deMessages } from "./locales/de";
+import { messages as frMessages } from "./locales/fr";
+import { messages as idMessages } from "./locales/id";
+import { messages as itMessages } from "./locales/it";
+import { messages as jaMessages } from "./locales/ja";
+import { messages as koMessages } from "./locales/ko";
+import { messages as plMessages } from "./locales/pl";
+import { messages as ptBrMessages } from "./locales/pt-br";
+import { messages as trMessages } from "./locales/tr";
+import { messages as viMessages } from "./locales/vi";
+import { messages as zhHantMessages } from "./locales/zh-hant";
 
 interface AuthMessages {
   readonly login: string;
@@ -31,12 +42,18 @@ interface FooterMessages {
 }
 
 interface BreadcrumbMessages {
+  readonly ariaLabel: string;
   readonly home: string;
   readonly docs: string;
   readonly blog: string;
 }
 
 interface HomePageMessages {
+  readonly copyCode: {
+    readonly idle: string;
+    readonly copied: string;
+    readonly failed: string;
+  };
   readonly humanTitle: string;
   readonly humanWebApp: string;
   readonly agentTitle: string;
@@ -115,11 +132,17 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       operatedBy: "Operated by SAMO DANNI EOOD · VAT: BG207395566 · Country: Bulgaria",
     },
     breadcrumbs: {
+      ariaLabel: "Breadcrumb",
       home: "Home",
       docs: "Docs",
       blog: "Blog",
     },
     home: {
+      copyCode: {
+        idle: "Copy",
+        copied: "Copied",
+        failed: "Copy failed",
+      },
       humanTitle: "For human",
       humanWebApp: "Web App",
       agentTitle: "For AI agent",
@@ -182,11 +205,17 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       operatedBy: "Operado por SAMO DANNI EOOD · VAT: BG207395566 · País: Bulgaria",
     },
     breadcrumbs: {
+      ariaLabel: "Ruta de navegación",
       home: "Inicio",
       docs: "Documentación",
       blog: "Blog",
     },
     home: {
+      copyCode: {
+        idle: "Copiar",
+        copied: "Copiado",
+        failed: "No se pudo copiar",
+      },
       humanTitle: "Para personas",
       humanWebApp: "Aplicación web",
       agentTitle: "Para agentes de IA",
@@ -250,11 +279,17 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       operatedBy: "Оператор: SAMO DANNI EOOD · VAT: BG207395566 · Страна: Болгария",
     },
     breadcrumbs: {
+      ariaLabel: "Путь навигации",
       home: "Главная",
       docs: "Документация",
       blog: "Блог",
     },
     home: {
+      copyCode: {
+        idle: "Копировать",
+        copied: "Скопировано",
+        failed: "Не удалось скопировать",
+      },
       humanTitle: "Для человека",
       humanWebApp: "Веб-приложение",
       agentTitle: "Для ИИ-агента",
@@ -318,11 +353,17 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       operatedBy: "Оператор: SAMO DANNI EOOD · VAT: BG207395566 · Країна: Болгарія",
     },
     breadcrumbs: {
+      ariaLabel: "Навігаційний шлях",
       home: "Головна",
       docs: "Документація",
       blog: "Блог",
     },
     home: {
+      copyCode: {
+        idle: "Копіювати",
+        copied: "Скопійовано",
+        failed: "Не вдалося скопіювати",
+      },
       humanTitle: "Для людини",
       humanWebApp: "Вебзастосунок",
       agentTitle: "Для AI-агента",
@@ -386,11 +427,17 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       operatedBy: "توسط SAMO DANNI EOOD اداره می‌شود · VAT: BG207395566 · کشور: بلغارستان",
     },
     breadcrumbs: {
+      ariaLabel: "مسیر پیمایش",
       home: "خانه",
       docs: "مستندات",
       blog: "وبلاگ",
     },
     home: {
+      copyCode: {
+        idle: "کپی",
+        copied: "کپی شد",
+        failed: "کپی انجام نشد",
+      },
       humanTitle: "برای انسان",
       humanWebApp: "اپلیکیشن وب",
       agentTitle: "برای عامل هوش مصنوعی",
@@ -453,11 +500,17 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       operatedBy: "由 SAMO DANNI EOOD 运营 · VAT: BG207395566 · 国家：保加利亚",
     },
     breadcrumbs: {
+      ariaLabel: "面包屑导航",
       home: "首页",
       docs: "文档",
       blog: "博客",
     },
     home: {
+      copyCode: {
+        idle: "复制",
+        copied: "已复制",
+        failed: "复制失败",
+      },
       humanTitle: "面向个人用户",
       humanWebApp: "Web 应用",
       agentTitle: "面向 AI 智能体",
@@ -519,11 +572,17 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       operatedBy: "تدير الخدمة شركة SAMO DANNI EOOD · VAT: BG207395566 · الدولة: بلغاريا",
     },
     breadcrumbs: {
+      ariaLabel: "مسار التنقل",
       home: "الرئيسية",
       docs: "التوثيق",
       blog: "المدونة",
     },
     home: {
+      copyCode: {
+        idle: "نسخ",
+        copied: "تم النسخ",
+        failed: "تعذّر النسخ",
+      },
       humanTitle: "للبشر",
       humanWebApp: "تطبيق الويب",
       agentTitle: "لوكلاء الذكاء الاصطناعي",
@@ -586,11 +645,17 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       operatedBy: "מופעל על ידי SAMO DANNI EOOD · VAT: BG207395566 · מדינה: בולגריה",
     },
     breadcrumbs: {
+      ariaLabel: "נתיב ניווט",
       home: "דף הבית",
       docs: "תיעוד",
       blog: "בלוג",
     },
     home: {
+      copyCode: {
+        idle: "העתקה",
+        copied: "הועתק",
+        failed: "ההעתקה נכשלה",
+      },
       humanTitle: "לבני אדם",
       humanWebApp: "אפליקציית ווב",
       agentTitle: "לסוכני AI",
@@ -624,6 +689,17 @@ const SITE_MESSAGES: Readonly<Record<AppLocale, SiteMessages>> = {
       lastUpdated: "עודכן לאחרונה:",
     },
   },
+  de: deMessages,
+  fr: frMessages,
+  id: idMessages,
+  it: itMessages,
+  ja: jaMessages,
+  ko: koMessages,
+  pl: plMessages,
+  "pt-br": ptBrMessages,
+  tr: trMessages,
+  vi: viMessages,
+  "zh-hant": zhHantMessages,
 };
 
 export function getSiteMessages(locale: AppLocale): SiteMessages {

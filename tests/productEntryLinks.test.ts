@@ -13,7 +13,9 @@ import { readBlogPostContent } from "../src/lib/blog";
 import { renderMarkdownToHtml } from "../src/lib/content/renderMarkdownToHtml";
 import { resolveMarkdownProductLinks } from "../src/lib/content/resolveMarkdownProductLinks";
 import { readDocContent } from "../src/lib/docs";
-import { SUPPORTED_LOCALES } from "../src/lib/i18n/config";
+import { SUPPORTED_LOCALES, type AppLocale } from "../src/lib/i18n/config";
+import { getLocalizedPath } from "../src/lib/i18n/routing";
+import { getPagePathFromHtmlPathname } from "../src/lib/markdownAssetPaths";
 import { renderMarkdownDocument, renderLlmsText } from "../src/lib/markdownServe";
 
 const APP_URL = "https://app.expense-budget-tracker.com";
@@ -21,19 +23,26 @@ const AUTH_URL = "https://auth.expense-budget-tracker.com";
 const configuredAppUrl = process.env.NEXT_PUBLIC_APP_URL ?? APP_URL;
 const configuredAuthUrl = process.env.NEXT_PUBLIC_AUTH_URL ?? AUTH_URL;
 
-test("app links and auth entry links pass the route locale and keep the app return target", () => {
+const languageHints: Readonly<Partial<Record<AppLocale, string>>> = {
+  "zh-hant": "zh-Hant",
+  "pt-br": "pt-BR",
+};
+
+test("app and auth entry links defer on English and carry the active locale elsewhere", () => {
   const path = "/budget?utm_source=a%20b&workspace=example#march";
   for (const locale of SUPPORTED_LOCALES) {
+    const hint = locale === "en" ? null : languageHints[locale] ?? locale;
     const appUrl = new URL(getAppUrl(locale));
     assert.equal(appUrl.origin, new URL(configuredAppUrl).origin);
-    assert.equal(appUrl.searchParams.get("locale"), locale);
+    assert.equal(appUrl.searchParams.get("locale"), hint);
 
     const loginUrl = new URL(getLoginUrl(path, locale));
     const signupUrl = new URL(getSignupUrl(locale));
     for (const authUrl of [loginUrl, signupUrl]) {
       assert.equal(authUrl.origin, new URL(configuredAuthUrl).origin);
       assert.equal(authUrl.pathname, new URL(`${configuredAuthUrl.replace(/\/$/, "")}/login`).pathname);
-      assert.equal(authUrl.searchParams.get("lang"), locale);
+      assert.equal(authUrl.searchParams.get("lang"), hint);
+      assert.equal(authUrl.searchParams.get("carry_locale"), locale === "en" ? "1" : null);
     }
     assert.equal(loginUrl.searchParams.get("redirect_uri"), `${configuredAppUrl.replace(/\/$/, "")}${path}`);
     assert.equal(signupUrl.searchParams.get("redirect_uri"), configuredAppUrl);
@@ -43,32 +52,57 @@ test("app links and auth entry links pass the route locale and keep the app retu
   }
 });
 
-test("only host-approved human entry URLs acquire a locale hint", () => {
-  const appEntry = `${APP_URL}/budget?utm_source=a%20b&tag=%7e&tag=other&locale=en#march`;
-  assert.equal(
-    localizeProductEntryUrl(appEntry, "uk"),
-    `${APP_URL}/budget?utm_source=a%20b&tag=%7e&tag=other&locale=uk#march`
-  );
+test("entry localization preserves authored hints and only changes approved human destinations", () => {
+  const entryPath = `${APP_URL}/budget?utm_source=a%20b&tag=%7e&tag=other`;
+  const appEntry = `${entryPath}#march`;
+  const explicitAppEntry = `${entryPath}&lo%63ale=en#march`;
   const authEntry = `${AUTH_URL}/login?redirect_uri=${encodeURIComponent(appEntry)}&utm_source=a%20b#entry`;
-  assert.equal(
-    localizeProductEntryUrl(authEntry, "uk"),
-    `${authEntry.replace("#entry", "&lang=uk#entry")}`
-  );
+  assert.equal(localizeProductEntryUrl(appEntry, "en"), appEntry);
+  assert.equal(localizeProductEntryUrl(appEntry, "uk"), `${entryPath}&locale=uk#march`);
+  assert.equal(localizeProductEntryUrl(authEntry, "en"), authEntry.replace("#entry", "&carry_locale=1#entry"));
+  assert.equal(localizeProductEntryUrl(authEntry, "uk"), authEntry.replace("#entry", "&lang=uk#entry"));
+  const authoredCarry = authEntry.replace("#entry", "&carry_locale=1#entry");
+  assert.equal(localizeProductEntryUrl(authoredCarry, "en"), authoredCarry);
+  assert.equal(localizeProductEntryUrl(`${APP_URL}/?#march`, "uk"), `${APP_URL}/?locale=uk#march`);
 
   for (const href of [
+    explicitAppEntry,
+    authEntry.replace("#entry", "&l%61ng=en#entry"),
+    authEntry.replace(encodeURIComponent(appEntry), encodeURIComponent(explicitAppEntry)),
     "/docs/getting-started/?locale=ru#cloud",
     "https://example.com/deploy?locale=ru",
     "https://app.expense-budget-tracker.com.example/budget",
     "https://app.expense-budget-tracker.com@example.com/budget",
     `${APP_URL}/api/agent#discovery`,
     `${APP_URL}/.well-known/agent.json`,
+    `${APP_URL}/v1/`,
+    `${APP_URL}/mcp`,
     `${APP_URL}/share/monthly/public`,
     `${AUTH_URL}/api/agent/send-code`,
     `${AUTH_URL}/oauth/authorize`,
+    `${AUTH_URL}/login?redirect_uri=${encodeURIComponent(`${APP_URL}/api/agent`)}`,
+    `${AUTH_URL}/login?redirect_uri=${encodeURIComponent(`${AUTH_URL}/oauth/authorize`)}`,
     `${AUTH_URL}/login?redirect_uri=https%3A%2F%2Fexample.com`,
     `${AUTH_URL}/login?redirect_uri=https%3A%2F%2Fexample.com&redirect_uri=${encodeURIComponent(APP_URL)}`,
   ]) {
+    assert.equal(localizeProductEntryUrl(href, "en"), href);
     assert.equal(localizeProductEntryUrl(href, "uk"), href);
+  }
+});
+
+test("auth links carry the locale through both Markdown renderers", async () => {
+  const link = `${AUTH_URL}/login?redirect_uri=${encodeURIComponent(`${APP_URL}/budget?utm_source=a%20b#march`)}`;
+  const markdown = `[Sign in](${link})`;
+  for (const [locale, hint] of [
+    ["en", "carry_locale=1"],
+    ["pt-br", "lang=pt-BR"],
+    ["zh-hant", "lang=zh-Hant"],
+  ] as const) {
+    const generatedMarkdown = resolveMarkdownProductLinks(markdown, locale);
+    const generatedHtml = String(await remark().use(gfm).use(html).process(generatedMarkdown));
+    const pageHtml = await renderMarkdownToHtml(markdown, locale);
+    assert.ok(pageHtml.includes(`href="${link}&#x26;${hint}"`));
+    assert.equal(generatedHtml, pageHtml);
   }
 });
 
@@ -177,24 +211,35 @@ test("generated Markdown preserves a mailto link with multiple recipients", asyn
   assert.ok(generatedHtml.includes(`<a href="${APP_URL}?locale=es">Open app</a>`));
 });
 
-test("localized docs and blog render app hrefs in HTML and generated Markdown", async () => {
-  const doc = await readDocContent("getting-started", "es");
-  assert.ok(doc?.contentHtml.includes(`href="${APP_URL}?locale=es"`));
-  assert.ok(doc?.contentHtml.includes(`<code>${APP_URL}</code>`));
+test("English and localized product pages render matching app links across HTML and Markdown", async () => {
+  for (const locale of ["en", "es", "pt-br", "zh-hant"] as const) {
+    const hint = locale === "en" ? "" : `?locale=${languageHints[locale] ?? locale}`;
+    const doc = await readDocContent("getting-started", locale);
+    assert.ok(doc?.contentHtml.includes(`href="${APP_URL}${hint}"`));
+    assert.ok(doc?.contentHtml.includes(`<code>${APP_URL}</code>`));
 
-  const blog = await readBlogPostContent("actual-budget-alternative", "es");
-  assert.ok(blog?.contentHtml.includes(`href="${APP_URL}/?locale=es"`));
+    const blog = await readBlogPostContent("quicken-alternative", locale);
+    assert.ok(blog?.contentHtml.includes(`href="${APP_URL}/${hint}"`));
+    assert.ok(blog?.contentHtml.includes(`href="${APP_URL}/api/agent"`));
 
-  const home = renderMarkdownDocument("es");
-  const pricing = renderMarkdownDocument("es/pricing");
-  const docMarkdown = renderMarkdownDocument("es/docs/getting-started");
-  for (const result of [home, pricing, docMarkdown]) {
-    assert.equal(result.status, 200);
-    assert.ok(result.markdown.includes(`(${APP_URL}?locale=es)`));
+    const renderPage = (route: string) =>
+      renderMarkdownDocument(getPagePathFromHtmlPathname(getLocalizedPath(locale, route)));
+    const home = renderPage("/");
+    const pricing = renderPage("/pricing/");
+    const docMarkdown = renderPage("/docs/getting-started/");
+    for (const result of [home, pricing, docMarkdown]) {
+      assert.equal(result.status, 200);
+      assert.ok(result.markdown.includes(`(${APP_URL}${hint})`));
+    }
+    assert.ok(home.markdown.includes("https://mcp.expense-budget-tracker.com/mcp"));
+    assert.ok(pricing.markdown.includes("(https://github.com/kirill-markin/expense-budget-tracker)"));
+    assert.ok(docMarkdown.markdown.includes(`\`${APP_URL}\``));
+
+    const blogMarkdown = renderPage("/blog/quicken-alternative/");
+    assert.equal(blogMarkdown.status, 200);
+    assert.ok(blogMarkdown.markdown.includes(`(${APP_URL}/${hint})`));
+    assert.ok(blogMarkdown.markdown.includes(`(${APP_URL}/api/agent)`));
   }
-  assert.ok(home.markdown.includes("https://mcp.expense-budget-tracker.com/mcp"));
-  assert.ok(pricing.markdown.includes("(https://github.com/kirill-markin/expense-budget-tracker)"));
-  assert.ok(docMarkdown.markdown.includes(`\`${APP_URL}\``));
-  assert.ok(renderMarkdownDocument("es/blog/actual-budget-alternative").markdown.includes(`(${APP_URL}/?locale=es)`));
-  assert.ok(renderLlmsText().includes(`(${APP_URL}?locale=en)`));
+
+  assert.ok(renderLlmsText().includes(`[Cloud App](${configuredAppUrl})`));
 });
