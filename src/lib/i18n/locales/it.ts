@@ -29,11 +29,17 @@ export const messages: ReturnType<typeof getSiteMessages> = {
     operatedBy: "Gestito da SAMO DANNI EOOD · Partita IVA: BG207395566 · Paese: Bulgaria",
   },
   breadcrumbs: {
+    ariaLabel: "Percorso di navigazione",
     home: "Home",
     docs: "Documentazione",
     blog: "Blog",
   },
   home: {
+    copyCode: {
+      idle: "Copia",
+      copied: "Copiato",
+      failed: "Impossibile copiare",
+    },
     humanTitle: "Per chi usa l’app direttamente",
     humanWebApp: "App web",
     agentTitle: "Per gli agenti di IA",

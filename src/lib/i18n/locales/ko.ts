@@ -29,11 +29,17 @@ export const messages = {
     operatedBy: "운영: SAMO DANNI EOOD · VAT: BG207395566 · 국가: 불가리아",
   },
   breadcrumbs: {
+    ariaLabel: "탐색 경로",
     home: "홈",
     docs: "문서",
     blog: "블로그",
   },
   home: {
+    copyCode: {
+      idle: "복사",
+      copied: "복사됨",
+      failed: "복사 실패",
+    },
     humanTitle: "직접 사용",
     humanWebApp: "웹 앱",
     agentTitle: "AI 에이전트 연동",

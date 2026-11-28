@@ -34,8 +34,8 @@ export function LocaleSearchList({
 }: LocaleSearchListProps): React.JSX.Element {
   const [query, setQuery] = useState("");
   const search = normalizeSearch(query);
-  const results = options.filter(({ nativeLabel, englishLabel }) =>
-    [nativeLabel, englishLabel].some((label) => normalizeSearch(label).includes(search))
+  const results = options.filter(({ nativeLabel, englishLabel, languageTag }) =>
+    [nativeLabel, englishLabel, languageTag].some((label) => normalizeSearch(label).includes(search))
   );
 
   return (

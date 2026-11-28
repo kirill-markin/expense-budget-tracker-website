@@ -29,11 +29,17 @@ export const messages = {
     operatedBy: "İşletmeci SAMO DANNI EOOD · KDV No BG207395566 · Bulgaristan",
   },
   breadcrumbs: {
+    ariaLabel: "Gezinti yolu",
     home: "Ana sayfa",
     docs: "Belgeler",
     blog: "Blog",
   },
   home: {
+    copyCode: {
+      idle: "Kopyala",
+      copied: "Kopyalandı",
+      failed: "Kopyalanamadı",
+    },
     humanTitle: "Kullanıcılar için",
     humanWebApp: "Web uygulaması",
     agentTitle: "Yapay zekâ ajanları için",

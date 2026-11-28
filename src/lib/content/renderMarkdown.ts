@@ -15,7 +15,6 @@ import { getMarketingPageRoutePath } from "./readPageContent";
 
 export interface MarkdownSiteContext {
   readonly siteUrl: string;
-  readonly appUrl: string;
   readonly githubUrl: string;
 }
 

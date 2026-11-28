@@ -29,11 +29,17 @@ export const messages = {
     operatedBy: "運営 SAMO DANNI EOOD（ブルガリア） · VAT 登録番号 BG207395566",
   },
   breadcrumbs: {
+    ariaLabel: "パンくずリスト",
     home: "ホーム",
     docs: "ドキュメント",
     blog: "ブログ",
   },
   home: {
+    copyCode: {
+      idle: "コピー",
+      copied: "コピーしました",
+      failed: "コピーできませんでした",
+    },
     humanTitle: "自分で操作する",
     humanWebApp: "Web アプリ",
     agentTitle: "AI エージェント向け",

@@ -29,11 +29,17 @@ export const messages: ReturnType<typeof getSiteMessages> = {
     operatedBy: "Đơn vị vận hành: SAMO DANNI EOOD · VAT: BG207395566 · Quốc gia: Bulgaria",
   },
   breadcrumbs: {
+    ariaLabel: "Đường dẫn điều hướng",
     home: "Trang chủ",
     docs: "Tài liệu",
     blog: "Blog",
   },
   home: {
+    copyCode: {
+      idle: "Sao chép",
+      copied: "Đã sao chép",
+      failed: "Không thể sao chép",
+    },
     humanTitle: "Dành cho người dùng",
     humanWebApp: "Ứng dụng web",
     agentTitle: "Dành cho tác nhân AI",

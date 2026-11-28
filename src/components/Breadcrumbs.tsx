@@ -15,9 +15,9 @@ interface BreadcrumbsProps {
 }
 
 export function Breadcrumbs({ locale, items }: BreadcrumbsProps): React.JSX.Element {
-  const messages = getSiteMessages(locale);
+  const messages = getSiteMessages(locale).breadcrumbs;
   const allItems: ReadonlyArray<BreadcrumbItem> = [
-    { label: messages.breadcrumbs.home, href: getLocalizedPath(locale, "/") },
+    { label: messages.home, href: getLocalizedPath(locale, "/") },
     ...items,
   ];
 
@@ -35,7 +35,7 @@ export function Breadcrumbs({ locale, items }: BreadcrumbsProps): React.JSX.Elem
   };
 
   return (
-    <nav aria-label="Breadcrumb" className={styles.nav}>
+    <nav aria-label={messages.ariaLabel} className={styles.nav}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

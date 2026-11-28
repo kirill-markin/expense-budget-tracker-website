@@ -144,7 +144,10 @@ function renderHomePage(locale: AppLocale): React.JSX.Element {
               </p>
               <div className={homeStyles.hint}>
                 <p className={homeStyles.hintText}>{heroSection.hintText}</p>
-                <CopyCodeField value={heroSection.hintLink.href} />
+                <CopyCodeField
+                  value={heroSection.hintLink.href}
+                  labels={messages.home.copyCode}
+                />
               </div>
             </section>
           </aside>

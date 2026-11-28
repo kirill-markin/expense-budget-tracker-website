@@ -7,9 +7,10 @@ type CopyState = "idle" | "copied" | "failed";
 
 interface CopyCodeFieldProps {
   readonly value: string;
+  readonly labels: Readonly<Record<CopyState, string>>;
 }
 
-export function CopyCodeField({ value }: CopyCodeFieldProps) {
+export function CopyCodeField({ value, labels }: CopyCodeFieldProps): React.JSX.Element {
   const [copyState, setCopyState] = useState<CopyState>("idle");
   const resetTimeoutRef = useRef<number | null>(null);
 
@@ -46,11 +47,7 @@ export function CopyCodeField({ value }: CopyCodeFieldProps) {
         <code>{value}</code>
       </pre>
       <button type="button" className={styles.button} onClick={handleCopy}>
-        {copyState === "copied"
-          ? "Copied"
-          : copyState === "failed"
-            ? "Copy failed"
-            : "Copy"}
+        {labels[copyState]}
       </button>
     </div>
   );

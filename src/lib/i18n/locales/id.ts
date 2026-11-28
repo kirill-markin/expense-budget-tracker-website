@@ -29,11 +29,17 @@ export const messages: ReturnType<typeof getSiteMessages> = {
     operatedBy: "Dikelola oleh SAMO DANNI EOOD · VAT: BG207395566 · Negara: Bulgaria",
   },
   breadcrumbs: {
+    ariaLabel: "Jalur navigasi",
     home: "Beranda",
     docs: "Dokumentasi",
     blog: "Blog",
   },
   home: {
+    copyCode: {
+      idle: "Salin",
+      copied: "Disalin",
+      failed: "Gagal menyalin",
+    },
     humanTitle: "Untuk pengguna",
     humanWebApp: "Aplikasi web",
     agentTitle: "Untuk agen AI",

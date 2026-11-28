@@ -29,11 +29,17 @@ export const messages = {
     operatedBy: "營運商為 SAMO DANNI EOOD · VAT：BG207395566 · 國家：保加利亞",
   },
   breadcrumbs: {
+    ariaLabel: "導覽路徑",
     home: "首頁",
     docs: "使用文件",
     blog: "部落格",
   },
   home: {
+    copyCode: {
+      idle: "複製",
+      copied: "已複製",
+      failed: "複製失敗",
+    },
     humanTitle: "供個人使用",
     humanWebApp: "網頁版",
     agentTitle: "供 AI 代理程式使用",

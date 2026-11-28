@@ -29,11 +29,17 @@ export const messages: ReturnType<typeof getSiteMessages> = {
     operatedBy: "Operator: SAMO DANNI EOOD · VAT: BG207395566 · Kraj: Bułgaria",
   },
   breadcrumbs: {
+    ariaLabel: "Ścieżka nawigacji",
     home: "Strona główna",
     docs: "Dokumentacja",
     blog: "Blog",
   },
   home: {
+    copyCode: {
+      idle: "Kopiuj",
+      copied: "Skopiowano",
+      failed: "Nie udało się skopiować",
+    },
     humanTitle: "Dla użytkowników",
     humanWebApp: "Aplikacja w przeglądarce",
     agentTitle: "Dla agentów AI",

@@ -29,11 +29,17 @@ export const messages: ReturnType<typeof getSiteMessages> = {
     operatedBy: "Exploité par SAMO DANNI EOOD · TVA : BG207395566 · Pays : Bulgarie",
   },
   breadcrumbs: {
+    ariaLabel: "Fil d’Ariane",
     home: "Accueil",
     docs: "Docs",
     blog: "Blog",
   },
   home: {
+    copyCode: {
+      idle: "Copier",
+      copied: "Copié",
+      failed: "Échec de la copie",
+    },
     humanTitle: "Pour vous",
     humanWebApp: "Application web",
     agentTitle: "Pour votre agent IA",

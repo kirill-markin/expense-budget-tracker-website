@@ -29,11 +29,17 @@ export const messages = {
     operatedBy: "Operado por SAMO DANNI EOOD · VAT: BG207395566 · País: Bulgária",
   },
   breadcrumbs: {
+    ariaLabel: "Caminho de navegação",
     home: "Início",
     docs: "Documentação",
     blog: "Blog",
   },
   home: {
+    copyCode: {
+      idle: "Copiar",
+      copied: "Copiado",
+      failed: "Não foi possível copiar",
+    },
     humanTitle: "Para pessoas",
     humanWebApp: "App web",
     agentTitle: "Para agentes de IA",

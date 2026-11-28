@@ -1,5 +1,5 @@
 import { buildAbsoluteUrl, getLocalizedPath, getResolvedPagePath } from "@/lib/i18n/routing";
-import { localizeProductEntryUrl } from "@/lib/auth";
+import { getAppUrl } from "@/lib/auth";
 import { resolveMarkdownProductLinks } from "@/lib/content/resolveMarkdownProductLinks";
 import { resolveMarkdownMedia } from "@/lib/content/resolveMarkdownMedia";
 import {
@@ -32,7 +32,6 @@ import {
 
 const SITE_CONTEXT: MarkdownSiteContext = {
   siteUrl: "https://expense-budget-tracker.com",
-  appUrl: "https://app.expense-budget-tracker.com",
   githubUrl: "https://github.com/kirill-markin/expense-budget-tracker",
 };
 const DISCOVERY_URL = "https://api.expense-budget-tracker.com/v1/";
@@ -162,6 +161,135 @@ const MARKDOWN_MESSAGES: Readonly<Record<AppLocale, MarkdownMessages>> = {
       "סוכני שורת פקודה ו-HTTP ישיר יכולים להשתמש ב-Agent API הנפרד על ידי התחלה מ-",
     agentNoteSuffix: "והמשך לפי תגובת הגילוי כדי לקבל ApiKey.",
     tip: "טיפ: הוסיפו `.md` לכל כתובת באתר כדי לקבל גרסת Markdown נקייה של העמוד.",
+  },
+  de: {
+    docsTitle: "Dokumentation",
+    blogTitle: "Blog",
+    viewStyledHtml: "Formatierte HTML-Version dieser Seite ansehen",
+    mcpNote: "Entfernte MCP-Clients mit OAuth-Unterstützung können sich über",
+    mcpNoteSuffix:
+      "mit OAuth-Bearer-Zugriff verbinden. Der erforderliche Geltungsbereich ist `expenses:read`. Der Client kann zusätzlich `expenses:write` anfordern. Diese optionale Berechtigung erscheint auf der OAuth-Einwilligungsseite und ist für Datenänderungen erforderlich.",
+    agentNote:
+      "CLI-Agenten und Agenten mit direkten HTTP-Anfragen können die separate Agent-API nutzen. Beginne mit",
+    agentNoteSuffix: "und folge der Discovery-Antwort, um einen ApiKey zu erhalten.",
+    tip: "Tipp: Hänge `.md` an eine URL dieser Website an, um die Seite als Markdown abzurufen.",
+  },
+  fr: {
+    docsTitle: "Documentation",
+    blogTitle: "Blog",
+    viewStyledHtml: "Consulter la version HTML mise en forme de cette page",
+    mcpNote: "Les clients MCP distants compatibles avec OAuth peuvent se connecter à",
+    mcpNoteSuffix:
+      "avec un jeton Bearer OAuth. La portée `expenses:read` est obligatoire. Le client peut aussi demander la portée facultative `expenses:write`, qui s’affiche sur l’écran de consentement OAuth et est nécessaire pour modifier les données.",
+    agentNote:
+      "Les agents en ligne de commande ou ceux qui envoient des requêtes HTTP directes peuvent utiliser l’API distincte pour agents en commençant par",
+    agentNoteSuffix: "puis en suivant la réponse de découverte pour obtenir une ApiKey.",
+    tip: "Astuce : ajoutez `.md` à une URL de ce site pour consulter la page au format Markdown.",
+  },
+  id: {
+    docsTitle: "Dokumentasi",
+    blogTitle: "Blog",
+    viewStyledHtml: "Lihat versi HTML halaman ini",
+    mcpNote: "Klien MCP jarak jauh yang mendukung OAuth dapat terhubung ke",
+    mcpNoteSuffix:
+      "dengan token Bearer OAuth. Cakupan `expenses:read` wajib. Klien juga dapat meminta cakupan opsional `expenses:write`, yang ditampilkan di layar persetujuan OAuth dan diperlukan untuk mengubah data.",
+    agentNote:
+      "Agen CLI dan agen yang mengirim permintaan HTTP langsung dapat memakai API agen yang terpisah, dimulai dengan",
+    agentNoteSuffix: "lalu mengikuti respons penemuan untuk mendapatkan ApiKey.",
+    tip: "Tips: tambahkan `.md` ke URL di situs ini untuk membuka halaman dalam format Markdown.",
+  },
+  it: {
+    docsTitle: "Documentazione",
+    blogTitle: "Blog",
+    viewStyledHtml: "Visualizza la versione HTML impaginata di questa pagina",
+    mcpNote: "I client MCP remoti che supportano OAuth possono collegarsi a",
+    mcpNoteSuffix:
+      "con un token Bearer OAuth. L’ambito `expenses:read` è obbligatorio. Il client può richiedere anche l’ambito facoltativo `expenses:write`, che compare nella schermata di consenso OAuth ed è necessario per modificare i dati.",
+    agentNote:
+      "Gli agenti da riga di comando e quelli che effettuano richieste HTTP dirette possono usare l’API separata per agenti partendo da",
+    agentNoteSuffix: "e seguendo la risposta di discovery per ottenere una ApiKey.",
+    tip: "Suggerimento: aggiungi `.md` a un URL di questo sito per vedere la pagina in formato Markdown.",
+  },
+  ja: {
+    docsTitle: "ドキュメント",
+    blogTitle: "ブログ",
+    viewStyledHtml: "このページの HTML 版を表示",
+    mcpNote: "OAuth 対応のリモート MCP クライアントの接続先は",
+    mcpNoteSuffix:
+      "です。アクセスには OAuth の Bearer トークンを使います。必須のスコープは `expenses:read` です。任意の `expenses:write` スコープもリクエストできます。このスコープは OAuth の同意画面に表示され、データを変更する際に必要です。",
+    agentNote: "CLI や HTTP リクエストを直接使うエージェント向けには、別途 Agent API があります。最初に送るリクエストは",
+    agentNoteSuffix: "です。ディスカバリのレスポンスに従って ApiKey を取得してください。",
+    tip: "ヒント：このサイトの URL の末尾に `.md` を追加すると、ページを Markdown 形式で表示できます。",
+  },
+  ko: {
+    docsTitle: "문서",
+    blogTitle: "블로그",
+    viewStyledHtml: "이 페이지의 HTML 버전 보기",
+    mcpNote: "OAuth를 지원하는 원격 MCP 클라이언트의 연결 주소는",
+    mcpNoteSuffix:
+      "입니다. OAuth Bearer 토큰으로 접근하며 `expenses:read` 범위가 필수입니다. 클라이언트는 선택 사항인 `expenses:write` 범위도 요청할 수 있습니다. 이 범위는 OAuth 동의 화면에 표시되며 데이터를 변경하는 데 필요합니다.",
+    agentNote: "CLI 또는 직접 HTTP 요청을 사용하는 에이전트는 별도의 Agent API를 사용할 수 있습니다. 첫 요청은",
+    agentNoteSuffix: "입니다. 탐색 응답에 따라 ApiKey를 발급받으세요.",
+    tip: "팁: 이 사이트의 URL 끝에 `.md`를 붙이면 해당 페이지의 Markdown 버전을 볼 수 있습니다.",
+  },
+  pl: {
+    docsTitle: "Dokumentacja",
+    blogTitle: "Blog",
+    viewStyledHtml: "Wyświetl sformatowaną wersję HTML tej strony",
+    mcpNote: "Zdalne klienty MCP obsługujące OAuth mogą połączyć się z adresem",
+    mcpNoteSuffix:
+      "przy użyciu tokena Bearer OAuth. Wymagany jest zakres `expenses:read`. Klient może też poprosić o opcjonalny zakres `expenses:write`, który pojawia się na ekranie zgody OAuth i jest wymagany do zmiany danych.",
+    agentNote:
+      "Agenty działające w wierszu poleceń lub wysyłające bezpośrednie żądania HTTP mogą korzystać z osobnego API dla agentów. Zacznij od",
+    agentNoteSuffix: "i postępuj zgodnie z odpowiedzią usługi wykrywania, aby uzyskać ApiKey.",
+    tip: "Wskazówka: dodaj `.md` na końcu adresu URL w tej witrynie, aby wyświetlić stronę w formacie Markdown.",
+  },
+  "pt-br": {
+    docsTitle: "Documentação",
+    blogTitle: "Blog",
+    viewStyledHtml: "Ver a versão HTML formatada desta página",
+    mcpNote: "Clientes MCP remotos com suporte a OAuth podem se conectar a",
+    mcpNoteSuffix:
+      "com um token Bearer OAuth. O escopo `expenses:read` é obrigatório. O cliente também pode solicitar o escopo opcional `expenses:write`, que aparece na tela de consentimento do OAuth e é necessário para alterar dados.",
+    agentNote:
+      "Agentes de linha de comando ou que fazem requisições HTTP diretas podem usar a API separada para agentes. Comece com",
+    agentNoteSuffix: "e siga a resposta de descoberta para obter uma ApiKey.",
+    tip: "Dica: acrescente `.md` ao final de uma URL deste site para ver a página em Markdown.",
+  },
+  tr: {
+    docsTitle: "Belgeler",
+    blogTitle: "Blog",
+    viewStyledHtml: "Bu sayfanın biçimlendirilmiş HTML sürümünü görüntüle",
+    mcpNote: "OAuth destekli uzak MCP istemcileri için bağlantı adresi:",
+    mcpNoteSuffix:
+      "Erişim için OAuth Bearer belirteci ve `expenses:read` kapsamı gerekir. İstemci isteğe bağlı `expenses:write` kapsamını da isteyebilir. Bu kapsam OAuth onay ekranında görünür ve verileri değiştirmek için gereklidir.",
+    agentNote:
+      "Komut satırından çalışan veya doğrudan HTTP isteği gönderen ajanlar ayrı ajan API’sini kullanabilir. İlk istek:",
+    agentNoteSuffix: "Bir ApiKey almak için keşif yanıtındaki adımları izleyin.",
+    tip: "İpucu: Bu sitedeki bir URL’nin sonuna `.md` ekleyerek sayfayı Markdown biçiminde görüntüleyebilirsiniz.",
+  },
+  vi: {
+    docsTitle: "Tài liệu",
+    blogTitle: "Blog",
+    viewStyledHtml: "Xem phiên bản HTML đã định dạng của trang này",
+    mcpNote: "Ứng dụng khách MCP từ xa hỗ trợ OAuth có thể kết nối với",
+    mcpNoteSuffix:
+      "bằng mã thông báo Bearer OAuth. Phạm vi `expenses:read` là bắt buộc. Ứng dụng khách cũng có thể yêu cầu phạm vi tùy chọn `expenses:write`. Phạm vi này xuất hiện trên màn hình chấp thuận OAuth và cần thiết để thay đổi dữ liệu.",
+    agentNote:
+      "Tác nhân dòng lệnh hoặc tác nhân gửi yêu cầu HTTP trực tiếp có thể dùng API dành riêng cho tác nhân. Hãy bắt đầu bằng",
+    agentNoteSuffix: "rồi làm theo phản hồi khám phá để lấy ApiKey.",
+    tip: "Mẹo: thêm `.md` vào cuối URL trên trang web này để xem trang dưới dạng Markdown.",
+  },
+  "zh-hant": {
+    docsTitle: "使用文件",
+    blogTitle: "部落格",
+    viewStyledHtml: "查看此頁面的 HTML 排版版本",
+    mcpNote: "支援 OAuth 的遠端 MCP 用戶端可連線至",
+    mcpNoteSuffix:
+      "並使用 OAuth Bearer 權杖存取。必要的授權範圍是 `expenses:read`。用戶端也可要求選用的 `expenses:write` 範圍；此範圍會顯示在 OAuth 同意畫面上，變更資料時必須取得這項授權。",
+    agentNote: "透過命令列或直接發出 HTTP 請求的代理程式可使用獨立的 Agent API。請先送出",
+    agentNoteSuffix: "，再依照探索回應取得 ApiKey。",
+    tip: "提示：在本站網址後加上 `.md`，即可取得該頁面的 Markdown 版本。",
   },
 };
 
@@ -435,7 +563,7 @@ ${blogSection}
 ## Links
 
 - [GitHub Repository](${SITE_CONTEXT.githubUrl})
-- [Cloud App](${localizeProductEntryUrl(SITE_CONTEXT.appUrl, DEFAULT_LOCALE)})
+- [Cloud App](${getAppUrl(DEFAULT_LOCALE)})
 - [Hosted MCP Server](${MCP_URL}): OAuth Bearer access for remote MCP clients; requires \`expenses:read\`. A client can also request optional \`expenses:write\`; it appears on the OAuth consent screen and is required for mutations
 - [Agent API Discovery](${DISCOVERY_URL}): Separate ApiKey onboarding for CLI and direct HTTP agents
 

@@ -29,11 +29,17 @@ export const messages = {
     operatedBy: "Betreiber: SAMO DANNI EOOD · USt-IdNr.: BG207395566 · Land: Bulgarien",
   },
   breadcrumbs: {
+    ariaLabel: "Navigationspfad",
     home: "Startseite",
     docs: "Dokumentation",
     blog: "Blog",
   },
   home: {
+    copyCode: {
+      idle: "Kopieren",
+      copied: "Kopiert",
+      failed: "Kopieren fehlgeschlagen",
+    },
     humanTitle: "Für dich",
     humanWebApp: "Web-App",
     agentTitle: "Für KI-Agenten",

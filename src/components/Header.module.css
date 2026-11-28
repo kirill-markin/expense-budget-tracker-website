@@ -68,7 +68,7 @@
   padding-top: 8px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .inner {
     flex-wrap: wrap;
     row-gap: 0;
