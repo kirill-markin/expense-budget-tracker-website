@@ -10,6 +10,7 @@ import type {
   PricingTier,
   PricingTiersSection,
 } from "./types";
+import { resolveMarkdownProductLinks } from "./resolveMarkdownProductLinks";
 import { getMarketingPageRoutePath } from "./readPageContent";
 
 export interface MarkdownSiteContext {
@@ -151,7 +152,7 @@ export function renderMarketingPageMarkdown(
 
   renderPageSections(pageContent, lines);
 
-  return lines.join("\n").trim();
+  return resolveMarkdownProductLinks(lines.join("\n").trim(), pageContent.locale);
 }
 
 export function renderMarketingPageDocument(

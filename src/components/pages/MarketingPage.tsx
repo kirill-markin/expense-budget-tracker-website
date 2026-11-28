@@ -94,7 +94,7 @@ function renderHomePage(locale: AppLocale): React.JSX.Element {
   const heroSection = getHeroSection(locale);
   const featureSection = getHomeFeatureSection(locale);
   const messages = getSiteMessages(locale);
-  const appUrl = getAppUrl();
+  const appUrl = getAppUrl(locale);
 
   return (
     <div className={homeStyles.hero}>
@@ -261,7 +261,7 @@ async function renderLegalPage(
 ): Promise<React.JSX.Element> {
   const pageContent = readPageContent(slug, locale);
   const legalSection = getLegalSection(slug, locale);
-  const contentHtml = await renderMarkdownToHtml(pageContent.body);
+  const contentHtml = await renderMarkdownToHtml(pageContent.body, locale);
   const messages = getSiteMessages(locale);
 
   return (
@@ -283,7 +283,7 @@ async function renderSimpleMarkdownPage(
   locale: AppLocale
 ): Promise<React.JSX.Element> {
   const pageContent = readPageContent(slug, locale);
-  const contentHtml = await renderMarkdownToHtml(pageContent.body);
+  const contentHtml = await renderMarkdownToHtml(pageContent.body, locale);
 
   return (
     <div className={legalStyles.container}>

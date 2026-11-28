@@ -130,7 +130,7 @@ export async function readDocContent(
   const cacheKey = `${locale}:${slug}`;
   const cachedHtml = renderedHtmlByLocaleAndSlug.get(cacheKey);
   const contentHtmlPromise =
-    cachedHtml ?? renderMarkdownToHtml(doc.bodyMarkdown);
+    cachedHtml ?? renderMarkdownToHtml(doc.bodyMarkdown, locale);
 
   if (cachedHtml === undefined) {
     renderedHtmlByLocaleAndSlug.set(cacheKey, contentHtmlPromise);

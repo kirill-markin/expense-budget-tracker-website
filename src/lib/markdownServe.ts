@@ -1,4 +1,6 @@
 import { buildAbsoluteUrl, getLocalizedPath, getResolvedPagePath } from "@/lib/i18n/routing";
+import { localizeProductEntryUrl } from "@/lib/auth";
+import { resolveMarkdownProductLinks } from "@/lib/content/resolveMarkdownProductLinks";
 import { resolveMarkdownMedia } from "@/lib/content/resolveMarkdownMedia";
 import {
   DEFAULT_LOCALE,
@@ -263,7 +265,7 @@ export function renderDocMarkdown(
 
   return {
     markdown: appendMarkdownFooter(
-      `# ${doc.title}\n\n${doc.bodyMarkdown}`,
+      `# ${doc.title}\n\n${resolveMarkdownProductLinks(doc.bodyMarkdown, locale)}`,
       getPagePathFromRoutePath(getLocalizedPath(locale, `/docs/${slug}/`)),
       locale
     ),
@@ -311,7 +313,7 @@ export function renderBlogPostMarkdown(
 
   return {
     markdown: appendMarkdownFooter(
-      `# ${post.title}\n\n*${post.date}*\n\n${post.bodyMarkdown.trim()}`,
+      `# ${post.title}\n\n*${post.date}*\n\n${resolveMarkdownProductLinks(post.bodyMarkdown.trim(), locale)}`,
       getPagePathFromRoutePath(getLocalizedPath(locale, `/blog/${slug}/`)),
       locale
     ),
@@ -433,7 +435,7 @@ ${blogSection}
 ## Links
 
 - [GitHub Repository](${SITE_CONTEXT.githubUrl})
-- [Cloud App](${SITE_CONTEXT.appUrl})
+- [Cloud App](${localizeProductEntryUrl(SITE_CONTEXT.appUrl, DEFAULT_LOCALE)})
 - [Hosted MCP Server](${MCP_URL}): OAuth Bearer access for remote MCP clients; requires \`expenses:read\`. A client can also request optional \`expenses:write\`; it appears on the OAuth consent screen and is required for mutations
 - [Agent API Discovery](${DISCOVERY_URL}): Separate ApiKey onboarding for CLI and direct HTTP agents
 
